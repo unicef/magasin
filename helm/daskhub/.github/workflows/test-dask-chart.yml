@@ -1,0 +1,80 @@
+# This is a GitHub workflow defining a set of jobs with a set of steps. ref:
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+#
+# NOTE: Changes to this name must be followed by updates to the README.me
+#       badges.
+name: Test dask chart
+
+on:
+  pull_request:
+    paths:
+      - "dask/**"
+      - "chartpress.yaml"
+      - "**/test-dask-chart.yml"
+      - "ci/common"
+  push:
+    paths:
+      - "dask/**"
+      - "chartpress.yaml"
+      - "**/test-dask-chart.yml"
+      - "ci/common"
+    branches-ignore:
+      - "upgrade-**"
+      - "dependabot/**"
+      - "pre-commit-ci-update-config"
+    tags:
+      - "**"
+  workflow_dispatch:
+
+jobs:
+  test-install-chart:
+    runs-on: ubuntu-22.04
+
+    strategy:
+      # Keep running even if one variation of the job fail
+      fail-fast: false
+      matrix:
+        # We run this job multiple times with different parameterization
+        # specified below, these parameters have no meaning on their own and
+        # gain meaning on how job steps use them.
+        #
+        # k3s-version: https://github.com/rancher/k3s/tags
+        # k3s-channel: https://update.k3s.io/v1-release/channels
+        #
+        include:
+          - k3s-channel: v1.24
+          - k3s-channel: latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint chart's templates
+        run: helm lint ./dask --strict --values dask/dev-values.yaml
+
+      - name: Validate chart's templates can render
+        run: helm template ./dask --values dask/dev-values.yaml 1>/dev/null
+
+      # Starts a k8s cluster with NetworkPolicy enforcement and installs kubectl
+      #
+      # ref: https://github.com/jupyterhub/action-k3s-helm/
+      - uses: jupyterhub/action-k3s-helm@v3
+        with:
+          k3s-channel: ${{ matrix.k3s-channel }}
+          metrics-enabled: false
+          traefik-enabled: false
+          docker-enabled: false
+
+      - name: Validate charts' rendered templates are valid k8s resources
+        run: helm template ./dask --validate --values dask/dev-values.yaml 1>/dev/null
+
+      - name: Install chart and await readiness
+        run: |
+          helm install dask ./dask --values dask/dev-values.yaml
+
+          . ci/common
+          full_namespace_await
+
+      # GitHub Action reference: https://github.com/jupyterhub/action-k8s-namespace-report
+      - name: Kubernetes namespace report
+        uses: jupyterhub/action-k8s-namespace-report@v1
+        if: always()

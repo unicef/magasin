@@ -1,0 +1,206 @@
+# This is a GitHub workflow defining a set of jobs with a set of steps.
+# ref: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+#
+# - Watch the latest ghcr.io/dask/dask image tag and update its reference in
+#   dask/values.yaml and dask/Chart.yaml (appVersion) if needed.
+#
+# - Watch the latest pangeo/base-notebook image tag and update its reference
+#   daskhub/values.yaml under jupyterhub.singleuser.image.tag if needed.
+#
+# - Watch the pinned chart dependencies (jupyterhub, dask-gateway) in
+#   daskhub/Chart.yaml to match the latest stable version available.
+#
+name: Watch dependencies
+
+on:
+  schedule:
+    # Run every hour sharp, ref: https://crontab.guru/#0_*_*_*_*
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  check-dask-image:
+    if: github.repository == 'dask/helm-chart'
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get latest tag of ghcr.io/dask/dask
+        id: latest
+        env:
+          REGISTRY: ghcr.io
+          REPOSITORY: dask/dask
+        # The skopeo image helps us list tags consistently from different docker
+        # registries. We use jq to filter out tags of the x.y.z format with the
+        # optional v prefix, and then sort based on the numerical x, y, and z
+        # values. Finally, we pick the last value in the list.
+        #
+        # NOTE: This script is used twice in this file, always update both if
+        #       you update it at once place.
+        #
+        run: |
+          latest_tag=$(
+              docker run --rm quay.io/skopeo/stable list-tags docker://$REGISTRY/$REPOSITORY \
+            | jq -r '[.Tags[] | select(. | test("^v?\\d+\\.\\d+\\.\\d+$"))] | sort_by(split(".") | map(tonumber? // (.[1:] | tonumber))) | last'
+          )
+          echo "::set-output name=tag::$latest_tag"
+
+      - name: Get dask/Chart.yaml's tag of ghcr.io/dask/dask (in appVersion)
+        id: local
+        run: |
+          local_tag=$(cat dask/Chart.yaml | yq e '.appVersion' -)
+          echo "::set-output name=tag::$local_tag"
+
+      - name: Update dask/Chart.yaml and dask/values.yaml pinned tag
+        run: sed --in-place 's/"${{ steps.local.outputs.tag }}"/"${{ steps.latest.outputs.tag }}"/g' dask/Chart.yaml dask/values.yaml
+
+      - name: git diff
+        run: git --no-pager diff --color=always
+
+      # ref: https://github.com/peter-evans/create-pull-request
+      - name: Create a PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: "${{ secrets.DASK_BOT_TOKEN }}"
+          branch: update-dask-version
+          reviewers: jacobtomlinson,consideratio
+          commit-message: Update Dask version to ${{ steps.latest.outputs.tag }}
+          title: Update Dask version to ${{ steps.latest.outputs.tag }}
+          body: >-
+            A new ghcr.io/dask/dask image version has been detected, version
+            `${{ steps.latest.outputs.tag }}`.
+
+            Updates dask the helm chart to use this version by default for
+            workers, schedulers, and the optional jupyter server.
+
+  update-singleuser-image:
+    if: github.repository == 'dask/helm-chart'
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get daskhub/values.yaml pinned tag of pangeo/base-notebook
+        id: local
+        run: |
+          local_tag=$(cat daskhub/values.yaml | yq e '.jupyterhub.singleuser.image.tag' -)
+          echo "::set-output name=tag::$local_tag"
+
+      - name: Get latest tag of pangeo/base-notebook
+        id: latest
+        env:
+          REGISTRY: registry.hub.docker.com
+          REPOSITORY: pangeo/base-notebook
+        # The skopeo image helps us list tags consistently from different docker
+        # registries. We use jq to filter out tags of the x.y.z format with the
+        # optional v prefix, and then sort based on the numerical x, y, and z
+        # values. Finally, we pick the last value in the list.
+        #
+        # NOTE: This script is used twice in this file, always update both if
+        #       you update it at once place.
+        #
+        run: |
+          latest_tag=$(
+              docker run --rm quay.io/skopeo/stable list-tags docker://$REGISTRY/$REPOSITORY \
+            | jq -r '[.Tags[] | select(. | test("^v?\\d+\\.\\d+\\.\\d+$"))] | sort_by(split(".") | map(tonumber? // (.[1:] | tonumber))) | last'
+          )
+          echo "::set-output name=tag::$latest_tag"
+
+          # FIXME: Apparently for some reason, sometimes we end up with a blank
+          #        output from the previous step to acquire the latest tag of
+          #        relevance from a container registry.
+          #
+          #        In this step, we make the job fail if that is the case instead of
+          #        opening a PR, and we emit some debugging information along with
+          #        it.
+          #
+          if [ -z "$latest_tag" ]; then
+              echo "For some reason latest_tag was found to be a blank string."
+              echo "--- Debugging info: output of docker run ---"
+              docker run --rm quay.io/skopeo/stable list-tags docker://$REGISTRY/$REPOSITORY
+              echo "--- Now failing the job instead of opening a PR with a faulty version update."
+              exit 1
+          fi
+
+      - name: Update daskhub/values.yaml pinned tag
+        run: sed --in-place 's/${{ steps.local.outputs.tag }}/${{ steps.latest.outputs.tag }}/g' daskhub/values.yaml
+
+      - name: git diff
+        run: git --no-pager diff --color=always
+
+      # ref: https://github.com/peter-evans/create-pull-request
+      - name: Create a PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: "${{ secrets.DASK_BOT_TOKEN }}"
+          branch: update-singleuser-image
+          labels: chart/daskhub
+          reviewers: jacobtomlinson,consideratio
+          commit-message: Update daskhub's pangeo/base-notebook version to ${{ steps.latest.outputs.tag }}
+          title: Update daskhub's pangeo/base-notebook version to ${{ steps.latest.outputs.tag }}
+          body: >-
+            A new pangeo/base-notebook image version has been detected, version
+            `${{ steps.latest.outputs.tag }}`.
+
+
+            Updates daskhub to use this version by default for jupyterhub's user
+            environment.
+
+  update-chart-dep:
+    if: github.repository == 'dask/helm-chart'
+    runs-on: ubuntu-22.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Updates daskhub/Chart.yaml declared chart dependencies versions by
+          # creating a PRs when a new stable version is available in the Helm
+          # chart repository.
+          #
+          - chart_dep_index: "0"
+            chart_dep_name: jupyterhub
+            chart_dep_changelog_url: https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/CHANGELOG.md
+
+          - chart_dep_index: "1"
+            chart_dep_name: dask-gateway
+            chart_dep_changelog_url: https://gateway.dask.org/changelog.html
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get Chart.yaml pinned version of ${{ matrix.chart_dep_name }} chart
+        id: local
+        run: |
+          local_version=$(cat daskhub/Chart.yaml | yq e '.dependencies.${{ matrix.chart_dep_index }}.version' -)
+          echo "::set-output name=version::$local_version"
+
+      - name: Get latest version of ${{ matrix.chart_dep_name }} chart
+        id: latest
+        run: |
+          chart_dep_repo=$(cat daskhub/Chart.yaml | yq e '.dependencies.${{ matrix.chart_dep_index }}.repository' -)
+          latest_version=$(helm show chart --repo=$chart_dep_repo ${{ matrix.chart_dep_name }} | yq e '.version' -)
+          echo "::set-output name=version::$latest_version"
+
+      - name: Update Chart.yaml pinned version
+        run: sed --in-place 's/${{ steps.local.outputs.version }}/${{ steps.latest.outputs.version }}/g' daskhub/Chart.yaml
+
+      - name: git diff
+        run: git --no-pager diff --color=always
+
+      # ref: https://github.com/peter-evans/create-pull-request
+      - name: Create a PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: "${{ secrets.DASK_BOT_TOKEN }}"
+          branch: update-chart-dep-${{ matrix.chart_dep_name }}
+          labels: chart/daskhub
+          reviewers: jacobtomlinson,consideratio
+          commit-message: Updates ${{ matrix.chart_dep_name }} chart to ${{ steps.latest.outputs.version }}
+          title: Updates ${{ matrix.chart_dep_name }} chart to ${{ steps.latest.outputs.version }}
+          body: >-
+            Updates daskhub to depend on ${{ matrix.chart_dep_name }} version
+            `${{ steps.latest.outputs.version }}`.
+
+
+            See [${{ matrix.chart_dep_name }}'s changelog](${{ matrix.chart_dep_changelog_url }})
+            for more information.

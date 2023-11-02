@@ -1,0 +1,42 @@
+# This is a GitHub workflow defining a set of jobs with a set of steps. ref:
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+#
+# This workflow package and publishes the Helm charts to Helm repository living
+# inside the gh-pages branch of this git repository.
+#
+name: Publish charts
+
+on:
+  push:
+    tags: ["*"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install frigate
+        run: pip install frigate
+
+      - name: Generate charts' README.md files from .frigate files
+        run: frigate hook
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Publish Helm charts
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          charts_dir: "."
+          charts_url: https://helm.dask.org/
+          linting: "off"
+          chart_version: ${{ steps.get_version.outputs.VERSION }}
