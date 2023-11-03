@@ -8,6 +8,7 @@
 # The update is done by removing the helm subfolders and
 # updating the files.
 # 
+# TODO: more elegant way of doing this.
 #
 # Usage:
 #       ./update_helm_charts.sh  
@@ -35,12 +36,12 @@ temp_charts=$(mktemp -d)
 script_dir=$(dirname "$(realpath "$0")")
 default_output="$script_dir"/../helm/
 
-#TODO add command line option to select output
+#TODO add command line option to select output directory
 output_dir=$default_output
 
-# clone or checkout 
-#!/bin/bash
-
+# Clones or updates a local repo.
+# If the repo exists in the target_folder(3), it updates it with the tag_name (1)
+# If the repo does not exist, it clones the repo from the repository_url(2)
 clone_or_update_repo() {
     local tag_name=$1
     local repository_url=$2
