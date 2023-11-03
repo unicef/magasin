@@ -70,7 +70,7 @@ cp -r $temp_clone/daskhub/daskhub $temp_charts/
 cp -r $temp_clone/superset/helm/superset $temp_charts/
 cp -rp $temp_clone/dagster/helm/dagster $temp_charts/dagster
 
-
+rm -rf $output_dir
 cp -rp $temp_charts/ $output_dir
 
 
