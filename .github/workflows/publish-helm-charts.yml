@@ -44,21 +44,22 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }} # only needed if version is 'latest'
       
       # Fix dagster old bitnami dependencies
-      - name: Update bitnami old repo
+      - name: Manually make helm packages (.tgz)
         run: |
-          cd helm  
-          helm package dagster
-          helm package drill
-          helm package superset
-          helm package daskhub
-          ls -la *.tgz
+          DEST_DIR=.cr-release-packages
+          mkdir $DEST_DIR
+          helm package helm/dagster -d $DEST_DIR
+          helm package helm/drill -d $DEST_DIR
+          helm package helm/superset -d $DEST_DIR
+          helm package helm/daskhub -d $DEST_DIR
+          ls -la .cr-release-packages 
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:
           # defaults to "charts", and looks for folders"
           charts_dir: helm
-          skip_packaging: true
+          skip_packaging: true # expect helm charts .tgz .cr-release-packages
           packages_with_index: true # upload to gh-pages
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
