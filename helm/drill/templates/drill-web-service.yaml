@@ -1,0 +1,28 @@
+{{- if .Values.drill.exposeWebService -}}
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Release.Namespace | quote }}
+  name: {{.Values.drill.id}}-web-svc
+  labels:
+    app: {{.Values.drill.id}}-web-svc
+spec:
+  ports:
+  - protocol: TCP
+    name: http
+    port: {{ .Values.drill.httpPort }}
+    targetPort: {{ .Values.drill.httpPort }}
+  - protocol: TCP
+    name: server
+    port: {{ .Values.drill.userServerPort }}
+    targetPort: {{ .Values.drill.userServerPort }}
+  {{ if eq .Values.drill.webServiceType "LoadBalancer" }}
+  type: LoadBalancer
+  {{ else if eq .Values.drill.webServiceType "NodePort" }}
+  type: NodePort
+  {{ else }}
+  {{ fail "Empty or invalid value provided. Valid choices are [LoadBalancer|NodePort]" }}
+  {{ end }}
+  selector:
+    app: drill-app
+{{- end -}}
