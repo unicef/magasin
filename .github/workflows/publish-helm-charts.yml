@@ -11,7 +11,7 @@
 # https://github.com/marketplace/actions/helm-chart-releaser
 #
 
-name: Publish chart
+name: Publish Helm Charts
 
 on:
   # On tag creation
@@ -47,6 +47,6 @@ jobs:
         uses: helm/chart-releaser-action@v1.6.0
         with:
           # defaults to "charts", and looks for folders"
-          charts_dir: charts
+          charts_dir: helm
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
