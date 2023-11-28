@@ -1,0 +1,52 @@
+#
+# Publish Magasin Helm chart in the gh-pages branch
+#
+# Reference documentation
+#
+# What needs to be setup in Github
+# https://helm.sh/docs/topics/chart_repository/#github-pages-example
+# Chart releaser action 
+# https://helm.sh/docs/howto/chart_releaser_action/
+# Chart releaser action GH Marketplace page
+# https://github.com/marketplace/actions/helm-chart-releaser
+#
+
+name: Publish chart
+
+on:
+  # On tag creation
+  push:
+    tags: ["*"]
+  # Manual 
+  workflow_dispatch:
+
+jobs:
+  release:
+    # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
+    # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # only needed if version is 'latest'
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.6.0
+        with:
+          # defaults to "charts", and looks for folders"
+          charts_dir: charts
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
