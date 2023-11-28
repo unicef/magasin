@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: {{ .Release.Namespace | quote }}
+  name: drill-config-overrides-cm
+data:
+  drill-override.conf: |
+    {{ .Values.drill.volumes.configOverrides.drillOverrideConf | nindent 4 }}
+  drill-env.sh: |
+    {{ .Values.drill.volumes.configOverrides.drillEnvSh | nindent 4 }}

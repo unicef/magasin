@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: {{ .Release.Namespace | quote }}
+  name: {{.Values.drill.id}}bit
+spec:
+  serviceName: drill-service
+  replicas: {{.Values.drill.count}}
+  podManagementPolicy: Parallel
+  selector: 
+    matchLabels: 
+      app: drill-app
+  template:
+    metadata:
+      labels:
+        app: drill-app
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - drill-app
+              topologyKey: "kubernetes.io/hostname"
+      serviceAccountName: drill-sa
+      containers:
+        - name: drill-pod
+          imagePullPolicy: Always
+          image: {{.Values.drill.image}}
+          ports:
+            - containerPort: {{ .Values.drill.httpPort }}
+              name: http
+            - containerPort: {{ .Values.drill.userServerPort }}
+              name: userport
+            - containerPort: {{ add .Values.drill.userServerPort 1 }}
+              name: controlport
+            - containerPort: {{ add .Values.drill.userServerPort 2 }}
+              name: dataport
+          env:
+            - name: KUBERNETES_CONTAINER
+              value: "true"
+            - name: POD_NAME
+              value: "drillbit"
+            - name: DRILL_ZK_ROOT
+              value: {{.Values.drill.id}}
+            - name: DRILL_MAX_MEMORY
+              value: {{.Values.drill.memory}}
+            - name: DRILL_HTTP_PORT
+              value: "{{.Values.drill.httpPort}}"
+            - name: DRILL_USER_SERVER_PORT
+              value: "{{.Values.drill.userServerPort}}"
+          livenessProbe:
+            exec:
+              command:
+              {{- range .Values.drill.livenessProbe.exec.command }}
+                - {{ . | quote }}
+              {{- end }}
+            initialDelaySeconds: {{ .Values.drill.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.drill.livenessProbe.periodSeconds }}
+            timeoutSeconds:  {{ .Values.drill.livenessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.drill.livenessProbe.failureThreshold }}
+          readinessProbe:
+            exec:
+              command:
+              {{- range .Values.drill.readinessProbe.exec.command }}
+              - {{ . | quote }}
+              {{- end }}
+            initialDelaySeconds: {{ .Values.drill.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.drill.readinessProbe.periodSeconds }}
+            timeoutSeconds:  {{ .Values.drill.readinessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.drill.readinessProbe.failureThreshold }}
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  {{- range .Values.drill.lifecycle.preStop.exec.command }}
+                  - {{ . | quote }}
+                  {{- end }}
+        {{- if .Values.drill.volumes.add }}
+          volumeMounts:
+          {{- if .Values.drill.volumes.drillStorage.override }}
+            - mountPath: {{ .Values.drill.volumes.drillStorage.mountPath }}
+              name: drill-storage-plugin-secret
+              subPath: {{ .Values.drill.volumes.drillStorage.subPath }}
+          {{ end }}
+            - mountPath: /opt/drill/conf/drill-override.conf
+              name: drill-config-overrides-cm
+              subPath: drill-override.conf
+            - mountPath: /opt/drill/conf/drill-env.sh
+              name: drill-config-overrides-cm
+              subPath: drill-env.sh
+        {{ end }}
+      terminationGracePeriodSeconds: {{ .Values.drill.terminationGracePeriodSeconds }}
+      
+    {{- if .Values.drill.volumes.add }}
+      volumes:
+      {{- if .Values.drill.volumes.drillStorage.override }}
+        - name: drill-storage-plugin-secret
+          secret:
+            secretName: {{ .Values.drill.volumes.drillStorage.secretName }}
+      {{ end }}
+        - name: drill-config-overrides-cm
+          configMap:
+            name: drill-config-overrides-cm
+            defaultMode: 0766
+    {{ end }}
+      initContainers:
+        - name: zk-available
+          image: busybox
+          command: ['sh', '-c', 'until nc -z zk-service 2181; do echo Waiting for ZK to come up; sleep 5; done; ']
