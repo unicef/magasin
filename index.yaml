@@ -1,0 +1,28 @@
+apiVersion: v1
+entries:
+  dagster:
+  - apiVersion: v2
+    appVersion: 1.5.9
+    created: "2023-11-28T13:40:38.261398035Z"
+    description: The data orchestration platform built for productivity.
+    digest: 2b6abf148bea6b786e6c2265501aa4177a61f817c9a0e31acf94ea56011e7bfb
+    icon: https://dagster.io/images/brand/logos/dagster-primary-mark.png
+    keywords:
+    - analytics
+    - data-orchestrator
+    - data-pipelines
+    - etl
+    - workflow
+    kubeVersion: '>= 1.18.0-0'
+    maintainers:
+    - email: support@dagsterlabs.com
+      name: Dagster Labs
+      url: https://dagster.io/about
+    name: dagster
+    sources:
+    - https://github.com/dagster-io/dagster/tree/master/helm/dagster
+    type: application
+    urls:
+    - https://github.com/unicef/magasin/releases/download/dagster-1.5.9/dagster-1.5.9.tgz
+    version: 1.5.9
+generated: "2023-11-28T13:40:38.261410035Z"
