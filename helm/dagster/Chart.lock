@@ -3,13 +3,13 @@ dependencies:
   repository: ""
   version: 1.5.9
 - name: postgresql
-  repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami/index.yml
+  repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami/index.yaml
   version: 8.1.0
 - name: rabbitmq
-  repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami/index.yml
+  repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami/index.yaml
   version: 6.16.3
 - name: redis
-  repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami/index.yml
+  repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami/index.yaml
   version: 12.7.4
 digest: sha256:22d6a38819704be5d0983ff730e29b4ab94f102daf8c9f49ecc3b45749d059fe
 generated: "2023-11-16T22:53:05.499706409Z"
