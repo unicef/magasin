@@ -69,6 +69,7 @@ jobs:
      
       - name: Create a release package using hub
         run: |  
+          # Install hub
           sudo apt install -y hub
           DEST_DIR=.cr-release-packages
           set -x
@@ -76,7 +77,7 @@ jobs:
           for asset in `ls $DEST_DIR`; do
             assets+=("-a" "$DEST_DIR/$asset")
           done
-          cat charts/
+          echo $assets
           hub release create "${assets[@]}" --message "${{ github.ref }}" "v0.0.1"
 
         env:
