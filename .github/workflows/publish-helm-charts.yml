@@ -1,25 +1,32 @@
 #
-# Publish Magasin Helm chart in the gh-pages branch
+# Publish Magasin Helm charts in the gh-pages branch
+# It creates a release.
 #
 # Reference documentation
 #
 # What needs to be setup in Github
 # https://helm.sh/docs/topics/chart_repository/#github-pages-example
-# Chart releaser action 
-# https://helm.sh/docs/howto/chart_releaser_action/
-# Chart releaser action GH Marketplace page
-# https://github.com/marketplace/actions/helm-chart-releaser
 #
+# Releaser action was not used because it did create one release per helm chart
+# 
 
-name: Publish Helm Charts
+name: Publish helm charts
 
 on:
   # On tag creation
   push:
-    tags: ["*"]
-  # Manual 
+    tags: 
+      # Only run on tags that have the vX.Y.Z; Example v0.1.1
+      - v[0-9]+.[0-9]+.[0-9]+
+        
+  # Manual run of the 
   workflow_dispatch:
-
+    inputs:
+      tag:
+        description: 'Release tag. Use format: vX.Y.Z'
+        default: 'v0.0.1'
+        required: true
+        type: string
 jobs:
   release:
     # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
@@ -42,11 +49,107 @@ jobs:
         uses: azure/setup-helm@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }} # only needed if version is 'latest'
+      
+      - name: Install hub
+        run: |
+            sudo apt install -y hub
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.6.0
-        with:
-          # defaults to "charts", and looks for folders"
-          charts_dir: helm
+      - name: Display the Input options 
+        run: |
+          echo  "tag:    ${{ inputs.tag }}"
+          echo  "action: ${{ inputs.action}}"
+
+      - name: Make helm packages (.tgz)
+        id: helm_packages
+        run: |
+        
+          helm_packages_dir=`pwd`'/helm-packages'
+          # Create destination folder
+          mkdir $helm_packages_dir
+          
+          # Get the list of all folders in helm. 
+          # each folder has a chart
+          cd helm
+          # ls -d displays a / at the end of each folder. We remove it using sed
+          helm_charts=`ls -d helm/ */ | sed 's/\/$//'`
+          echo Charts to be created: $helm_charts
+          cd ..
+          # Create the packages that will be assets of the release
+          for chart in $helm_charts; do 
+            # Creates a .tgz file for each folder in helm
+            helm package helm/$chart -d $helm_packages_dir 
+          done
+
+          # Set env variable
+          echo "HELM_PACKAGES_DIR=$helm_packages_dir >> "$GITHUB_ENV"
+          # And output {steps.helm_packages.outputs.dir}
+          echo "dir=$helm_packages_dir" >> $GITHUB_OUTPUT
+        
+      - name: Create/Edit a GitHub release using hub (adds assets)
+        run: |
+          set -x
+
+          echo HELM_PACKAGES_DIR=$HELM_PACKAGES_DIR
+          echo steps.helm_pacakges.dir: ${{ steps.helm_packages.outputs.dir }}
+          assets=()
+          echo Packages to add process
+          ls -la $HELM_PACKAGES_DIR
+
+          for asset in `ls $HELM_PACKAGES_DIR`; do
+            echo Adding asset $asset...
+            assets+=("-a" "$HELM_PACKAGES_DIR/$asset")
+          done
+          echo Resulting assets to be added: ${assets[@]} 
+          
+          # Create the template of the body
+          echo "To install an specific chart: " > release-body.txt
+          echo " ```shell" >> release-body.txt
+          echo "helm repo add magasin https://unicef.github.io/magasin" >> release-body.txt
+          echo "  
+          echo "# helm install <chart> magasin/<chart> --namespace magasin --create-namespace " >> release-body.txt
+          echo "helm install drill magasin/drill --namespace magasin --create-namespace" >> release-body.txt
+          echo "helm install dagster magasin/dagster --namespace magasin" >> release-body.txt 
+          echo "helm install superset magasin/superset --namespace magasin" >> release-body.txt
+          echo "helm install daskhub magasin/daskhub --namespace magasin " >> release-body.txt
+          echo "```" >> release-body.txt
+  
+          
+          # Release using hub.
+          # Documentation: https://hub.github.com/hub-release.1.html
+          hub release ${{ inputs.action}} "${assets[@]}" --file release-body.txt --message "magasin charts ${{inputs.tag}}" "${{ inputs.tag }}"
+          
         env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      
+      # Now proceed to update the index.yaml in github pages
+      # First checkout gh-pages
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: 'gh-pages'
+          path: 'gh-pages'
+
+      # Then update the index usin helm repo index
+      - name: Update index.yaml
+        run: |
+          # Go to helm release folder folder
+          cd helm_packages
+
+          # Merge existing index with the new files. The url is given by the release
+          helm repo index . --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY/releases/download/${{ inputs.tag }}"
+          cp index.yaml  ../gh-pages/index.yaml
+          # Check changes
+          cd ../gh-pages
+          git diff index.yaml
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+    
+      # Commit the new index
+      # https://github.com/marketplace/actions/add-commit
+      - name: "Push the new index"
+        uses: EndBug/add-and-commit@v9
+        with:
+            cwd: './gh-pages/'
+            message: "update index.yaml for ${{ inputs.tag }}"
+            committer_name: GitHub Actions
+            committer_email: actions@github.com
