@@ -6,7 +6,7 @@ on:
   push:
     branches: main
 
-name: Quarto Publish
+name: Publish web docs
 
 jobs:
   build-deploy:
