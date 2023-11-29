@@ -1,0 +1,296 @@
+[
+  {
+    "objectID": "repositories.html",
+    "href": "repositories.html",
+    "title": "Source Code Repositories",
+    "section": "",
+    "text": "unicef/magasin\n\nPrimary user code repository with Dagster pipelines, Jupytext notebooks, and Docker images."
+  },
+  {
+    "objectID": "repositories.html#magasin-main-project",
+    "href": "repositories.html#magasin-main-project",
+    "title": "Source Code Repositories",
+    "section": "",
+    "text": "unicef/magasin\n\nPrimary user code repository with Dagster pipelines, Jupytext notebooks, and Docker images."
+  },
+  {
+    "objectID": "repositories.html#libraries-and-utilities",
+    "href": "repositories.html#libraries-and-utilities",
+    "title": "Source Code Repositories",
+    "section": "Libraries and utilities",
+    "text": "Libraries and utilities\n\nunicef/superset-dashboard-cloner Scripts for cloning Apache Superset dashboards to create copies that use different data sources."
+  },
+  {
+    "objectID": "repositories.html#custom-helm-charts",
+    "href": "repositories.html#custom-helm-charts",
+    "title": "Source Code Repositories",
+    "section": "Custom Helm charts",
+    "text": "Custom Helm charts\n\nMagasin’s Apache Drill Helm Chart A helm chart that allows setting up Apache Drill in conjuntion with Zookeeper in a Kubernetes cluster."
+  },
+  {
+    "objectID": "admin-guide-superset.html",
+    "href": "admin-guide-superset.html",
+    "title": "Superset admin guide",
+    "section": "",
+    "text": "A quick guide for an magasin administrator on superset."
+  },
+  {
+    "objectID": "admin-guide-superset.html#dump-the-superset-database-into-the-local-filesystem",
+    "href": "admin-guide-superset.html#dump-the-superset-database-into-the-local-filesystem",
+    "title": "Superset admin guide",
+    "section": "Dump the superset database into the local filesystem",
+    "text": "Dump the superset database into the local filesystem\nA dump (backup) of the database may be useful when a new version of superset is going to be installed, or to keep a regular scheduled backup of the superset data.\nTo create a dump of the database, you can use the script scripts/superset/dump-superset-db.sh:\n./dump-superset-db.sh -n magasin-superset-prd`\nWhere the option -n is to specify the namespace of the superset instance.\nThis script will request request the password of the superset user, to perform the dump. You can get the password from the secret superset-env within the same namespace.\nThe output of running this script is the file superset_dump.sql in the current working folder.\nNote that this script assumes that the name of the database is superset.\nAlternatively, these are the manual steps to do the same:\n1.Launch a terminal in the posgresql pod (replace the namespace if required)\n```shell\n kubectl exec superset-postgresql-0 -ti --namespace magasin-superset -- /bin/bash\n```\n\nWithin the pod shell, extract and compress the data. The below command will ask for the superset database password (you can find it in the superset-env secret, defaults to ‘superset’)\npg_dump -U superset -d superset &gt; /tmp/superset_dump.sql\n# where -U is the username of the database, and -d is the database name.\n\ntar -C /tmp -czvf /tmp/supserset_dump.tgz supserset_dump.sql\n# where -C is to use /tmp as base folder -c collect, z zip, v=verboze and f output file\nExit the pod shell and copy the dump file into /tmp in the local filesystem exit\n# Exit the pod shell\nexit\n\n# Copy the tgz to the local environment.\nkubectl cp magasin-superset/superset-postgresql-0:/tmp/superset_dump.tgz \\\n./supserset_dump.tgz --retries 100\n\n# Syntax: kubectl cp namespace/pod:path local-path. \n# The option --retries is to fix potential network issues\nLastly, delete the db dump from the superset pod shell     kubectl exec magasin-superset/superset-postgresql-0 -- \\     rm /tmp/supeset_dump.tgz /tmp/superset_dump.sql\n\n\nRestore superset database from local filesystem\nTo restore the database from the previous step.\n\n#  Copy the database to the postgres pod.\nkubectl cp superset_dump.sql magasin-superset/superset-postgresql-0:/tmp/superset_dump.sql\n\n# Launch the shell\nkubectl exec superset-postgresql-0 -ti --namespace magasin-superset -- /bin/bash\n\n# If the database exist, you may need to drop it first\npsql --username postgres\n# The password can be found in superset-env secret posgresql_posgres_password \n\n# If you get an error indicating the database is being used run the command:\nSELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'superset' AND pid &lt;&gt; pg_backend_pid();\n\n#To delete the superset database: (don't forget the ; at the end)\nDROP DATABASE superset;\n\n#Then create an empty database (don't forget the ; at the end)\nCREATE DATABASE superset;\n#the quit psql\n\\q\n# Finally, restore the database\npsql --username superset --dbname superset -f /tmp/superset_dump.sql\n\n# alternatively less verbose option\n#       psql -U superset -d superset2 -f ./tmp/superset_dump.sql\nNow, you can restart the superset pod. First find the superset-xxxxxxxxx-xxxxx and delete it\nkubectl get pods --namespace magasin-superset\n\nNAME                               READY   STATUS      RESTARTS   AGE\nsuperset-75b79c6c8d-jttd9          1/1     Running     0          62m\nsuperset-init-db-bhc25             0/1     Completed   0          62m\nsuperset-postgresql-0              1/1     Running     0          62m\nsuperset-redis-master-0            1/1     Running     0          62m\nsuperset-worker-85dfbb48dd-6bhjp   1/1     Running     0          62m\n\n\n```shell\nkubectl delete pod superset-75b79c6c8d-jttd9"
+  },
+  {
+    "objectID": "admin-guide-superset.html#postgresql",
+    "href": "admin-guide-superset.html#postgresql",
+    "title": "Superset admin guide",
+    "section": "PostgreSQL",
+    "text": "PostgreSQL\nGet list of databases\nSELECT datname FROM pg_database WHERE datistemplate = false;\nGet the user owner of database ‘database_name’\nSELECT d.datname as \"Name\",\npg_catalog.pg_get_userbyid(d.datdba) as \"Owner\"\nFROM pg_catalog.pg_database d\nWHERE d.datname = 'database_name'\nORDER BY 1;"
+  },
+  {
+    "objectID": "admin-guide-superset.html#troubleshooting",
+    "href": "admin-guide-superset.html#troubleshooting",
+    "title": "Superset admin guide",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\n\nGet the events of a pod\nkubectl describe pod superset-564564dd4-2lzb6 --namespace magasin-superset\n\n\nGet logs of the containers\nkubectl logs &lt;podname&gt; -f --namespace &lt;namespace&gt; \n\nExample:\nkubectl logs superset-564564dd4-2lzb6 -f --namespace magasin-superset\nwhere -f continues displaying the new logs.\nWith --all-containers you can see the logs of all the containers instead of the one that is being executed. This is useful when the current container of the pod gets stuck because of the previous container output was not the expected. Example:\nkubectl logs superset-564564dd4-2lzb6 --namespace magasin-superset --all-containers"
+  },
+  {
+    "objectID": "getting-started.html",
+    "href": "getting-started.html",
+    "title": "Getting started",
+    "section": "",
+    "text": "Once magasin has been installed, the next steps are to start using the different components that magasin includes.\nInstall magasin If you haven’t installed it yet\n\nUnderstanding the data lifecycle within magasin\n\n\nCreating a Dagster Pipeline\nWe will start creating a new pipeline."
+  },
+  {
+    "objectID": "install.html",
+    "href": "install.html",
+    "title": "Installation",
+    "section": "",
+    "text": "Kubernetes\nhelm"
+  },
+  {
+    "objectID": "install.html#pre-requisites",
+    "href": "install.html#pre-requisites",
+    "title": "Installation",
+    "section": "",
+    "text": "Kubernetes\nhelm"
+  },
+  {
+    "objectID": "admin-guide-kubernetes.html",
+    "href": "admin-guide-kubernetes.html",
+    "title": "Operations Guide",
+    "section": "",
+    "text": "A quick guide for a magasin cluster operator."
+  },
+  {
+    "objectID": "admin-guide-kubernetes.html#general-kubernetes",
+    "href": "admin-guide-kubernetes.html#general-kubernetes",
+    "title": "Operations Guide",
+    "section": "General kubernetes",
+    "text": "General kubernetes\nMagasin is installed in a kubernetes cluster, in this chapter you have a summary of common kubernetes commands.\n\nGet the list of namespaces.\nKubernetes resources are kept in namespaces. A namespace is like a folder but where you can keep kubernetes resources such as pods, secrets, etc.\nkubectl get namespaces\n\n\nGet the list of resources\nTo get the resources available within a particular namespace:\nkubectl get &lt;resource-type&gt; --namespace &lt;namespace&gt;\nwhere resource-type is one of\n\npod,\nsecret,\nservice,\npv (persistent volume),\npvc (persitstent volume claim),\n\nExamples:\nkubectl get pods --namespace magasin-drill\nkubectl get secrets --namespace magasin-drill\nOr alternatively\nkubectl get pods -n magasin-drill\nIf --namespace is not set, it displays the resources of the default namespace.\n\n\n\n\n\n\nTip: to change the default namespace use the command kubectl config set-context --current --namespace=&lt;namespace&gt; to update set the default namespace so you don’t need to set --namespace &lt;namespace&gt; on each command\n\n\n\n\n\nGet the list of secrets\nA secret is a type of resource in kubernetes that allows you to keep configuration information such as usernames, tokens, database names, etc.\nTo get the list of secrets of a particular namespace\nkubectl get secret --namespace magasin-superset\nIn magasin, these are some secrets that contain interesting information for the admin are (format application / secret-name):\n\nmagasin-dagster- / TODO-XXXX:\nmagasin-drill / drill-storage-plugin-secret: contains the initial setup of the storage.\nmagasin-superset / superset-env: Contains the environment variables of the application.\nmagasin-daskhub / hub-env. Contains the environment variables of the application.\n\nOne secret may contain more than variable. To view the different variables (items) of a particular secret:\nkubectl describe secret superset-env --namespace magasin-superset\nwhere superset-env is the name of the secret."
+  },
+  {
+    "objectID": "contributing.html",
+    "href": "contributing.html",
+    "title": "Contributing",
+    "section": "",
+    "text": "The purpose of this document is to outline the workflow and guidelines for code contributing to this repository."
+  },
+  {
+    "objectID": "contributing.html#purpose",
+    "href": "contributing.html#purpose",
+    "title": "Contributing",
+    "section": "",
+    "text": "The purpose of this document is to outline the workflow and guidelines for code contributing to this repository."
+  },
+  {
+    "objectID": "contributing.html#principles",
+    "href": "contributing.html#principles",
+    "title": "Contributing",
+    "section": "Principles",
+    "text": "Principles\nOur principles are the roots, core and foundation. All our standardization decisions are based on the following principles:\n\nEnhance the developer experience. Standards ultimate goal is to create a pleasant development experience.\nProvide management key information. Workflows should enable management to tackle inefficiencies, pain points and increase output.\nSeek for simplicity. If there are different options, we should aim for the simplest one.\n\nIn order to achieve these principles, Github is the main tool we use to track and manage development-related work, from requirements gathering to production release."
+  },
+  {
+    "objectID": "contributing.html#authors",
+    "href": "contributing.html#authors",
+    "title": "Contributing",
+    "section": "Authors",
+    "text": "Authors\nThis document was created by Juan Merlos (@merlos)"
+  },
+  {
+    "objectID": "contributing.html#branch-strategy",
+    "href": "contributing.html#branch-strategy",
+    "title": "Contributing",
+    "section": "Branch strategy",
+    "text": "Branch strategy\nBranching in each repository will follow a trunk-based model. This model involves one eternal “trunk” called master or main from which all other branches originate.\nAll development work will take place on these branches and will be committed to master via pull requests with mandatory approval/review.\nThe goal of this approach is to have a highly stable codebase that is releasable on demand at all times.\nThe additional branches will be created for each feature, release, or hotfix. Each of these branches will have specific purposes and follow strict rules as to how they should be used. At a high level, the branching rules are described as follows:\n\n\n\nBranch type\nBranch from\nMerge to\nNaming convention\nExample\n\n\n\n\nfeature\nmain\nmain\nfeature/&lt;desc&gt;\nfeature/my-feature\n\n\nfix\nmain\nmain\nfeature/&lt;desc&gt;\nfeature/my-feature\n\n\nrelease\nmain\n-\nv&lt;semver&gt;\nv1.0.0\n\n\nhotfix\nmain\nmain, release\nhotfix/&lt;desc&gt;\nhotfix/my-fix\n\n\n\nThe purpose and correct usage of each supporting branch is elaborated in the following sub-sections. The below graphic can be used as an example of a complete workflow involving all branch types.\n\n\n\nBranch strategy flow\n\n\n\nFeature branches\nFor each new feature, or for updates to a given feature, a separate branch will be created. Feature branches must originate from the master branch. Since no development takes place on the master branch, feature branches are expected to be the most common type of branch.\nHowever, these branches should be short-lived. They will exist only as long as the feature is under development and never longer than a sprint. Ideally, a feature branch should involve one developer over a few (1-3) days of work.\nProduct backlog items (issues) should be defined with this in mind — if work on a feature is taking too long, then the item needs to be scoped differently (see the section on Delivery).\nOnce a feature branch is merged to master via pull request, it should be deleted. Any future work, even if it is related, will require a new branch.\nWhenever a feature branch is created, it should be related to an existing issue. Whereas issues will be tagged with the classification (bug, enhancement, etc), the naming of the feature branches is more free.\n\n\nRelease branches\nRelease branches will be created for each version of the source that is destined for production release. This enables all preparation work for an upcoming release to take place even while development work for future releases is committed to the master.\nThe creation of a release branch will always correspond to an upcoming deployment. Since the master branch has a high standard of stability, it should be rare that further development work is needed to refine a release for production. If such a need arises, it will follow the hotfix strategy defined below.\nRelease branches never merge back into the trunk. A release branch should be representative of a release at a given point in time. There is no mandatory end of life for a release branch. These branches can exist indefinitely, as marker in release history and for potential rollback should the need arise.\nRelease branches follow the semantic version naming convention (i.e 1.0.0, 1.1.0). When a release branch is created it is also tagged with the same name.\n\n\nHotfix branches\nHotfixes are small changes that need to be released to production more quickly (e.g. due to the severity of the issue). As with release and feature branches, they should always originate from master.\nUpon completion of the work, a hotfix branch will be merged into master. If the hotfix is also required in a release branch to be brought to production immediately, the change can be cherry-picked upon being merged into master. If no current release branch exists, one should be created for this purpose.\nOnce the corresponding pull requests complete, the temporary hotfix branch should be removed.\nWhenever there is a hotfix merged into a release branch, the commit that includes the fix shall be tagged updating the PATCH number, for instance, changing from 1.0.0 to 1.0.1.\nThis approach allows to provide long term support to a particular version."
+  },
+  {
+    "objectID": "contributing.html#pull-requests-and-commits-pr",
+    "href": "contributing.html#pull-requests-and-commits-pr",
+    "title": "Contributing",
+    "section": "Pull requests and commits (PR)",
+    "text": "Pull requests and commits (PR)\nThe merging of supporting branches (feature and hotfix) into the master branch will always require a pull request.\nPull requests should include a reference to the issue numbers either in the commit or in the description of the PR. in the commit comment, using the following convention (where 0000 is the issue number and &lt;comments&gt; is placeholder for any optional comments).\n&lt;comments&gt; #0000 &lt;comments&gt; \nUsing comments like this will ensure that the pull request is automatically linked to all related issues.\nWhen submitting a pull request ensure:\n\nWell-formatted code*: Ensure that the committed code adheres to established coding standards and is well-formatted. Consistent indentation, proper naming conventions, and clean formatting improve code readability and maintainability.\nNo debugging or temporary code: Avoid including debugging statements, temporary code, or commented-out blocks. These can clutter the codebase and make it harder for others to understand and maintain the code.\nAvoid unrelated changes: The PR should focus on a specificfeature. Avoid including unrelated changes in a single commit. If you have multiple unrelated changes, consider creating separate PR for each change.\nNo Sensitive information: Ensure that commits do not include any sensitive information like passwords, API keys, or personal data. Such information should be securely managed outside of the code repository.\nConsistency: Maintain a consistent style and structure throughout the project. Consistency helps establish good coding practices and makes it easier for the team to understand and collaborate on the codebase.\nDocumentation update: Ensure that the code, scripts, documentation and README files are up to date.\n\nCommit messages shall help the reviewer to understand what are the changes that have been introduced and the should tell the reviewer what changes have been introduced. These are properties that commits shall have:\n\nAtomicity: Commits should be atomic, meaning they should represent a single logical change. It’s best to keep each commit focused on a specific task within the PR. This allows for easier code review, debugging, and reverting if necessary.\nClarity and descriptive messages: Commit messages should be clear, descriptive, and concise. They should summarize the purpose and content of the commit. A good commit message helps others understand the changes at a glance and provides context for future reference.\nExample. Too generic not descriptive message ``` ❌ Avoid Updates Readme\n✅ Better Add CONTRIBUTING link to Readme ```\nLogical progression: Commits should follow a logical progression, building upon previous commits. Each commit should leave the codebase in a stable and working state, ensuring that others can pull changes without introducing errors.\n\n\nApprovals\nCompletion of pull requests on main be generally restricted to designated approvers. The job of the approvers is to diligently review all code being merged to master to ensure the utmost stability of that branch.\nReviewers shall ensure the quality of the code, style and documentation. They shall ensure that it follows the practices of the commits and pull requests exposed on this document.\nTheir aim should be to maintain a release-ready main branch at all times."
+  },
+  {
+    "objectID": "admin-guide-drill.html",
+    "href": "admin-guide-drill.html",
+    "title": "Drill Guide",
+    "section": "",
+    "text": "A quick guide for managing magasin’s Apache Drill instance."
+  },
+  {
+    "objectID": "admin-guide-drill.html#apache-drill-options-and-tuning",
+    "href": "admin-guide-drill.html#apache-drill-options-and-tuning",
+    "title": "Drill Guide",
+    "section": "Apache Drill options and tuning",
+    "text": "Apache Drill options and tuning\nThe following option values are recommended for Apache Drill’s use in the Magasin context:\nplanner.width.max_per_node = 3\nplanner.width.max_per_query = 12\nstore.parquet.reader.int96_as_timestamp = true\ndrill.exec.http.rest.errors.verbose = true\nexec.errors.verbose = true\nexec.queue.enable = true\nexec.queue.large = 2\nexec.queue.small = 10"
+  },
+  {
+    "objectID": "admin-guide-drill.html#example-apache-drill-storage-plugin-for-azure-blob-storage",
+    "href": "admin-guide-drill.html#example-apache-drill-storage-plugin-for-azure-blob-storage",
+    "title": "Drill Guide",
+    "section": "Example Apache Drill storage plugin for Azure blob storage",
+    "text": "Example Apache Drill storage plugin for Azure blob storage\nExample Apache Drill storage plugin configuration for a specific Azure blob storage container (unicef-magasin-dev) in a given Azure blob storage account (sauniwebsaksio).\nThe Apache Drill Azure Blob Storage Plugin must be present in $DRILL_HOME/jars/3rdparty. Note the Azure authentication key has been redacted in the below example.\nThis configuration is read-only and specifies support for certain file formats within two directory locations (/profiles and /datasets) within the storage container.\nFor production configuration, file formats should be restricted to the minimal set of expected formats. Multiple storage plugin instances can be configured in a single Apache Drill instance so separate Azure blob storage accounts and containers may be separately configured and queried.\n{\n  \"name\" : \"storage_account_blob_container\",\n  \"config\" : {\n    \"type\" : \"file\",\n    \"connection\" : \"wasbs://blob_container@storage_account.blob.core.windows.net\",\n    \"config\" : {\n      \"fs.azure.account.key.storage_account.blob.core.windows.net\" : \"*******\"\n    },\n    \"workspaces\" : {\n      \"profiles\" : {\n        \"location\" : \"/profiles\",\n        \"writable\" : false,\n        \"defaultInputFormat\" : null,\n        \"allowAccessOutsideWorkspace\" : false\n      },\n      \"datasets\" : {\n        \"location\" : \"/datasets\",\n        \"writable\" : false,\n        \"defaultInputFormat\" : null,\n        \"allowAccessOutsideWorkspace\" : false\n      }\n    },\n    \"formats\" : {\n      \"image\" : {\n        \"type\" : \"image\",\n        \"extensions\" : [ \"jpg\", \"jpeg\", \"jpe\", \"tif\", \"tiff\", \"dng\", \"psd\", \"png\", \"bmp\", \"gif\", \"ico\", \"pcx\", \"wav\", \"wave\", \"avi\", \"webp\", \"mov\", \"mp4\", \"m4a\", \"m4p\", \"m4b\", \"m4r\", \"m4v\", \"3gp\", \"3g2\", \"eps\", \"epsf\", \"epsi\", \"ai\", \"arw\", \"crw\", \"cr2\", \"nef\", \"orf\", \"raf\", \"rw2\", \"rwl\", \"srw\", \"x3f\" ],\n        \"fileSystemMetadata\" : true,\n        \"descriptive\" : true\n      },\n      \"parquet\" : {\n        \"type\" : \"parquet\"\n      },\n      \"avro\" : {\n        \"type\" : \"avro\",\n        \"extensions\" : [ \"avro\" ]\n      },\n      \"json\" : {\n        \"type\" : \"json\",\n        \"extensions\" : [ \"json\" ]\n      },\n      \"sequencefile\" : {\n        \"type\" : \"sequencefile\",\n        \"extensions\" : [ \"seq\" ]\n      },\n      \"tsv\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"tsv\" ],\n        \"fieldDelimiter\" : \"\\t\"\n      },\n      \"csvh\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"csvh\" ],\n        \"extractHeader\" : true\n      },\n      \"csv\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"csv\" ]\n      },\n      \"psv\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"tbl\" ],\n        \"fieldDelimiter\" : \"|\"\n      },\n      \"pcap\" : {\n        \"type\" : \"pcap\",\n        \"extensions\" : [ \"pcap\" ]\n      },\n      \"httpd\" : {\n        \"type\" : \"httpd\",\n        \"extensions\" : [ \"httpd\" ],\n        \"logFormat\" : \"%h %t \\\"%r\\\" %&gt;s %b \\\"%{Referer}i\\\"\"\n      }\n    },\n    \"enabled\" : true\n  }\n}"
+  },
+  {
+    "objectID": "admin-guide-drill.html#backup-the-drill-storage-accounts-database",
+    "href": "admin-guide-drill.html#backup-the-drill-storage-accounts-database",
+    "title": "Drill Guide",
+    "section": "Backup the drill storage accounts database",
+    "text": "Backup the drill storage accounts database\nApache Drill keeps a set of connections to storage accounts (S3 buckets, azure blobs, MinIO accounts…). The storage accounts is where the actual data is stored.\nHowever, in magasin given that Drill is setup in a distributed mode, the configuration of these connections is kept in zookeeper which is used to sync the storage configuration among the different instances of Drill. So, to backup the storage accounts we need to backup the zookeeper database which is a plain database.\n\nLaunch a terminal within the zookeeper pod (zk-0).\nkubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash\nCompress the files using tar, and leave the shell\ntar -czvf /tmp/zk.tgz /var/lib/zookeeper/*\nexit\nSave the file into our local filesystem\nkubectl cp magasin-drill/zk-0:/tmp/zk.tgz ./zk.tgz\nDelete the .tgz file of the pod\nkubectl exec zk-0 --namespace magasin-drill -- rm tmp/zk.tgz"
+  },
+  {
+    "objectID": "admin-guide-drill.html#restore-the-drill-storage-configuration",
+    "href": "admin-guide-drill.html#restore-the-drill-storage-configuration",
+    "title": "Drill Guide",
+    "section": "Restore the Drill storage configuration",
+    "text": "Restore the Drill storage configuration\nTo restore the backup created in the previous section:\n\nCopy the backup to the cluster\n kubectl cp ./zk.tgz magasin-drill/zk-0:/tmp/zk.tgz \nLaunch the shell in the zookeeper pod\nkubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash\nUnzip shell     tar -xzvf /tmp/zk.tgz\nKill the java process\nps -ax \n\nPID TTY      STAT   TIME COMMAND\n1 ?          Ss     0:00 /rosetta/rosetta /usr/bin/bash /usr/bin/start.sh\n25 ?         Sl     0:03 /rosetta/rosetta /usr/bin/java -Dzookeeper.log.dir=/opt/zookeeper/bin/../logs -Dzookeeper.log.file=zookeeper-\n116 pts/0    Ss     0:00 /rosetta/rosetta /bin/bash\n148 ?        S      0:00 /rosetta/rosetta /usr/bin/sleep 5\n149 pts/0    R+     0:00 /usr/bin/ps -ax\n\n# Where -9 is to force kill and 25 is the process number (PID)\nkill -9 25\nRelaunch the initalizer script in background (&), then exit /usr/bin/start.sh &     exit"
+  },
+  {
+    "objectID": "security.html",
+    "href": "security.html",
+    "title": "Security",
+    "section": "",
+    "text": "Ensuring robust security measures within a Kubernetes cluster hosting diverse open-source applications is paramount in safeguarding sensitive data and maintaining operational integrity."
+  },
+  {
+    "objectID": "security.html#general-considerations",
+    "href": "security.html#general-considerations",
+    "title": "Security",
+    "section": "",
+    "text": "Ensuring robust security measures within a Kubernetes cluster hosting diverse open-source applications is paramount in safeguarding sensitive data and maintaining operational integrity."
+  },
+  {
+    "objectID": "security.html#reference-documentation",
+    "href": "security.html#reference-documentation",
+    "title": "Security",
+    "section": "Reference documentation",
+    "text": "Reference documentation\nEach component of magasin has its own level of security\n\nKubernetes Security\nApache Superset Security\nApache Drill Security\nApache Zookeeper"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end collection of open-source tools that are setup together to provide enterprise ready automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform Data analysis / ML / AI and visualization of datasets."
+  },
+  {
+    "objectID": "about.html#about-magasin",
+    "href": "about.html#about-magasin",
+    "title": "About",
+    "section": "",
+    "text": "Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end collection of open-source tools that are setup together to provide enterprise ready automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform Data analysis / ML / AI and visualization of datasets."
+  },
+  {
+    "objectID": "about.html#brief-history",
+    "href": "about.html#brief-history",
+    "title": "About",
+    "section": "Brief history",
+    "text": "Brief history\nMagasin grew out of Office of Innovation’s and Information and Communication Technology Division (ICTD) work to establish a RapidPro Data Warehouse to enable aggregation of global metrics across vendor instances.\nAlso informed by experiences of the Magic Box applied data science initiative, a range of components were evaluated and trialed with country offices to arrive at the current components and architecture.\nIn 2021, ICTD engaged one of its long term agreement vendors to assist with evolving the proof-of-concept into a minimum viable product (MVP).\nIn 2023, UNICEF started the journey to detach magasin from its organizational and cloud infrastructure dependencies, and release it as an open-source with the goal of becoming a Digital Public Good solution."
+  },
+  {
+    "objectID": "architecture.html",
+    "href": "architecture.html",
+    "title": "Architecture",
+    "section": "",
+    "text": "Magasin components are containerized for deployment to Kubernetes compute clusters. Helm charts created and maintained by component maintainers are used to manage installation of Magasin components.\n\n\nThe Dagster framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster.\n\n\n\nDagster’s Dagit UI provides visibility of pipelines’ tasks, scheduling, run status, materialized assets, resources, and modes.\n\n\n\nApache Drill is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.\nWhile data marts for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time.\nInstead, a Dagster ingestion and transformation pipeline stores an ‘analyst-ready’ dataset that Apache Drill can query directly.\n\n\n\nExample Drill query interface\n\n\n\n\n\nApache Superset is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.\nFor use with Magasin, Apache Superset can be configured to automatically create and assign user roles (with associated permissions) according to Azure Active Directory groups, such that users from a given organizational unit will, by default, have permissions only to data ‘owned’ by their organization unit (e.g., HQ division or country office) or in their purview (i.e., regional offices’ users have, by default, access to data for all country offices in their respective region).\n\n\n\nThe superset-dashboard-cloner allows for a central HQ team to author ‘dashboard recipes’ which can then automatically be deployed for each office that has a given data source with compatible schema (i.e., a standard template for a RapidPro workspace can be authored centrally and deployed for each workspace in each country office)."
+  },
+  {
+    "objectID": "architecture.html#dagster",
+    "href": "architecture.html#dagster",
+    "title": "Architecture",
+    "section": "",
+    "text": "The Dagster framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster."
+  },
+  {
+    "objectID": "architecture.html#dagit",
+    "href": "architecture.html#dagit",
+    "title": "Architecture",
+    "section": "",
+    "text": "Dagster’s Dagit UI provides visibility of pipelines’ tasks, scheduling, run status, materialized assets, resources, and modes."
+  },
+  {
+    "objectID": "architecture.html#apache-drill",
+    "href": "architecture.html#apache-drill",
+    "title": "Architecture",
+    "section": "",
+    "text": "Apache Drill is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.\nWhile data marts for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time.\nInstead, a Dagster ingestion and transformation pipeline stores an ‘analyst-ready’ dataset that Apache Drill can query directly.\n\n\n\nExample Drill query interface"
+  },
+  {
+    "objectID": "architecture.html#apache-superset",
+    "href": "architecture.html#apache-superset",
+    "title": "Architecture",
+    "section": "",
+    "text": "Apache Superset is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.\nFor use with Magasin, Apache Superset can be configured to automatically create and assign user roles (with associated permissions) according to Azure Active Directory groups, such that users from a given organizational unit will, by default, have permissions only to data ‘owned’ by their organization unit (e.g., HQ division or country office) or in their purview (i.e., regional offices’ users have, by default, access to data for all country offices in their respective region)."
+  },
+  {
+    "objectID": "architecture.html#superset-dashboard-cloner",
+    "href": "architecture.html#superset-dashboard-cloner",
+    "title": "Architecture",
+    "section": "",
+    "text": "The superset-dashboard-cloner allows for a central HQ team to author ‘dashboard recipes’ which can then automatically be deployed for each office that has a given data source with compatible schema (i.e., a standard template for a RapidPro workspace can be authored centrally and deployed for each workspace in each country office)."
+  },
+  {
+    "objectID": "architecture.html#jupyterhub",
+    "href": "architecture.html#jupyterhub",
+    "title": "Architecture",
+    "section": "JupyterHub",
+    "text": "JupyterHub\nThe multi-tenant JupyterHub component creates on-demand, isolated pods for authenticated users, each with persistent storage for their R and Python notebook workspace."
+  },
+  {
+    "objectID": "architecture.html#dask-gateway",
+    "href": "architecture.html#dask-gateway",
+    "title": "Architecture",
+    "section": "Dask Gateway",
+    "text": "Dask Gateway\nDask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.\nReferences:\n\nJupyterhub - https://jupyterhub.readthedocs.io/en/stable/reference/index.html\nJupyterhub - kubernetes https://z2jh.jupyter.org/en/latest/index.html\nAuthentication for Jupyterhub https://oauthenticator.readthedocs.io/en/latest/index.html\nAWS Public Sector Blog article on Analyze terabyte-scale geospatial datasets with Dask and Jupyter on AWS"
+  },
+  {
+    "objectID": "end-user-guides.html",
+    "href": "end-user-guides.html",
+    "title": "End user guides",
+    "section": "",
+    "text": "Each of the open source components included in magasin has its onw end user documentation."
+  },
+  {
+    "objectID": "end-user-guides.html#dagster",
+    "href": "end-user-guides.html#dagster",
+    "title": "End user guides",
+    "section": "Dagster",
+    "text": "Dagster\n\nGetting started\nDagster University"
+  },
+  {
+    "objectID": "end-user-guides.html#jupyter-hub",
+    "href": "end-user-guides.html#jupyter-hub",
+    "title": "End user guides",
+    "section": "Jupyter Hub",
+    "text": "Jupyter Hub\n\nProject Jupyter Documentation"
+  },
+  {
+    "objectID": "end-user-guides.html#apache-superset",
+    "href": "end-user-guides.html#apache-superset",
+    "title": "End user guides",
+    "section": "Apache Superset",
+    "text": "Apache Superset\n\nCreating your first dashboard\nExploring data in superset"
+  }
+]
