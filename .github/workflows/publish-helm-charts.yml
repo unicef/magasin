@@ -19,7 +19,8 @@ on:
   push:
     tags: #["*"]
       # Example v0.1.1
-      - v[0-9]+.[0-9]+.[0-9]+
+      - 
+        
   # Manual 
   workflow_dispatch:
 
@@ -72,10 +73,12 @@ jobs:
           DEST_DIR=.cr-release-packages
           set -x
           assets=()
-          for asset in $DEST_DIR; do
-            assets+=("-a" "$asset")
+          for asset in `ls $DEST_DIR`; do
+            assets+=("-a" "$DEST_DIR/$asset")
           done
-          hub release create "${assets[@]}" -m "${{ github.ref }}" "${{ github.ref }}"
+          cat charts/
+          hub release create "${assets[@]}" --message "${{ github.ref }}" "v0.0.1"
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         
