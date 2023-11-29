@@ -104,7 +104,7 @@ jobs:
             assets+=("-a" "./helm-packages/$asset")
           done
           echo The folowing assets will be added to the release: $assets 
-          hub release ${{ inputs.action}} "${assets[@]}" "${{ inputs.tag }}"
+          hub release ${{ inputs.action}} "${assets[@]}" --message ${{inputs.tag}} "${{ inputs.tag }}"
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
