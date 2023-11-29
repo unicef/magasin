@@ -74,12 +74,14 @@ jobs:
       - name: Make helm packages (.tgz)
         id: helm_package
         run: |
+          pwd
+          ls
           # Create destination folder
           mkdir .helm-packages
 
           # Get the list of all folders in helm. 
           # each folder has a chart
-          cd helm
+          cd magasin/helm
           # ls -d displays a / at the end of each folder. We remove it using sed
           helm_charts=`ls -d helm/ */ | sed 's/\/$//'`
           cd ..
@@ -95,6 +97,7 @@ jobs:
         
       - name: Create/Edit a GitHub release using hub (adds assets)
         run: |  
+          pwd
           set -x
           echo Using helm pacakges dir: ${{ steps.helm_package.dir }}
           assets=()
@@ -102,20 +105,18 @@ jobs:
             assets+=("-a" "./helm-packages/$asset")
           done
           echo The folowing assets will be added to the release: $assets 
-         
           
           cat > release-body.txt << EOF
-          To install an specific chart:
-          ```shell
-          helm repo add magasin https://unicef.github.io/magasin
-          
-          # helm install <chart> magasin/<chart> --namespace magasin --create-namespace
-          helm install drill magasin/drill --namespace magasin --create-namespace
-          helm install dagster magasin/dagster --namespace magasin 
-          helm install superset magasin/superset --namespace magasin
-          helm install daskhub magasin/daskhub --namespace magasin 
-          ```
-          
+            To install an specific chart:
+            ```shell
+            helm repo add magasin https://unicef.github.io/magasin
+            
+            # helm install <chart> magasin/<chart> --namespace magasin --create-namespace
+            helm install drill magasin/drill --namespace magasin --create-namespace
+            helm install dagster magasin/dagster --namespace magasin 
+            helm install superset magasin/superset --namespace magasin
+            helm install daskhub magasin/daskhub --namespace magasin 
+            ```
           EOF
           
           # https://hub.github.com/hub-release.1.html
