@@ -116,7 +116,7 @@ jobs:
           
           # Release using hub.
           # Documentation: https://hub.github.com/hub-release.1.html
-          hub release ${{ inputs.action}} "${assets[@]}" --file release-body.txt --message "magasin charts ${{inputs.tag}}" "${{ inputs.tag }}-charts"
+          hub release create "${assets[@]}" --file release-body.txt --message "magasin charts ${{inputs.tag}}" "${{ inputs.tag }}-charts"
           
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
