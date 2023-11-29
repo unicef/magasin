@@ -76,7 +76,7 @@ jobs:
         run: |
           pwd
           # Create an env variable
-          echo "HELM_PACKAGES_DIR=`pwd`/.helm_packages" >> "$GITHUB_ENV"
+          echo "HELM_PACKAGES_DIR=`pwd`/helm_packages" >> "$GITHUB_ENV"
 
           # Create destination folder
           mkdir ./helm_packages
@@ -85,18 +85,18 @@ jobs:
           cd helm
           # ls -d displays a / at the end of each folder. We remove it using sed
           helm_charts=`ls -d helm/ */ | sed 's/\/$//'`
-          echo charts to create: $helm_charts
+          echo Charts to create: $helm_charts
           cd ..
           pwd
           # Create the packages that will be assets of the release
           for chart in $helm_charts; do 
             # Creates a .tgz file for each folder in helm
-            helm package helm/$chart -d .helm_packages/ 
+            helm package helm/$chart -d ./helm_packages/ 
           done
 
           # Sets output dir as a variable. Can be accessed using  
-          echo "HELM_PACKAGES_DIR=`pwd`/.helm_packages" >> "$GITHUB_ENV"
-          echo "dir=.helm_packages" >> $GITHUB_OUTPUT
+          echo "HELM_PACKAGES_DIR=`pwd`/helm_packages" >> "$GITHUB_ENV"
+          echo "dir=helm_packages" >> $GITHUB_OUTPUT
         
       - name: Create/Edit a GitHub release using hub (adds assets)
         run: |
@@ -146,7 +146,7 @@ jobs:
       - name: Update index.yaml
         run: |
           # Go to helm release folder folder
-          cd .helm_packages
+          cd helm_packages
 
           # Merge existing index with the new files. The url is given by the release
           helm repo index . --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY/releases/download/${{ inputs.tag }}"
