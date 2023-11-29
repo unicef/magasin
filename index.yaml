@@ -3,7 +3,7 @@ entries:
   dagster:
   - apiVersion: v2
     appVersion: 1.5.9
-    created: "2023-11-29T09:37:15.531112145Z"
+    created: "2023-11-29T10:16:06.344653394Z"
     dependencies:
     - condition: dagster-user-deployments.enableSubchart
       name: dagster-user-deployments
@@ -22,7 +22,7 @@ entries:
       repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
       version: 12.7.4
     description: The data orchestration platform built for productivity.
-    digest: 8ce3f3aecc54b680d2af8f06a66ef70dba491cb4fcaef7f9b648f121e456c1f4
+    digest: 1fa81a21539df12b8b0443387a453e367721c157aa20227f3421ab6d1d20cbf3
     icon: https://dagster.io/images/brand/logos/dagster-primary-mark.png
     keywords:
     - analytics
@@ -40,12 +40,12 @@ entries:
     - https://github.com/dagster-io/dagster/tree/master/helm/dagster
     type: application
     urls:
-    - https://github.com/unicef/magasin/releases/download/v0.0.1/dagster-1.5.9.tgz
+    - https://github.com/unicef/magasin/releases/download/v0.0.1-charts/dagster-1.5.9.tgz
     version: 1.5.9
   daskhub:
   - apiVersion: v2
     appVersion: jh2.0.0-dg2023.1.1
-    created: "2023-11-29T09:37:15.538628758Z"
+    created: "2023-11-29T10:16:06.351722903Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -57,7 +57,7 @@ entries:
       repository: https://helm.dask.org/
       version: 2023.1.1
     description: Multi-user JupyterHub and Dask deployment.
-    digest: c6a1a9b2f474d35cd381608933ac9d9b714431ec0f1166c28db0fcb31f666566
+    digest: 0419f358edea2e5a1e9005f1fbe6e1b60dcf964b6fd9f3745e06d54c4fb33e00
     icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
     maintainers:
     - email: jtomlinson@nvidia.com
@@ -70,14 +70,14 @@ entries:
       name: Tom Augspurger
     name: daskhub
     urls:
-    - https://github.com/unicef/magasin/releases/download/v0.0.1/daskhub-2023.1.0.tgz
+    - https://github.com/unicef/magasin/releases/download/v0.0.1-charts/daskhub-2023.1.0.tgz
     version: 2023.1.0
   drill:
   - apiVersion: v2
     appVersion: 1.21.1-3.9.1
-    created: "2023-11-29T09:37:15.539320259Z"
+    created: "2023-11-29T10:16:06.352606116Z"
     description: Helm charts for deploying Apache Drill on a Kubernetes cluster
-    digest: ae25372167fc45f734ab468c4b11578860e0144e02a1fd95fa6936887d60a000
+    digest: 7eba0947358bc254def4072ab754b12de1e4c1d98d2e651d6ca9709d4d43f520
     home: http://drill.apache.org/
     keywords:
     - apache
@@ -93,12 +93,12 @@ entries:
     - https://github.com/unicef/magasin-drill
     type: application
     urls:
-    - https://github.com/unicef/magasin/releases/download/v0.0.1/drill-0.6.1.tgz
+    - https://github.com/unicef/magasin/releases/download/v0.0.1-charts/drill-0.6.1.tgz
     version: 0.6.1
   superset:
   - apiVersion: v2
     appVersion: 3.0.1
-    created: "2023-11-29T09:37:15.555410386Z"
+    created: "2023-11-29T10:16:06.36911367Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -110,7 +110,7 @@ entries:
       version: 17.9.4
     description: Apache Superset is a modern, enterprise-ready business intelligence
       web application
-    digest: 6899f6eb70f3b723897b71d005112988ecc27062eca70fe46bbb836c38ef5eb7
+    digest: afb72faf3e0748348bd8dccfd70c99294d12d58ccec1271eb20bcbd276491c93
     home: https://superset.apache.org/
     icon: https://artifacthub.io/image/68c1d717-0e97-491f-b046-754e46f46922@2x
     keywords:
@@ -124,6 +124,6 @@ entries:
     sources:
     - https://github.com/apache/superset
     urls:
-    - https://github.com/unicef/magasin/releases/download/v0.0.1/superset-0.10.15.tgz
+    - https://github.com/unicef/magasin/releases/download/v0.0.1-charts/superset-0.10.15.tgz
     version: 0.10.15
-generated: "2023-11-29T09:37:15.519877026Z"
+generated: "2023-11-29T10:16:06.330239973Z"
