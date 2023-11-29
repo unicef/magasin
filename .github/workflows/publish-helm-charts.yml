@@ -75,7 +75,6 @@ jobs:
         id: helm_packages
         run: |
           pwd
-          ls
           # Create an env variable
           echo "HELM_PACKAGES_DIR=`pwd`/.helm_packages" >> "$GITHUB_ENV"
 
@@ -96,7 +95,7 @@ jobs:
           done
 
           # Sets output dir as a variable. Can be accessed using  
-          echo "HELM_PACKAGES_DIR=`pwd`.helm_packages" >> "$GITHUB_ENV"
+          echo "HELM_PACKAGES_DIR=`pwd`/.helm_packages" >> "$GITHUB_ENV"
           echo "dir=.helm_packages" >> $GITHUB_OUTPUT
         
       - name: Create/Edit a GitHub release using hub (adds assets)
@@ -106,13 +105,15 @@ jobs:
           echo $HELM_PACKAGES_DIR
           echo Using helm pacakges dir: ${{ steps.helm_packages.outputs.dir }}
           assets=()
+          ls ./helm_packages
           for asset in `ls ./helm_packages`; do
+            echo Adding asset $asset...
             assets+=("-a" "./helm_packages/$asset")
           done
-          echo The folowing assets will be added to the release: $assets 
+          echo The folowing assets will be added to the release: ${assets[@]} 
           {
             echo 'JSON_RESPONSE<<EOF'
-            curl https://example.com
+            #curl https://example.com
             echo EOF
           } >> "$GITHUB_ENV"
           #cat > release-body.txt << EOF
@@ -126,8 +127,7 @@ jobs:
           #  helm install superset magasin/superset --namespace magasin
           #  helm install daskhub magasin/daskhub --namespace magasin 
           #  ```
-          EOF
-          
+          #EOF
           # https://hub.github.com/hub-release.1.html
           hub release ${{ inputs.action}} "${assets[@]}" --file release-body.txt --message "magasin charts ${{inputs.tag}}" "${{ inputs.tag }}"
           
