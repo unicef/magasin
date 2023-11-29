@@ -80,14 +80,14 @@ jobs:
 
           # Create destination folder
           mkdir ./helm_packages
-
           # Get the list of all folders in helm. 
           # each folder has a chart
           cd helm
           # ls -d displays a / at the end of each folder. We remove it using sed
           helm_charts=`ls -d helm/ */ | sed 's/\/$//'`
+          echo charts to create: $helm_charts
           cd ..
-
+          pwd
           # Create the packages that will be assets of the release
           for chart in $helm_charts; do 
             # Creates a .tgz file for each folder in helm
@@ -105,7 +105,8 @@ jobs:
           echo HELM_PACKAGES_DIR=$HELM_PACKAGES_DIR
           echo steps.helm_pacakges.dir: ${{ steps.helm_packages.outputs.dir }}
           assets=()
-          ls ./helm_packages
+          ls
+          ls -la ./helm_packages
           for asset in `ls ./helm_packages`; do
             echo Adding asset $asset...
             assets+=("-a" "./helm_packages/$asset")
