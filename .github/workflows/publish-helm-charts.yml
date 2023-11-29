@@ -31,6 +31,8 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -65,10 +67,9 @@ jobs:
       #    packages_with_index: true # upload to gh-pages
       #  env:
       #    CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      
+     
       - name: Create a release package
-        run: | 
-          apt install hub
+        run: |  
           DEST_DIR=.cr-release-packages
           set -x
           assets=()
