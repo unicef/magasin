@@ -71,31 +71,29 @@ jobs:
           echo  "tag:    ${{ inputs.tag }}"
           echo  "action: ${{ inputs.action}}"
 
-      - name: Manually make helm packages (.tgz)
+      - name: Make helm packages (.tgz)
         id: helm_package
         run: |
           # Create destination folder
           mkdir .helm-packages
-          # lists all folders in helm. 
-          for dir in `ls -d helm/ */ | sed 's/\/$//'`; do 
-            echo Creating package for helm/$dir...
+
+          # Get the list of all folders in helm. 
+          # each folder has a chart
+          cd helm
+          # ls -d displays a / at the end of each folder. We remove it using sed
+          helm_charts=`ls -d helm/ */ | sed 's/\/$//'`
+          cd ..
+
+          # Create the packages that will be assets of the release
+          for dir in $helm_folders; do 
             # Creates a .tgz file for each folder in helm
             helm package helm/$dir -d .helm-packages/ 
           done
+
           # Sets output dir as a variable. Can be accessed using ${{ steps.helm_package.dir }}
           echo "::set-output name=dir::.helm-packages"
         
-      #- name: Run chart-releaser
-      #  uses: helm/chart-releaser-action@v1.6.0
-      #  with:
-      #    # defaults to "charts", and looks for folders"
-      #    charts_dir: helm
-      #    skip_packaging: true # expect helm charts .tgz .cr-release-packages
-      #    packages_with_index: true # upload to gh-pages
-      #  env:
-      #    CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-     
-      - name: Create/Edit a GitHub release using hub
+      - name: Create/Edit a GitHub release using hub (adds assets)
         run: |  
           set -x
           echo Using helm pacakges dir: ${{ steps.helm_package.dir }}
@@ -117,17 +115,24 @@ jobs:
           path: 'gh-pages'
 
 
-      - name: Push new index
+      - name: Update index.yaml
         run: |
-          # Go to helm folder
+          # Go to helm release folder folder
           cd .helm-packages
-          # Merge index
+
+          # Merge existing index with the new files. The url is given by the release
           helm index --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY}/releases/download/${{ inputs.tag }}"
-          cat ../gh-pages/index.yaml
-          # 
-          cd ../gh-pages/
+          
+          # Check changes
+          cd gh-pages
+          git diff
+          
+      - name: Push the new index 
+        run: |
+          cd gh-pages/
           git add .
           git commit -m "update index.yaml for ${{ inputs.tag }}"
+          git push origin gh-pages
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
     
