@@ -1,5 +1,6 @@
 #
-# Publish Magasin Helm chart in the gh-pages branch
+# Publish Magasin Helm charts in the gh-pages branch
+# It creates a release.
 #
 # Reference documentation
 #
@@ -11,12 +12,14 @@
 # https://github.com/marketplace/actions/helm-chart-releaser
 #
 
-name: Publish Helm Charts
+name: Publish helm charts
 
 on:
   # On tag creation
   push:
-    tags: ["*"]
+    tags: #["*"]
+      # Example v0.1.1
+      - v[0-9]+.[0-9]+.[0-9]+
   # Manual 
   workflow_dispatch:
 
@@ -43,7 +46,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }} # only needed if version is 'latest'
       
-      # Fix dagster old bitnami dependencies
       - name: Manually make helm packages (.tgz)
         run: |
           DEST_DIR=.cr-release-packages
@@ -54,12 +56,58 @@ jobs:
           helm package helm/daskhub -d $DEST_DIR
           ls -la .cr-release-packages 
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.6.0
+      #- name: Run chart-releaser
+      #  uses: helm/chart-releaser-action@v1.6.0
+      #  with:
+      #    # defaults to "charts", and looks for folders"
+      #    charts_dir: helm
+      #    skip_packaging: true # expect helm charts .tgz .cr-release-packages
+      #    packages_with_index: true # upload to gh-pages
+      #  env:
+      #    CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      
+      - name: Create a release package
+        run: | 
+          DEST_DIR=.cr-release-packages
+          set -x
+          assets=()
+          for asset in $DEST_DIR; do
+            assets+=("-a" "$asset")
+          done
+          hub release create "${assets[@]}" -m "${{ github.ref }}" "${{ github.ref }}"
+ 
+      
+      
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
         with:
-          # defaults to "charts", and looks for folders"
-          charts_dir: helm
-          skip_packaging: true # expect helm charts .tgz .cr-release-packages
-          packages_with_index: true # upload to gh-pages
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          ref: 'gh-pages'
+          path: 'gh-pages'
+
+      #- name: Push new index
+      #  run: |
+      #    hem index --merge ./gh-pages/index.yaml --url https://${{ github.ref }}
+        
+      #- name: Create Release
+      #  id: create_release
+      #  uses: actions/create-release@v1
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      #  with:
+      #    tag_name: ${{ github.ref }}
+      #    release_name: Release ${{ github.ref }}
+      #    body: |
+      #      Magasin helm pacakges
+      #    draft: false
+      #    prerelease: false
+      
+      #- name: Upload Release Asset
+      #  id: upload-release-asset 
+      #  uses: actions/upload-release-asset@v1
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  with:
+      #    upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+      #    asset_path: ./my-artifact.zip
+      #    asset_name: my-artifact.zip
+      #      asset_content_type: application/x-compressed-tar
