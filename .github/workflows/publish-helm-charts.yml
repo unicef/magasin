@@ -63,7 +63,7 @@ jobs:
         id: helm_packages
         run: |
         
-          helm_packages_dir=`pwd`'/helm-packages'
+          helm_packages_dir=`pwd`'/helm_packages'
           # Create destination folder
           mkdir $helm_packages_dir
           
@@ -133,7 +133,7 @@ jobs:
       - name: Update index.yaml
         run: |
           # Go to helm release folder folder
-          cd helm_packages
+          cd $HELM_PACKAGES_DIR
 
           # Merge existing index with the new files. The url is given by the release
           helm repo index . --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY/releases/download/${{ inputs.tag }}"
