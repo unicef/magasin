@@ -266,21 +266,10 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://drill.apache.org/">Apache Drill</a> is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS &amp; SAS formats, Parquet, and others.</p>
 <p>While <a href="https://en.wikipedia.org/wiki/Data_mart">data marts</a> for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time.</p>
 <p>Instead, a Dagster ingestion and transformation pipeline stores an ‘analyst-ready’ dataset that Apache Drill can query directly.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/drill.png" title="Example Drill query interface" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Example Drill query interface</figcaption>
-</figure>
-</div>
 </section>
 <section id="apache-superset" class="level2">
 <h2 class="anchored" data-anchor-id="apache-superset">Apache Superset</h2>
 <p><a href="https://superset.apache.org/">Apache Superset</a> is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.</p>
-<p>For use with Magasin, Apache Superset can be configured to automatically create and assign user roles (with associated permissions) according to Azure Active Directory groups, such that users from a given organizational unit will, by default, have permissions only to data ‘owned’ by their organization unit (e.g., HQ division or country office) or in their purview (i.e., regional offices’ users have, by default, access to data for all country offices in their respective region).</p>
-</section>
-<section id="superset-dashboard-cloner" class="level2">
-<h2 class="anchored" data-anchor-id="superset-dashboard-cloner">superset-dashboard-cloner</h2>
-<p>The <a href="https://github.com/unicef/superset-dashboard-cloner">superset-dashboard-cloner</a> allows for a central HQ team to author ‘dashboard recipes’ which can then automatically be deployed for each office that has a given data source with compatible schema (i.e., a standard template for a RapidPro workspace can be authored centrally and deployed for each workspace in each country office).</p>
 </section>
 </section>
 <section id="daskhub" class="level1">
