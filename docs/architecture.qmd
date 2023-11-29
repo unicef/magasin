@@ -1,0 +1,52 @@
+---
+title: "Architecture"
+format: html
+---
+
+
+
+
+
+# Helm charts
+Magasin components are containerized for deployment to Kubernetes compute clusters. [Helm charts](https://helm.sh/) created and maintained by component maintainers are used to manage installation of Magasin components. 
+
+## Dagster
+The [Dagster](http://dagster.io) framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster.
+
+## Dagit
+Dagster's Dagit UI provides visibility of pipelines' tasks, scheduling, run status, materialized assets, resources, and modes.
+
+
+## Apache Drill
+
+[Apache Drill](https://drill.apache.org/) is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.
+
+
+While [data marts](https://en.wikipedia.org/wiki/Data_mart) for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time. 
+
+Instead, a Dagster ingestion and transformation pipeline stores an 'analyst-ready' dataset that Apache Drill can query directly.
+
+
+## Apache Superset
+[Apache Superset](https://superset.apache.org/) is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.
+
+# Daskhub
+[Daskhub](https://blog.dask.org/2020/08/31/helm_daskhub) is a [Helm chart](https://helm.dask.org/) to easily install JupyterHub and Dask Gateway for multiple users on a Kubernetes cluster.
+
+## JupyterHub
+The multi-tenant JupyterHub component creates on-demand, isolated pods for authenticated users, each with persistent storage for their R and Python notebook workspace. 
+
+## Dask Gateway
+Dask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.
+
+
+
+References:
+
+* Jupyterhub - https://jupyterhub.readthedocs.io/en/stable/reference/index.html
+
+* Jupyterhub - kubernetes https://z2jh.jupyter.org/en/latest/index.html
+
+* Authentication for Jupyterhub https://oauthenticator.readthedocs.io/en/latest/index.html
+
+* AWS Public Sector Blog article on [Analyze terabyte-scale geospatial datasets with Dask and Jupyter on AWS](https://aws.amazon.com/blogs/publicsector/analyze-terabyte-scale-geospatial-datasets-with-dask-and-jupyter-on-aws/)

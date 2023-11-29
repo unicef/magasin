@@ -1,0 +1,54 @@
+project:
+  title: "magasin"
+  type: website
+  output-dir: _site
+
+theme:
+  light: litera
+  dark: darkly
+  
+website:
+  navbar:
+    background: primary
+    search: true
+    logo: images/magasin-logo.svg
+    logo-alt: "magasin"
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "About"
+        file: about.qmd 
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: "Installation"
+        file: install.qmd 
+      - text: "Getting started"
+        file: getting-started.qmd  
+      - text: "Architecture"
+        file: architecture.qmd
+      - text: "End user guides"
+        file: end-user-guides.qmd
+
+      - section: "Admin Guides"
+        contents:
+          - text: "Kubernetes"
+            file: admin-guide-kubernetes.qmd   
+          - text: "Drill"
+            file: admin-guide-drill.qmd  
+          - text: "Superset"
+            file: admin-guide-superset.qmd  
+      - section: "Deployment"      
+        contents:
+          - text: "Deploying to production"
+            file: deployment.qmd 
+          - text: "Security"
+            file: security.qmd
+
+      - section: "Contributing"
+        contents:
+          - text: "Contributing"
+            file: contributing.qmd
+          - text: "Repositories"
+            file: repositories.qmd

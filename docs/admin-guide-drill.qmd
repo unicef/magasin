@@ -1,0 +1,185 @@
+---
+title: "Drill Guide"
+format: html
+---
+
+A quick guide for managing magasin's Apache Drill instance.
+
+
+## Apache Drill options and tuning
+
+The following option values are recommended for Apache Drill's use in the Magasin context:
+
+```
+planner.width.max_per_node = 3
+planner.width.max_per_query = 12
+store.parquet.reader.int96_as_timestamp = true
+drill.exec.http.rest.errors.verbose = true
+exec.errors.verbose = true
+exec.queue.enable = true
+exec.queue.large = 2
+exec.queue.small = 10
+```
+
+## Example Apache Drill storage plugin for Azure blob storage
+
+Example Apache Drill storage plugin configuration for a specific Azure blob storage container (`unicef-magasin-dev`) in a given Azure blob storage account (`sauniwebsaksio`). 
+
+The Apache Drill [Azure Blob Storage Plugin](https://drill.apache.org/docs/azure-blob-storage-plugin/) must be present in `$DRILL_HOME/jars/3rdparty`. Note the Azure authentication key has been redacted in the below example.
+
+This configuration is read-only and specifies support for certain file formats within two directory locations (`/profiles` and `/datasets`) within the storage container. 
+
+For production configuration, file formats should be restricted to the minimal set of expected formats. Multiple storage plugin instances can be configured in a single Apache Drill instance so separate Azure blob storage accounts and containers may be separately configured and queried.
+```
+{
+  "name" : "storage_account_blob_container",
+  "config" : {
+    "type" : "file",
+    "connection" : "wasbs://blob_container@storage_account.blob.core.windows.net",
+    "config" : {
+      "fs.azure.account.key.storage_account.blob.core.windows.net" : "*******"
+    },
+    "workspaces" : {
+      "profiles" : {
+        "location" : "/profiles",
+        "writable" : false,
+        "defaultInputFormat" : null,
+        "allowAccessOutsideWorkspace" : false
+      },
+      "datasets" : {
+        "location" : "/datasets",
+        "writable" : false,
+        "defaultInputFormat" : null,
+        "allowAccessOutsideWorkspace" : false
+      }
+    },
+    "formats" : {
+      "image" : {
+        "type" : "image",
+        "extensions" : [ "jpg", "jpeg", "jpe", "tif", "tiff", "dng", "psd", "png", "bmp", "gif", "ico", "pcx", "wav", "wave", "avi", "webp", "mov", "mp4", "m4a", "m4p", "m4b", "m4r", "m4v", "3gp", "3g2", "eps", "epsf", "epsi", "ai", "arw", "crw", "cr2", "nef", "orf", "raf", "rw2", "rwl", "srw", "x3f" ],
+        "fileSystemMetadata" : true,
+        "descriptive" : true
+      },
+      "parquet" : {
+        "type" : "parquet"
+      },
+      "avro" : {
+        "type" : "avro",
+        "extensions" : [ "avro" ]
+      },
+      "json" : {
+        "type" : "json",
+        "extensions" : [ "json" ]
+      },
+      "sequencefile" : {
+        "type" : "sequencefile",
+        "extensions" : [ "seq" ]
+      },
+      "tsv" : {
+        "type" : "text",
+        "extensions" : [ "tsv" ],
+        "fieldDelimiter" : "\t"
+      },
+      "csvh" : {
+        "type" : "text",
+        "extensions" : [ "csvh" ],
+        "extractHeader" : true
+      },
+      "csv" : {
+        "type" : "text",
+        "extensions" : [ "csv" ]
+      },
+      "psv" : {
+        "type" : "text",
+        "extensions" : [ "tbl" ],
+        "fieldDelimiter" : "|"
+      },
+      "pcap" : {
+        "type" : "pcap",
+        "extensions" : [ "pcap" ]
+      },
+      "httpd" : {
+        "type" : "httpd",
+        "extensions" : [ "httpd" ],
+        "logFormat" : "%h %t \"%r\" %>s %b \"%{Referer}i\""
+      }
+    },
+    "enabled" : true
+  }
+}
+```
+
+## Backup the drill storage accounts database
+
+Apache Drill keeps a set of connections to storage accounts (S3 buckets, azure blobs, MinIO accounts...). The storage accounts is where the actual data is stored.
+ 
+However, in magasin given that Drill is setup in a [distributed mode](https://drill.apache.org/docs/distributed-mode-prerequisites/), the configuration of these connections is kept in [zookeeper](https://zookeeper.apache.org/) which is used to sync the storage configuration among the different instances of Drill. So, to backup the storage accounts we need to backup the zookeeper database which is a plain database.
+
+
+
+1. Launch a terminal within the zookeeper pod (zk-0). 
+
+    ```shell
+    kubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash
+    ``` 
+
+2. Compress the files using `tar`, and leave the shell
+
+    ```shell
+    tar -czvf /tmp/zk.tgz /var/lib/zookeeper/*
+    exit
+    ```
+
+3. Save the file into our local filesystem
+
+    ```shell
+    kubectl cp magasin-drill/zk-0:/tmp/zk.tgz ./zk.tgz
+    ```
+
+4. Delete the `.tgz` file of the pod
+
+    ```shell
+    kubectl exec zk-0 --namespace magasin-drill -- rm tmp/zk.tgz
+    ```
+
+## Restore the Drill storage configuration
+
+To restore the backup created in the previous section:
+
+1. Copy the backup to the cluster
+
+    ```shell
+     kubectl cp ./zk.tgz magasin-drill/zk-0:/tmp/zk.tgz 
+    ```
+2. Launch the shell in the zookeeper pod
+
+    ```shell
+    kubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash
+    ```
+    
+3. Unzip
+    ```shell
+    tar -xzvf /tmp/zk.tgz 
+    ```
+    
+4. Kill the java  process
+
+    ```shell
+    ps -ax 
+
+    PID TTY      STAT   TIME COMMAND
+    1 ?          Ss     0:00 /rosetta/rosetta /usr/bin/bash /usr/bin/start.sh
+    25 ?         Sl     0:03 /rosetta/rosetta /usr/bin/java -Dzookeeper.log.dir=/opt/zookeeper/bin/../logs -Dzookeeper.log.file=zookeeper-
+    116 pts/0    Ss     0:00 /rosetta/rosetta /bin/bash
+    148 ?        S      0:00 /rosetta/rosetta /usr/bin/sleep 5
+    149 pts/0    R+     0:00 /usr/bin/ps -ax
+      
+    # Where -9 is to force kill and 25 is the process number (PID)
+    kill -9 25
+    ```  
+5. Relaunch the initalizer script in background (&), then exit
+    ```
+    /usr/bin/start.sh &
+    exit
+    ```
+      

@@ -1,0 +1,18 @@
+---
+title: "Getting started"
+format: html
+---
+
+
+Once magasin has been installed, the next steps are to start using the different components that magasin includes.
+
+[Install magasin](./install.qmd) If you haven't installed it yet
+
+# Understanding the data lifecycle within magasin
+
+
+# Creating a Dagster Pipeline
+
+We will start creating a new pipeline.
+
+#
