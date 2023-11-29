@@ -1,0 +1,25 @@
+---
+title: "About"
+format: html
+---
+
+## About Magasin
+
+Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end collection of open-source tools that are setup together to provide enterprise ready automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform Data analysis / ML / AI and visualization of datasets.
+
+
+
+## Brief history 
+
+Magasin grew out of Office of Innovation's and Information and Communication Technology Division (ICTD) work to establish a [RapidPro](https://www.rapidpro.io) Data Warehouse to enable aggregation of global metrics across vendor instances.
+
+Also informed by experiences of the [Magic Box](https://www.unicef.org/innovation/Magicbox) applied data science initiative, a range of components were evaluated and trialed with country offices to arrive at the current components and architecture.
+
+In 2021, ICTD engaged one of its long term agreement vendors to assist with evolving the proof-of-concept into a minimum viable product (MVP).
+
+In 2023, UNICEF started the journey to detach _magasin_ from its organizational and cloud infrastructure dependencies, and release it as an open-source with the goal of becoming a [Digital Public Good](https://digitalpublicgoods.net/digital-public-goods/) solution.
+
+
+
+
+

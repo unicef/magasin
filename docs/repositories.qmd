@@ -1,0 +1,20 @@
+---
+title: "Source Code Repositories"
+format: html
+---
+
+## Magasin main project
+
+- [unicef/magasin](https://github.com/unicef/magasin)
+    - Primary user code repository with Dagster pipelines, Jupytext notebooks, and Docker images.
+
+## Libraries and utilities
+- [unicef/superset-dashboard-cloner](https://github.com/unicef/superset-dashboard-cloner)
+    Scripts for cloning Apache Superset dashboards to create copies that use different data sources.
+
+## Custom Helm charts
+
+- [unicef/magasin-drill](https://github.com/unicef/magasin-drill)
+    A helm chart that allows setting up Apache Drill in cluster mode together with Zookeeper in a Kubernetes cluster. 
+
+

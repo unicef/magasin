@@ -1,0 +1,6 @@
+---
+title: "Magasin documentation"
+format: html
+---
+
+Main page
