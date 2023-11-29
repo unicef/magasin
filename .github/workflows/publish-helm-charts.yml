@@ -17,12 +17,27 @@ name: Publish helm charts
 on:
   # On tag creation
   push:
-    tags: #["*"]
-      # Example v0.1.1
-      - 
+    tags: 
+      # Only run on tags that have the vX.Y.Z; Example v0.1.1
+      - v[0-9]+.[0-9]+.[0-9]+
         
-  # Manual 
+  # Manual run of the 
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag. Use format: vX.Y.Z'
+        default: 'v0.0.1'
+        required: true
+        type: string
+      action:
+          # What action to perform
+          description: 'Release action. Edit adds the assets and updates the index'
+          default: create
+          required: true
+          type: choice
+          options:
+            - create
+            - edit
 
 jobs:
   release:
@@ -47,16 +62,29 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }} # only needed if version is 'latest'
       
-      - name: Manually make helm packages (.tgz)
+      - name: Install hub
         run: |
-          DEST_DIR=.cr-release-packages
-          mkdir $DEST_DIR
-          helm package helm/dagster -d $DEST_DIR
-          helm package helm/drill -d $DEST_DIR
-          helm package helm/superset -d $DEST_DIR
-          helm package helm/daskhub -d $DEST_DIR
-          ls -la .cr-release-packages 
+            sudo apt install -y hub
 
+      - name: Display the Input options 
+        run: |
+          echo  "tag:    ${{ inputs.tags }}"
+          echo  "action: ${{ inputs.action}}"
+
+      - name: Manually make helm packages (.tgz)
+        id: helm_package
+        run: |
+          # Create destination folder
+          mkdir .helm-packages
+          # lists all folders in helm. 
+          for dir in `ls -d helm/ */ | sed 's/\/$//'`; do 
+            echo Creating package for helm/$dir...
+            # Creates a .tgz file for each folder in helm
+            helm package helm/$dir -d ./helm-packages 
+          done
+          # Sets output dir as a variable. Can be accessed using ${{ steps.helm_package.dir }}
+          echo "::set-output name=dir::.helm-packages"
+        
       #- name: Run chart-releaser
       #  uses: helm/chart-releaser-action@v1.6.0
       #  with:
@@ -67,22 +95,21 @@ jobs:
       #  env:
       #    CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
      
-      - name: Create a release package using hub
+      - name: Create/Edit a GitHub release using hub
         run: |  
-          # Install hub
-          sudo apt install -y hub
-          DEST_DIR=.cr-release-packages
           set -x
+          echo Using helm pacakges dir: ${{ steps.helm_package.dir }}
           assets=()
-          for asset in `ls $DEST_DIR`; do
-            assets+=("-a" "$DEST_DIR/$asset")
+          for asset in `ls ./helm-packages`; do
+            assets+=("-a" "./helm-packages/$asset")
           done
-          echo $assets
-          hub release create "${assets[@]}" --message "${{ github.ref }}" "v0.0.1"
+          echo The folowing assets will be added to the release: $assets 
+          hub release ${{ inputs.action}} "${assets[@]}" "${{ inputs.tag }}"
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        
+      
+      # Now proceed to update the index in github
       - name: Checkout gh-pages
         uses: actions/checkout@v4
         with:
@@ -90,30 +117,17 @@ jobs:
           path: 'gh-pages'
 
 
-      #- name: Push new index
-      #  run: |
-      #    hem index --merge ./gh-pages/index.yaml --url https://${{ github.ref }}
-        
-      #- name: Create Release
-      #  id: create_release
-      #  uses: actions/create-release@v1
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      #  with:
-      #    tag_name: ${{ github.ref }}
-      #    release_name: Release ${{ github.ref }}
-      #    body: |
-      #      Magasin helm pacakges
-      #    draft: false
-      #    prerelease: false
-      
-      #- name: Upload Release Asset
-      #  id: upload-release-asset 
-      #  uses: actions/upload-release-asset@v1
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  with:
-      #    upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-      #    asset_path: ./my-artifact.zip
-      #    asset_name: my-artifact.zip
-      #      asset_content_type: application/x-compressed-tar
+      - name: Push new index
+        run: |
+          # Go to helm folder
+          cd .helm-packages
+          # Merge index
+          helm index --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY}/releases/download/${{ inputs.tag }}"
+          cat ../gh-pages/index.yaml
+          # 
+          cd ../gh-pages/
+          git add .
+          git commit -m "update index.yaml for ${{ inputs.tag }}"
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+    
