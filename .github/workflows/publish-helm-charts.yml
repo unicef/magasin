@@ -16,14 +16,14 @@ on:
   # On tag creation
   push:
     tags: 
-      # Only run on tags that have the vX.Y.Z; Example v0.1.1
+      # Only run on tags that have the vX.Y.Z; Example v0.1.1.
       - v[0-9]+.[0-9]+.[0-9]+
         
   # Manual run of the 
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag. Use format: vX.Y.Z'
+        description: "Release tag. Use format: vX.Y.Z. '-charts' is appened"
         default: 'v0.0.1'
         required: true
         type: string
@@ -57,7 +57,6 @@ jobs:
       - name: Display the Input options 
         run: |
           echo  "tag:    ${{ inputs.tag }}"
-          echo  "action: ${{ inputs.action}}"
 
       - name: Make helm packages (.tgz)
         id: helm_packages
@@ -136,7 +135,7 @@ jobs:
           cd $HELM_PACKAGES_DIR
 
           # Merge existing index with the new files. The url is given by the release
-          helm repo index . --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY/releases/download/${{ inputs.tag }}"
+          helm repo index . --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY/releases/download/${{ inputs.tag }}-charts"
           cp index.yaml  ../gh-pages/index.yaml
           # Check changes
           cd ../gh-pages
