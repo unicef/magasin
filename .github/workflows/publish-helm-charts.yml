@@ -76,8 +76,11 @@ jobs:
         run: |
           pwd
           ls
+          # Create an env variable
+          echo "HELM_PACKAGES_DIR=`pwd`/.helm_packages" >> "$GITHUB_ENV"
+
           # Create destination folder
-          mkdir .helm_packages
+          mkdir $HELM_PACKAGES_DIR
 
           # Get the list of all folders in helm. 
           # each folder has a chart
@@ -89,34 +92,40 @@ jobs:
           # Create the packages that will be assets of the release
           for chart in $helm_charts; do 
             # Creates a .tgz file for each folder in helm
-            helm package helm/$chart -d .helm-packages/ 
+            helm package helm/$chart -d .helm_packages/ 
           done
 
-          # Sets output dir as a variable. Can be accessed using steps.helm_packages.outputs.dir 
-          echo "::set-output name=dir::.helm-packages"
+          # Sets output dir as a variable. Can be accessed using  
+          echo "HELM_PACKAGES_DIR=`pwd`.helm_packages" >> "$GITHUB_ENV"
+          echo "dir=.helm_packages" >> $GITHUB_OUTPUT
         
       - name: Create/Edit a GitHub release using hub (adds assets)
         run: |  
           pwd
           set -x
+          echo $HELM_PACKAGES_DIR
           echo Using helm pacakges dir: ${{ steps.helm_packages.outputs.dir }}
           assets=()
-          for asset in `ls ./helm-packages`; do
-            assets+=("-a" "./helm-packages/$asset")
+          for asset in `ls ./helm_packages`; do
+            assets+=("-a" "./helm_packages/$asset")
           done
           echo The folowing assets will be added to the release: $assets 
-          
-          cat > release-body.txt << EOF
-            To install an specific chart:
-            ```shell
-            helm repo add magasin https://unicef.github.io/magasin
-            
-            # helm install <chart> magasin/<chart> --namespace magasin --create-namespace
-            helm install drill magasin/drill --namespace magasin --create-namespace
-            helm install dagster magasin/dagster --namespace magasin 
-            helm install superset magasin/superset --namespace magasin
-            helm install daskhub magasin/daskhub --namespace magasin 
-            ```
+          {
+            echo 'JSON_RESPONSE<<EOF'
+            curl https://example.com
+            echo EOF
+          } >> "$GITHUB_ENV"
+          #cat > release-body.txt << EOF
+          #  To install an specific chart:
+          #  ```shell
+          #  helm repo add magasin https://unicef.github.io/magasin
+          #  
+          #   helm install <chart> magasin/<chart> --namespace magasin --create-namespace
+          #  helm install drill magasin/drill --namespace magasin --create-namespace
+          #  helm install dagster magasin/dagster --namespace magasin 
+          #  helm install superset magasin/superset --namespace magasin
+          #  helm install daskhub magasin/daskhub --namespace magasin 
+          #  ```
           EOF
           
           # https://hub.github.com/hub-release.1.html
@@ -136,7 +145,7 @@ jobs:
       - name: Update index.yaml
         run: |
           # Go to helm release folder folder
-          cd .helm-packages
+          cd .helm_packages
 
           # Merge existing index with the new files. The url is given by the release
           helm repo index . --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY}/releases/download/${{ inputs.tag }}"
