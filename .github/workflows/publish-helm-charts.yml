@@ -103,7 +103,7 @@ jobs:
           set -x
           pwd
           echo HELM_PACKAGES_DIR=$HELM_PACKAGES_DIR
-          echo Using helm pacakges dir: ${{ steps.helm_packages.outputs.dir }}
+          echo steps.helm_pacakges.dir: ${{ steps.helm_packages.outputs.dir }}
           assets=()
           ls ./helm_packages
           for asset in `ls ./helm_packages`; do
