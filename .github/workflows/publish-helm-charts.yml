@@ -139,7 +139,7 @@ jobs:
           cd .helm-packages
 
           # Merge existing index with the new files. The url is given by the release
-          helm index --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY}/releases/download/${{ inputs.tag }}"
+          helm repo index --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY}/releases/download/${{ inputs.tag }}"
           
           # Check changes
           cd gh-pages
