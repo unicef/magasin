@@ -102,8 +102,25 @@ jobs:
             assets+=("-a" "./helm-packages/$asset")
           done
           echo The folowing assets will be added to the release: $assets 
-          hub release ${{ inputs.action}} "${assets[@]}" --message ${{inputs.tag}} "${{ inputs.tag }}"
-
+         
+          
+          cat > release-body.txt << EOF
+          To install an specific chart:
+          ```shell
+          helm repo add magasin https://unicef.github.io/magasin
+          
+          # helm install <chart> magasin/<chart> --namespace magasin --create-namespace
+          helm install drill magasin/drill --namespace magasin --create-namespace
+          helm install dagster magasin/dagster --namespace magasin 
+          helm install superset magasin/superset --namespace magasin
+          helm install daskhub magasin/daskhub --namespace magasin 
+          ```
+          
+          EOF
+          
+          # https://hub.github.com/hub-release.1.html
+          hub release ${{ inputs.action}} "${assets[@]}" --file release-body.txt --message "magasin charts ${{inputs.tag}}" "${{ inputs.tag }}"
+          
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       
