@@ -99,10 +99,10 @@ jobs:
           echo "dir=.helm_packages" >> $GITHUB_OUTPUT
         
       - name: Create/Edit a GitHub release using hub (adds assets)
-        run: |  
-          pwd
+        run: |
           set -x
-          echo $HELM_PACKAGES_DIR
+          pwd
+          echo HELM_PACKAGES_DIR=$HELM_PACKAGES_DIR
           echo Using helm pacakges dir: ${{ steps.helm_packages.outputs.dir }}
           assets=()
           ls ./helm_packages
@@ -164,13 +164,3 @@ jobs:
             message: "update index.yaml for ${{ inputs.tag }}"
             committer_name: GitHub Actions
             committer_email: actions@github.com
-
-      - name: Push the new index 
-        run: |
-          cd gh-pages/
-          git add .
-          git commit -m "update index.yaml for ${{ inputs.tag }}"
-          # git push origin gh-pages
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-    
