@@ -3,7 +3,7 @@ entries:
   dagster:
   - apiVersion: v2
     appVersion: 1.5.9
-    created: "2023-11-29T09:06:08.703060269Z"
+    created: "2023-11-29T09:37:15.531112145Z"
     dependencies:
     - condition: dagster-user-deployments.enableSubchart
       name: dagster-user-deployments
@@ -22,7 +22,7 @@ entries:
       repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
       version: 12.7.4
     description: The data orchestration platform built for productivity.
-    digest: 19302878d1cf51d6607cc5d15b733cfdb023b16f91f5c0354ea944e3ce97da10
+    digest: 8ce3f3aecc54b680d2af8f06a66ef70dba491cb4fcaef7f9b648f121e456c1f4
     icon: https://dagster.io/images/brand/logos/dagster-primary-mark.png
     keywords:
     - analytics
@@ -45,7 +45,7 @@ entries:
   daskhub:
   - apiVersion: v2
     appVersion: jh2.0.0-dg2023.1.1
-    created: "2023-11-29T09:06:08.709797905Z"
+    created: "2023-11-29T09:37:15.538628758Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -57,7 +57,7 @@ entries:
       repository: https://helm.dask.org/
       version: 2023.1.1
     description: Multi-user JupyterHub and Dask deployment.
-    digest: ce4377f38e58e414cfd4c0f8c29bd3ad864f441046a2df38220bc41e6080aeb8
+    digest: c6a1a9b2f474d35cd381608933ac9d9b714431ec0f1166c28db0fcb31f666566
     icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
     maintainers:
     - email: jtomlinson@nvidia.com
@@ -75,9 +75,9 @@ entries:
   drill:
   - apiVersion: v2
     appVersion: 1.21.1-3.9.1
-    created: "2023-11-29T09:06:08.710510298Z"
+    created: "2023-11-29T09:37:15.539320259Z"
     description: Helm charts for deploying Apache Drill on a Kubernetes cluster
-    digest: 1e5e39fb6b6f5914df085e93683bba6d18421c830fca12445fc49e826a58124c
+    digest: ae25372167fc45f734ab468c4b11578860e0144e02a1fd95fa6936887d60a000
     home: http://drill.apache.org/
     keywords:
     - apache
@@ -98,7 +98,7 @@ entries:
   superset:
   - apiVersion: v2
     appVersion: 3.0.1
-    created: "2023-11-29T09:06:08.724328666Z"
+    created: "2023-11-29T09:37:15.555410386Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -110,7 +110,7 @@ entries:
       version: 17.9.4
     description: Apache Superset is a modern, enterprise-ready business intelligence
       web application
-    digest: da0869db83aa0b85656c3b1a8dc064cae58ba8943688e223136ee34602f8e3f4
+    digest: 6899f6eb70f3b723897b71d005112988ecc27062eca70fe46bbb836c38ef5eb7
     home: https://superset.apache.org/
     icon: https://artifacthub.io/image/68c1d717-0e97-491f-b046-754e46f46922@2x
     keywords:
@@ -126,4 +126,4 @@ entries:
     urls:
     - https://github.com/unicef/magasin/releases/download/v0.0.1/superset-0.10.15.tgz
     version: 0.10.15
-generated: "2023-11-29T09:06:08.687166521Z"
+generated: "2023-11-29T09:37:15.519877026Z"
