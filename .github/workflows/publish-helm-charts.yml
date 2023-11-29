@@ -68,7 +68,7 @@ jobs:
 
       - name: Display the Input options 
         run: |
-          echo  "tag:    ${{ inputs.tags }}"
+          echo  "tag:    ${{ inputs.tag }}"
           echo  "action: ${{ inputs.action}}"
 
       - name: Manually make helm packages (.tgz)
@@ -80,7 +80,7 @@ jobs:
           for dir in `ls -d helm/ */ | sed 's/\/$//'`; do 
             echo Creating package for helm/$dir...
             # Creates a .tgz file for each folder in helm
-            helm package helm/$dir -d ./helm-packages 
+            helm package helm/$dir -d .helm-packages/ 
           done
           # Sets output dir as a variable. Can be accessed using ${{ steps.helm_package.dir }}
           echo "::set-output name=dir::.helm-packages"
