@@ -80,7 +80,7 @@ jobs:
           echo "HELM_PACKAGES_DIR=`pwd`/.helm_packages" >> "$GITHUB_ENV"
 
           # Create destination folder
-          mkdir $HELM_PACKAGES_DIR
+          mkdir ./helm_packages
 
           # Get the list of all folders in helm. 
           # each folder has a chart
@@ -156,6 +156,7 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
     
+      # https://github.com/marketplace/actions/add-commit
       - name: "Push the new index"
         uses: EndBug/add-and-commit@v9
         with:
