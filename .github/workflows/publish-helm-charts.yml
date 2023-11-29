@@ -68,6 +68,7 @@ jobs:
       
       - name: Create a release package
         run: | 
+          apt install hub
           DEST_DIR=.cr-release-packages
           set -x
           assets=()
