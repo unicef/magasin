@@ -81,8 +81,8 @@ jobs:
           done
 
           # Set env variable
-          echo "HELM_PACKAGES_DIR=$helm_packages_dir >> "$GITHUB_ENV"
-          # And output {steps.helm_packages.outputs.dir}
+          echo "HELM_PACKAGES_DIR=$helm_packages_dir" >> "$GITHUB_ENV"
+          # And output steps.helm_packages.outputs.dir
           echo "dir=$helm_packages_dir" >> $GITHUB_OUTPUT
         
       - name: Create/Edit a GitHub release using hub (adds assets)
@@ -116,7 +116,7 @@ jobs:
           
           # Release using hub.
           # Documentation: https://hub.github.com/hub-release.1.html
-          hub release ${{ inputs.action}} "${assets[@]}" --file release-body.txt --message "magasin charts ${{inputs.tag}}" "${{ inputs.tag }}"
+          hub release ${{ inputs.action}} "${assets[@]}" --file release-body.txt --message "magasin charts ${{inputs.tag}}" "${{ inputs.tag }}-charts"
           
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
