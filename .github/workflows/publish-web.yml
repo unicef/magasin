@@ -33,6 +33,8 @@ jobs:
       
       - name: Copy index.yaml
         run: |
+          ls gh-pages
+          ls docs/*
           cp gh-pages/index.yaml  docs/www/index.yaml
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
