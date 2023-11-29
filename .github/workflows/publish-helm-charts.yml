@@ -148,18 +148,28 @@ jobs:
           cd .helm_packages
 
           # Merge existing index with the new files. The url is given by the release
-          helm repo index . --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY}/releases/download/${{ inputs.tag }}"
+          helm repo index . --merge ../gh-pages/index.yaml --url "https://github.com/$GITHUB_REPOSITORY/releases/download/${{ inputs.tag }}"
           cp index.yaml  ../gh-pages/index.yaml
           # Check changes
           cd ../gh-pages
           git diff index.yaml
-          
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+    
+      - name: "Push the new index"
+        uses: EndBug/add-and-commit@v9
+        with:
+            cwd: './gh-pages/'
+            message: "update index.yaml for ${{ inputs.tag }}"
+            committer_name: GitHub Actions
+            committer_email: actions@github.com
+
       - name: Push the new index 
         run: |
           cd gh-pages/
           git add .
           git commit -m "update index.yaml for ${{ inputs.tag }}"
-          git push origin gh-pages
+          # git push origin gh-pages
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
     
