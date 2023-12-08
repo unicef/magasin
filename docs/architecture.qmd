@@ -1,6 +1,7 @@
 ---
 title: "Architecture"
 format: html
+toc: true
 ---
 
 

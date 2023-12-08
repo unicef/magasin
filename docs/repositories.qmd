@@ -6,7 +6,7 @@ format: html
 ## Magasin main project
 
 - [unicef/magasin](https://github.com/unicef/magasin)
-    - Primary user code repository with Dagster pipelines, Jupytext notebooks, and Docker images.
+    - Primary respository, holds main components, setup and admin scripts, as well as documentation
 
 ## Libraries and utilities
 - [unicef/superset-dashboard-cloner](https://github.com/unicef/superset-dashboard-cloner)
