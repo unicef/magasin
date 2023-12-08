@@ -54,8 +54,8 @@ website:
         file: docs-home.qmd
       - text: "Installation"
         file: install.qmd 
-      - text: "Getting started"
-        file: getting-started.qmd  
+      - text: "Get started"
+        file: get-started.qmd  
       - text: "Architecture"
         file: architecture.qmd
       - text: "End user guides"
