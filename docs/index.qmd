@@ -1,6 +1,24 @@
 ---
-title: "Magasin documentation"
-format: html
----
+pagetitle: "magasin - cloud native open source end-to-end data platform"
+description-meta: "magasin enables organizations to perform automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale"
 
-Main page
+format: html
+sidebar: false
+#navbar: false
+page-layout: full
+css: index.css
+toc: false
+---
+::: {.hero .text-center}
+![](images/magasin-logo.svg)
+
+<h3>magasin is the cloud native open-source end-to-end data platform</h3>
+<p>magasin enables organizations to perform of automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale</p>
+<img src="images/enabling-capabilities.png" alt="">
+
+
+::: {.hero-buttons}
+[Get Started](getting-started.qmd){.btn-action-primary .btn-action .btn .btn-primary .btn-lg role="button"}
+::: 
+
+:::

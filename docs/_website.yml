@@ -1,27 +1,57 @@
 project:
-  title: "magasin"
+
   type: website
   output-dir: _site
 
-theme:
-  light: litera
-  dark: darkly
   
+theme:
+  light: simplex
+  #dark: darkly
+  
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+#    css: styles.css
+    include-after-body: js.html
+
 website:
+  twitter-card: true
+  favicon: images/magasin-star.png
+  repo-url: https://github.com/unicef/magasin/
+  repo-subdir: docs
+  repo-actions: [edit, issue]
+  #bread-crumbs: true
+
+  # website.navbar : Top navigation bar
   navbar:
-    background: primary
+    title: false
+    tools:
+      - icon: github
+        href: https://github.com/unicef/magasin
     search: true
     logo: images/magasin-logo.svg
     logo-alt: "magasin"
+
+    # website.navbar.left: Left links within the top navigation bar
     left:
       - text: "Home"
         file: index.qmd
+      - text: "Get started" 
+        file: get-started.qmd
+      - text: "Docs" 
+        file: docs-home.qmd
       - text: "About"
         file: about.qmd 
+  
+  # website.sidebar: Side navigation bar
   sidebar:
     style: "docked"
-    search: true
+    search: false
     contents:
+      - text: Welcome
+        file: docs-home.qmd
       - text: "Installation"
         file: install.qmd 
       - text: "Getting started"
@@ -52,3 +82,7 @@ website:
             file: contributing.qmd
           - text: "Repositories"
             file: repositories.qmd
+  page-footer: |
+    [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) is licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) 
+    [![](images/unicef-logo.png){fig-alt="UNICEF, for every child"}](https://www.unicef.org)
+    
