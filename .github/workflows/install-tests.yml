@@ -43,7 +43,7 @@ jobs:
       - name: Test install-magasin.sh -i (dependencies missing)
         run: |
           cd scripts/installer
-          ./install-magasin.sh -i
+          ./install-magasin.sh -i -y
 
           # Double test dependencies were installed
           helm --version
@@ -147,10 +147,10 @@ jobs:
       - name: Test install-magasin.sh -i (install dependencies)
         run: |  
           cd scripts/installer
-          zsh ./install-magasin.sh -i
+          zsh ./install-magasin.sh -i -y
       
       # Note that we're not testing the setup in a kubernetes cluster. 
-      
+
       # Test uninstall 
       - name: Test uninstall-magasin.sh -c
         run: |
