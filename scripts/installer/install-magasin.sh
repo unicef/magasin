@@ -382,8 +382,7 @@ not_working=false
 
 echo ""
 echo_info "Verifying commands are working..."
-kubectl version
-if ! kubectl version &> /dev/null; then
+if ! kubectl &> /dev/null; then
   echo_error "The kubectl command ($(command -v "kubectl")) is not working properly."
   echo_error "Installation documentation:"
   echo_error "  - For Linux: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/"
