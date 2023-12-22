@@ -69,6 +69,7 @@ jobs:
           pwd
           cd dev-scripts
           ./local-helm-repo.sh &
+          sleep 15
           cd ..
 
           # Now we install magasin
@@ -129,7 +130,9 @@ jobs:
 
       - name: Install kind k8s cluster
         run: |
-          brew install docker
+          brew install cask docker
+          docker --version
+
           brew install kind
           kind create cluster
           kubectl cluster-info --context kind-kind
@@ -142,7 +145,11 @@ jobs:
           # this has the current branch repo
           pwd
           cd dev-scripts
-          ./local-helm-repo.sh &
+          ./local-helm-repo.sh & 
+
+          # Give time to the repo to be built
+          # TODO improve this 
+          sleep 15
 
           # Go to installe forlder
           cd scripts/installer
