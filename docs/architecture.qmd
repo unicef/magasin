@@ -1,6 +1,6 @@
 ---
-page-title: "Architecture"
-
+title: "Architecture"
+description-meta: "More about the architecture of magasin architecture"
 format: html
 ---
 
