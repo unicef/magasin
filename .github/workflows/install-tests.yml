@@ -18,18 +18,23 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      
+    
+       # Tests if the script checks ok
+      - name: Test install-magasin.sh -c (dependencies installed)
+        run: |
+          cd scripts/installer
+          ./install-magasin.sh -c
+
       - name: Remove kubeclt and helm
         run: |
           whereis kubectl
           whereis helm
           dpkg -s kubectl
-          dpkg -s helm
           sudo apt-get remove -y kubectl
-          sudo apt-get remove -y helm
+          sudo rm /usr/local/bin/helm
       
       # Tests if the script checks ok
-      - name: Test install-magasin.sh -c
+      - name: Test install-magasin.sh -c (dependencies missing)
         run: |
           cd scripts/installer
           ./install-magasin.sh -c
