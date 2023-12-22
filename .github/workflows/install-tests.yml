@@ -4,28 +4,112 @@ on:
 name: Test installer
 
 jobs:
-  run-linux:
+  #
+  #  GNU/Linux
+  #
+  tests-on-gnu-linux:
     runs-on: ubuntu-latest
+    strategy:
+      # Keep running even if one variation of the job fail
+      fail-fast: false
     permissions:
       contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Requirements - all missing
+      
+      - name: Remove kubeclt and helm
         run: |
-            ls -la 
-            cd scripts/installer
-            ./install-magasin.sh -c
-            
-  run-macos:
-    runs-on: macos-latest  # Specifies the macOS runner
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2  # Action to checkout your repository's code
+          whereis kubectl
+          whereis helm
+          dpkg -s kubectl
+          apt-get remove kubectl
+          dkpg -s helm
+          apt-get remove helm
+      
+      # Tests if the script checks ok
+      - name: Test install-magasin.sh -c
+        run: |
+          cd scripts/installer
+          ./install-magasin.sh -c
 
-    - name: Run a macOS command
+      # This action also installs helm..
+      - name: Start a local k8s cluster
+        uses: jupyterhub/action-k3s-helm@v3
+        with:
+          k3s-channel: latest
+          metrics-enabled: false
+          traefik-enabled: false
+          docker-enabled: false
+
+      - name: Verify function of k8s, kubectl, and helm
+        run: |
+          echo "kubeconfig: $KUBECONFIG"
+          kubectl version
+          kubectl get pods --all-namespaces
+
+          helm version
+          helm list
+      
+      # Tests if the script checks ok
+      - name: Test install-magasin.sh -
+        run: |
+          # We need to run the local helm repo in background
+          ./dev-scripts/local-helm-repo.sh &
+          # Now we install
+          cd scripts/installer
+          
+          # We will test that yaml files overwrite
+          echo "drill: " > drill.yaml
+          echo "  count: 1" >> drill.yaml
+
+          # We use the local repo and we test that the prefix and postfix work
+
+          ./install-magasin.sh -u http://localhost:8000 -r mgs-test
+          
+          # For local inspection
+          kubeclt get pods --all-namespaces
+      
+      # 
+      # UNINSTALLER tests GNU/Linux
+      # 
+
+      # Test if the script tests
+      - name: Test uninstall-magasin.sh -c
+        run: |
+          cd scripts/installer
+          ./uninstall-magasin.sh -c
+      
+      -
+  #
+  # INSTALLER | MacOS
+  #           
+  installer-on-macos:
+    runs-on: macos-latest  # Specifies the macOS runner
+    strategy:
+      # Keep running even if one variation of the job fail
+      fail-fast: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Action to checkout your repository's code
+
+      - name: Test install-magasin.sh -c
+        run: |
+          cd scripts/installer
+          ./install-magasin.sh -c
+    
+
+    #
+    # UNINSTALLER CHECKS - MacOS
+    #  
+    installer-on-macos:
+      runs-on: macos-latest  # Specifies the macOS runner
+      strategy:
+        # Keep running even if one variation of the job fail
+        fail-fast: false
+      steps:
+   
+    - name: Test uninstall-magasin.sh -c
       run: |
-        ls -la 
         cd scripts/installer
         ./install-magasin.sh -c
-           
