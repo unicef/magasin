@@ -10,18 +10,20 @@ theme:
   
 format:
   html:
+    number-sections: true
     toc: true
     code-copy: true
-    code-overflow: wrap
+    #code-overflow: wrap
 #    css: styles.css
     include-after-body: js.html
 
 website:
   twitter-card: true
-  favicon: images/magasin-star.png
+  favicon: /images/magasin-star.png
   repo-url: https://github.com/unicef/magasin/
   repo-subdir: docs
   repo-actions: [edit, issue]
+  page-navigation: true
   #bread-crumbs: true
 
   # website.navbar : Top navigation bar
@@ -31,7 +33,7 @@ website:
       - icon: github
         href: https://github.com/unicef/magasin
     search: true
-    logo: images/magasin-logo.svg
+    logo: /images/magasin-logo.svg
     logo-alt: "magasin"
 
     # website.navbar.left: Left links within the top navigation bar
@@ -52,10 +54,17 @@ website:
     contents:
       - text: Welcome
         file: docs-home.qmd
-      - text: "Installation"
-        file: install.qmd 
       - text: "Get started"
         file: get-started.qmd  
+      - section: "Install"
+        contents:
+          - file: install/index.qmd 
+          - file: install/advanced.qmd
+          - file: install/setup-kubernetes.qmd
+          - file: install/troubleshooting.qmd
+          - file: install/uninstall.qmd
+
+
       - text: "Architecture"
         file: architecture.qmd
       - text: "End user guides"
@@ -83,6 +92,7 @@ website:
           - text: "Repositories"
             file: repositories.qmd
   page-footer: |
-    [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) is licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) 
-    [![](images/unicef-logo.png){fig-alt="UNICEF, for every child"}](https://www.unicef.org)
+    [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) | Docs are licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) | [Privacy policy](privacy.qmd) 
+    [![](/images/unicef-logo.png){fig-alt="UNICEF, for every child"}](https://www.unicef.org)
+    
     

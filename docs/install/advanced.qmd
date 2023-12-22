@@ -1,0 +1,159 @@
+---
+title: 'Advanced installation'
+description-meta: 'Learn more details about about how to se magasin using the script'
+---
+
+This page provides further information that allows you to better understand how is magasin installed and how you can customize the [default installation](index.qmd) 
+
+
+Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.
+
+
+## Understanding the installer script
+
+To install magasin, the most straight forward way is to use the installer. This script, [install-magasin.sh](https://github.com/unicef/magasin/tree/main/scripts/install/install-magasin.sh) script is used for both MacOS and [Debian](https://debian.org) like GNU/Linux and performs two tasks:
+
+1. The first one is to install all the pre-requisites required in your computer in order to be able to deploy magasin in a kubernetes cluster
+2. The second one is to deploy magasin in the preselected kubernetes cluster.
+
+
+These are the steps the script takes: 
+
+1) Check if all the dependencies are already installed (namely kubectl, helm and python) and if any is missing it will prompt you to install it. It uses the recommended setup describe on the package for the [Debian GNU/Linux](https://www.debian.org/) like system. or in MacOS)
+2) Run the `helm` command install the different components of magasin in the kubernetes cluster. Note that each component will be installed in a different namespace within the cluster.
+
+## Magasin realms
+
+Compared with most of applications that are distributed using helm charts, instead of defining one unique chart that includes all the dependencies, magasin defines an indepenedent chart for each component. This results in loosely-coupled architecture which allows you to only setup and use the components that fit your organizational needs.
+
+When deploying a containerized application in Kubernetes using Helm charts, typically, a singular chart is defined. This chart can actually be composed of multiple sub-charts, which allows for a hierarchical structure within the deployment. This setup often leads to a well-defined architecture, beneficial for many scenarios, as it simplifies management and deployment.
+
+Given that magasin setup uses independent charts, there is a need to setup at least one connection between these independent charts. This is done through a consistent naming convention which defines the concept of magasin realms.
+
+A realm is a way of linking independent helm charts through namespaces that follow consistent naming convention:  <realm-prefix>-<magasin-component-name>-<realmpostfix>. 
+
+By convention, the default realm only has the prefix `magasin` and no postfix. For example, the namespace for the component `drill` that belongs to the default realm is `magasin-drill`. 
+
+The realm name is the concatenation of the prefix and the postfix, both separated by an hyphen `-` (if the postfix is not empty).
+Examples:
+
+| **Realm**               | **Realm prefix**    | **Realm postfix** | **Component "drill" namespace** |
+|-------------------------|---------------------|-------------------|---------------------------------|
+| magasin                 | magasin             | -                 | magasin-drill                   |
+| magasin-dev             | magasin             | dev               | magasin-drill-dev               |
+| magasin-new-version-dev | magasin-new-version | dev               | magasin-new-version-drill-dev   |
+| -dev                    | -                   | dev               | drill-dev                       |
+
+A realm prefix can have `-` as part of its names, but not the realm postfix. In the realm name, the last `-` specifies the start of the postfix. 
+
+If a realm name starts with `-` it only has a postfix.
+
+The concept of realms allows us setup supporting tools that can make use of two independent helm charts
+
+## Advanced use of the magasin-installer
+
+You can check the options.
+```bash
+ ./install-magasin.sh -h
+Usage: install-magasin.sh [-y] [-c] [-r realm_prefix-realm_postfix (magasin)] [-f values_folder (./)] [-d] [-h]
+
+This script checks dependencies and installs magasin components
+Each component is installed within its own namespace.
+
+Options:
+  -y  Skip prompting questions during installation
+  -c  Only check if all pre-requisites are installed in the local machine.
+  -r  Realm prefix and suffix (default: magasin). Prefix and suffix are separated by '-'.
+        If more than one '-', the last one will be used as separator.
+        The realm 'magasin-new-dev' will set 'magasin-new' as prefix and 'dev' as suffix.
+  -f  Folder with custom values.yaml files (default: ./).
+        Files within the folder shall have the same name as the component. Example:
+        drill.yaml, dagster.yaml, superset.yaml, daskhub.yaml
+  -u  URL/path to the magasin's helm repository (default: https://unicef.github.io/magasin/)
+      
+  -d  Enable debug mode (displays all commands run).
+  -h  Display this help message and exit.
+ 
+```
+
+Examples of usage:
+
+1.  Only check if all the required components are installed
+
+      ```sh
+        install-magasin.sh -c 
+      ```
+
+2.  Setup the realm test-. Will use test-<component> as namespace.
+    Setup the realm magasin-dev. Will use magasin-<component>-dev as namespaces
+
+      ```sh
+        install-magasin.sh -r test
+      ```
+
+
+## Customizing the setup of each component
+
+Helm charts allow you to customize some parameters such as the number of replicas, image version to load, startup script parameters,  authentication schemas, etc. In order to do that you can create what is called a values file.
+
+The installer allows you use custom values file for each component. By default it searches in the current working directory (`./`) for files that have the name `<component>.yaml`. That is `dagster.yaml`, `drill.yaml`, `superset.yaml`, `daskhub.yaml`. 
+
+For example, by default the Apache Drill helm chart launches two replicas of its main server. You can change the number of replicas by changing the `drill.count` value you can create the file `drill.yaml` with the following contents: 
+
+
+```yaml
+# drill.yaml
+drill:
+  count: 1
+```
+
+Now, if you run the installer in the same folder where you stored the `drill.yaml` file:
+
+```sh
+install-magasin.sh
+```
+You'll see in the logs something like:
+
+```sh
+...
+ i Installing magasin/drill in the namespace magasin-drill.
+ ✓ Custom values file for drill exists (./drill.yaml)
+ i helm install drill magasin/drill -f ./drill.yaml --namespace magasin-drill --create-namespace 
+...
+```
+
+Below you have the default values files and the corresponding custom file name:
+
+* [Dagster default values](https://github.com/unicef/magasin/blob/main/helm/dagster/values.yaml). To overwrite them create `dagster.yaml`
+* [Apache Drill default values](https://github.com/unicef/magasin/blob/main/helm/drill/values.yaml). To overwrite them create `drill.yaml`
+* [Daskhub default values](https://github.com/unicef/magasin/blob/main/helm/daskhub/values.yaml). To overwrite them create `daskhub.yaml`
+* 9Superset default values](https://github.com/unicef/magasin/blob/main/helm/superset/values.yaml). To overwrite them create `superset.yaml`
+
+### Setting up different values for different environments
+
+Whereas for a testing environment you may want to have some values, such as setting to 1 number of replicas of the drill server, for your production environment you may want to have 3 replicas. The `-f <folder-path>` option allows you to select the folder where you have the customized values the specific environment.
+
+Given the below structure
+```
+  /
+  |- dev
+  |  |- drill.yaml
+  |
+  |- prd
+     |- drill.yaml
+     |- dagster.yaml
+     |- superset.yaml
+```
+
+Now, you can deploy magasin for development running:
+
+```sh
+install-magasin.sh -r magasin-dev -f ./dev
+```
+And the production environment by running:
+
+```sh
+install-magasin.sh -r magasin-prd -f ./prd
+```
+
+Thanks to the concept of realms, you can have both instances even in the same cluster.

@@ -1,0 +1,89 @@
+---
+title: "Uninstall magasin"
+description-meta: "Instructions on how to uninstall magasin from a kubernetes cluster"
+format: html
+---
+
+You can uninstall magasin either by using the uninstall script script or manually.
+
+##  Uninstall magasin using the script (beta)
+
+A simple way of getting rid of an instance of magasin within a kubernetes cluster is to use the uninstaller.
+
+First, **ensure that `kubectl` is pointing to the target cluster**. For instance, by running `kubectl cluster-info`. Take a look at this link if [it is not pointing to the right cluster](troubleshooting.qmd#how-can-i-set-the-kubernetes-correct-cluster-in-kubectl). Then, proceed to run the uninstaller:
+
+* **Uninstall script for GNU/Linux**:
+
+    ```bash
+    curl -X https://unicef.github.io/magasin/uninstall-magasin.sh | bash
+    ```
+
+* **Uninstall script for MacOS:**
+
+    ```bash
+    curl -X https://unicef.github.io/magasin/uninstall-magasin.sh | zsh
+    ```
+
+* **Uninstall script for Windows:**
+
+  Use the [manual uninstall](#manual-uninstallation).
+
+
+## Advanced use of `uninstall-magasin.sh`
+
+You can obtain the list of options by adding the `-h` option
+
+```sh
+./uninstall-magasin.sh -h
+Usage: uninstall-magasin.sh [-c] [-r realm_prefix-realm_postfix (magasin)] [-d] [-h]
+
+This script uninstall all magasin components from a kubernetes cluster
+
+Options:
+  -y  Skip prompting questions during uninstall.
+  -c  Only check if all pre-requisites are installed in the local machine.
+  -r  Realm prefix and suffix (default: magasin). Prefix and suffix are separated by '-'.
+        If more than one '-', the last one will be used as separator.
+        The realm 'magasin-new-dev' will set 'magasin-new' as prefix and 'dev' as suffix.
+  -d  Enable debug mode (displays all commands run).
+  -h  Display this help message and exit.
+ ```
+
+Examples:
+
+* Only check if your computer has all the pre-requisites to run the uninstaller (namely `kubectl` and `helm`).
+
+  ```sh
+  uninstall-magasin.sh -c
+  ```
+* Uninstall magasin from a realm that is different from the standard one
+  
+  ```sh
+  uninstall-magasin.sh -r magasin-dev
+  ```
+
+# Manual uninstallation
+
+Ensure `kubectl` is pointing to the right kubernetes cluster
+
+```sh
+kubectl cluster-info
+```
+
+Remove each of the components
+```sh
+# helm uninstall <component> --namespace=magasin-<component>
+helm uninstall dagster --namespace=magasin-dagster
+helm uninstall drill --namespace=magasin-daskhub
+helm uninstall daskhub --namespace=magasin-drill
+helm unintall superset --namespace=magasin-superset
+```
+
+Delete the namespaces
+```sh
+kubectl delete namespace magasin-dagster
+kubectl delete namespace magasin-daskhub
+kubectl delete namespace magasin-drill
+kubectl delete namespace magasin-superset
+kubectl delete namespace magasin
+```

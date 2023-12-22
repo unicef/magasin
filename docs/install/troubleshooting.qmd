@@ -1,0 +1,36 @@
+---
+title: "Troubleshooting"
+description-meta: Though magasin is meant to be easy to setup, you may get in trouble when setting it up. Here we provide some FAQ to help you out
+format: html
+---
+
+# Troubleshooting FAQ
+
+Please check the questions below, if you cannot find the answer you can try asking to magasin's community within [our discussions forum](https://github.com/unicef/magasin/discussions).
+
+## How can I set the kubernetes correct cluster in `kubectl`?
+
+In case that you run `kubectl cluster-info` and it is not pointing to the kubernetes cluster you want to use for magasin you can use the following commands:
+
+1. Get the list different contexts available
+
+    ```sh
+    kubectl config get-contexts
+    ```
+
+    Which may output something like: 
+    ```sh
+    CURRENT   NAME                        CLUSTER                   AUTHINFO                                              NAMESPACE
+
+              docker-desktop              docker-desktop            docker-desktop                                        default
+    *         magasin                     docker-desktop            docker-desktop                                        default
+              magasin-dev                 docker-desktop            docker-desktop                                        default
+              minikube                    minikube                  minikube                                              default
+    ```
+
+2. Use the correct cluster (i.e. context). Currently, the context `magasin` is selected, but to use `magasin-dev` you can run this command:
+
+    ```sh
+    kubectl config use-context magasin-dev
+    ```
+

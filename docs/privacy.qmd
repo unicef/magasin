@@ -1,0 +1,38 @@
+---
+title: Privacy Policy
+description-meta: "Privacy policy of the documentation site of magasin"
+---
+
+## Scope
+The scope of this privacy policy is related with the Magasin Documentation Site with the URL http://unicef.github.io/magasin (Site)
+
+This privacy policy does not cover the GitHub repository (https://github.com/unicef/magasin) and other external pages related with magasin.
+
+## Purpose
+The purpose of collecting the data is to create statistics about the number of visits, to improve the documentation and the product itself.
+
+## Personal data collected
+The personal data that is collected is:
+
+* IP address
+* Browser 
+* Operating system
+* Screen size
+* Pages visited within the site
+* Time spent in the site
+
+## Cookies
+The only cookie that the Site uses is for collecting the statistics.
+
+## Sharing the collected data
+* The personal data collected by UNICEF is kept in UNICEF's servers and is not shared with any other third party.
+* The personal collected data is only accessible by internal magasin team which is composed by UNICEF staff members.
+* UNICEF may share annonymized data for reporting purposes.
+
+## Third party hosting
+
+The Site is hosted under [GitHub Pages Service](https://docs.github.com/en/pages). 
+Please visit [https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement)
+
+
+
