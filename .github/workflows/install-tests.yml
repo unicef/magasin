@@ -47,7 +47,7 @@ jobs:
 
           # Double test dependencies were installed
           helm --version
-          kubectl --version
+          kubectl 
 
       
       # This action also installs helm
