@@ -430,7 +430,7 @@ function install_chart {
 
 
   echo_info "helm install $chart magasin/$chart $values_helm_arg --namespace $namespace --create-namespace $HELM_DEBUG_FLAG"
-  #helm install $chart magasin/$chart $values_helm_arg --namespace $namespace --create-namespace $HELM_DEBUG_FLAG
+  helm install $chart magasin/$chart $values_helm_arg --namespace $namespace --create-namespace $HELM_DEBUG_FLAG
   if [[ $? -ne 0 ]]; then
     echo_error "Could not install  magasin/$chart in the namespace $namespace"
     #exit_error 7
