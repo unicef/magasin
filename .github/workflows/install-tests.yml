@@ -24,9 +24,9 @@ jobs:
           whereis kubectl
           whereis helm
           dpkg -s kubectl
-          apt-get remove kubectl
           dkpg -s helm
-          apt-get remove helm
+          sudo apt-get remove -y kubectl
+          sudo apt-get remove -y helm
       
       # Tests if the script checks ok
       - name: Test install-magasin.sh -c
