@@ -49,14 +49,18 @@ Options:
   -h  Display this help message and exit.
  ```
 
-### Examples
+Examples:
 
 * Only check if your computer has all the pre-requisites to run the uninstaller (namely `kubectl` and `helm`).
 
-
-
-
-Uninstall magasin from a realm that is different from the standard one
+  ```sh
+  uninstall-magasin.sh -c
+  ```
+* Uninstall magasin from a realm that is different from the standard one
+  
+  ```sh
+  uninstall-magasin.sh -r magasin-dev
+  ```
 
 # Manual uninstallation
 
@@ -70,8 +74,16 @@ Remove each of the components
 ```sh
 # helm uninstall <component> --namespace=magasin-<component>
 helm uninstall dagster --namespace=magasin-dagster
-helm uninstall drill --namespace=magasin-drill
-helm uninstall daskhub --namespace=magasin-daskhub
+helm uninstall drill --namespace=magasin-daskhub
+helm uninstall daskhub --namespace=magasin-drill
 helm unintall superset --namespace=magasin-superset
 ```
 
+Delete the namespaces
+```sh
+kubectl delete namespace magasin-dagster
+kubectl delete namespace magasin-daskhub
+kubectl delete namespace magasin-drill
+kubectl delete namespace magasin-superset
+kubectl delete namespace magasin
+```
