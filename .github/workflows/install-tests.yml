@@ -24,7 +24,7 @@ jobs:
           whereis kubectl
           whereis helm
           dpkg -s kubectl
-          dkpg -s helm
+          dpkg -s helm
           sudo apt-get remove -y kubectl
           sudo apt-get remove -y helm
       
