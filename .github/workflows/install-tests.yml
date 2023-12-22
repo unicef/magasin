@@ -162,7 +162,7 @@ jobs:
           ./install-magasin.sh -u http://localhost:8000 -r mgs-test
           
           # For local inspection
-          kubeclt get pods --all-namespaces
+          kubectl get pods --all-namespaces
           
 
           # Validate all charts have been installed
