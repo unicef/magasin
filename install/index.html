@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Drill Guide</title>
+<title>Installation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./admin-guide-superset.html" rel="next">
-<link href="./admin-guide-kubernetes.html" rel="prev">
-<link href=".//images/magasin-star.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../install/advanced.html" rel="next">
+<link href="../get-started.html" rel="prev">
+<link href="..//images/magasin-star.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -64,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta name="twitter:title" content="Drill Guide">
+<meta name="twitter:title" content="Installation">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -76,8 +110,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/magasin-logo.svg" alt="magasin" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/magasin-logo.svg" alt="magasin" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -87,19 +121,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
+    <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./get-started.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../get-started.html" rel="" target="" aria-current="page">
  <span class="menu-text">Get started</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs-home.html" rel="" target="">
+    <a class="nav-link" href="../docs-home.html" rel="" target="">
  <span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -114,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./admin-guide-kubernetes.html">Admin Guides</a></li><li class="breadcrumb-item"><a href="./admin-guide-drill.html">Drill</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/index.html">Installation</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -128,13 +162,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs-home.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs-home.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./get-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../get-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Get started</span></a>
   </div>
 </li>
@@ -149,31 +183,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../install/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Installation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/advanced.html" class="sidebar-item-text sidebar-link">
+  <a href="../install/advanced.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Advanced installation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
+  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup kubernetes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/troubleshooting.html" class="sidebar-item-text sidebar-link">
+  <a href="../install/troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/uninstall.html" class="sidebar-item-text sidebar-link">
+  <a href="../install/uninstall.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Uninstall magasin</span></a>
   </div>
 </li>
@@ -181,13 +215,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./architecture.html" class="sidebar-item-text sidebar-link">
+  <a href="../architecture.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Architecture</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./end-user-guides.html" class="sidebar-item-text sidebar-link">
+  <a href="../end-user-guides.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">End user guides</span></a>
   </div>
 </li>
@@ -202,19 +236,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./admin-guide-kubernetes.html" class="sidebar-item-text sidebar-link">
+  <a href="../admin-guide-kubernetes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kubernetes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./admin-guide-drill.html" class="sidebar-item-text sidebar-link active">
+  <a href="../admin-guide-drill.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Drill</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./admin-guide-superset.html" class="sidebar-item-text sidebar-link">
+  <a href="../admin-guide-superset.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Superset</span></a>
   </div>
 </li>
@@ -231,13 +265,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying to production</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./security.html" class="sidebar-item-text sidebar-link">
+  <a href="../security.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Security</span></a>
   </div>
 </li>
@@ -254,13 +288,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./contributing.html" class="sidebar-item-text sidebar-link">
+  <a href="../contributing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Contributing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./repositories.html" class="sidebar-item-text sidebar-link">
+  <a href="../repositories.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Repositories</span></a>
   </div>
 </li>
@@ -276,19 +310,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#apache-drill-options-and-tuning" id="toc-apache-drill-options-and-tuning" class="nav-link active" data-scroll-target="#apache-drill-options-and-tuning"><span class="header-section-number">1</span> Apache Drill options and tuning</a></li>
-  <li><a href="#example-apache-drill-storage-plugin-for-azure-blob-storage" id="toc-example-apache-drill-storage-plugin-for-azure-blob-storage" class="nav-link" data-scroll-target="#example-apache-drill-storage-plugin-for-azure-blob-storage"><span class="header-section-number">2</span> Example Apache Drill storage plugin for Azure blob storage</a></li>
-  <li><a href="#backup-the-drill-storage-accounts-database" id="toc-backup-the-drill-storage-accounts-database" class="nav-link" data-scroll-target="#backup-the-drill-storage-accounts-database"><span class="header-section-number">3</span> Backup the drill storage accounts database</a></li>
-  <li><a href="#restore-the-drill-storage-configuration" id="toc-restore-the-drill-storage-configuration" class="nav-link" data-scroll-target="#restore-the-drill-storage-configuration"><span class="header-section-number">4</span> Restore the Drill storage configuration</a></li>
+  <li><a href="#deploy-magasin-using-the-installer-beta" id="toc-deploy-magasin-using-the-installer-beta" class="nav-link active" data-scroll-target="#deploy-magasin-using-the-installer-beta"><span class="header-section-number">1</span> Deploy magasin using the installer (beta)</a>
+  <ul class="collapse">
+  <li><a href="#advanced-use-of-the-magasin-installer" id="toc-advanced-use-of-the-magasin-installer" class="nav-link" data-scroll-target="#advanced-use-of-the-magasin-installer"><span class="header-section-number">1.1</span> Advanced use of the magasin-installer</a></li>
+  </ul></li>
+  <li><a href="#manual-installation" id="toc-manual-installation" class="nav-link" data-scroll-target="#manual-installation"><span class="header-section-number">2</span> Manual installation</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/admin-guide-drill.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/install/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Drill Guide</h1>
+<h1 class="title">Installation</h1>
 </div>
 
 
@@ -303,141 +338,73 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>A quick guide for managing magasin’s Apache Drill instance.</p>
-<section id="apache-drill-options-and-tuning" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="apache-drill-options-and-tuning"><span class="header-section-number">1</span> Apache Drill options and tuning</h2>
-<p>The following option values are recommended for Apache Drill’s use in the Magasin context:</p>
-<pre><code>planner.width.max_per_node = 3
-planner.width.max_per_query = 12
-store.parquet.reader.int96_as_timestamp = true
-drill.exec.http.rest.errors.verbose = true
-exec.errors.verbose = true
-exec.queue.enable = true
-exec.queue.large = 2
-exec.queue.small = 10</code></pre>
-</section>
-<section id="example-apache-drill-storage-plugin-for-azure-blob-storage" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="example-apache-drill-storage-plugin-for-azure-blob-storage"><span class="header-section-number">2</span> Example Apache Drill storage plugin for Azure blob storage</h2>
-<p>Example Apache Drill storage plugin configuration for a specific Azure blob storage container (<code>unicef-magasin-dev</code>) in a given Azure blob storage account (<code>sauniwebsaksio</code>).</p>
-<p>The Apache Drill <a href="https://drill.apache.org/docs/azure-blob-storage-plugin/">Azure Blob Storage Plugin</a> must be present in <code>$DRILL_HOME/jars/3rdparty</code>. Note the Azure authentication key has been redacted in the below example.</p>
-<p>This configuration is read-only and specifies support for certain file formats within two directory locations (<code>/profiles</code> and <code>/datasets</code>) within the storage container.</p>
-<p>For production configuration, file formats should be restricted to the minimal set of expected formats. Multiple storage plugin instances can be configured in a single Apache Drill instance so separate Azure blob storage accounts and containers may be separately configured and queried.</p>
-<pre><code>{
-  "name" : "storage_account_blob_container",
-  "config" : {
-    "type" : "file",
-    "connection" : "wasbs://blob_container@storage_account.blob.core.windows.net",
-    "config" : {
-      "fs.azure.account.key.storage_account.blob.core.windows.net" : "*******"
-    },
-    "workspaces" : {
-      "profiles" : {
-        "location" : "/profiles",
-        "writable" : false,
-        "defaultInputFormat" : null,
-        "allowAccessOutsideWorkspace" : false
-      },
-      "datasets" : {
-        "location" : "/datasets",
-        "writable" : false,
-        "defaultInputFormat" : null,
-        "allowAccessOutsideWorkspace" : false
-      }
-    },
-    "formats" : {
-      "image" : {
-        "type" : "image",
-        "extensions" : [ "jpg", "jpeg", "jpe", "tif", "tiff", "dng", "psd", "png", "bmp", "gif", "ico", "pcx", "wav", "wave", "avi", "webp", "mov", "mp4", "m4a", "m4p", "m4b", "m4r", "m4v", "3gp", "3g2", "eps", "epsf", "epsi", "ai", "arw", "crw", "cr2", "nef", "orf", "raf", "rw2", "rwl", "srw", "x3f" ],
-        "fileSystemMetadata" : true,
-        "descriptive" : true
-      },
-      "parquet" : {
-        "type" : "parquet"
-      },
-      "avro" : {
-        "type" : "avro",
-        "extensions" : [ "avro" ]
-      },
-      "json" : {
-        "type" : "json",
-        "extensions" : [ "json" ]
-      },
-      "sequencefile" : {
-        "type" : "sequencefile",
-        "extensions" : [ "seq" ]
-      },
-      "tsv" : {
-        "type" : "text",
-        "extensions" : [ "tsv" ],
-        "fieldDelimiter" : "\t"
-      },
-      "csvh" : {
-        "type" : "text",
-        "extensions" : [ "csvh" ],
-        "extractHeader" : true
-      },
-      "csv" : {
-        "type" : "text",
-        "extensions" : [ "csv" ]
-      },
-      "psv" : {
-        "type" : "text",
-        "extensions" : [ "tbl" ],
-        "fieldDelimiter" : "|"
-      },
-      "pcap" : {
-        "type" : "pcap",
-        "extensions" : [ "pcap" ]
-      },
-      "httpd" : {
-        "type" : "httpd",
-        "extensions" : [ "httpd" ],
-        "logFormat" : "%h %t \"%r\" %&gt;s %b \"%{Referer}i\""
-      }
-    },
-    "enabled" : true
-  }
-}</code></pre>
-</section>
-<section id="backup-the-drill-storage-accounts-database" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="backup-the-drill-storage-accounts-database"><span class="header-section-number">3</span> Backup the drill storage accounts database</h2>
-<p>Apache Drill keeps a set of connections to storage accounts (S3 buckets, azure blobs, MinIO accounts…). The storage accounts is where the actual data is stored.</p>
-<p>However, in magasin given that Drill is setup in a <a href="https://drill.apache.org/docs/distributed-mode-prerequisites/">distributed mode</a>, the configuration of these connections is kept in <a href="https://zookeeper.apache.org/">zookeeper</a> which is used to sync the storage configuration among the different instances of Drill. So, to backup the storage accounts we need to backup the zookeeper database which is a plain database.</p>
+<p>Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">kubernetes cluster</a>.</p>
+<p>Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of <a href="https://kubernetes.io/docs/concepts/overview/#going-back-in-time">containerized applications</a>. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.</p>
+<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called <strong>chart</strong>.</p>
+<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.</p>
+<section id="deploy-magasin-using-the-installer-beta" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Deploy magasin using the installer (beta)</h1>
+<p>Once you have access to a kubernetes cluster, you can use the installer to setup magasin in that cluster.</p>
+<p>The major goal of this installer is to ease the setup of some tools that need to be installed in your computer, and then deploy magasin in the kubernetes cluster and th</p>
+<p>The installer is in beta, in case it fails check the <a href="../install/troubleshooting.html">troubleshooting section</a>, or try the <a href="#manual-installation">manual installation section</a></p>
+<ul>
+<li><p><strong>Deploying magasin from a Debian/Like GNU/Linux computer</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/install-magasin.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Debian like distributions are Ubuntu, Raspbian, Kali Linux, etc. They use <code>apt-get</code> as package manager.</p></li>
+<li><p><strong>Deploying magasin from a MacOS computer</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/install-magasin.sh <span class="kw">|</span> <span class="fu">zsh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>In both cases, if You need a user that can run sudo.</p>
+<ul>
+<li><strong>Deploying magasin from a Windows computer</strong> Please use the <a href="../install/manual-installation.html">manual installation</a></li>
+</ul>
+<section id="advanced-use-of-the-magasin-installer" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="advanced-use-of-the-magasin-installer"><span class="header-section-number">1.1</span> Advanced use of the magasin-installer</h2>
+<p>You can check the options.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./install-magasin.sh</span> <span class="at">-h</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> install-magasin.sh <span class="pp">[-</span><span class="ss">y</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">c</span><span class="pp">]</span> [-r realm_prefix-realm_postfix <span class="er">(</span><span class="ex">magasin</span><span class="kw">)</span><span class="ex">]</span> <span class="pp">[-</span><span class="ss">d</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">h</span><span class="pp">]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> script checks dependencies and installs magasin components</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Each</span> component is installed within its own namespace.</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Options:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-y</span>  Skip prompting questions during installation</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-c</span>  Only check if all pre-requisites are installed.</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-r</span>  Realm prefix and suffix <span class="er">(</span><span class="ex">default:</span> magasin<span class="kw">)</span><span class="bu">.</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="ex">If</span> more than one <span class="st">'-'</span>, the last one will be used as separator.</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="ex">The</span> realm <span class="st">'magasin-new-dev'</span> will set <span class="st">'magasin-new'</span> as prefix and <span class="st">'dev'</span> as suffix.</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-d</span>  Enable debug mode <span class="er">(</span><span class="ex">displays</span> all commands run<span class="kw">)</span><span class="bu">.</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-h</span>  Display this help message and exit.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Examples of usage:</p>
 <ol type="1">
-<li><p>Launch a terminal within the zookeeper pod (zk-0).</p>
-<pre class="shell"><code>kubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash</code></pre></li>
-<li><p>Compress the files using <code>tar</code>, and leave the shell</p>
-<pre class="shell"><code>tar -czvf /tmp/zk.tgz /var/lib/zookeeper/*
-exit</code></pre></li>
-<li><p>Save the file into our local filesystem</p>
-<pre class="shell"><code>kubectl cp magasin-drill/zk-0:/tmp/zk.tgz ./zk.tgz</code></pre></li>
-<li><p>Delete the <code>.tgz</code> file of the pod</p>
-<pre class="shell"><code>kubectl exec zk-0 --namespace magasin-drill -- rm tmp/zk.tgz</code></pre></li>
+<li><p>Only check if all the required components are installed</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">install-magasin.sh</span> <span class="at">-c</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Setup the realm test-. Will use test-<component> as namespace. Setup the realm magasin-dev. Will use magasin-<component>-dev as namespaces</component></component></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">install-magasin.sh</span> <span class="at">-r</span> test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
-<section id="restore-the-drill-storage-configuration" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="restore-the-drill-storage-configuration"><span class="header-section-number">4</span> Restore the Drill storage configuration</h2>
-<p>To restore the backup created in the previous section:</p>
+</section>
+<section id="manual-installation" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Manual installation</h1>
+<p>If for some reason the installation scripts do not work for you, or your system is not covered by them, you can install all requirements manually manually.</p>
 <ol type="1">
-<li><p>Copy the backup to the cluster</p>
-<pre class="shell"><code> kubectl cp ./zk.tgz magasin-drill/zk-0:/tmp/zk.tgz </code></pre></li>
-<li><p>Launch the shell in the zookeeper pod</p>
-<pre class="shell"><code>kubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash</code></pre></li>
-<li><p>Unzip <code>shell     tar -xzvf /tmp/zk.tgz</code></p></li>
-<li><p>Kill the java process</p>
-<pre class="shell"><code>ps -ax 
-
-PID TTY      STAT   TIME COMMAND
-1 ?          Ss     0:00 /rosetta/rosetta /usr/bin/bash /usr/bin/start.sh
-25 ?         Sl     0:03 /rosetta/rosetta /usr/bin/java -Dzookeeper.log.dir=/opt/zookeeper/bin/../logs -Dzookeeper.log.file=zookeeper-
-116 pts/0    Ss     0:00 /rosetta/rosetta /bin/bash
-148 ?        S      0:00 /rosetta/rosetta /usr/bin/sleep 5
-149 pts/0    R+     0:00 /usr/bin/ps -ax
-
-# Where -9 is to force kill and 25 is the process number (PID)
-kill -9 25</code></pre></li>
-<li><p>Relaunch the initalizer script in background (&amp;), then exit <code>/usr/bin/start.sh &amp;     exit</code></p></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/">Install kubectl</a></li>
+<li><a href="https://helm.sh/docs/intro/install/">Install helm</a></li>
+<li><a href="https://www.python.org/downloads/">Install Python/pip</a></li>
 </ol>
+<p>Ensure <code>kubectl</code> is pointing to the right kubernetes cluster</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cluster-info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Add the magasin helm repo</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> repo add https://unicef.github.io/magasin/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Update the magasin helm repo</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> repo update magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Install the different helm charts (dagster, drill, superset, daskhub)</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># helm install &lt;component&gt; magasin/&lt;component&gt; --namespace magasin-&lt;component&gt; --create-namespace</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install dagster magasin/dagster <span class="at">--namespace</span> magasin-dagster <span class="at">--create-namespace</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install drill magasin/drill <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install superset magasin/superset <span class="at">--namespace</span> magasin-superset <span class="at">--create-namespace</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install daskhub magasin/daskhub <span class="at">--namespace</span> magasin-daskhub <span class="at">--create-namespace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -706,13 +673,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./admin-guide-kubernetes.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Kubernetes</span>
+      <a href="../get-started.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Get started</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./admin-guide-superset.html" class="pagination-link">
-        <span class="nav-page-text">Superset</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../install/advanced.html" class="pagination-link">
+        <span class="nav-page-text">Advanced installation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -722,7 +689,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="./privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="./images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></div>
+    <div class="nav-footer-center"><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="privacy.qmd">Privacy policy</a> <a href="https://www.unicef.org"><img src="../images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

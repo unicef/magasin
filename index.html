@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./images/magasin-star.png" rel="icon" type="image/png">
+<link href=".//images/magasin-star.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -65,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="index.css">
 <meta name="twitter:title" content="magasin - cloud native open source end-to-end data platform">
-<meta name="twitter:image" content="https://github.com/unicef/magasin/images/magasin-logo.svg">
+<meta name="twitter:image" content="https://github.com/unicef/magasin/images/magasin-logo-beta.svg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -121,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="hero text-center">
-<p><img src="images/magasin-logo.svg" class="img-fluid"></p>
+<p><img src="images/magasin-logo-beta.svg" class="img-fluid"></p>
 <h3 class="anchored">
 magasin is the cloud native open-source end-to-end data platform
 </h3>
@@ -130,7 +130,7 @@ magasin enables organizations to perform of automatic data ingestion, storage, a
 </p>
 <p><img src="images/enabling-capabilities.png" alt=""></p>
 <div class="hero-buttons">
-<p><a href="getting-started.qmd" class="btn-action-primary btn-action btn btn-primary btn-lg" role="button">Get Started</a></p>
+<p><a href="./get-started.html" class="btn-action-primary btn-action btn btn-primary btn-lg" role="button">Get Started</a></p>
 </div>
 </div>
 
@@ -138,6 +138,31 @@ magasin enables organizations to perform of automatic data ingestion, storage, a
 
 </main> <!-- /main -->
 <!-- js.html included after <body> javascript -->
+
+<!-- Matomo -->
+<script>
+  var SITE_ID='114';
+  var enabled=false;
+
+  if (enabled) { 
+    console.log("magasin site stats ON")
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://unisitetracker.unicef.io/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', SITE_ID]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+} else {
+   console.log("magasin site stats OFF")
+}
+</script>
+<!-- End Matomo Code -->
+ 
 
 <!-- end js.html  -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -379,7 +404,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> <a href="https://www.unicef.org"><img src="images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center"><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="./privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="./images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Steps to start using magasin, calable end-to-end data platform based on open-source components that is natively run in a kubernetes cluster">
 
-<title>Getting started</title>
+<title>Get started</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +65,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./images/magasin-star.png" rel="icon" type="image/png">
+<link href="./install/index.html" rel="next">
+<link href="./docs-home.html" rel="prev">
+<link href=".//images/magasin-star.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -62,9 +99,12 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta name="twitter:title" content="Getting started">
+<meta name="twitter:title" content="Get started">
 <meta name="twitter:description" content="">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/unicef/magasin/images/install-enable-kubernetes-docker-desktop.png">
+<meta name="twitter:image-height" content="1378">
+<meta name="twitter:image-width" content="2402">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -132,16 +172,51 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./get-started.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Get started</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Install</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install/advanced.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup kubernetes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install/troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install/uninstall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uninstall magasin</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./architecture.html" class="sidebar-item-text sidebar-link">
@@ -156,13 +231,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">Admin Guides</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./admin-guide-kubernetes.html" class="sidebar-item-text sidebar-link">
@@ -185,13 +260,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Deployment</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./deployment.html" class="sidebar-item-text sidebar-link">
@@ -208,13 +283,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">Contributing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./contributing.html" class="sidebar-item-text sidebar-link">
@@ -239,9 +314,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#understanding-the-data-lifecycle-within-magasin" id="toc-understanding-the-data-lifecycle-within-magasin" class="nav-link active" data-scroll-target="#understanding-the-data-lifecycle-within-magasin">Understanding the data lifecycle within magasin</a></li>
-  <li><a href="#creating-a-dagster-pipeline" id="toc-creating-a-dagster-pipeline" class="nav-link" data-scroll-target="#creating-a-dagster-pipeline">Creating a Dagster Pipeline</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#system-pre-requisites" id="toc-system-pre-requisites" class="nav-link active" data-scroll-target="#system-pre-requisites"><span class="header-section-number">1</span> System pre-requisites</a>
+  <ul class="collapse">
+  <li><a href="#local-kubernetes-cluster-for-testing" id="toc-local-kubernetes-cluster-for-testing" class="nav-link" data-scroll-target="#local-kubernetes-cluster-for-testing"><span class="header-section-number">1.1</span> Local kubernetes cluster for testing</a></li>
+  </ul></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">2</span> Installation</a>
+  <ul class="collapse">
+  <li><a href="#check-everything-is-working" id="toc-check-everything-is-working" class="nav-link" data-scroll-target="#check-everything-is-working"><span class="header-section-number">2.1</span> Check everything is working</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/get-started.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -250,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Getting started</h1>
+<h1 class="title">Get started</h1>
 </div>
 
 
@@ -265,23 +345,116 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Once magasin has been installed, the next steps are to start using the different components that magasin includes.</p>
-<p><a href="./install.html">Install magasin</a> If you haven’t installed it yet</p>
-<section id="understanding-the-data-lifecycle-within-magasin" class="level1">
-<h1>Understanding the data lifecycle within magasin</h1>
+<p>Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">kubernetes cluster</a>.</p>
+<p>Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of containerized applications. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.</p>
+<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides.</p>
+<section id="system-pre-requisites" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> System pre-requisites</h1>
+<p>You need to have a kubernetes cluster in any <a href="install.qmd#setting-a-cluster-in-major-cloud-providers">cloud provider</a> or, for testing purposes, you can set up a local kubernetes cluster in your own computer.</p>
+<section id="local-kubernetes-cluster-for-testing" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="local-kubernetes-cluster-for-testing"><span class="header-section-number">1.1</span> Local kubernetes cluster for testing</h2>
+<p>In case you do not have a Kubernetes cluster, an way to set it up is through <a href="https://docs.docker.com/desktop/">Docker Desktop</a>. It is available for:</p>
+<ul>
+<li><a href="https://docs.docker.com/desktop/install/linux-install/">GNU/Linux</a></li>
+<li><a href="https://docs.docker.com/desktop/install/mac-install/">Mac OS X</a></li>
+<li><a href="https://docs.docker.com/desktop/install/windows-install/">Windows</a></li>
+</ul>
+<p>Once installed. In <strong>Settings / Kubernetes </strong>, enable Kubernetes. It will automatically install everything required, including the command line utility <code>kubectl</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/install-enable-kubernetes-docker-desktop.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes</figcaption>
+</figure>
+</div>
+<p>Lastly, on a command line, create the new cluster and use it:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config set-context magasin <span class="at">--namespace</span> default <span class="at">--cluster</span> docker-desktop <span class="at">--user</span><span class="op">=</span>docker-desktop</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config use-context magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To ensure that the kubernetes cluster is the correct one check if the name corresponds to the</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>             STATUS   ROLES           AGE   VERSION</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-desktop</span>   Ready    control-plane   48m   v1.28.2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get namespaces</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>              STATUS   AGE</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">default</span>           Active   49m</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-node-lease</span>   Active   49m</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-public</span>       Active   49m</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>       Active   49m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also <a href="install.qmd#option-2-local-cluster-using-minikube">install minikube</a></p>
 </section>
-<section id="creating-a-dagster-pipeline" class="level1">
-<h1>Creating a Dagster Pipeline</h1>
-<p>We will start creating a new pipeline.</p>
 </section>
-<section id="section" class="level1">
-<h1></h1>
+<section id="installation" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Installation</h1>
+<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.</p>
+<p>For <strong>GNU/Linux Debian Like and MacOS</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/install-magasin.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For other systems please check the documentation for <a href="install.qmd#manual-installation">manual installation</a></p>
+<p>Note that the installation may take some minutes depending on the internet connection speed of the machines running the cluster (mainly because of the container images).</p>
+<section id="check-everything-is-working" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="check-everything-is-working"><span class="header-section-number">2.1</span> Check everything is working</h2>
+<p>After running the setup you can check that all the pods in the magasin-* namespace are in status <code>Running</code> or <code>Complete</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--all-namespaces</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAMESPACE</span>          NAME                                                              READY   STATUS      RESTARTS        AGE</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        coredns-5dd5756b68-fj7bj                                          1/1     Running     0               7d</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        coredns-5dd5756b68-qbjf4                                          1/1     Running     0               7d</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        etcd-docker-desktop                                               1/1     Running     0               7d</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        kube-apiserver-docker-desktop                                     1/1     Running     0               7d</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        kube-controller-manager-docker-desktop                            1/1     Running     0               7d</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        kube-proxy-n8wwq                                                  1/1     Running     0               7d</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        kube-scheduler-docker-desktop                                     1/1     Running     0               7d</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        storage-provisioner                                               1/1     Running     0               7d</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        vpnkit-controller                                                 1/1     Running     0               7d</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-dagster</span>    dagster-daemon-6f4fcbd697-z46xc                                   1/1     Running     0               6m24s</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-dagster</span>    dagster-dagster-user-deployments-k8s-example-user-code-1-5qjrfh   1/1     Running     0               6m24s</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-dagster</span>    dagster-dagster-webserver-788ddf4cf4-v8ndn                        1/1     Running     0               6m24s</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-dagster</span>    dagster-postgresql-0                                              1/1     Running     0               6m24s</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    api-daskhub-dask-gateway-6b6b84f47f-28pns                         1/1     Running     0               6m27s</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    continuous-image-puller-9rv4q                                     1/1     Running     0               6m27s</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    controller-daskhub-dask-gateway-c4d77dff9-rhgst                   1/1     Running     0               6m27s</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    hub-6956d694bb-kl485                                              1/1     Running     0               6m27s</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    proxy-666fbb4959-v99dj                                            1/1     Running     0               6m27s</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    traefik-daskhub-dask-gateway-74965cbfbb-92m5f                     1/1     Running     0               6m27s</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    user-scheduler-9b694f7d5-qvq4k                                    1/1     Running     0               6m27s</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    user-scheduler-9b694f7d5-vbk69                                    1/1     Running     0               6m27s</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-drill</span>      drillbit-0                                                        0/1     Running     1 <span class="er">(</span><span class="ex">31s</span> ago<span class="kw">)</span>     <span class="ex">6m33s</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-drill</span>      drillbit-1                                                        0/1     Pending     0               6m33s</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-drill</span>      zk-0                                                              1/1     Running     0               6m33s</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-7c88fcc74f-kjbw9                                         1/1     Running     0               6m23s</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-init-db-q8tc8                                            0/1     Completed   0               6m23s</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-postgresql-0                                             1/1     Running     0               6m23s</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-redis-master-0                                           1/1     Running     0               6m23s</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-worker-df94c5947-lsvsl                                   1/1     Running     1 <span class="er">(</span><span class="ex">2m44s</span> ago<span class="kw">)</span>   <span class="ex">6m23s</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
 <!-- js.html included after <body> javascript -->
+
+<!-- Matomo -->
+<script>
+  var SITE_ID='114';
+  var enabled=false;
+
+  if (enabled) { 
+    console.log("magasin site stats ON")
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://unisitetracker.unicef.io/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', SITE_ID]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+} else {
+   console.log("magasin site stats OFF")
+}
+</script>
+<!-- End Matomo Code -->
+ 
 
 <!-- end js.html  -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -517,13 +690,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./docs-home.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./install/index.html" class="pagination-link">
+        <span class="nav-page-text">Installation</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> <a href="https://www.unicef.org"><img src="images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></div>
+    <div class="nav-footer-center"><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="./privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="./images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
