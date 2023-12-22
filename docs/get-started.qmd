@@ -1,18 +1,109 @@
 ---
-title: "Getting started"
+title: "Get started"
+description-meta: "Steps to start using magasin, calable end-to-end data platform based on open-source components that is natively run in a kubernetes cluster"
+
 format: html
 ---
 
+Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a [kubernetes cluster](https://kubernetes.io).
 
-Once magasin has been installed, the next steps are to start using the different components that magasin includes.
+Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of containerized applications. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.
 
-[Install magasin](./install.qmd) If you haven't installed it yet
-
-# Understanding the data lifecycle within magasin
+Magasin uses Kubernetes in combination with [Helm](https://helm.sh/), a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides.
 
 
-# Creating a Dagster Pipeline
 
-We will start creating a new pipeline.
+# System pre-requisites
 
-#
+You need to have a kubernetes cluster in any [cloud provider](install.qmd#setting-a-cluster-in-major-cloud-providers) or, for testing purposes, you can set up a local kubernetes cluster in your own computer.
+
+## Local kubernetes cluster for testing
+In case you do not have a Kubernetes cluster, an way to set it up is through [Docker Desktop](https://docs.docker.com/desktop/). It is available for: 
+
+* [GNU/Linux](https://docs.docker.com/desktop/install/linux-install/)
+* [Mac OS X](https://docs.docker.com/desktop/install/mac-install/)
+* [Windows](https://docs.docker.com/desktop/install/windows-install/)
+
+Once installed. In **Settings / Kubernetes **, enable Kubernetes. It will automatically install everything required, including the command line utility `kubectl`.
+
+![Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes ](./images/install-enable-kubernetes-docker-desktop.png)
+
+Lastly, on a command line, create the new cluster and use it:
+
+```sh
+kubectl config set-context magasin --namespace default --cluster docker-desktop --user=docker-desktop
+kubectl config use-context magasin
+```
+
+To ensure that the kubernetes cluster is the correct one check if the name corresponds to the
+```sh
+kubectl get nodes
+NAME             STATUS   ROLES           AGE   VERSION
+docker-desktop   Ready    control-plane   48m   v1.28.2
+```
+
+```sh
+kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   49m
+kube-node-lease   Active   49m
+kube-public       Active   49m
+kube-system       Active   49m
+```
+
+You can also [install minikube](install.qmd#option-2-local-cluster-using-minikube)
+
+
+# Installation
+
+Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.
+
+For **GNU/Linux Debian Like and MacOS**
+
+  ```sh
+  curl -X https://unicef.github.io/magasin/install-magasin.sh | bash
+  ```
+
+For other systems please check the documentation for [manual installation](install.qmd#manual-installation)
+
+Note that the installation may take some minutes depending on the internet connection speed of the machines running the cluster (mainly because of the container images).
+
+## Check everything is working
+
+After running the setup you can check that all the pods in the magasin-* namespace are in status `Running` or `Complete` 
+
+```sh
+kubectl get pods --all-namespaces 
+NAMESPACE          NAME                                                              READY   STATUS      RESTARTS        AGE
+kube-system        coredns-5dd5756b68-fj7bj                                          1/1     Running     0               7d
+kube-system        coredns-5dd5756b68-qbjf4                                          1/1     Running     0               7d
+kube-system        etcd-docker-desktop                                               1/1     Running     0               7d
+kube-system        kube-apiserver-docker-desktop                                     1/1     Running     0               7d
+kube-system        kube-controller-manager-docker-desktop                            1/1     Running     0               7d
+kube-system        kube-proxy-n8wwq                                                  1/1     Running     0               7d
+kube-system        kube-scheduler-docker-desktop                                     1/1     Running     0               7d
+kube-system        storage-provisioner                                               1/1     Running     0               7d
+kube-system        vpnkit-controller                                                 1/1     Running     0               7d
+magasin-dagster    dagster-daemon-6f4fcbd697-z46xc                                   1/1     Running     0               6m24s
+magasin-dagster    dagster-dagster-user-deployments-k8s-example-user-code-1-5qjrfh   1/1     Running     0               6m24s
+magasin-dagster    dagster-dagster-webserver-788ddf4cf4-v8ndn                        1/1     Running     0               6m24s
+magasin-dagster    dagster-postgresql-0                                              1/1     Running     0               6m24s
+magasin-daskhub    api-daskhub-dask-gateway-6b6b84f47f-28pns                         1/1     Running     0               6m27s
+magasin-daskhub    continuous-image-puller-9rv4q                                     1/1     Running     0               6m27s
+magasin-daskhub    controller-daskhub-dask-gateway-c4d77dff9-rhgst                   1/1     Running     0               6m27s
+magasin-daskhub    hub-6956d694bb-kl485                                              1/1     Running     0               6m27s
+magasin-daskhub    proxy-666fbb4959-v99dj                                            1/1     Running     0               6m27s
+magasin-daskhub    traefik-daskhub-dask-gateway-74965cbfbb-92m5f                     1/1     Running     0               6m27s
+magasin-daskhub    user-scheduler-9b694f7d5-qvq4k                                    1/1     Running     0               6m27s
+magasin-daskhub    user-scheduler-9b694f7d5-vbk69                                    1/1     Running     0               6m27s
+magasin-drill      drillbit-0                                                        0/1     Running     1 (31s ago)     6m33s
+magasin-drill      drillbit-1                                                        0/1     Pending     0               6m33s
+magasin-drill      zk-0                                                              1/1     Running     0               6m33s
+magasin-superset   superset-7c88fcc74f-kjbw9                                         1/1     Running     0               6m23s
+magasin-superset   superset-init-db-q8tc8                                            0/1     Completed   0               6m23s
+magasin-superset   superset-postgresql-0                                             1/1     Running     0               6m23s
+magasin-superset   superset-redis-master-0                                           1/1     Running     0               6m23s
+magasin-superset   superset-worker-df94c5947-lsvsl                                   1/1     Running     1 (2m44s ago)   6m23s
+
+```
+
