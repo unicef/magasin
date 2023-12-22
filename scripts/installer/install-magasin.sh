@@ -344,7 +344,7 @@ if [[ "$command_missing" == true ]]; then
       sudo apt-get install helm
     fi
     
-    if [ "${install_status["pi"]}" == "not installed" ]; then
+    if [ "${install_status["pip3"]}" == "not installed" ]; then
         sudo apt-get install python3 python3-pip --yes
     fi
 
@@ -362,7 +362,7 @@ if [[ "$command_missing" == true ]]; then
     fi # auto install
     echo_info "Installing pre-requisites for MacOS..."
     # If brew does not exist => install it
-    if [ "${install_status["brew"]}" == "not installed" ]; then
+    if [[ "${install_status["brew"]}" == "not installed" ]]; then
       echo_info "Installing brew..."
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
