@@ -1,14 +1,12 @@
 #/bin/bash
 #
 # Updates the helm charts of the folder /helm. 
-# It downloads the original github repos - 
-# which generally have more contents other than the 
-# helm chart and extracts the charts.
-#
-# The update is done by removing the helm subfolders and
+# It downloads the latest official helm repo for each
+# product and then it copies the chart to the helm subfolder
+# Note that the update is done by removing the helm subfolders and
 # updating the files.
 # 
-# TODO: more elegant way of doing this.
+# TODO: find a more elegant way of doing this.
 #
 # Usage:
 #       ./update_helm_charts.sh  
@@ -79,7 +77,7 @@ helm_pull https://helm.dask.org/ \
 helm_pull https://unicef.github.io/magasin-drill \
         drill \
         drill \
-        0.6.1   \
+        0.6.1 \
         $temp_charts          
 
 
