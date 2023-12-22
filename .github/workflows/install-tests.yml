@@ -12,6 +12,7 @@ jobs:
     strategy:
       # Keep running even if one variation of the job fail
       fail-fast: false
+      #
     permissions:
       contents: write
     steps:
@@ -80,7 +81,6 @@ jobs:
           cd scripts/installer
           ./uninstall-magasin.sh -c
       
-      -
   #
   # INSTALLER | MacOS
   #           
@@ -99,17 +99,8 @@ jobs:
           ./install-magasin.sh -c
     
 
-    #
-    # UNINSTALLER CHECKS - MacOS
-    #  
-    installer-on-macos:
-      runs-on: macos-latest  # Specifies the macOS runner
-      strategy:
-        # Keep running even if one variation of the job fail
-        fail-fast: false
-      steps:
-   
-    - name: Test uninstall-magasin.sh -c
-      run: |
-        cd scripts/installer
-        ./install-magasin.sh -c
+
+      - name: Test uninstall-magasin.sh -c
+        run: |
+          cd scripts/installer
+          ./install-magasin.sh -c
