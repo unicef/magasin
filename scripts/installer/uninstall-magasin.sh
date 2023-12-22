@@ -184,16 +184,17 @@ else
   echo_success "helm is working"
 fi
 
-if [ "$not_working" = true ]; then
-  echo_error "Some of the commands are not working."
-  exit_error 3
-fi 
-
 # If -c option is set, then end.
 if [[ "$ONLY_CHECK" == true ]]; then
   echo_debug "ONLY_CHECK=true"
   exit 0
 fi
+
+if [ "$not_working" = true ]; then
+  echo_error "Some of the commands are not working."
+  exit_error 3
+fi 
+
 
 function uninstall_chart { 
   local chart=$1

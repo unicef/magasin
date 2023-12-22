@@ -97,7 +97,7 @@ jobs:
         run: |
           cd scripts/installer
           zsh ./install-magasin.sh -c
-    
+
       - name: Test uninstall-magasin.sh -c
         run: |
           cd scripts/installer
