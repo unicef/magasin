@@ -1,0 +1,40 @@
+---
+title: "Manual installation"
+# description-meta:
+format: html
+---
+
+
+If for some reason the installation scripts do not work for you, or your system is not covered by them, you can install all requirements manually manually.
+
+1. [Install kubectl](https://kubernetes.io/docs/tasks/tools/)
+2. [Install helm](https://helm.sh/docs/intro/install/)
+3. [Install Python/pip](https://www.python.org/downloads/)
+
+Ensure `kubectl` is pointing to the right kubernetes cluster
+
+```sh
+kubectl cluster-info
+```
+
+Add the magasin helm repo
+```sh
+helm repo add https://unicef.github.io/magasin/
+```
+Update the magasin helm repo
+```sh
+helm repo update magasin
+```
+
+Install the different helm charts (dagster, drill, superset, daskhub)
+
+```sh
+# helm install <component> magasin/<component> --namespace magasin-<component> --create-namespace
+helm install dagster magasin/dagster --namespace magasin-dagster --create-namespace
+helm install drill magasin/drill --namespace magasin-drill --create-namespace
+helm install superset magasin/superset --namespace magasin-superset --create-namespace
+helm install daskhub magasin/daskhub --namespace magasin-daskhub --create-namespace
+```
+
+
+
