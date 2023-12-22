@@ -46,7 +46,7 @@ jobs:
           ./install-magasin.sh -i -y
 
           # Double test dependencies were installed
-          helm --version
+          helm version
           kubectl 
 
       
