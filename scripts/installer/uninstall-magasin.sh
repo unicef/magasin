@@ -82,9 +82,9 @@ function usage {
   echo "  -h  Display this help message and exit."
   echo " "
   echo "Examples:"
-  echo "      Only check if all requirements are installed"
+  echo "   Only check if all requirements are installed"
   echo "      $1 -c "
-  echo "      Uninstall 'magasin-dev' realm"
+  echo "   Uninstall 'magasin-dev' realm"
   echo "      $1 -r magasin-dev"
   exit 0
 }
