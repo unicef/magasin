@@ -25,7 +25,7 @@ jobs:
           cd scripts/installer
           ./install-magasin.sh -c
 
-      - name: Remove kubeclt and helm
+      - name: Remove kubectl and helm
         run: |
           whereis kubectl
           whereis helm
