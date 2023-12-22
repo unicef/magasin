@@ -39,7 +39,18 @@ jobs:
           cd scripts/installer
           ./install-magasin.sh -c
 
-      # This action also installs helm..
+      # Tests if the script installs pedendencies ok
+      - name: Test install-magasin.sh -i (dependencies missing)
+        run: |
+          cd scripts/installer
+          ./install-magasin.sh -i
+
+          # Double test dependencies were installed
+          helm --version
+          kubectl --version
+
+      
+      # This action also installs helm
       - name: Start a local k8s cluster
         uses: jupyterhub/action-k3s-helm@v3
         with:
@@ -48,8 +59,12 @@ jobs:
           traefik-enabled: false
           docker-enabled: false
 
+      #- name: Create k8s Kind Cluster
+      #  uses: helm/kind-action@v1.5.0
+        
       - name: Verify function of k8s, kubectl, and helm
         run: |
+
           echo "kubeconfig: $KUBECONFIG"
           kubectl version
           kubectl get pods --all-namespaces
@@ -120,59 +135,22 @@ jobs:
       # Keep running even if one variation of the job fail
       fail-fast: false
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v2  # Action to checkout your repository's code
 
-      - name: Test install-magasin.sh -c
+      - name: Test install-magasin.sh -c (check dependencies)
         run: |
           cd scripts/installer
           zsh ./install-magasin.sh -c
-
-      - name: Install kind k8s cluster
-        run: |
-          brew install --cask docker
-          docker --version
-
-          brew install kind
-          kind create cluster
-          kubectl cluster-info --context kind-kind
-          
-      # Tests if the script checks ok
-      - name: Test install-magasin.sh
-        run: |
-
-          # We need to run the local helm repo in background
-          # this has the current branch repo
-          pwd
-          cd dev-scripts
-          ./local-helm-repo.sh & 
-
-          # Give time to the repo to be built
-          # TODO improve this 
-          sleep 15
-
-          # Go to installe forlder
-          cd scripts/installer
-          
-          # Test that yaml files overwrite the values
-          echo "drill: " > drill.yaml
-          echo "  count: 1" >> drill.yaml
-
-          # We use the local repo and we test that the prefix and postfix work
-          ./install-magasin.sh -u http://localhost:8000 -r mgs-test
-          
-          # For local inspection
-          kubectl get pods --all-namespaces
-          
-
-          # Validate all charts have been installed
-          helm list -n mgs-drill-test
-          helm list -n mgs-dagster-test
-          helm list -n mgs-daskhub-test
-          helm list -n mgs-superset-test
-
-
     
+      - name: Test install-magasin.sh -i (install dependencies)
+        run: |  
+          cd scripts/installer
+          zsh ./install-magasin.sh -i
+      
+      # Note that we're not testing the setup in a kubernetes cluster. 
+      
       # Test uninstall 
       - name: Test uninstall-magasin.sh -c
         run: |

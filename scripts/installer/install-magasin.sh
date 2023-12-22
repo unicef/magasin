@@ -22,6 +22,10 @@ MANUAL_INSTALL_LINK=$BASE_URL/install/manual-installation.html
 # Skip prompting the user?
 AUTO_INSTALL=false
 
+# Only install local dependencies. Skip installing magasin
+# in the kubernetes cluster
+ONLY_LOCAL_INSTALL=false
+
 # Only check if there is missing stuff
 ONLY_CHECK=false
 
@@ -78,7 +82,7 @@ echo_info() {
 }
 
 function usage {
-  echo "Usage: $1 [-y] [-c] [-r realm_prefix-realm_postfix (magasin)] [-f values_folder (./)] [-d] [-h]"
+  echo "Usage: $1 [-y] [-c] [-i] [-r realm_prefix-realm_postfix (magasin)] [-f values_folder (./)] [-d] [-h]"
   echo ""
   echo "This script checks dependencies and installs magasin components"
   echo "Each component is installed within its own namespace."  
@@ -86,6 +90,7 @@ function usage {
   echo "Options:"
   echo "  -y  Skip prompting questions during installation"
   echo "  -c  Only check if all pre-requisites are installed in the local machine."
+  echo "  -i  Only install all pre-requisites in the local machine. Does not install magasin in Kubernetes"
   echo "  -r  Realm prefix and suffix (default: magasin). Prefix and suffix are separated by '-'." 
   echo "        If more than one '-', the last one will be used as separator." 
   echo "        The realm 'magasin-new-dev' will set 'magasin-new' as prefix and 'dev' as suffix."
@@ -110,13 +115,16 @@ function usage {
 
 script_name=$(basename "$0")
 
-while getopts ":f:u:r:ychd" opt; do
+while getopts ":f:u:r:yichd" opt; do
   case $opt in
     y)
       AUTO_INSTALL=true
       ;;
     c)
       ONLY_CHECK=true
+      ;;
+    i) 
+      ONLY_LOCAL_INSTALL=true
       ;;
     d)
       DEBUG=true
@@ -370,6 +378,8 @@ fi # command missing
 # Verify kubectl functionality
 not_working=false
 
+
+echo ""
 echo_info "Verifying commands are working..."
 if ! kubectl version &> /dev/null; then
   echo_error "The kubectl command ($(command -v "kubectl")) is not working properly."
@@ -396,6 +406,15 @@ if [ "$not_working" = true ]; then
   echo_error "Some of the commands are not working."
   exit_error 3
 fi 
+
+if [[ "$ONLY_LOCAL_INSTALL" == true ]]; then
+  echo ""
+  
+  echo_success "All dependencies are installed and working"
+  echo_info "Skipping installing magasin in the kubernetes cluster"
+  echo ""
+  exit 0
+fi
 
 #
 # Install magasin helm charts in the kubernetes cluster
