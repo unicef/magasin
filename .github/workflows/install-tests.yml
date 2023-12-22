@@ -96,11 +96,9 @@ jobs:
       - name: Test install-magasin.sh -c
         run: |
           cd scripts/installer
-          ./install-magasin.sh -c
+          zsh ./install-magasin.sh -c
     
-
-
       - name: Test uninstall-magasin.sh -c
         run: |
           cd scripts/installer
-          ./install-magasin.sh -c
+          zsh ./uninstall-magasin.sh -c
