@@ -17,4 +17,15 @@ jobs:
             cd scripts/installer
             ./install-magasin.sh -c
             
-            
+  run-macos:
+    runs-on: macos-latest  # Specifies the macOS runner
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Action to checkout your repository's code
+
+    - name: Run a macOS command
+      run: |
+        ls -la 
+        cd scripts/installer
+        ./install-magasin.sh -c
+           
