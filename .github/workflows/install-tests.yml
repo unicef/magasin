@@ -130,7 +130,7 @@ jobs:
 
       - name: Install kind k8s cluster
         run: |
-          brew install cask docker
+          brew install --cask docker
           docker --version
 
           brew install kind
