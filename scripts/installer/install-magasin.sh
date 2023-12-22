@@ -10,12 +10,14 @@
 # Magasin base url
 BASE_URL=http://unicef.github.io/magasin
 
+# Values folder. Use -f to overwrite
 VALUES_FOLDER='./'
 
+# Helm repo URL (-r to overwrite)
 MAGASIN_HELM_REPO=$BASE_URL
 
 # Link to documentation on how to install magasin manually
-MANUAL_INSTALL_LINK=$BASE_URL/install.html#manual-installation
+MANUAL_INSTALL_LINK=$BASE_URL/install/manual-installation.html
 
 # Skip prompting the user?
 AUTO_INSTALL=false
