@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+
+name: Test installer
+
+jobs:
+  run-linux:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Requirements - all missing
+        run: |
+            cd scripts/install
+            ./install-magasin.sh -c
+            
+            
