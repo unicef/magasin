@@ -58,13 +58,21 @@ You can also [install minikube](install.qmd#option-2-local-cluster-using-minikub
 
 Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.
 
-For **GNU/Linux Debian Like and MacOS**
+For **GNU/Linux Debian like**
 
   ```sh
   curl -X https://unicef.github.io/magasin/install-magasin.sh | bash
   ```
 
-For other systems please check the documentation for [manual installation](install.qmd#manual-installation)
+For **MacOS devices**
+
+ ```sh
+  curl -X https://unicef.github.io/magasin/install-magasin.sh | zsh
+  ```
+
+For **Windows** check the documentation for [manual installation](install.qmd#manual-installation)
+
+For **other systems** please check the documentation for [manual installation](install.qmd#manual-installation)
 
 Note that the installation may take some minutes depending on the internet connection speed of the machines running the cluster (mainly because of the container images).
 
