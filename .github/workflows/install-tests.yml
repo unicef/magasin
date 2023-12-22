@@ -64,10 +64,14 @@ jobs:
       # Tests if the script checks ok
       - name: Test install-magasin.sh
         run: |
-          # We need to run the local helm repo in background
-          ./dev-scripts/local-helm-repo.sh &
 
-          # Now we install
+          # We run a local helm repo in background 
+          pwd
+          cd dev-scripts
+          local-helm-repo.sh &
+          cd ..
+
+          # Now we install magasin
           cd scripts/installer
           
           # We will test that yaml files overwrite
@@ -102,7 +106,7 @@ jobs:
         run: |
           cd scripts/installer
           ./uninstall-magasin.sh -r mgs-test
-          
+
           # namespaces should not exist anymore
           kubectl get namespaces 
       
@@ -123,39 +127,26 @@ jobs:
           cd scripts/installer
           zsh ./install-magasin.sh -c
 
-      # Install a k3s cluster
-      # This action also installs helm..
-      - name: Start a local k8s cluster
-        uses: jupyterhub/action-k3s-helm@v3
-        with:
-          k3s-channel: latest
-          metrics-enabled: false
-          traefik-enabled: false
-          docker-enabled: false
-      
-      - name: Verify function of k8s, kubectl, and helm
+      - name: Install kind k8s cluster
         run: |
-          echo "kubeconfig: $KUBECONFIG"
-          kubectl version
-          kubectl get pods --all-namespaces
-  
-          helm version
-          helm list
-  
-          # Check new paths
-          whereis helm
-          whereis kubectl   
+          brew install kind
+          kind create cluster
+          kubectl cluster-info --context kind-kind
           
       # Tests if the script checks ok
       - name: Test install-magasin.sh
         run: |
-          # We need to run the local helm repo in background
-          ./dev-scripts/local-helm-repo.sh &
 
-          # Now we install
+          # We need to run the local helm repo in background
+          # this has the current branch repo
+          pwd
+          cd dev-scripts
+          cd local-helm-repo.sh &
+
+          # Go to installe forlder
           cd scripts/installer
           
-          # We will test that yaml files overwrite
+          # Test that yaml files overwrite the values
           echo "drill: " > drill.yaml
           echo "  count: 1" >> drill.yaml
 
