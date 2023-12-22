@@ -68,7 +68,7 @@ jobs:
           # We run a local helm repo in background 
           pwd
           cd dev-scripts
-          local-helm-repo.sh &
+          ./local-helm-repo.sh &
           cd ..
 
           # Now we install magasin
@@ -141,7 +141,7 @@ jobs:
           # this has the current branch repo
           pwd
           cd dev-scripts
-          cd local-helm-repo.sh &
+          ./local-helm-repo.sh &
 
           # Go to installe forlder
           cd scripts/installer
