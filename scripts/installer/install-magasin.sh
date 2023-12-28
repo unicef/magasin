@@ -18,6 +18,8 @@ MAGASIN_HELM_REPO=$BASE_URL
 
 # Link to documentation on how to install magasin manually
 MANUAL_INSTALL_LINK=$BASE_URL/install/manual-installation.html
+UNINSTALL_MAGASIN_LINK=$BASE_URL/install/uninstall.html
+GET_STARTED_LINK=$BASE_URL/get-started/tutorial-overview.html
 
 # Skip prompting the user?
 AUTO_INSTALL=false
@@ -70,6 +72,25 @@ exit_error() {
   echo ""
   exit $code
 }
+
+echo_magasin() {
+
+echo ""
+echo " Welcome to the world of tomorrow            "
+printf "\033[31m"
+printf "                            ▄          \n"             
+printf "                           ███        \n"
+printf "                            ▀         \033[0m\n"
+echo   " ▐█▙█▖ ▟██▖ ▟█▟▌ ▟██▖▗▟██▖ ██  ▐▙██▖   "
+echo   " ▐▌█▐▌ ▘▄▟▌▐▛ ▜▌ ▘▄▟▌▐▙▄▖▘  █  ▐▛ ▐▌   "
+echo   " ▐▌█▐▌▗█▀▜▌▐▌ ▐▌▗█▀▜▌ ▀▀█▖  █  ▐▌ ▐▌   "
+echo   " ▐▌█▐▌▐▙▄█▌▝█▄█▌▐▙▄█▌▐▄▄▟▌▗▄█▄▖▐▌ ▐▌   "
+echo   " ▝▘▀▝▘ ▀▀▝▘ ▞▀▐▌ ▀▀▝▘ ▀▀▀ ▝▀▀▀▘▝▘ ▝▘   "
+echo   "            ▜█▛▘                       "
+echo   ""  
+
+}
+
 
 # Function to display messages in green
 echo_success() {
@@ -463,6 +484,8 @@ function install_chart {
 
 } 
 
+
+
 echo_info "Adding magasin helm repo ($MAGASIN_HELM_REPO)..."
 echo_info "Running: helm repo add $MAGASIN_HELM_REPO $HELM_DEBUG_FLAG"
 helm repo add magasin $MAGASIN_HELM_REPO $HELM_DEBUG_FLAG
@@ -484,11 +507,15 @@ else
   echo_success "magasin helm repo updated successfully"
 fi
 
-
-install_chart drill
-install_chart daskhub
-install_chart dagster
-install_chart superset
+# check if the realm namespace exits
+if kubectl get namespace "$REALM_ARG" &> /dev/null; then
+    echo_error "Realm namespace $NAMESPACE exists."
+    echo_error " Do you have a magasin instance already installed? You can try: "
+    echo_error "   1. Install magasin in another realm: '$script_name -r myrealm'"
+    echo_error "   2. Uninstalling $REALM_ARG instance (see $UNINSTALL_MAGASIN_LINK)"
+    echo_error "   3. Remove the namespace: 'kubectl delete namespace $REALM_ARG'"
+    exit 7
+fi
 
 #
 # Add a configmap with a json with some metadata
@@ -496,3 +523,15 @@ install_chart superset
 echo_info "Creating the magasin realm namespace."
 echo_info "kubectl create namespace $REALM_ARG"
 kubectl create namespace $REALM_ARG
+
+
+install_chart drill
+install_chart daskhub
+install_chart dagster
+install_chart superset
+
+echo "---------------------------------------------------"
+echo_magasin
+echo_info "Next step start using magasin. Take a look at the tutorial:"
+echo_info "      $GET_STARTED_LINK"
+echo ""

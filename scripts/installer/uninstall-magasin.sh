@@ -92,7 +92,7 @@ function usage {
 
 script_name=$(basename "$0")
 
-while getopts ":f:u:n:ychd" opt; do
+while getopts ":f:u:r:ychd" opt; do
   case $opt in
     y)
       AUTO_INSTALL=true
@@ -103,7 +103,7 @@ while getopts ":f:u:n:ychd" opt; do
     d)
       DEBUG=true
       ;;
-    n)
+    r)
       argument=$OPTARG
       # Extracting prefix and postfix
       last_dash=$(echo "$argument" | grep -o '[^-]*$')
@@ -164,7 +164,7 @@ echo "-----------"
 not_working=false
 
 echo_info "Verifying pre-required commands are working..."
-if ! kubectl &> /dev/null; then
+if ! kubectl version &> /dev/null; then
   echo_error "The kubectl command ($(command -v "kubectl")) is not working properly."
   echo_error "Installation documentation:"
   echo_error "  - For Linux: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/"
@@ -184,23 +184,22 @@ else
   echo_success "helm is working"
 fi
 
+if [ "$not_working" = true ]; then
+  echo_error "Some of the commands are not working."
+  exit_error 3
+fi 
+
 # If -c option is set, then end.
 if [[ "$ONLY_CHECK" == true ]]; then
   echo_debug "ONLY_CHECK=true"
   exit 0
 fi
 
-if [ "$not_working" = true ]; then
-  echo_error "Some of the commands are not working."
-  exit_error 3
-fi 
-
-
 function uninstall_chart { 
   local chart=$1
 
-  echo_debug "Uninstall_chart $chart"
-  
+  echo_info "Uninstalling chart $chart..."
+
   if [[ -n "$REALM_POSTFIX" ]]; then
     # realm postfix is not empty
     namespace="$REALM_PREFIX-$chart-$REALM_POSTFIX"
