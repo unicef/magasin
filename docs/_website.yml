@@ -92,7 +92,7 @@ website:
           - text: "Repositories"
             file: repositories.qmd
   page-footer: |
-    [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) | Docs are licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) | [Privacy policy](privacy.qmd) 
+    [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) | Docs are licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) | [Privacy policy](/privacy.qmd) 
     [![](/images/unicef-logo.png){fig-alt="UNICEF, for every child"}](https://www.unicef.org)
     
     
