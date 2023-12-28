@@ -2,7 +2,7 @@
 # Custom added folders
 .base_repos
 docs/_site
-local-repo
+_helm-repo
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
