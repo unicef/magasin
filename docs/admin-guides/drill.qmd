@@ -1,5 +1,5 @@
 ---
-title: "Drill Guide"
+title: "Drill guide"
 format: html
 ---
 
@@ -30,7 +30,9 @@ The Apache Drill [Azure Blob Storage Plugin](https://drill.apache.org/docs/azure
 This configuration is read-only and specifies support for certain file formats within two directory locations (`/profiles` and `/datasets`) within the storage container. 
 
 For production configuration, file formats should be restricted to the minimal set of expected formats. Multiple storage plugin instances can be configured in a single Apache Drill instance so separate Azure blob storage accounts and containers may be separately configured and queried.
-```
+
+
+```json
 {
   "name" : "storage_account_blob_container",
   "config" : {
@@ -119,26 +121,26 @@ However, in magasin given that Drill is setup in a [distributed mode](https://dr
 
 1. Launch a terminal within the zookeeper pod (zk-0). 
 
-    ```shell
+    ```sh
     kubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash
     ``` 
 
 2. Compress the files using `tar`, and leave the shell
 
-    ```shell
+    ```sh
     tar -czvf /tmp/zk.tgz /var/lib/zookeeper/*
     exit
     ```
 
 3. Save the file into our local filesystem
 
-    ```shell
+    ```sh
     kubectl cp magasin-drill/zk-0:/tmp/zk.tgz ./zk.tgz
     ```
 
 4. Delete the `.tgz` file of the pod
 
-    ```shell
+    ```sh
     kubectl exec zk-0 --namespace magasin-drill -- rm tmp/zk.tgz
     ```
 
@@ -148,23 +150,24 @@ To restore the backup created in the previous section:
 
 1. Copy the backup to the cluster
 
-    ```shell
+    ```sh
      kubectl cp ./zk.tgz magasin-drill/zk-0:/tmp/zk.tgz 
     ```
 2. Launch the shell in the zookeeper pod
 
-    ```shell
+    ```sh
     kubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash
     ```
-    
+
 3. Unzip
-    ```shell
+
+    ```sh
     tar -xzvf /tmp/zk.tgz 
     ```
     
 4. Kill the java  process
 
-    ```shell
+    ```sh
     ps -ax 
 
     PID TTY      STAT   TIME COMMAND
@@ -178,7 +181,8 @@ To restore the backup created in the previous section:
     kill -9 25
     ```  
 5. Relaunch the initalizer script in background (&), then exit
-    ```
+    
+    ```sh
     /usr/bin/start.sh &
     exit
     ```

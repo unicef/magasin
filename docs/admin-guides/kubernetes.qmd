@@ -1,5 +1,5 @@
 ---
-title: "Operations Guide"
+title: "Kubernetes guide"
 format: html
 ---
 
@@ -13,14 +13,15 @@ Magasin is installed in a kubernetes cluster, in this chapter you have a summary
 
 Kubernetes resources are kept in namespaces. A namespace is like a folder but where you can keep kubernetes resources such as pods, secrets, etc.
 
-```shell
+```sh
 kubectl get namespaces
 ```
 
 ### Get the list of resources
 
 To get the resources available within a particular namespace:
-```shell
+
+```sh
 kubectl get <resource-type> --namespace <namespace>
 ```
 where `resource-type` is one of 
@@ -33,12 +34,12 @@ where `resource-type` is one of
 
 Examples:
 
-```shell
+```sh
 kubectl get pods --namespace magasin-drill
 kubectl get secrets --namespace magasin-drill
 ```
 Or alternatively
-```shell
+```sh
 kubectl get pods -n magasin-drill
 ```
 
@@ -54,7 +55,7 @@ A secret is a type of resource in kubernetes that allows you to keep configurati
 
 To get the list of secrets of a particular namespace
 
-```shell
+```sh
 kubectl get secret --namespace magasin-superset
 ```
 
@@ -68,7 +69,7 @@ In magasin, these are some secrets that contain interesting information for the 
 
 One secret may contain more than variable. To view the different variables (items) of a particular secret:
  
-```shell
+```sh
 kubectl describe secret superset-env --namespace magasin-superset
 ```
 where `superset-env` is the name of the secret.
@@ -78,20 +79,20 @@ where `superset-env` is the name of the secret.
 
 Secrets are usually encoded in base64 format. To get the contents of one of the keys of the secret:
  
-```shell
+```sh
 kubectl get secret superset-env --namespace superset-staging \
 -o jsonpath='{.data.SUPERSET_ADMIN}' | base64 --decode
 ```
 
 ### Dump a secret that contains environment variables
 
-```shell
+```sh
  kubectl get secret <secret-name> --namespace <namespace> --output=json \
  | jq -r '.data | to_entries[] | "\(.key)=\(.value | @base64d)"'
 ```
 
 Examples: 
-```shell
+```sh
 # get superset-env
 kubectl get secret superset-env -n superset-staging --output=json \
 | jq -r '.data | to_entries[] | "\(.key)=\(.value | @base64d)"'

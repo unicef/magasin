@@ -72,12 +72,10 @@ website:
 
       - section: "Admin Guides"
         contents:
-          - text: "Kubernetes"
-            file: admin-guide-kubernetes.qmd   
-          - text: "Drill"
-            file: admin-guide-drill.qmd  
-          - text: "Superset"
-            file: admin-guide-superset.qmd  
+            - file: admin-guides/kubernetes.qmd   
+            - file: admin-guides/drill.qmd  
+            - file: admin-guides/superset.qmd  
+
       - section: "Deployment"      
         contents:
           - text: "Deploying to production"
