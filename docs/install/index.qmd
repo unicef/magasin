@@ -5,7 +5,7 @@ format: html
 
 Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a [kubernetes cluster](https://kubernetes.io).
 
-Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of [containerized applications](https://kubernetes.io/docs/concepts/overview/#going-back-in-time). It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.
+[Kubernetes](https://kubernetes.io) is a container orchestration system designed to automate the deployment, scaling, and management of [containerized applications](https://kubernetes.io/docs/concepts/overview/#going-back-in-time). It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.
 
 Magasin uses Kubernetes in combination with [Helm](https://helm.sh/), a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called **chart**.
 
@@ -16,10 +16,13 @@ Magasin includes an installer script that sets up all the necessary dependencies
 
 Once you have access to a kubernetes cluster, you can use the installer to setup magasin in that cluster. 
 
-The major goal of this installer is to ease the setup of some tools that need to be installed in your computer, and then deploy magasin in the kubernetes cluster and th
+The major goal of this installer is to ease the setup of some tools that need to be installed in your computer, and then deploy magasin in the kubernetes cluster.
 
-The installer is in beta, in case it fails check the [troubleshooting section](troubleshooting.qmd), or try the [manual installation section](#manual-installation)
+:::{.callout-warning}
+It is highly recommended to [take a look at the install script](https://unicef.github.io/magasin/install-magasin.sh) before running it will install several components on your system.
 
+You should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you're not confortable with this approach, proceed with the [manual installation](manual-installation.qmd).
+:::
 
 * **Deploying magasin from a Debian/Like GNU/Linux computer**
 
@@ -35,80 +38,21 @@ The installer is in beta, in case it fails check the [troubleshooting section](t
   curl -X https://unicef.github.io/magasin/install-magasin.sh | zsh
   ```
 
-In both cases, if You need a user that can run sudo.
+In both cases, you need a user that can run sudo.
+
+The installer is in beta, in case it fails check the [troubleshooting section](troubleshooting.qmd) and, if the problems persist, try the [manual installation](manual-installation.qmd)
+
 
 * **Deploying magasin from a Windows computer**
   Please use the [manual installation](manual-installation.qmd)
 
-## Advanced use of the magasin-installer
 
-You can check the options.
-```bash
-./install-magasin.sh -h
-Usage: install-magasin.sh [-y] [-c] [-r realm_prefix-realm_postfix (magasin)] [-d] [-h]
+# What's next?
 
-This script checks dependencies and installs magasin components
-Each component is installed within its own namespace.
+Congratulations, now you have a magasin instance running on your kubernetes cluster. This is just the beggining of an interesting journey. Now you can:
 
-Options:
-  -y  Skip prompting questions during installation
-  -c  Only check if all pre-requisites are installed.
-  -r  Realm prefix and suffix (default: magasin).
-      If more than one '-', the last one will be used as separator.
-      The realm 'magasin-new-dev' will set 'magasin-new' as prefix and 'dev' as suffix.
-      
-  -d  Enable debug mode (displays all commands run).
-  -h  Display this help message and exit.
-```
+* [Take a look at magasin tutorial](../get-started/tutorial-overview.qmd) and start using magasin
 
-Examples of usage:
+* [Learn about magasin's architecture](../architecture.qmd). Understand the different components and the underlying technology.
 
-1.  Only check if all the required components are installed
-
-      ```sh
-        install-magasin.sh -c 
-      ```
-
-2.  Setup the realm test-. Will use test-<component> as namespace.
-    Setup the realm magasin-dev. Will use magasin-<component>-dev as namespaces
-
-      ```sh
-        install-magasin.sh -r test
-      ```
-
-
-# Manual installation
-
-If for some reason the installation scripts do not work for you, or your system is not covered by them, you can install all requirements manually manually.
-
-1. [Install kubectl](https://kubernetes.io/docs/tasks/tools/)
-2. [Install helm](https://helm.sh/docs/intro/install/)
-3. [Install Python/pip](https://www.python.org/downloads/)
-
-Ensure `kubectl` is pointing to the right kubernetes cluster
-
-```sh
-kubectl cluster-info
-```
-
-Add the magasin helm repo
-```sh
-helm repo add https://unicef.github.io/magasin/
-```
-Update the magasin helm repo
-```sh
-helm repo update magasin
-```
-
-Install the different helm charts (dagster, drill, superset, daskhub)
-
-```sh
-# helm install <component> magasin/<component> --namespace magasin-<component> --create-namespace
-helm install dagster magasin/dagster --namespace magasin-dagster --create-namespace
-helm install drill magasin/drill --namespace magasin-drill --create-namespace
-helm install superset magasin/superset --namespace magasin-superset --create-namespace
-helm install daskhub magasin/daskhub --namespace magasin-daskhub --create-namespace
-```
-
-
-
+* [Learn more about advanced installation](./advanced.qmd). The steps showed in this page were the standard ways of installing magasin, but you can customize much more your setup.
