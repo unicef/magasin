@@ -89,6 +89,8 @@ website:
         contents:
           - text: "Contributing"
             file: contributing.qmd
+          - file: development.qmd
+
           - text: "Repositories"
             file: repositories.qmd
   page-footer: |
