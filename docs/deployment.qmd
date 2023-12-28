@@ -1,7 +1,11 @@
---
-title: "Deployment"
+---
+title: "Production deployment"
 format: html
---
+---
 
-All you need to know in order to deploy in a productivity system
+
+In this guide we will explain everything you need to do in order to have a production environment.
+
+**We are working on this guide. Please, come back soon**
+
 
