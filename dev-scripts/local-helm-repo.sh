@@ -8,7 +8,7 @@
 # and an index.yaml file that lists som metadata of these pacakges.
 #  
 # Launches http server in port 8000 (ie http://localhost:8000)
-# The repo is created in ../local-repo/
+# The repo is created in ../_helm-repo/
 # It uses the folder ../helm/ to extract the charts
 # 
 # This script is useful for testing the setup of not-yet-released versions of the magasin helm charts
@@ -20,14 +20,14 @@
 # * https://helm.sh/docs/helm/helm_repo/
 #
 
-# Debug
+# Debug (uncomment to debug the script)
 #set -x
 
 # Get the path of the script.
 script_dir=$(dirname "$(realpath "$0")")
 
-# Path where the helm packages and index yaml will reside (../local-repo)
-DEFAULT_REPO_DIR=$(realpath ../)/local-repo
+# Path where the helm packages and index yaml will reside (../_helm-repo)
+DEFAULT_REPO_DIR=$(realpath ../)/_helm-repo
 
 # Path for the folder that holds the helm charts (../helm)
 HELM_DIR=$(realpath "../helm")
