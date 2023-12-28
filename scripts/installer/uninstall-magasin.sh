@@ -223,7 +223,8 @@ function uninstall_chart {
     #exit_error 7
   else 
     echo_success "magasin/$chart uninstalled from the namespace $namespace"
-    kubectl delete namespace $namespace
+    echo_info "Removing namespace '$namespace' (be patient, it may take a while)..."
+    kubectl delete namespace $namespace --wait=false 
     # Remove the namespace
     if [[ $? -ne 0 ]]; then
       echo_fail "Could not remove namespace $namespace"
