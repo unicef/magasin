@@ -3,10 +3,7 @@ title: "Security"
 format: html
 ---
 
-## General considerations
-
 Ensuring robust security measures within a Kubernetes cluster hosting diverse open-source applications is paramount in safeguarding sensitive data and maintaining operational integrity. 
-
 
 ## Reference documentation  
 Each component of magasin has its own level of security
@@ -15,4 +12,5 @@ Each component of magasin has its own level of security
 * [Apache Superset Security](https://superset.apache.org/docs/security/)
 * [Apache Drill Security](https://drill.apache.org/docs/securing-drill/)
 * [Apache Zookeeper](https://zookeeper.apache.org/doc/r3.9.1/zookeeperAdmin.html)
+
 
