@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Overview of the workflow that usually is followed">
 
-<title>Installation</title>
+<title>Tutorial overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +31,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../install/advanced.html" rel="next">
-<link href="../get-started/create-dashboard.html" rel="prev">
+<link href="../get-started/initial-analysis.html" rel="next">
+<link href="../get-started/index.html" rel="prev">
 <link href="..//images/magasin-star.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -96,9 +63,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
-<meta name="twitter:title" content="Installation">
+<meta name="twitter:title" content="Tutorial overview">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -148,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/index.html">Installation</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../get-started/index.html">Get started</a></li><li class="breadcrumb-item"><a href="../get-started/tutorial-overview.html">Tutorial overview</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -183,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../get-started/tutorial-overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../get-started/tutorial-overview.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tutorial overview</span></a>
   </div>
 </li>
@@ -218,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../install/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../install/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installation</span></a>
   </div>
 </li>
@@ -351,17 +321,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#deploy-magasin-using-the-installer-beta" id="toc-deploy-magasin-using-the-installer-beta" class="nav-link active" data-scroll-target="#deploy-magasin-using-the-installer-beta"><span class="header-section-number">1</span> Deploy magasin using the installer (beta)</a></li>
-  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">2</span> What’s next?</a></li>
+  <li><a href="#step-1-initial-data-analysis-in-a-jupyter-notebook" id="toc-step-1-initial-data-analysis-in-a-jupyter-notebook" class="nav-link active" data-scroll-target="#step-1-initial-data-analysis-in-a-jupyter-notebook"><span class="header-section-number">0.1</span> Step 1: Initial data analysis in a Jupyter Notebook</a></li>
+  <li><a href="#step-2-automate-data-ingestion-with-dagster" id="toc-step-2-automate-data-ingestion-with-dagster" class="nav-link" data-scroll-target="#step-2-automate-data-ingestion-with-dagster"><span class="header-section-number">0.2</span> Step 2: Automate data ingestion with Dagster</a></li>
+  <li><a href="#step-3-create-a-dashboard-with-superset" id="toc-step-3-create-a-dashboard-with-superset" class="nav-link" data-scroll-target="#step-3-create-a-dashboard-with-superset"><span class="header-section-number">0.3</span> Step 3: Create a dashboard with Superset</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">1</span> What’s next?</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/install/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/tutorial-overview.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installation</h1>
+<h1 class="title">Tutorial overview</h1>
 </div>
 
 
@@ -376,49 +348,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">kubernetes cluster</a>.</p>
-<p><a href="https://kubernetes.io">Kubernetes</a> is a container orchestration system designed to automate the deployment, scaling, and management of <a href="https://kubernetes.io/docs/concepts/overview/#going-back-in-time">containerized applications</a>. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.</p>
-<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called <strong>chart</strong>.</p>
-<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.</p>
-<section id="deploy-magasin-using-the-installer-beta" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Deploy magasin using the installer (beta)</h1>
-<p>Once you have access to a kubernetes cluster, you can use the installer to setup magasin in that cluster.</p>
-<p>The major goal of this installer is to ease the setup of some tools that need to be installed in your computer, and then deploy magasin in the kubernetes cluster.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
+<p>We wil follow this process simple process that is similar to what you may do in the real world:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(1.Manual analysis using a \nJupyter Notebook) --&gt; B(2.Automate data ingestion with\n Dagster)
+  B --&gt; C(3.Create a Dashboard with\n Superset)
+</pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>It is highly recommended to <a href="https://unicef.github.io/magasin/install-magasin.sh">take a look at the install script</a> before running it will install several components on your system.</p>
-<p>You should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you’re not confortable with this approach, proceed with the <a href="../install/manual-installation.html">manual installation</a>.</p>
 </div>
 </div>
-<ul>
-<li><p><strong>Deploying magasin from a Debian/Like GNU/Linux computer</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/install-magasin.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Debian like distributions are Ubuntu, Raspbian, Kali Linux, etc. They use <code>apt-get</code> as package manager.</p></li>
-<li><p><strong>Deploying magasin from a MacOS computer</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/install-magasin.sh <span class="kw">|</span> <span class="fu">zsh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-<p>In both cases, you need a user that can run sudo.</p>
-<p>The installer is in beta, in case it fails check the <a href="../install/troubleshooting.html">troubleshooting section</a> and, if the problems persist, try the <a href="../install/manual-installation.html">manual installation</a></p>
-<ul>
-<li><strong>Deploying magasin from a Windows computer</strong> Please use the <a href="../install/manual-installation.html">manual installation</a></li>
-</ul>
+<section id="step-1-initial-data-analysis-in-a-jupyter-notebook" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="step-1-initial-data-analysis-in-a-jupyter-notebook"><span class="header-section-number">0.1</span> Step 1: Initial data analysis in a Jupyter Notebook</h2>
+<p>Generally, before you start automating any process of regularly using some data you want to do some initial research and analysis. For that, <a href="https://jupyter.org/">Jupyter Notebook</a> is a great tool. It allows you to run small pieces of code (python or R) individually and interactively in a user friendly interface.</p>
+<p>Magasin comes with the <a href="https://jupyter.org/hub">Jupyter Hub</a>, which allows different users to run jupyter notebooks on the cloud without the need of installing anything on their own system.</p>
+<p>In this case, we are going play around with one simple API, the <a href="https://github.com/DPGAlliance/publicgoods-api?tab=readme-ov-file">Digital Public Goods Alliance (DPGA) API</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Digital_public_goods">Digital Public Goods (DPGs)</a> are public goods in the form of software, data sets, AI models, standards or content that are generally free cultural works and have an intention to contribute to sustainable national and international digital development. Several international agencies, including <a href="https://www.unicef.org">UNICEF</a> and <a href="https://undp.org">UNDP</a>, are exploring DPGs as a possible solution to address the issue of digital inclusion, particularly for children in emerging economies.</p>
+<p>From the data that we extract from the API, we are going to query the data to get some insights how many DPGs are available, in which countries are being deployed, where are they developed, what types of licenses are more popular…</p>
+<p>Jupyter Notebooks are excellent for an initial analysis, but there are many use cases in which you may to repeat the same process periodically. In our case, we may want to track if new DPGs are comming or what are the trends in terms of deployments. This is when the next steps of the process are useful.</p>
 </section>
-<section id="whats-next" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> What’s next?</h1>
-<p>Congratulations, now you have a magasin instance running on your kubernetes cluster. This is just the beggining of an interesting journey. Now you can:</p>
-<ul>
-<li><p><a href="../get-started/tutorial-overview.html">Take a look at magasin tutorial</a> and start using magasin</p></li>
-<li><p><a href="../architecture.html">Learn about magasin’s architecture</a>. Understand the different components and the underlying technology.</p></li>
-<li><p><a href="../install/advanced.html">Learn more about advanced installation</a>. The steps showed in this page were the standard ways of installing magasin, but you can customize much more your setup.</p></li>
-</ul>
+<section id="step-2-automate-data-ingestion-with-dagster" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="step-2-automate-data-ingestion-with-dagster"><span class="header-section-number">0.2</span> Step 2: Automate data ingestion with Dagster</h2>
+<p>Automating is great, it frees us on needing to do repeated work. In our example, we will automate the ingestion and transformation of the DPGA API data. The data as it is served by the API is not fully ready to be analyzed, we need to perform some transformations to leave it ready to be displayed.</p>
+<p>We did the heavy-lifting interactively with the first analysis and now we just need to convert it to <a href="">dagster pipeline</a>.</p>
+<p>Dagster is what is called a pipeline orchestrator, which basically helps us to manage the ingestion of data from multiple data sources. The advantages of using a framework like dagster is that it will allow us to scale and to monitor.</p>
+<p>What usually happends when you start automating stuff is that:</p>
+<ol type="1">
+<li><p>It starts simple but with time, you add more and more data sources that have dependencies between them. If it is not done properly you end up with a mess. Dagster provides us a framework to prevent that.</p></li>
+<li><p>It eventually it may break. Data sources may change with time and with that your pipelines break. For instance, DPGA may change the API and our automation will fail. Dagster allows you to monitor and to</p></li>
+</ol>
+<p>The cool thing of Dagster, it that it uses Python as programming language too, so most of the work we did for the</p>
+</section>
+<section id="step-3-create-a-dashboard-with-superset" class="level2" data-number="0.3">
+<h2 data-number="0.3" class="anchored" data-anchor-id="step-3-create-a-dashboard-with-superset"><span class="header-section-number">0.3</span> Step 3: Create a dashboard with Superset</h2>
+<p>Dagster allows you to gather the data and transform it to something that can be displayed, but it does not come with those visualization capabilities. For that we need a tool that has many graphs, what is called a business intelligence dashboard tool.</p>
+<p>Magasin comes with <a href="https://superset.apache.org/">Apache Superset</a>, which allows you to create dashboard with many graphs.</p>
+<p>In this last step, we will create a dashboard that will display the graphs.</p>
+<p>Again, we did the heavy lifting on the first step with the notebook so now we just need to play with the user interface of superset.</p>
+</section>
+<section id="whats-next" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> What’s next?</h1>
+<p>Now that you have an overview, let’s start working with magasin:</p>
+<p><strong><a href="../get-started/initial-analysis.html">Go to the step 1: Initial analysis</a></strong></p>
 
 
 </section>
@@ -687,13 +661,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../get-started/create-dashboard.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Step 3: Create a dashboard</span>
+      <a href="../get-started/index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Get started</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../install/advanced.html" class="pagination-link">
-        <span class="nav-page-text">Advanced installation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../get-started/initial-analysis.html" class="pagination-link">
+        <span class="nav-page-text">Step 1: Initial analysis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

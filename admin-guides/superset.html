@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Installation</title>
+<title>Superset guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../install/advanced.html" rel="next">
-<link href="../get-started/create-dashboard.html" rel="prev">
+<link href="../deployment.html" rel="next">
+<link href="../admin-guides/drill.html" rel="prev">
 <link href="..//images/magasin-star.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="Installation">
+<meta name="twitter:title" content="Superset guide">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/index.html">Installation</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../admin-guides/kubernetes.html">Admin Guides</a></li><li class="breadcrumb-item"><a href="../admin-guides/superset.html">Superset guide</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../install/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../install/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installation</span></a>
   </div>
 </li>
@@ -283,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../admin-guides/superset.html" class="sidebar-item-text sidebar-link">
+  <a href="../admin-guides/superset.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Superset guide</span></a>
   </div>
 </li>
@@ -351,17 +351,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#deploy-magasin-using-the-installer-beta" id="toc-deploy-magasin-using-the-installer-beta" class="nav-link active" data-scroll-target="#deploy-magasin-using-the-installer-beta"><span class="header-section-number">1</span> Deploy magasin using the installer (beta)</a></li>
-  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">2</span> What’s next?</a></li>
+  <li><a href="#backup-the-superset-database-into-the-local-filesystem" id="toc-backup-the-superset-database-into-the-local-filesystem" class="nav-link active" data-scroll-target="#backup-the-superset-database-into-the-local-filesystem"><span class="header-section-number">1</span> Backup the superset database into the local filesystem</a>
+  <ul class="collapse">
+  <li><a href="#restore-superset-database-from-local-filesystem" id="toc-restore-superset-database-from-local-filesystem" class="nav-link" data-scroll-target="#restore-superset-database-from-local-filesystem"><span class="header-section-number">1.1</span> Restore superset database from local filesystem</a></li>
+  </ul></li>
+  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql"><span class="header-section-number">2</span> PostgreSQL</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">3</span> Troubleshooting</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/install/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/admin-guides/superset.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installation</h1>
+<h1 class="title">Superset guide</h1>
 </div>
 
 
@@ -376,48 +380,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">kubernetes cluster</a>.</p>
-<p><a href="https://kubernetes.io">Kubernetes</a> is a container orchestration system designed to automate the deployment, scaling, and management of <a href="https://kubernetes.io/docs/concepts/overview/#going-back-in-time">containerized applications</a>. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.</p>
-<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called <strong>chart</strong>.</p>
-<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.</p>
-<section id="deploy-magasin-using-the-installer-beta" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Deploy magasin using the installer (beta)</h1>
-<p>Once you have access to a kubernetes cluster, you can use the installer to setup magasin in that cluster.</p>
-<p>The major goal of this installer is to ease the setup of some tools that need to be installed in your computer, and then deploy magasin in the kubernetes cluster.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It is highly recommended to <a href="https://unicef.github.io/magasin/install-magasin.sh">take a look at the install script</a> before running it will install several components on your system.</p>
-<p>You should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you’re not confortable with this approach, proceed with the <a href="../install/manual-installation.html">manual installation</a>.</p>
-</div>
-</div>
+<p>A quick guide for an magasin administrator on superset.</p>
+<section id="backup-the-superset-database-into-the-local-filesystem" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="backup-the-superset-database-into-the-local-filesystem"><span class="header-section-number">1</span> Backup the superset database into the local filesystem</h2>
+<p>A dump (backup) of the database may be useful when a new version of superset is going to be installed, or to keep a regular scheduled backup of the superset data.</p>
+<p>To create a dump of the database, you can use the script <code>scripts/superset/dump-superset-db.sh</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./dump-superset-db.sh</span> <span class="at">-n</span> magasin-superset-prd<span class="kw">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Where the option <code>-n</code> is to specify the namespace of the superset instance (defaults to <code>magasin-superset</code>).</p>
+<p>This script will request request the password of the <code>superset</code> user, to perform the dump. You can get the password from the secret <code>superset-env</code> within the same namespace.</p>
+<p>The output of running this script is the file <code>superset_dump.sql</code> in the current working folder. Note that this script assumes that the name of the database is <code>superset</code>.</p>
+<p>Alternatively, these are the manual steps to do the same:</p>
+<ol type="1">
+<li><p>Launch a terminal in the posgresql pod (replace the namespace if required)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">kubectl</span> exec superset-postgresql-0 <span class="at">-ti</span> <span class="at">--namespace</span> magasin-superset <span class="at">--</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Within the pod shell, extract and compress the data. The below command will ask for the superset database password (you can find it in the superset-env secret, defaults to <code>superset</code>)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pg_dump</span> <span class="at">-U</span> superset <span class="at">-d</span> superset <span class="op">&gt;</span> /tmp/superset_dump.sql</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># where -U is the username of the database, and -d is the database name.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-C</span> /tmp <span class="at">-czvf</span> /tmp/supserset_dump.tgz supserset_dump.sql</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># where -C is to use /tmp as base folder -c collect, z zip, v=verboze and f output file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Exit the pod shell and copy the dump file into <code>/tmp</code> in the local filesystem of the pod. exit</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exit the pod shell</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the tgz to the local environment.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cp magasin-superset/superset-postgresql-0:/tmp/superset_dump.tgz <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>./supserset_dump.tgz <span class="at">--retries</span> 100</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Syntax: kubectl cp namespace/pod:path local-path. </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The option --retries is to fix potential network issues</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Lastly, delete the db dump from the postgres pod</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> exec magasin-superset/superset-postgresql-0 <span class="at">--</span> <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rm /tmp/supeset_dump.tgz /tmp/superset_dump.sql  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<section id="restore-superset-database-from-local-filesystem" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="restore-superset-database-from-local-filesystem"><span class="header-section-number">1.1</span> Restore superset database from local filesystem</h3>
+<p>To restore the database from the previous step.</p>
+<ol type="1">
+<li><p>Copy the database to the postgres pod.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cp superset_dump.sql magasin-superset/superset-postgresql-0:/tmp/superset_dump.sql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Launch the shell</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> exec superset-postgresql-0 <span class="at">-ti</span> <span class="at">--namespace</span> magasin-superset <span class="at">--</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>If the database exist, you may need to drop it first</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">--username</span> postgres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>The password can be found in <code>superset-postgresql</code> secret <code>postgres-password</code></p></li>
+<li><p>If you get an error indicating the database is being used run the command:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> pg_terminate_backend(pg_stat_activity.pid) </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> pg_stat_activity </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> pg_stat_activity.datname <span class="op">=</span> <span class="st">'superset'</span> <span class="kw">AND</span> pid <span class="op">&lt;&gt;</span> pg_backend_pid();</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- To delete the superset database: (don't forget the ; at the end)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> superset;</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">--- Then create an empty database (don't forget the ; at the end)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> superset;</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- Then quit psql</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>\q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Finally, restore the database</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">--username</span> superset <span class="at">--dbname</span> superset <span class="at">-f</span> /tmp/superset_dump.sql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or alternatively less verbose option</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> superset <span class="at">-d</span> superset2 <span class="at">-f</span> ./tmp/superset_dump.sql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>Now, you can restart the superset pod. First find the superset-xxxxxxxxx-xxxxx and delete it</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--namespace</span> magasin-superset</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>                               READY   STATUS      RESTARTS   AGE</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-75b79c6c8d-jttd9</span>          1/1     Running     0          62m</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-init-db-bhc25</span>             0/1     Completed   0          62m</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-postgresql-0</span>              1/1     Running     0          62m</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-redis-master-0</span>            1/1     Running     0          62m</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-worker-85dfbb48dd-6bhjp</span>   1/1     Running     0          62m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete pod superset-75b79c6c8d-jttd9 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="postgresql" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="postgresql"><span class="header-section-number">2</span> PostgreSQL</h2>
 <ul>
-<li><p><strong>Deploying magasin from a Debian/Like GNU/Linux computer</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/install-magasin.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Debian like distributions are Ubuntu, Raspbian, Kali Linux, etc. They use <code>apt-get</code> as package manager.</p></li>
-<li><p><strong>Deploying magasin from a MacOS computer</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/install-magasin.sh <span class="kw">|</span> <span class="fu">zsh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-<p>In both cases, you need a user that can run sudo.</p>
-<p>The installer is in beta, in case it fails check the <a href="../install/troubleshooting.html">troubleshooting section</a> and, if the problems persist, try the <a href="../install/manual-installation.html">manual installation</a></p>
-<ul>
-<li><strong>Deploying magasin from a Windows computer</strong> Please use the <a href="../install/manual-installation.html">manual installation</a></li>
+<li><p>Get list of databases</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> datname <span class="kw">FROM</span> pg_database <span class="kw">WHERE</span> datistemplate <span class="op">=</span> <span class="kw">false</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Get the user owner of database ‘database_name’</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> d.datname <span class="kw">as</span> <span class="ot">"Name"</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pg_catalog.pg_get_userbyid(d.datdba) <span class="kw">as</span> <span class="ot">"Owner"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> pg_catalog.pg_database d</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> d.datname <span class="op">=</span> <span class="st">'database_name'</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dv">1</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
-<section id="whats-next" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> What’s next?</h1>
-<p>Congratulations, now you have a magasin instance running on your kubernetes cluster. This is just the beggining of an interesting journey. Now you can:</p>
+<section id="troubleshooting" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">3</span> Troubleshooting</h2>
 <ul>
-<li><p><a href="../get-started/tutorial-overview.html">Take a look at magasin tutorial</a> and start using magasin</p></li>
-<li><p><a href="../architecture.html">Learn about magasin’s architecture</a>. Understand the different components and the underlying technology.</p></li>
-<li><p><a href="../install/advanced.html">Learn more about advanced installation</a>. The steps showed in this page were the standard ways of installing magasin, but you can customize much more your setup.</p></li>
+<li><p><strong>Get the events of a pod</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> describe pod superset-564564dd4-2lzb6 <span class="at">--namespace</span> magasin-superset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Get logs of the containers</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> logs <span class="op">&lt;</span>podname<span class="op">&gt;</span> -f <span class="at">--namespace</span> <span class="op">&lt;</span>namespace<span class="op">&gt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> logs superset-564564dd4-2lzb6 <span class="at">-f</span> <span class="at">--namespace</span> magasin-superset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <code>-f</code> continues displaying the new logs.</p>
+<p>With <code>--all-containers</code> you can see the logs of all the containers instead of the one that is being executed. This is useful when the current container of the pod gets stuck because of the previous container output was not the expected. Example:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> logs superset-564564dd4-2lzb6 <span class="at">--namespace</span> magasin-superset <span class="at">--all-containers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 
 
@@ -687,13 +749,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../get-started/create-dashboard.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Step 3: Create a dashboard</span>
+      <a href="../admin-guides/drill.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Drill guide</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../install/advanced.html" class="pagination-link">
-        <span class="nav-page-text">Advanced installation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../deployment.html" class="pagination-link">
+        <span class="nav-page-text">Deploying to production</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Superset admin guide</title>
+<title>Step 1: Initial analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,25 +57,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./deployment.html" rel="next">
-<link href="./admin-guide-drill.html" rel="prev">
-<link href=".//images/magasin-star.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../get-started/automate-data-ingestion.html" rel="next">
+<link href="../get-started/tutorial-overview.html" rel="prev">
+<link href="..//images/magasin-star.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -98,9 +98,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="Superset admin guide">
+<meta name="twitter:title" content="Step 1: Initial analysis">
 <meta name="twitter:description" content="">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/unicef/magasin/images/jupyterhub-login.png">
+<meta name="twitter:image-height" content="1228">
+<meta name="twitter:image-width" content="2772">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -110,8 +113,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/magasin-logo.svg" alt="magasin" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/magasin-logo.svg" alt="magasin" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -121,19 +124,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
+    <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./get-started.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../get-started/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Get started</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs-home.html" rel="" target="">
+    <a class="nav-link" href="../docs-home.html" rel="" target="">
  <span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -148,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./admin-guide-kubernetes.html">Admin Guides</a></li><li class="breadcrumb-item"><a href="./admin-guide-superset.html">Superset</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../get-started/index.html">Get started</a></li><li class="breadcrumb-item"><a href="../get-started/initial-analysis.html">Step 1: Initial analysis</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -162,20 +165,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs-home.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs-home.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./get-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Get started</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Install</span></a>
+ <span class="menu-text">Get started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,52 +180,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installation</span></a>
+  <a href="../get-started/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/advanced.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Advanced installation</span></a>
+  <a href="../get-started/tutorial-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Setup kubernetes</span></a>
+  <a href="../get-started/initial-analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Step 1: Initial analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Troubleshooting</span></a>
+  <a href="../get-started/automate-data-ingestion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Step 2: Automate data ingestion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install/uninstall.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Uninstall magasin</span></a>
+  <a href="../get-started/create-dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Step 3: Create a dashboard</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./architecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Architecture</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./end-user-guides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">End user guides</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Admin Guides</span></a>
+ <span class="menu-text">Install</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -236,28 +221,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./admin-guide-kubernetes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Kubernetes</span></a>
+  <a href="../install/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./admin-guide-drill.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Drill</span></a>
+  <a href="../install/advanced.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced installation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./admin-guide-superset.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Superset</span></a>
+  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup kubernetes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/uninstall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uninstall magasin</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Architecture</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../end-user-guides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">End user guides</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Deployment</span></a>
+ <span class="menu-text">Admin Guides</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -265,14 +274,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deploying to production</span></a>
+  <a href="../admin-guides/kubernetes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kubernetes guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./security.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Security</span></a>
+  <a href="../admin-guides/drill.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drill guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../admin-guides/superset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Superset guide</span></a>
   </div>
 </li>
       </ul>
@@ -280,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Contributing</span></a>
+ <span class="menu-text">Deployment</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -288,13 +303,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./contributing.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deploying to production</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Security</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Contributing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contributing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Contributing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./repositories.html" class="sidebar-item-text sidebar-link">
+  <a href="../development.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../repositories.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Repositories</span></a>
   </div>
 </li>
@@ -310,25 +354,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dump-the-superset-database-into-the-local-filesystem" id="toc-dump-the-superset-database-into-the-local-filesystem" class="nav-link active" data-scroll-target="#dump-the-superset-database-into-the-local-filesystem"><span class="header-section-number">1</span> Dump the superset database into the local filesystem</a>
-  <ul class="collapse">
-  <li><a href="#restore-superset-database-from-local-filesystem" id="toc-restore-superset-database-from-local-filesystem" class="nav-link" data-scroll-target="#restore-superset-database-from-local-filesystem"><span class="header-section-number">1.1</span> Restore superset database from local filesystem</a></li>
-  </ul></li>
-  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql"><span class="header-section-number">2</span> PostgreSQL</a></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">3</span> Troubleshooting</a>
-  <ul class="collapse">
-  <li><a href="#get-the-events-of-a-pod" id="toc-get-the-events-of-a-pod" class="nav-link" data-scroll-target="#get-the-events-of-a-pod"><span class="header-section-number">3.1</span> Get the events of a pod</a></li>
-  <li><a href="#get-logs-of-the-containers" id="toc-get-logs-of-the-containers" class="nav-link" data-scroll-target="#get-logs-of-the-containers"><span class="header-section-number">3.2</span> Get logs of the containers</a></li>
-  </ul></li>
+  <li><a href="#run-jupyter-notebooks." id="toc-run-jupyter-notebooks." class="nav-link active" data-scroll-target="#run-jupyter-notebooks."><span class="header-section-number">1</span> Run jupyter notebooks.</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/admin-guide-superset.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/initial-analysis.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/unicef/magasin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Superset admin guide</h1>
+<h1 class="title">Step 1: Initial analysis</h1>
 </div>
 
 
@@ -343,113 +378,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>A quick guide for an magasin administrator on superset.</p>
-<section id="dump-the-superset-database-into-the-local-filesystem" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="dump-the-superset-database-into-the-local-filesystem"><span class="header-section-number">1</span> Dump the superset database into the local filesystem</h2>
-<p>A dump (backup) of the database may be useful when a new version of superset is going to be installed, or to keep a regular scheduled backup of the superset data.</p>
-<p>To create a dump of the database, you can use the script <code>scripts/superset/dump-superset-db.sh</code>:</p>
-<pre class="shell"><code>./dump-superset-db.sh -n magasin-superset-prd`</code></pre>
-<p>Where the option <code>-n</code> is to specify the namespace of the superset instance.</p>
-<p>This script will request request the password of the <code>superset</code> user, to perform the dump. You can get the password from the secret <code>superset-env</code> within the same namespace.</p>
-<p>The output of running this script is the file <code>superset_dump.sql</code> in the current working folder.</p>
-<p>Note that this script assumes that the name of the database is <code>superset</code>.</p>
-<p>Alternatively, these are the manual steps to do the same:</p>
-<p>1.Launch a terminal in the posgresql pod (replace the namespace if required)</p>
-<pre><code>```shell
- kubectl exec superset-postgresql-0 -ti --namespace magasin-superset -- /bin/bash
-```</code></pre>
-<ol start="2" type="1">
-<li><p>Within the pod shell, extract and compress the data. The below command will ask for the superset database password (you can find it in the superset-env secret, defaults to ‘superset’)</p>
-<pre class="shell"><code>pg_dump -U superset -d superset &gt; /tmp/superset_dump.sql
-# where -U is the username of the database, and -d is the database name.
-
-tar -C /tmp -czvf /tmp/supserset_dump.tgz supserset_dump.sql
-# where -C is to use /tmp as base folder -c collect, z zip, v=verboze and f output file</code></pre></li>
-<li><p>Exit the pod shell and copy the dump file into /tmp in the local filesystem exit</p>
-<pre class="shell"><code># Exit the pod shell
-exit
-
-# Copy the tgz to the local environment.
-kubectl cp magasin-superset/superset-postgresql-0:/tmp/superset_dump.tgz \
-./supserset_dump.tgz --retries 100
-
-# Syntax: kubectl cp namespace/pod:path local-path. 
-# The option --retries is to fix potential network issues</code></pre></li>
-<li><p>Lastly, delete the db dump from the superset pod <code>shell     kubectl exec magasin-superset/superset-postgresql-0 -- \     rm /tmp/supeset_dump.tgz /tmp/superset_dump.sql</code></p></li>
+<p>This is the first out of the three steps of the magasin tutorial.</p>
+<section id="run-jupyter-notebooks." class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Run jupyter notebooks.</h1>
+<ol type="1">
+<li>Download the jupyter-notebook.</li>
 </ol>
-<section id="restore-superset-database-from-local-filesystem" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="restore-superset-database-from-local-filesystem"><span class="header-section-number">1.1</span> Restore superset database from local filesystem</h3>
-<p>To restore the database from the previous step.</p>
-<pre class="shell"><code>
-#  Copy the database to the postgres pod.
-kubectl cp superset_dump.sql magasin-superset/superset-postgresql-0:/tmp/superset_dump.sql
-
-# Launch the shell
-kubectl exec superset-postgresql-0 -ti --namespace magasin-superset -- /bin/bash
-
-# If the database exist, you may need to drop it first
-psql --username postgres
-# The password can be found in superset-env secret posgresql_posgres_password 
-
-# If you get an error indicating the database is being used run the command:
-SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'superset' AND pid &lt;&gt; pg_backend_pid();
-
-#To delete the superset database: (don't forget the ; at the end)
-DROP DATABASE superset;
-
-#Then create an empty database (don't forget the ; at the end)
-CREATE DATABASE superset;
-#the quit psql
-\q
-# Finally, restore the database
-psql --username superset --dbname superset -f /tmp/superset_dump.sql
-
-# alternatively less verbose option
-#       psql -U superset -d superset2 -f ./tmp/superset_dump.sql</code></pre>
-<p>Now, you can restart the superset pod. First find the superset-xxxxxxxxx-xxxxx and delete it</p>
-<pre class="shell"><code>kubectl get pods --namespace magasin-superset
-
-NAME                               READY   STATUS      RESTARTS   AGE
-superset-75b79c6c8d-jttd9          1/1     Running     0          62m
-superset-init-db-bhc25             0/1     Completed   0          62m
-superset-postgresql-0              1/1     Running     0          62m
-superset-redis-master-0            1/1     Running     0          62m
-superset-worker-85dfbb48dd-6bhjp   1/1     Running     0          62m
+<p><a href="https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb" class="btn-action-primary btn-action btn btn-outline-primary" role="button">Download tutorial jupyter notebook</a>.</p>
+<p>The notebook is a file called <a href="https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb">dpg-insights.ipynb</a>. We will use it later.</p>
+<ol start="2" type="1">
+<li><p>Launch Jupter Hub webpage on our cluster.</p>
+<p>Run the command:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> <span class="at">--namespace</span><span class="op">=</span>magasin-daskhub get svc proxy-public </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will give you a table like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>           TYPE           CLUSTER-IP      EXTERNAL-IP   PORT<span class="er">(</span><span class="ex">S</span><span class="kw">)</span>        <span class="ex">AGE</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">proxy-public</span>   LoadBalancer   10.107.249.99   localhost     80:31035/TCP   44m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>EXTERNAL-IP</code> value will give you the IP address in which the user interface of Jupyter hub is available. In our case, it is localhost.</p></li>
+<li><p>Open a browser pointing to the external IP. In the example above http://localhost</p>
+<p>This will display a login page</p>
+<img src="../images/jupyterhub-login.png" class="img-fluid" alt="Jupyterhub login"></li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that (1) the default installation does not use an encrypted connection between the client and the server and (2) anyone can launch the jupyter hub.</p>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p>If you followed the default installation, just enter any username. For example: <code>magasin</code>.</p></li>
+<li><p>Load the</p></li>
+</ol>
 
 
-```shell
-kubectl delete pod superset-75b79c6c8d-jttd9 </code></pre>
-</section>
-</section>
-<section id="postgresql" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="postgresql"><span class="header-section-number">2</span> PostgreSQL</h2>
-<p>Get list of databases</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> datname <span class="kw">FROM</span> pg_database <span class="kw">WHERE</span> datistemplate <span class="op">=</span> <span class="kw">false</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Get the user owner of database ‘database_name’</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> d.datname <span class="kw">as</span> <span class="ot">"Name"</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pg_catalog.pg_get_userbyid(d.datdba) <span class="kw">as</span> <span class="ot">"Owner"</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> pg_catalog.pg_database d</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> d.datname <span class="op">=</span> <span class="st">'database_name'</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dv">1</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="troubleshooting" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">3</span> Troubleshooting</h2>
-<section id="get-the-events-of-a-pod" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="get-the-events-of-a-pod"><span class="header-section-number">3.1</span> Get the events of a pod</h3>
-<pre><code>kubectl describe pod superset-564564dd4-2lzb6 --namespace magasin-superset</code></pre>
-</section>
-<section id="get-logs-of-the-containers" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="get-logs-of-the-containers"><span class="header-section-number">3.2</span> Get logs of the containers</h3>
-<pre class="shell"><code>kubectl logs &lt;podname&gt; -f --namespace &lt;namespace&gt; 
-
-Example:
-kubectl logs superset-564564dd4-2lzb6 -f --namespace magasin-superset</code></pre>
-<p>where -f continues displaying the new logs.</p>
-<p>With <code>--all-containers</code> you can see the logs of all the containers instead of the one that is being executed. This is useful when the current container of the pod gets stuck because of the previous container output was not the expected. Example:</p>
-<pre class="shell"><code>kubectl logs superset-564564dd4-2lzb6 --namespace magasin-superset --all-containers</code></pre>
-
-
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -716,13 +683,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./admin-guide-drill.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Drill</span>
+      <a href="../get-started/tutorial-overview.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial overview</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./deployment.html" class="pagination-link">
-        <span class="nav-page-text">Deploying to production</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../get-started/automate-data-ingestion.html" class="pagination-link">
+        <span class="nav-page-text">Step 2: Automate data ingestion</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -732,7 +699,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="./privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="./images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></div>
+    <div class="nav-footer-center"><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="../privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="../images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
