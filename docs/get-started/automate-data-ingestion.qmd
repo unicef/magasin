@@ -1,0 +1,9 @@
+---
+title: "Step 2: Automate data ingestion"
+---
+
+Now let's automate our jupter notebook.
+
+1. Create a project
+
+2. 

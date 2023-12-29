@@ -41,7 +41,7 @@ website:
       - text: "Home"
         file: index.qmd
       - text: "Get started" 
-        file: get-started.qmd
+        file: get-started/index.qmd
       - text: "Docs" 
         file: docs-home.qmd
       - text: "About"
@@ -54,8 +54,13 @@ website:
     contents:
       - text: Welcome
         file: docs-home.qmd
-      - text: "Get started"
-        file: get-started.qmd  
+      - section: "Get started"
+        contents:
+          - file: get-started/index.qmd 
+          - file: get-started/tutorial-overview.qmd
+          - file: get-started/initial-analysis.qmd
+          - file: get-started/automate-data-ingestion.qmd
+          - file: get-started/create-dashboard.qmd
       - section: "Install"
         contents:
           - file: install/index.qmd 

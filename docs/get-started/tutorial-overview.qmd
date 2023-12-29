@@ -1,0 +1,69 @@
+---
+title: "Tutorial overview"
+description-meta: "Overview of the workflow that usually is followed"
+
+format: html
+---
+
+We wil follow this process simple process that is similar to what you may do in the real world:
+
+```{mermaid}
+flowchart LR
+  A(1.Manual analysis using a \nJupyter Notebook) --> B(2.Automate data ingestion with\n Dagster)
+  B --> C(3.Create a Dashboard with\n Superset)
+```
+
+
+## Step 1: Initial data analysis in a Jupyter Notebook
+
+Generally, before you start automating any process of regularly using some data you want to do some initial research and analysis. For that, [Jupyter Notebook](https://jupyter.org/) is a great tool. It allows you to run small pieces of code (python or R) individually and interactively in a user friendly interface.
+
+Magasin comes with the [Jupyter Hub](https://jupyter.org/hub), which allows different users to run jupyter notebooks on the cloud without the need of installing anything on their own system.
+
+In  this case, we are going play around with one simple API, the [Digital Public Goods Alliance (DPGA) API](https://github.com/DPGAlliance/publicgoods-api?tab=readme-ov-file). 
+
+
+[Digital Public Goods (DPGs)](https://en.wikipedia.org/wiki/Digital_public_goods) are public goods in the form of software, data sets, AI models, standards or content that are generally free cultural works and have an intention to contribute to sustainable national and international digital development. Several international agencies, including [UNICEF](https://www.unicef.org) and [UNDP](https://undp.org), are exploring DPGs as a possible solution to address the issue of digital inclusion, particularly for children in emerging economies. 
+
+From the data that we extract from the API, we are going to query the data to get some insights how many DPGs are available, in which countries are being deployed, where are they developed, what types of licenses are more popular...
+
+Jupyter Notebooks are excellent for an initial analysis, but there are many use cases in which you may to repeat the same process periodically. In our case, we may want to track if new DPGs are comming or what are the trends in terms of deployments. This is when the next steps of the process are useful.
+
+
+## Step 2: Automate data ingestion with Dagster
+
+Automating is great, it frees us on needing to do repeated work. In our example, we will automate the ingestion and transformation of the DPGA API data. The data as it is served by the API is not fully ready to be analyzed, we need to perform some transformations to leave it ready to be displayed. 
+
+We did the heavy-lifting interactively with the first analysis and now we just need to convert it to  [dagster pipeline](). 
+
+
+Dagster is what is called a pipeline orchestrator, which basically helps us to manage the ingestion of data from multiple data sources. 
+The advantages of using a framework like dagster is that it will allow us to scale and to monitor. 
+
+What usually happends when you start automating stuff is that:
+
+1) It starts simple but with time, you add more and more data sources that have dependencies between them. If it is not done properly you end up with a mess. Dagster provides us a framework to prevent that. 
+
+2) It eventually it may break. Data sources may change with time and with that your pipelines break. For instance, DPGA may change the API and our automation will fail. Dagster allows you to monitor and to 
+
+The cool thing of Dagster, it that it uses Python as programming language too, so most of the work we did for the
+
+
+## Step 3: Create a dashboard with Superset
+
+Dagster allows you to gather the data and transform it to something that can be displayed, but it does not come with those visualization capabilities. For that we need a tool that has many graphs, what is called a business intelligence dashboard tool. 
+
+Magasin comes with [Apache Superset](https://superset.apache.org/), which allows you to create dashboard with many graphs.
+
+In this last step, we will create a dashboard that will display the graphs.
+
+Again, we did the heavy lifting on the first step with the notebook so now we just need to play with the user interface of superset.
+
+
+# What's next?
+
+Now that you have an overview, let's start working with magasin:
+
+**[Go to the step 1: Initial analysis](./initial-analysis.qmd)**
+
+

@@ -1,0 +1,50 @@
+---
+title: "Step 1: Initial analysis"
+description-meta: ""
+---
+
+This is the first out of the three steps of the magasin tutorial.
+
+
+# Run jupyter notebooks.
+
+1. Download the jupyter-notebook.
+
+[Download tutorial jupyter notebook](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb){.btn-action-primary .btn-action .btn .btn-outline-primary  role="button"}.
+
+The notebook is a file called [dpg-insights.ipynb](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb). We will use it later.
+
+2. Launch Jupter Hub webpage on our cluster. 
+
+    Run the command: 
+
+    ```sh
+    kubectl --namespace=magasin-daskhub get svc proxy-public 
+    ```
+
+    This will give you a table like this:
+
+    ```sh
+    NAME           TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+    proxy-public   LoadBalancer   10.107.249.99   localhost     80:31035/TCP   44m
+    ```
+
+    The `EXTERNAL-IP` value will give you the IP address in which the user interface of Jupyter hub is available. In our case, it is localhost.
+
+ 3. Open a browser pointing to the external IP. In the example above http://localhost
+
+
+    This will display a login page
+
+     ![Jupyterhub login](../images/jupyterhub-login.png)
+
+:::{.callout-warning}
+Note that (1) the default installation does not use an encrypted connection between the client and the server and (2) anyone can launch the jupyter hub.
+:::
+
+4. If you followed the default installation, just enter any username. For example: `magasin`.
+   
+
+5. Load the 
+
+
