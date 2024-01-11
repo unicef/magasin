@@ -130,3 +130,18 @@ Reviewers shall ensure the quality of the code, style and documentation. They sh
 
 Their aim should be to maintain a release-ready main branch at all times.
 
+## Documentation policy
+
+magasin is based on lots of underlying technologies such as docker, kubernetes, helm and comprises several components which are mature and complex products by themselves, not to mention that all these technologies and components generally have a very comprehensive documentation. 
+
+Given this instead of duplicating all the existing documentation, the goal of magasin's documentation is to provide practical and task based, tutorial or step by step guidance in the concrete context of magasin. 
+
+The documentation should cover the needs of the following users in mind:
+
+* Non-technical End Users (business users) - These are users that do not have a lot of technical background. They are mostly interested in the visualization part, how to use the business intelligence dashboard, and the potential use cases of magasin applied to their business.  
+    
+    As a subset of these users, we can consider the business analysts who may be evaluating the solution.  
+
+* Technical End Users - These are users with technical background, you can consider as these data scientists, and data engineers. They work mostly in the ingestion and analysis. 
+
+* System Administrators (operations) - They are the responsible of setting up and maintaining an instance of magasin. They worry about 
