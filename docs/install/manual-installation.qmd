@@ -34,6 +34,7 @@ helm install dagster magasin/dagster --namespace magasin-dagster --create-namesp
 helm install drill magasin/drill --namespace magasin-drill --create-namespace
 helm install superset magasin/superset --namespace magasin-superset --create-namespace
 helm install daskhub magasin/daskhub --namespace magasin-daskhub --create-namespace
+helm install operator magasin/operator --namespace magasin-operator --create-namespace
 ```
 
 
