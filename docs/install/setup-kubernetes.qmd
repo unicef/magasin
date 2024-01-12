@@ -23,7 +23,7 @@ In case you do not have a Kubernetes cluster, another easy way to set it up is t
 
 Once installed. In **Settings / Kubernetes **, enable Kubernetes. It will automatically install 
 
-![Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes ](./images/install-enable-kubernetes-docker-desktop.png)
+![Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes ](../images/install-enable-kubernetes-docker-desktop.png)
 
 Lastly, on a command line, create the new cluster and use it:
 
@@ -49,8 +49,9 @@ kube-system       Active   49m
 ```
 
 More information: 
-  * https://docs.docker.com/desktop/kubernetes/
-  * https://birthday.play-with-docker.com/kubernetes-docker-desktop/
+
+  * [https://docs.docker.com/desktop/kubernetes/](https://docs.docker.com/desktop/kubernetes/)
+  * [https://birthday.play-with-docker.com/kubernetes-docker-desktop/](https://birthday.play-with-docker.com/kubernetes-docker-desktop/)
 
 
 

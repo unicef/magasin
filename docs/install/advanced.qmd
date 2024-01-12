@@ -157,3 +157,6 @@ install-magasin.sh -r magasin-prd -f ./prd
 ```
 
 Thanks to the concept of realms, you can have both instances even in the same cluster.
+
+
+{{< include _next_steps.qmd >}}

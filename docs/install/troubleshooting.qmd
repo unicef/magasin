@@ -34,3 +34,84 @@ In case that you run `kubectl cluster-info` and it is not pointing to the kubern
     kubectl config use-context magasin-dev
     ```
 
+## Afte installation a container is not in `Complete` or `Running` status.
+
+After a few minutes finishing the installation all the containers (pods) of the `magasin-*` namespaces should be in `Complete` or `Running` status. If there is any issue these may have another status.
+
+You can check the status by running
+
+```
+kubectl get pods --all-namespaces
+```
+
+Let's see an example:
+
+```sh
+NAMESPACE          NAME                                                              READY   STATUS      RESTARTS        AGE
+...
+...
+magasin-drill      drillbit-0                                                        0/1     Running     15 (102s ago)   102m
+magasin-drill      drillbit-1                                                        0/1     Pending     0               102m
+magasin-drill      zk-0                                                              1/1     Running     0               102m
+
+```
+
+In the case above we see that the `drillbit-*` are having issues. One is Running but had many restarts and the other is in `Pending` status. To inspect what's going on you can run
+
+```sh
+kubectl describe pod drillbit-1 --namespace magasin-drill
+```
+
+```sh
+Name:             drillbit-0
+Namespace:        magasin-drill
+Priority:         0
+Service Account:  drill-sa
+Node:             docker-desktop/192.168.65.3
+Start Time:       Fri, 12 Jan 2024 15:50:47 +0300
+Labels:           app=drill-app
+                  apps.kubernetes.io/pod-index=0
+                  controller-revision-hash=drillbit-b668897d5
+                  statefulset.kubernetes.io/pod-name=drillbit-0
+Annotations:      <none>
+Status:           Running
+IP:               10.1.0.106
+IPs:
+  IP:           10.1.0.106
+Controlled By:  StatefulSet/drillbit
+
+...
+...
+
+Events:
+  Type     Reason     Age                  From     Message
+  ----     ------     ----                 ----     -------
+  Normal   Pulled     41m (x3 over 54m)    kubelet  (combined from similar events): Successfully pulled image "merlos/drill:1.21.1-deb" in 28.915s (28.915s including waiting)
+  Warning  Unhealthy  26m (x135 over 99m)  kubelet  Readiness probe failed: Running drill-env.sh...
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+User=drill
+/opt/drill/drillbit.pid file is present but drillbit is not running.
+[WARN] Only DRILLBIT_MAX_PROC_MEM is defined. Auto-configuring for Heap & Direct memory
+[INFO] Attempting to start up Drill with the following settings
+  DRILL_HEAP=1G
+  DRILL_MAX_DIRECT_MEMORY=3G
+  DRILLBIT_CODE_CACHE_SIZE=768m
+[WARN] Total Memory Allocation for Drillbit (4GB) exceeds available free memory (1GB)
+[WARN] Drillbit will start up, but can potentially crash due to oversubscribing of system memory.
+  Warning  Unhealthy  70s (x131 over 99m)  kubelet  Liveness probe failed: Running drill-env.sh...
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+User=drill
+/opt/drill/drillbit.pid file is present but drillbit is not running.
+[WARN] Only DRILLBIT_MAX_PROC_MEM is defined. Auto-configuring for Heap & Direct memory
+[INFO] Attempting to start up Drill with the following settings
+  DRILL_HEAP=1G
+  DRILL_MAX_DIRECT_MEMORY=3G
+  DRILLBIT_CODE_CACHE_SIZE=768m
+[WARN] Total Memory Allocation for Drillbit (4GB) exceeds available free memory (1GB)
+[WARN] Drillbit will start up, but can potentially crash due to oversubscribing of system memory.
+```
+
+As we can see, there is an issue with lack of memory. In this case we need to run the pod in a cluster with nodes with more RAM.
+
+
+

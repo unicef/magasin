@@ -12,7 +12,7 @@ Magasin uses Kubernetes in combination with [Helm](https://helm.sh/), a package 
 Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.
 
 
-#  Deploy magasin using the installer (beta)
+##  Deploy magasin using the installer (beta)
 
 Once you have access to a kubernetes cluster, you can use the installer to setup magasin in that cluster. 
 
@@ -47,12 +47,4 @@ The installer is in beta, in case it fails check the [troubleshooting section](t
   Please use the [manual installation](manual-installation.qmd)
 
 
-# What's next?
-
-Congratulations, now you have a magasin instance running on your kubernetes cluster. This is just the beggining of an interesting journey. Now you can:
-
-* [Take a look at magasin tutorial](../get-started/tutorial-overview.qmd) and start using magasin
-
-* [Learn about magasin's architecture](../architecture.qmd). Understand the different components and the underlying technology.
-
-* [Learn more about advanced installation](./advanced.qmd). The steps showed in this page were the standard ways of installing magasin, but you can customize much more your setup.
+{{< include _next_steps.qmd >}}

@@ -1,0 +1,9 @@
+## What's next?
+
+Congratulations, now you have a magasin instance running on your kubernetes cluster. This is just the beggining of an interesting journey. Now you can:
+
+* [Take a look at magasin tutorial](../get-started/tutorial-overview.qmd) and start using magasin
+
+* [Learn about magasin's architecture](../architecture.qmd). Understand the different components and the underlying technology.
+
+* [Learn more about advanced installation](./advanced.qmd). The steps showed in this page were the standard ways of installing magasin, but you can customize much more your setup.

@@ -21,7 +21,7 @@ In case you do not have a Kubernetes cluster, an way to set it up is through [Do
 
 Once installed. In **Settings / Kubernetes **, enable Kubernetes. It will automatically install everything required, including the command line utility `kubectl`.
 
-![Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes ](./images/install-enable-kubernetes-docker-desktop.png)
+![Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes ](../images/install-enable-kubernetes-docker-desktop.png)
 
 Lastly, on a command line, create the new cluster and use it:
 
@@ -46,7 +46,7 @@ kube-public       Active   49m
 kube-system       Active   49m
 ```
 
-You can also [install minikube](install.qmd#option-2-local-cluster-using-minikube)
+You can also [install minikube](../install/setup-kubernetes.qmd#option-2-local-cluster-using-minikube)
 
 
 # Installation
@@ -57,7 +57,7 @@ Magasin includes an installer script that sets up all the necessary dependencies
 :::{.callout-warning}
 It is highly recommended to [take a look at the install script](https://unicef.github.io/magasin/install-magasin.sh) before running it will install several components on your system.
 
-You should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you're not confortable with this approach, proceed with the [manual installation](manual-installation.qmd).
+You should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you're not confortable with this approach, proceed with the [manual installation](../install/manual-installation.qmd).
 :::
 
 For **GNU/Linux Debian like**
@@ -72,9 +72,9 @@ For **MacOS devices**
   curl -X https://unicef.github.io/magasin/install-magasin.sh | zsh
   ```
 
-For **Windows** check the documentation for [manual installation](install.qmd#manual-installation)
+For **Windows** check the documentation for [manual installation](../install/manual-installation.qmd)
 
-For **other systems** please check the documentation for [manual installation](install.qmd#manual-installation)
+For **other systems** please check the documentation for [manual installation](../install/manual-installation.qmd)
 
 Note that the installation may take some minutes depending on the internet connection speed of the machines running the cluster (mainly because of the container images).
 
@@ -129,5 +129,5 @@ Note that the default installation is fine for testing purposes, but for a produ
 
 Ok, now you have a fully running instance of magasin in your kubernetes cluster, so what now:
 
-* [Start using magasin]
-* [Magasin architecture](../architecture.qmd). Understand how magasin works.
+* [Tutorial: Start using magasin](../get-started/tutorial-overview.qmd)
+* [Magasin compoents and architecture](../architecture.qmd). Learn more about the the different components that come out of the box with magasin.
