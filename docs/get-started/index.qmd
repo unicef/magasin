@@ -85,35 +85,38 @@ After running the setup you can check that all the pods in the magasin-* namespa
 ```sh
 kubectl get pods --all-namespaces 
 NAMESPACE          NAME                                                              READY   STATUS      RESTARTS        AGE
-kube-system        coredns-5dd5756b68-fj7bj                                          1/1     Running     0               7d
-kube-system        coredns-5dd5756b68-qbjf4                                          1/1     Running     0               7d
-kube-system        etcd-docker-desktop                                               1/1     Running     0               7d
-kube-system        kube-apiserver-docker-desktop                                     1/1     Running     0               7d
-kube-system        kube-controller-manager-docker-desktop                            1/1     Running     0               7d
-kube-system        kube-proxy-n8wwq                                                  1/1     Running     0               7d
-kube-system        kube-scheduler-docker-desktop                                     1/1     Running     0               7d
-kube-system        storage-provisioner                                               1/1     Running     0               7d
-kube-system        vpnkit-controller                                                 1/1     Running     0               7d
-magasin-dagster    dagster-daemon-6f4fcbd697-z46xc                                   1/1     Running     0               6m24s
-magasin-dagster    dagster-dagster-user-deployments-k8s-example-user-code-1-5qjrfh   1/1     Running     0               6m24s
-magasin-dagster    dagster-dagster-webserver-788ddf4cf4-v8ndn                        1/1     Running     0               6m24s
-magasin-dagster    dagster-postgresql-0                                              1/1     Running     0               6m24s
-magasin-daskhub    api-daskhub-dask-gateway-6b6b84f47f-28pns                         1/1     Running     0               6m27s
-magasin-daskhub    continuous-image-puller-9rv4q                                     1/1     Running     0               6m27s
-magasin-daskhub    controller-daskhub-dask-gateway-c4d77dff9-rhgst                   1/1     Running     0               6m27s
-magasin-daskhub    hub-6956d694bb-kl485                                              1/1     Running     0               6m27s
-magasin-daskhub    proxy-666fbb4959-v99dj                                            1/1     Running     0               6m27s
-magasin-daskhub    traefik-daskhub-dask-gateway-74965cbfbb-92m5f                     1/1     Running     0               6m27s
-magasin-daskhub    user-scheduler-9b694f7d5-qvq4k                                    1/1     Running     0               6m27s
-magasin-daskhub    user-scheduler-9b694f7d5-vbk69                                    1/1     Running     0               6m27s
-magasin-drill      drillbit-0                                                        1/1     Running     1 (31s ago)     6m33s
-magasin-drill      drillbit-1                                                        1/1     Running     0               6m33s
-magasin-drill      zk-0                                                              1/1     Running     0               6m33s
-magasin-superset   superset-7c88fcc74f-kjbw9                                         1/1     Running     0               6m23s
-magasin-superset   superset-init-db-q8tc8                                            0/1     Completed   0               6m23s
-magasin-superset   superset-postgresql-0                                             1/1     Running     0               6m23s
-magasin-superset   superset-redis-master-0                                           1/1     Running     0               6m23s
-magasin-superset   superset-worker-df94c5947-lsvsl                                   1/1     Running     1 (2m44s ago)   6m23s
+kube-system        coredns-5dd5756b68-fj7bj                                          1/1     Running     0               30d
+kube-system        coredns-5dd5756b68-qbjf4                                          1/1     Running     0               30d
+kube-system        etcd-docker-desktop                                               1/1     Running     0               30d
+kube-system        kube-apiserver-docker-desktop                                     1/1     Running     1 (16d ago)     30d
+kube-system        kube-controller-manager-docker-desktop                            1/1     Running     0               30d
+kube-system        kube-proxy-n8wwq                                                  1/1     Running     0               30d
+kube-system        kube-scheduler-docker-desktop                                     1/1     Running     5               30d
+kube-system        storage-provisioner                                               1/1     Running     5 (16d ago)     30d
+kube-system        vpnkit-controller                                                 1/1     Running     0               30d
+magasin-dagster    dagster-daemon-5cbb759cbd-gzczz                                   1/1     Running     0               31m
+magasin-dagster    dagster-dagster-user-deployments-k8s-example-user-code-1-8qcjnt   1/1     Running     0               31m
+magasin-dagster    dagster-dagster-webserver-755f9bc489-w9jdw                        1/1     Running     0               31m
+magasin-dagster    dagster-postgresql-0                                              1/1     Running     0               31m
+magasin-daskhub    api-daskhub-dask-gateway-6b7bf7ff6b-qqnjz                         1/1     Running     0               31m
+magasin-daskhub    continuous-image-puller-jf6cd                                     1/1     Running     0               31m
+magasin-daskhub    controller-daskhub-dask-gateway-7f4d8b9475-bfzg6                  1/1     Running     0               31m
+magasin-daskhub    hub-6848dd9966-zxh7k                                              1/1     Running     0               31m
+magasin-daskhub    proxy-797fc4d885-rrx4t                                            1/1     Running     0               31m
+magasin-daskhub    traefik-daskhub-dask-gateway-6555db458-vp6xs                      1/1     Running     0               31m
+magasin-daskhub    user-scheduler-5d8967fc5f-bfjt9                                   1/1     Running     0               31m
+magasin-daskhub    user-scheduler-5d8967fc5f-tmn8r                                   1/1     Running     0               31m
+magasin-drill      drillbit-0                                                        0/1     Running     0               33m
+magasin-drill      drillbit-1                                                        0/1     Running     0               33m
+magasin-drill      zk-0                                                              1/1     Running     0               33m
+magasin-operator   console-654bf548c-5xf45                                           1/1     Running     0               30m
+magasin-operator   minio-operator-7496fbc5d9-j82ml                                   1/1     Running     0               30m
+magasin-operator   minio-operator-7496fbc5d9-znppq                                   1/1     Running     0               30m
+magasin-superset   superset-7c88fcc74f-lrjwk                                         1/1     Running     0               31m
+magasin-superset   superset-init-db-75rht                                            0/1     Completed   0               31m
+magasin-superset   superset-postgresql-0                                             1/1     Running     0               31m
+magasin-superset   superset-redis-master-0                                           1/1     Running     0               31m
+magasin-superset   superset-worker-df94c5947-mw6k7                                   1/1     Running     0               31m
 
 ```
 
