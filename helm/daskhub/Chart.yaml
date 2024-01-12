@@ -1,15 +1,15 @@
 apiVersion: v2
-appVersion: jh2.0.0-dg2023.1.1
+appVersion: jh3.2.1-dg2023.9.0
 dependencies:
 - import-values:
   - child: rbac
     parent: rbac
   name: jupyterhub
   repository: https://jupyterhub.github.io/helm-chart/
-  version: 2.0.0
+  version: 3.2.1
 - name: dask-gateway
   repository: https://helm.dask.org/
-  version: 2023.1.1
+  version: 2023.9.0
 description: Multi-user JupyterHub and Dask deployment.
 icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
 maintainers:
@@ -22,4 +22,4 @@ maintainers:
 - email: tom.w.augspurger@gmail.com
   name: Tom Augspurger
 name: daskhub
-version: 2023.1.0
+version: 2024.1.0
