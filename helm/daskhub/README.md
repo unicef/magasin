@@ -128,7 +128,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.hub.services.dask-gateway.display` |  | `false` |
 | `jupyterhub.hub.extraConfig.00-add-dask-gateway-values` |  | `"# 1. Sets `DASK_GATEWAY__PROXY_ADDRESS` in the singleuser environment.\n# 2. Adds the URL for the Dask Gateway JupyterHub service.\nimport os\n\n# These are set by jupyterhub.\nrelease_name = os.environ[\"HELM_RELEASE_NAME\"]\nrelease_namespace = os.environ[\"POD_NAMESPACE\"]\n\nif \"PROXY_HTTP_SERVICE_HOST\" in os.environ:\n    # https is enabled, we want to use the internal http service.\n    gateway_address = \"http://{}:{}/services/dask-gateway/\".format(\n        os.environ[\"PROXY_HTTP_SERVICE_HOST\"],\n        os.environ[\"PROXY_HTTP_SERVICE_PORT\"],\n    )\n    print(\"Setting DASK_GATEWAY__ADDRESS {} from HTTP service\".format(gateway_address))\nelse:\n    gateway_address = \"http://proxy-public/services/dask-gateway\"\n    print(\"Setting DASK_GATEWAY__ADDRESS {}\".format(gateway_address))\n\n# Internal address to connect to the Dask Gateway.\nc.KubeSpawner.environment.setdefault(\"DASK_GATEWAY__ADDRESS\", gateway_address)\n# Internal address for the Dask Gateway proxy.\nc.KubeSpawner.environment.setdefault(\"DASK_GATEWAY__PROXY_ADDRESS\", \"gateway://traefik-{}-dask-gateway.{}:80\".format(release_name, release_namespace))\n# Relative address for the dashboard link.\nc.KubeSpawner.environment.setdefault(\"DASK_GATEWAY__PUBLIC_ADDRESS\", \"/services/dask-gateway/\")\n# Use JupyterHub to authenticate with Dask Gateway.\nc.KubeSpawner.environment.setdefault(\"DASK_GATEWAY__AUTH__TYPE\", \"jupyterhub\")\n\n# Adds Dask Gateway as a JupyterHub service to make the gateway available at\n# {HUB_URL}/services/dask-gateway\nservice_url = \"http://traefik-{}-dask-gateway.{}\".format(release_name, release_namespace)\nfor service in c.JupyterHub.services:\n    if service[\"name\"] == \"dask-gateway\":\n        if not service.get(\"url\", None):\n            print(\"Adding dask-gateway service URL\")\n            service.setdefault(\"url\", service_url)\n        break\nelse:\n    print(\"dask-gateway service not found, this should not happen!\")\n"` |
 | `jupyterhub.singleuser.image.name` | Image to use for singleuser environment. Must include dask-gateway. | `"pangeo/base-notebook"` |
-| `jupyterhub.singleuser.image.tag` |  | `"2023.01.13"` |
+| `jupyterhub.singleuser.image.tag` |  | `"2024.01.03"` |
 | `jupyterhub.singleuser.defaultUrl` | Use jupyterlab by defualt. | `"/lab"` |
 | `dask-gateway.enabled` | Enabling dask-gateway will install Dask Gateway as a dependency. | `true` |
 | `dask-gateway.gateway.prefix` | Users connect to the Gateway through the JupyterHub service. | `"/services/dask-gateway"` |
@@ -137,6 +137,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `dask-kubernetes.enabled` |  | `false` |
 | `jupyterhub.fullnameOverride` |  | `""` |
 | `jupyterhub.nameOverride` |  | `null` |
+| `jupyterhub.enabled` |  | `null` |
 | `jupyterhub.custom` |  | `{}` |
 | `jupyterhub.imagePullSecret.create` |  | `false` |
 | `jupyterhub.imagePullSecret.automaticReferenceInjection` |  | `true` |
@@ -182,8 +183,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.hub.extraContainers` |  | `[]` |
 | `jupyterhub.hub.extraVolumes` |  | `[]` |
 | `jupyterhub.hub.extraVolumeMounts` |  | `[]` |
-| `jupyterhub.hub.image.name` |  | `"jupyterhub/k8s-hub"` |
-| `jupyterhub.hub.image.tag` |  | `"2.0.0"` |
+| `jupyterhub.hub.image.name` |  | `"quay.io/jupyterhub/k8s-hub"` |
+| `jupyterhub.hub.image.tag` |  | `"3.2.1"` |
 | `jupyterhub.hub.image.pullPolicy` |  | `null` |
 | `jupyterhub.hub.image.pullSecrets` |  | `[]` |
 | `jupyterhub.hub.resources` |  | `{}` |
@@ -201,6 +202,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.hub.networkPolicy.ingress` |  | `[]` |
 | `jupyterhub.hub.networkPolicy.egress` |  | `[]` |
 | `jupyterhub.hub.networkPolicy.egressAllowRules.cloudMetadataServer` |  | `true` |
+| `jupyterhub.hub.networkPolicy.egressAllowRules.dnsPortsCloudMetadataServer` |  | `true` |
+| `jupyterhub.hub.networkPolicy.egressAllowRules.dnsPortsKubeSystemNamespace` |  | `true` |
 | `jupyterhub.hub.networkPolicy.egressAllowRules.dnsPortsPrivateIPs` |  | `true` |
 | `jupyterhub.hub.networkPolicy.egressAllowRules.nonPrivateIPs` |  | `true` |
 | `jupyterhub.hub.networkPolicy.egressAllowRules.privateIPs` |  | `true` |
@@ -246,8 +249,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.proxy.chp.containerSecurityContext.runAsUser` | nobody user | `65534` |
 | `jupyterhub.proxy.chp.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.proxy.chp.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
-| `jupyterhub.proxy.chp.image.name` |  | `"jupyterhub/configurable-http-proxy"` |
-| `jupyterhub.proxy.chp.image.tag` | https://github.com/jupyterhub/configurable-http-proxy/releases | `"4.5.3"` |
+| `jupyterhub.proxy.chp.image.name` |  | `"quay.io/jupyterhub/configurable-http-proxy"` |
+| `jupyterhub.proxy.chp.image.tag` | https://github.com/jupyterhub/configurable-http-proxy/tags | `"4.6.1"` |
 | `jupyterhub.proxy.chp.image.pullPolicy` |  | `null` |
 | `jupyterhub.proxy.chp.image.pullSecrets` |  | `[]` |
 | `jupyterhub.proxy.chp.extraCommandLineFlags` |  | `[]` |
@@ -271,6 +274,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.proxy.chp.networkPolicy.ingress` |  | `[]` |
 | `jupyterhub.proxy.chp.networkPolicy.egress` |  | `[]` |
 | `jupyterhub.proxy.chp.networkPolicy.egressAllowRules.cloudMetadataServer` |  | `true` |
+| `jupyterhub.proxy.chp.networkPolicy.egressAllowRules.dnsPortsCloudMetadataServer` |  | `true` |
+| `jupyterhub.proxy.chp.networkPolicy.egressAllowRules.dnsPortsKubeSystemNamespace` |  | `true` |
 | `jupyterhub.proxy.chp.networkPolicy.egressAllowRules.dnsPortsPrivateIPs` |  | `true` |
 | `jupyterhub.proxy.chp.networkPolicy.egressAllowRules.nonPrivateIPs` |  | `true` |
 | `jupyterhub.proxy.chp.networkPolicy.egressAllowRules.privateIPs` |  | `true` |
@@ -285,7 +290,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.proxy.traefik.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.proxy.traefik.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
 | `jupyterhub.proxy.traefik.image.name` |  | `"traefik"` |
-| `jupyterhub.proxy.traefik.image.tag` | ref: https://hub.docker.com/_/traefik?tab=tags | `"v2.8.4"` |
+| `jupyterhub.proxy.traefik.image.tag` | ref: https://hub.docker.com/_/traefik?tab=tags | `"v2.10.5"` |
 | `jupyterhub.proxy.traefik.image.pullPolicy` |  | `null` |
 | `jupyterhub.proxy.traefik.image.pullSecrets` |  | `[]` |
 | `jupyterhub.proxy.traefik.hsts.includeSubdomains` |  | `false` |
@@ -306,6 +311,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.proxy.traefik.networkPolicy.ingress` |  | `[]` |
 | `jupyterhub.proxy.traefik.networkPolicy.egress` |  | `[]` |
 | `jupyterhub.proxy.traefik.networkPolicy.egressAllowRules.cloudMetadataServer` |  | `true` |
+| `jupyterhub.proxy.traefik.networkPolicy.egressAllowRules.dnsPortsCloudMetadataServer` |  | `true` |
+| `jupyterhub.proxy.traefik.networkPolicy.egressAllowRules.dnsPortsKubeSystemNamespace` |  | `true` |
 | `jupyterhub.proxy.traefik.networkPolicy.egressAllowRules.dnsPortsPrivateIPs` |  | `true` |
 | `jupyterhub.proxy.traefik.networkPolicy.egressAllowRules.nonPrivateIPs` |  | `true` |
 | `jupyterhub.proxy.traefik.networkPolicy.egressAllowRules.privateIPs` |  | `true` |
@@ -321,8 +328,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.proxy.secretSync.containerSecurityContext.runAsUser` | nobody user | `65534` |
 | `jupyterhub.proxy.secretSync.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.proxy.secretSync.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
-| `jupyterhub.proxy.secretSync.image.name` |  | `"jupyterhub/k8s-secret-sync"` |
-| `jupyterhub.proxy.secretSync.image.tag` |  | `"2.0.0"` |
+| `jupyterhub.proxy.secretSync.image.name` |  | `"quay.io/jupyterhub/k8s-secret-sync"` |
+| `jupyterhub.proxy.secretSync.image.tag` |  | `"3.2.1"` |
 | `jupyterhub.proxy.secretSync.image.pullPolicy` |  | `null` |
 | `jupyterhub.proxy.secretSync.image.pullSecrets` |  | `[]` |
 | `jupyterhub.proxy.secretSync.resources` |  | `{}` |
@@ -346,8 +353,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.singleuser.extraPodAffinity.preferred` |  | `[]` |
 | `jupyterhub.singleuser.extraPodAntiAffinity.required` |  | `[]` |
 | `jupyterhub.singleuser.extraPodAntiAffinity.preferred` |  | `[]` |
-| `jupyterhub.singleuser.networkTools.image.name` |  | `"jupyterhub/k8s-network-tools"` |
-| `jupyterhub.singleuser.networkTools.image.tag` |  | `"2.0.0"` |
+| `jupyterhub.singleuser.networkTools.image.name` |  | `"quay.io/jupyterhub/k8s-network-tools"` |
+| `jupyterhub.singleuser.networkTools.image.tag` |  | `"3.2.1"` |
 | `jupyterhub.singleuser.networkTools.image.pullPolicy` |  | `null` |
 | `jupyterhub.singleuser.networkTools.image.pullSecrets` |  | `[]` |
 | `jupyterhub.singleuser.networkTools.resources` |  | `{}` |
@@ -357,6 +364,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.singleuser.networkPolicy.ingress` |  | `[]` |
 | `jupyterhub.singleuser.networkPolicy.egress` |  | `[]` |
 | `jupyterhub.singleuser.networkPolicy.egressAllowRules.cloudMetadataServer` |  | `false` |
+| `jupyterhub.singleuser.networkPolicy.egressAllowRules.dnsPortsCloudMetadataServer` |  | `true` |
+| `jupyterhub.singleuser.networkPolicy.egressAllowRules.dnsPortsKubeSystemNamespace` |  | `true` |
 | `jupyterhub.singleuser.networkPolicy.egressAllowRules.dnsPortsPrivateIPs` |  | `true` |
 | `jupyterhub.singleuser.networkPolicy.egressAllowRules.nonPrivateIPs` |  | `true` |
 | `jupyterhub.singleuser.networkPolicy.egressAllowRules.privateIPs` |  | `false` |
@@ -408,8 +417,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.scheduling.userScheduler.containerSecurityContext.runAsUser` | nobody user | `65534` |
 | `jupyterhub.scheduling.userScheduler.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.scheduling.userScheduler.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
-| `jupyterhub.scheduling.userScheduler.image.name` |  | `"k8s.gcr.io/kube-scheduler"` |
-| `jupyterhub.scheduling.userScheduler.image.tag` | ref: https://github.com/kubernetes/website/blob/main/content/en/releases/patch-releases.md | `"v1.23.10"` |
+| `jupyterhub.scheduling.userScheduler.image.name` |  | `"registry.k8s.io/kube-scheduler"` |
+| `jupyterhub.scheduling.userScheduler.image.tag` | ref: https://github.com/kubernetes/kubernetes/tree/master/CHANGELOG | `"v1.26.11"` |
 | `jupyterhub.scheduling.userScheduler.image.pullPolicy` |  | `null` |
 | `jupyterhub.scheduling.userScheduler.image.pullSecrets` |  | `[]` |
 | `jupyterhub.scheduling.userScheduler.nodeSelector` |  | `{}` |
@@ -430,8 +439,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.scheduling.podPriority.imagePullerPriority` |  | `-5` |
 | `jupyterhub.scheduling.podPriority.userPlaceholderPriority` |  | `-10` |
 | `jupyterhub.scheduling.userPlaceholder.enabled` |  | `true` |
-| `jupyterhub.scheduling.userPlaceholder.image.name` |  | `"k8s.gcr.io/pause"` |
-| `jupyterhub.scheduling.userPlaceholder.image.tag` |  | `"3.8"` |
+| `jupyterhub.scheduling.userPlaceholder.image.name` |  | `"registry.k8s.io/pause"` |
+| `jupyterhub.scheduling.userPlaceholder.image.tag` |  | `"3.9"` |
 | `jupyterhub.scheduling.userPlaceholder.image.pullPolicy` |  | `null` |
 | `jupyterhub.scheduling.userPlaceholder.image.pullSecrets` |  | `[]` |
 | `jupyterhub.scheduling.userPlaceholder.revisionHistoryLimit` |  | `null` |
@@ -456,8 +465,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.prePuller.extraTolerations` |  | `[]` |
 | `jupyterhub.prePuller.hook.enabled` |  | `true` |
 | `jupyterhub.prePuller.hook.pullOnlyOnChanges` |  | `true` |
-| `jupyterhub.prePuller.hook.image.name` |  | `"jupyterhub/k8s-image-awaiter"` |
-| `jupyterhub.prePuller.hook.image.tag` |  | `"2.0.0"` |
+| `jupyterhub.prePuller.hook.image.name` |  | `"quay.io/jupyterhub/k8s-image-awaiter"` |
+| `jupyterhub.prePuller.hook.image.tag` |  | `"3.2.1"` |
 | `jupyterhub.prePuller.hook.image.pullPolicy` |  | `null` |
 | `jupyterhub.prePuller.hook.image.pullSecrets` |  | `[]` |
 | `jupyterhub.prePuller.hook.containerSecurityContext.runAsUser` | nobody user | `65534` |
@@ -476,8 +485,8 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `jupyterhub.prePuller.pause.containerSecurityContext.runAsUser` | nobody user | `65534` |
 | `jupyterhub.prePuller.pause.containerSecurityContext.runAsGroup` | nobody group | `65534` |
 | `jupyterhub.prePuller.pause.containerSecurityContext.allowPrivilegeEscalation` |  | `false` |
-| `jupyterhub.prePuller.pause.image.name` |  | `"k8s.gcr.io/pause"` |
-| `jupyterhub.prePuller.pause.image.tag` |  | `"3.8"` |
+| `jupyterhub.prePuller.pause.image.name` |  | `"registry.k8s.io/pause"` |
+| `jupyterhub.prePuller.pause.image.tag` |  | `"3.9"` |
 | `jupyterhub.prePuller.pause.image.pullPolicy` |  | `null` |
 | `jupyterhub.prePuller.pause.image.pullSecrets` |  | `[]` |
 | `jupyterhub.ingress.enabled` |  | `false` |
@@ -504,8 +513,9 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `dask-gateway.gateway.resources` |  | `{}` |
 | `dask-gateway.gateway.loglevel` |  | `"INFO"` |
 | `dask-gateway.gateway.image.name` |  | `"ghcr.io/dask/dask-gateway-server"` |
-| `dask-gateway.gateway.image.tag` |  | `"2023.1.1"` |
+| `dask-gateway.gateway.image.tag` |  | `"2023.9.0"` |
 | `dask-gateway.gateway.image.pullPolicy` |  | `"IfNotPresent"` |
+| `dask-gateway.gateway.env` |  | `[]` |
 | `dask-gateway.gateway.imagePullSecrets` |  | `[]` |
 | `dask-gateway.gateway.service.annotations` |  | `{}` |
 | `dask-gateway.gateway.auth.simple.password` |  | `null` |
@@ -531,7 +541,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `dask-gateway.gateway.tolerations` |  | `[]` |
 | `dask-gateway.gateway.extraConfig` |  | `{}` |
 | `dask-gateway.gateway.backend.image.name` |  | `"ghcr.io/dask/dask-gateway"` |
-| `dask-gateway.gateway.backend.image.tag` |  | `"2023.1.1"` |
+| `dask-gateway.gateway.backend.image.tag` |  | `"2023.9.0"` |
 | `dask-gateway.gateway.backend.image.pullPolicy` |  | `"IfNotPresent"` |
 | `dask-gateway.gateway.backend.imagePullSecrets` |  | `[]` |
 | `dask-gateway.gateway.backend.namespace` |  | `null` |
@@ -561,7 +571,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `dask-gateway.controller.k8sApiRateLimit` |  | `50` |
 | `dask-gateway.controller.k8sApiRateLimitBurst` |  | `100` |
 | `dask-gateway.controller.image.name` |  | `"ghcr.io/dask/dask-gateway-server"` |
-| `dask-gateway.controller.image.tag` |  | `"2023.1.1"` |
+| `dask-gateway.controller.image.tag` |  | `"2023.9.0"` |
 | `dask-gateway.controller.image.pullPolicy` |  | `"IfNotPresent"` |
 | `dask-gateway.controller.nodeSelector` |  | `{}` |
 | `dask-gateway.controller.affinity` |  | `{}` |
@@ -570,7 +580,7 @@ The following table lists the configurable parameters of the Daskhub chart and t
 | `dask-gateway.traefik.annotations` |  | `{}` |
 | `dask-gateway.traefik.resources` |  | `{}` |
 | `dask-gateway.traefik.image.name` |  | `"traefik"` |
-| `dask-gateway.traefik.image.tag` |  | `"2.9.4"` |
+| `dask-gateway.traefik.image.tag` |  | `"2.10.4"` |
 | `dask-gateway.traefik.image.pullPolicy` |  | `"IfNotPresent"` |
 | `dask-gateway.traefik.imagePullSecrets` |  | `[]` |
 | `dask-gateway.traefik.additionalArguments` |  | `[]` |

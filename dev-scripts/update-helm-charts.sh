@@ -51,22 +51,23 @@ helm_pull() {
 # Dagster
 #
 # To get the latest version number use the tag in the github repo
-# https://github.com/dagster-io/dagster/releases Example: 1.5.9
+# https://github.com/dagster-io/dagster/releases Example: 1.6.0
 helm_pull https://dagster-io.github.io/helm \
         dagster \
         dagster \
-        1.5.9   \
+        1.6.0   \
         $temp_charts          
+
 
 #
 # Daskhub
 #
 # To get the version number use the release tag in the repo
-# https://github.com/dask/helm-chart/tags. Example 2023.1.0
+# https://github.com/dask/helm-chart/tags. Example 2024.1.0
 helm_pull https://helm.dask.org/ \
         dask \
         daskhub \
-        2023.01.0 \
+        2024.1.0 \
         $temp_charts          
 
 #
@@ -80,6 +81,18 @@ helm_pull https://unicef.github.io/magasin-drill \
         0.6.1 \
         $temp_charts          
 
+
+#
+# MinIO
+#
+# To get the latest version number go to
+# https://operator.min.io/index.yaml
+# Search for the string "name: operator"
+helm_pull https://operator.min.io/ \
+        minio \
+        operator \
+        5.0.11   \
+        $temp_charts          
 
 #
 # Superset 
