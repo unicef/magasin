@@ -7,11 +7,12 @@ format: html
 
 Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a [kubernetes cluster](https://kubernetes.io).
 
+
 ## Setup a kubernetes cluster
 
-You need to have a kubernetes cluster in any [cloud provider](../install/setup-kubernetes.qmd#setup-a-cluster-in-a-major-cloud-provider) or, for testing purposes, you can set up a local kubernetes cluster in your own computer.
+To run magasin you need to have a kubernetes cluster in any [cloud provider](../install/setup-kubernetes.qmd#setup-a-cluster-in-a-major-cloud-provider) or, for testing purposes, you can set up a local kubernetes cluster in your own computer.
 
-For this getting started We are going to setup a kubernetes cluster through through [Docker Desktop](https://docs.docker.com/desktop/), but if you already have a cluster you can go directly to the [install magasin section](#install-magasin). 
+For this getting started, we are going to setup a kubernetes cluster through through [Docker Desktop](https://docs.docker.com/desktop/), but if you already have a cluster you can go directly to the [install magasin section](#install-magasin). 
 
 First install Docker Desktop. It is available for: 
 
@@ -55,7 +56,7 @@ Magasin includes an installer script that sets up all the necessary dependencies
 
 
 :::{.callout-warning}
-It is highly recommended to [take a look at the install script](https://unicef.github.io/magasin/install-magasin.sh) before running it will install several components on your system.
+It is highly recommended to [take a look at the installer script](https://unicef.github.io/magasin/install-magasin.sh) before running it as it will install several components on your system.
 
 You should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you're not confortable with this approach, proceed with the [manual installation](../install/manual-installation.qmd).
 :::
