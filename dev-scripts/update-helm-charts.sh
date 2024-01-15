@@ -94,6 +94,24 @@ helm_pull https://operator.min.io/ \
         5.0.11   \
         $temp_charts          
 
+# Same but with "name: tenant"
+helm_pull https://operator.min.io/ \
+        minio \
+        tenant \
+        5.0.11   \
+        $temp_charts          
+
+# Helm cahrt hack 
+# by default in the chart the storageClass is standard. 
+# However that seems to exist in Amazon cloud but not in 
+# By commenting the line in the values yaml, the chart uses the default StorageClass set in the 
+#
+# kubectl get storageclass
+# Raised issue: https://github.com/minio/minio/issues/18789
+# Modify values.yaml to comment storageClass: 
+
+sed -i.bak '/storageClassName/s/^/#/' $temp_charts/tenant/values.yaml && rm $temp_charts/tenant/values.yaml.bak
+
 #
 # Superset 
 #
