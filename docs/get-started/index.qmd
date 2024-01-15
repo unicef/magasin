@@ -7,19 +7,19 @@ format: html
 
 Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a [kubernetes cluster](https://kubernetes.io).
 
-
-# System pre-requisites
+## Setup a kubernetes cluster
 
 You need to have a kubernetes cluster in any [cloud provider](../install/setup-kubernetes.qmd#setup-a-cluster-in-a-major-cloud-provider) or, for testing purposes, you can set up a local kubernetes cluster in your own computer.
 
-## Local kubernetes cluster for testing
-In case you do not have a Kubernetes cluster, an way to set it up is through [Docker Desktop](https://docs.docker.com/desktop/). It is available for: 
+For this getting started We are going to setup a kubernetes cluster through through [Docker Desktop](https://docs.docker.com/desktop/), but if you already have a cluster you can go directly to the [install magasin section](#install-magasin). 
+
+First install Docker Desktop. It is available for: 
 
 * [GNU/Linux](https://docs.docker.com/desktop/install/linux-install/)
 * [Mac OS X](https://docs.docker.com/desktop/install/mac-install/)
 * [Windows](https://docs.docker.com/desktop/install/windows-install/)
 
-Once installed. In **Settings / Kubernetes **, enable Kubernetes. It will automatically install everything required, including the command line utility `kubectl`.
+Once installed. Go to **Settings / Kubernetes **, and enable Kubernetes. It will automatically install everything required, including the command line utility `kubectl`.
 
 ![Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes ](../images/install-enable-kubernetes-docker-desktop.png)
 
