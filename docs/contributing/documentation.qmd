@@ -1,0 +1,30 @@
+---
+title: Documenting magasin
+description-meta: Our phylosofy on what we document and how we document it.
+---
+
+## Documentation policy
+
+magasin is based on lots of underlying technologies such as docker, kubernetes, helm and comprises several components which are mature and complex products by themselves, not to mention that all these technologies and components generally have a very comprehensive documentation. 
+
+Given this instead of duplicating all the existing documentation, the goal of magasin's documentation is to provide practical and task based, tutorial or step by step guidance in the concrete context of magasin. 
+
+The documentation should cover the needs of the following users in mind:
+
+* Non-technical End Users (business users) - These are users that do not have a lot of technical background. They are mostly interested in the visualization part, how to use the business intelligence dashboard, and the potential use cases of magasin applied to their business.  
+    
+    As a subset of these users, we can consider the business analysts who may be evaluating the solution.  
+
+* Technical End Users - These are users with technical background, you can consider as these data scientists, and data engineers. They work mostly in the ingestion and analysis. 
+
+* System Administrators (operations) - They are the responsible of setting up and maintaining an instance of magasin. They worry about 
+
+## Documentation of our own code 
+
+In order to make magasin much easier to use, we are developing custom a set of utilities, scripts and applications that work as a glue between components or that act as accelerators of common operations (such as backing up, upgrading, etc...)
+
+* It is a must to document the source code including examples of usage.
+
+* There must be end user documentation that explains how to use these utilities.
+
+* For those utilities and scripts that automate common processes (for example, backing up the database of a component), there shall be also documentation on the manual process. This is because each magasin component may be setup in many different ways, by providing the manual steps the user will have more control in case the assumed setup by the utility is not compatible with his environment.

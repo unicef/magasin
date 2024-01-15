@@ -1,9 +1,9 @@
 ---
-title: "Step 1: Initial analysis"
+title: "Step 1: Exploratory analysis"
 description-meta: ""
 ---
 
-This is the first out of the three steps of the magasin tutorial.
+This is the first out of the three steps of the magasin tutorial. Generally, when you are analyzing data, you may want to learn about the data itself
 
 
 # Run jupyter notebooks.

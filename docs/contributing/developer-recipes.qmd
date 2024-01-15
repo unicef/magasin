@@ -1,7 +1,8 @@
 ---
-title: "Development"
+title: "Developer recipes"
 description-meta: "How to work when you're developing anything in magasin"
 ---
+
 Some recipies that will help you to set things up when. This content is specially focused on the common tasks of magasin contributors and maintainers.
 
 

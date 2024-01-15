@@ -58,7 +58,7 @@ website:
         contents:
           - file: get-started/index.qmd 
           - file: get-started/tutorial-overview.qmd
-          - file: get-started/initial-analysis.qmd
+          - file: get-started/exploratory-analysis.qmd
           - file: get-started/automate-data-ingestion.qmd
           - file: get-started/create-dashboard.qmd
       - section: "Install"
@@ -90,12 +90,11 @@ website:
 
       - section: "Contributing"
         contents:
-          - text: "Contributing"
-            file: contributing.qmd
-          - file: development.qmd
-
-          - text: "Repositories"
-            file: repositories.qmd
+          - file: contributing/index.qmd
+          - file: contributing/repository-workflows.qmd
+          - file: contributing/documentation.qmd
+          - file: contributing/developer-recipes.qmd
+          - file: contributing/repositories.qmd
   page-footer: |
     [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) | Docs are licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) | [Privacy policy](/privacy.qmd) 
     [![](/images/unicef-logo.png){fig-alt="UNICEF, for every child"}](https://www.unicef.org)
