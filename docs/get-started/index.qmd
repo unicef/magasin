@@ -46,10 +46,10 @@ kube-public       Active   49m
 kube-system       Active   49m
 ```
 
-You can also [install minikube](../install/setup-kubernetes.qmd#option-2-local-cluster-using-minikube)
+You can also [install minikube](../install/setup-kubernetes.qmd#option-2-local-cluster-using-minikube).
 
 
-# Installation
+## Install magasin
 
 Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.
 
