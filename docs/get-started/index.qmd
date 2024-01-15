@@ -120,9 +120,11 @@ magasin-superset   superset-worker-df94c5947-mw6k7                              
 
 ```
 
+If you have any issue, check the [troubleshooting section](../install/troubleshooting.qmd)
 
-:::{.callout-info}
-Note that the default installation is fine for testing purposes, but for a production environment you should follow the [production deployment guides](../deployment.qmd)
+
+:::{.callout-important}
+The default installation is fine for testing purposes, but for a production environment you should follow the [production deployment guides](../deployment.qmd)
 :::
 
 ## Next steps
