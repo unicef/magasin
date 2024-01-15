@@ -4,6 +4,31 @@ title: "Step 2: Automate data ingestion"
 
 Now let's automate our jupter notebook.
 
-1. Create a project
 
-2. 
+# Setup our MinIO account.
+
+
+kubectl -n minio-operator  get secret console-sa-secret -o jsonpath="{.data.token}" | base64 --decode
+
+
+kubectl --namespace magasin-operator port-forward svc/console 9090:9090
+
+```
+export DAGSTER_WEBSERVER_POD_NAME=$(kubectl get pods --namespace magasin-dagster -l "app.kubernetes.io/name=dagster,app.kubernetes.io/instance=dagster,component=dagster-webserver" -o jsonpath="{.items[0].metadata.name}")
+echo "Visit http://127.0.0.1:8080 to open the Dagster UI"
+kubectl --namespace magasin-dagster port-forward $DAGSTER_WEBSERVER_POD_NAME 8080:80
+```
+
+```
+kubectl port-forward svc/console -n magasin-operator 9001:9001
+```
+
+To connect to the myminio tenant if it doesn't have a service exposed, you can port-forward to it by running:
+
+  kubectl --namespace magasin-tenant port-forward svc/myminio-console 9443:9443
+
+  Then visit the MinIO Console at https://127.0.0.1:9443
+
+http://localhost:9443 
+
+myminio | minio123

@@ -530,6 +530,7 @@ install_chart daskhub
 install_chart dagster
 install_chart superset
 install_chart operator
+install_chart tenant
 
 echo "---------------------------------------------------"
 echo_magasin
