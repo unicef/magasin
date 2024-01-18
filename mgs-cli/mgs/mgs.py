@@ -21,7 +21,8 @@ def cli(ctx, verbose):
     """magasin client is the glue between magasin components, it makes easier common tasks"""
     ctx.ensure_object(dict)
 
-
+# TODO add this as dynamically
+    
 from mgs.mgs_dagster import dagster
 cli.add_command(dagster)
 
