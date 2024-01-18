@@ -31,5 +31,8 @@ cli.add_command(minio)
 from mgs.mgs_superset import superset
 cli.add_command(superset)
 
+from mgs.mgs_daskhub import daskhub
+cli.add_command(daskhub)
+
 if __name__ == "__main__":
     cli()
