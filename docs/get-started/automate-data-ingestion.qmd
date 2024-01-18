@@ -2,16 +2,38 @@
 title: "Step 2: Automate data ingestion"
 ---
 
-Now let's automate our jupter notebook.
+Now let's automate our jupyter notebook.
 
 
-# Setup our MinIO account.
+# Setup our storage in MinIO
+
+The first thing we need to do is to setup where we are going to store our data. Till now, we've been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets.
+
+Magasin includes MinIO to provide this function.
 
 
-kubectl -n minio-operator  get secret console-sa-secret -o jsonpath="{.data.token}" | base64 --decode
 
 
-kubectl --namespace magasin-operator port-forward svc/console 9090:9090
+## On the UI
+
+```sh
+  kubectl --namespace magasin-tenant port-forward svc/myminio-console 9443:9443
+```
+
+Then visit the MinIO Console at https://127.0.0.1:9443 (note the https).
+
+Most probably a warning will be displayed in your browser, you can continue browsing securely, this is because minio uses an self-signed certificate encrypted connection which is not recognized by your browser. 
+
+In the login screen use `myminio` and `minio123` as user and password respectively.
+
+![MinIO login page](../images/minio-tenant-login.png)
+
+
+ kubectl get secret myminio-env-configuration -o jsonpath='{.data.config\.env}' --namespace magasin-tenant  | base64 --decode
+
+
+
+#  Dagster 
 
 ```
 export DAGSTER_WEBSERVER_POD_NAME=$(kubectl get pods --namespace magasin-dagster -l "app.kubernetes.io/name=dagster,app.kubernetes.io/instance=dagster,component=dagster-webserver" -o jsonpath="{.items[0].metadata.name}")
@@ -19,16 +41,7 @@ echo "Visit http://127.0.0.1:8080 to open the Dagster UI"
 kubectl --namespace magasin-dagster port-forward $DAGSTER_WEBSERVER_POD_NAME 8080:80
 ```
 
-```
-kubectl port-forward svc/console -n magasin-operator 9001:9001
-```
 
-To connect to the myminio tenant if it doesn't have a service exposed, you can port-forward to it by running:
 
-  kubectl --namespace magasin-tenant port-forward svc/myminio-console 9443:9443
 
-  Then visit the MinIO Console at https://127.0.0.1:9443
 
-http://localhost:9443 
-
-myminio | minio123
