@@ -256,6 +256,7 @@ function check_linux_requirements_status {
   echo_info "** magasin installer for a GNU/Linux system (Linux)"
   command_exists "kubectl"
   command_exists "helm" 
+  command_exists "mc"
   # only check if any of the previous does not exist
   if [[ "$command_missing" == true ]]; then 
     command_exists "apt-get"  # debian like package installer
@@ -268,6 +269,7 @@ function check_macos_requirements_status {
   command_exists "kubectl" 
   command_exists "helm" 
   command_exists "pip3"
+  command_exists "mc"
 
   if [[ "$command_missing" == true ]]; then
     command_exists "brew" 
@@ -369,6 +371,17 @@ if [[ "$command_missing" == true ]]; then
         sudo apt-get install python3 python3-pip --yes
     fi
 
+    if [ "${install_status["mc"]}" == "not installed" ]; then
+      echo_info "Installing mc..."
+      curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+        --create-dirs \
+        -o $HOME/.mgs/bin/mc
+
+      chmod +x $HOME/.mgs/bin/mc
+      export PATH=$PATH:$HOME/.mgs/bin/
+    fi
+ 
+
   elif [[ $PLATFORM == $MACOS ]]; then
     if [[ "$AUTO_INSTALL" == false ]]; then
       # If not auto install Prompt for installation if any tool is missing and -y flag is not provided
@@ -387,7 +400,7 @@ if [[ "$command_missing" == true ]]; then
       echo_info "Installing brew..."
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
-    brew install kubectl helm python
+    brew install kubectl helm python minio/stable/mc
   else 
     # this probably will never be reached
     echo_error "System not supported ($PLATFORM)."
@@ -423,6 +436,18 @@ if ! helm version &> /dev/null; then
 else 
   echo_success "helm is working"
 fi
+
+# Verify helm functionality
+if ! mc --version &> /dev/null; then
+  echo_error "The mc command ($(command -v "mc")) is not working properly."
+  echo_error "Installation documentation:"
+  echo_error "          https://min.io/docs/minio/linux/reference/minio-mc.html#install-mc"
+  not_working=true
+
+else 
+  echo_success "helm is working"
+fi
+
 
 if [ "$not_working" = true ]; then
   echo_error "Some of the commands are not working."
