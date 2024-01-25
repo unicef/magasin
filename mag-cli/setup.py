@@ -1,11 +1,11 @@
 
 from setuptools import setup, find_packages
-from mgs import version
+from mag import version
 # Base from
 # https://click.palletsprojects.com/en/8.1.x/setuptools/
 
 setup(
-    name='mgs',
+    name='mag',
     version=version.get_version(),
     packages=find_packages(),
     install_requires=[
@@ -20,7 +20,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'mgs = mgs.mgs:cli',
+            'mag = mag.mag:cli',
         ],
     },
 )

@@ -1,5 +1,5 @@
 import pytest
-from mgs.mgs.mgs_core.ports import validate_ports, split_ports
+from mag.mag.mag_core.ports import validate_ports, split_ports
 
 def test_validate_ports_valid():
     assert validate_ports("8080:9090") is True

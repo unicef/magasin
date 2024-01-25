@@ -1,5 +1,5 @@
 import pytest
-from mgs.mgs_core.realm import split_realm
+from mag.mag_core.realm import split_realm
 
 def test_split_realm_no_dash():
     realm = "example"

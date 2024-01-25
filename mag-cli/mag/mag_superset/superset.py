@@ -1,5 +1,5 @@
 import click
-from mgs.mgs_core import options, get_namespace, launch_ui
+from mag.mag_core import options, get_namespace, launch_ui
 
 COMPONENT='superset'
 

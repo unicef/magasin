@@ -2,7 +2,7 @@ import click
 import subprocess
 import signal
 
-from mgs.mgs_core import options, launch_ui, forward_port, generate_random_string
+from mag.mag_core import options, launch_ui, forward_port, generate_random_string
 
 from . import minio_options
 from . import mc
@@ -89,7 +89,7 @@ def bucket(realm, tenant, ports, bucket_name):
   if not mc.check_mc_admin_info(tenant):
     # TODO This needs to be removed if bucket is created with python library
     click.echo(f"minio tenant configuration alias '{tenant}' not set. Try running:", err=True)
-    click.echo(f"      mgs minio api; mc alias set {tenant} https://localhost:9000 <accesskey/user> <secretkey/password> --insecure")
+    click.echo(f"      mag minio api; mc alias set {tenant} https://localhost:9000 <accesskey/user> <secretkey/password> --insecure")
     exit(-1)
   else: 
     click.echo("tenant alias setup")
@@ -123,7 +123,7 @@ def user(realm, tenant, ports, accesskey, secretkey):
   if not mc.check_mc_admin_info(tenant):
     # TODO This needs to be removed if bucket is created with python library
     click.echo(f"minio tenant configuration alias '{tenant}' not set. Try running:", err=True)
-    click.echo(f"      mgs minio api; mc alias set {tenant} https://localhost:9000 <accesskey/user> <secretkey/password> --insecure")
+    click.echo(f"      mag minio api; mc alias set {tenant} https://localhost:9000 <accesskey/user> <secretkey/password> --insecure")
     exit(-1)
   else: 
      click.echo(f"minio tenant ok")
@@ -138,7 +138,7 @@ def user(realm, tenant, ports, accesskey, secretkey):
     subprocess.run(mc_command, shell=True)
     click.echo("")
     click.echo(f"Created\n    user/accesskey: {accesskey}\n    password/secretkey: {secretkey}")
-    click.echo(f"\nNote: you still need to assign permissions/policies to the user. You can do it with the UI: `mgs minio ui`")
+    click.echo(f"\nNote: you still need to assign permissions/policies to the user. You can do it with the UI: `mag minio ui`")
     click.echo("")
   except Exception as e:
     print('exception', e)

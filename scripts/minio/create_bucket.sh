@@ -137,7 +137,7 @@ echo "\n\nCreating the group 'drill' that will have read only permissions to the
 echo "\n\nAdding readonly permission to drill group"
 ./mc.sh "admin policy set minio readonly group=drill"
 
-#TODO
+# TODO
 # Assign policies to the magasin user
 #
 # https://min.io/docs/minio/linux/administration/identity-access-management/policy-based-access-control.html#minio-policy

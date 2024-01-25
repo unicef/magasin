@@ -1,5 +1,5 @@
 import click
-from mgs.mgs_core import options, get_namespace
+from mag.mag_core import options, get_namespace
 
 @click.command
 @options.realm

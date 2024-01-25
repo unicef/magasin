@@ -375,10 +375,10 @@ if [[ "$command_missing" == true ]]; then
       echo_info "Installing mc..."
       curl https://dl.min.io/client/mc/release/linux-amd64/mc \
         --create-dirs \
-        -o $HOME/.mgs/bin/mc
+        -o $HOME/.mag/bin/mc
 
-      chmod +x $HOME/.mgs/bin/mc
-      export PATH=$PATH:$HOME/.mgs/bin/
+      chmod +x $HOME/.mag/bin/mc
+      export PATH=$PATH:$HOME/.mag/bin/
     fi
  
 

@@ -1,16 +1,16 @@
-# Magasin Command Line Interface (mgs)
+# Magasin Command Line Interface (mag)
 
 Command line interface client that helps to manage the different modules.
 
 ## Install
 
 ```sh
-pip install mgs
+pip install mag
 ```
 
 ## Usage
 ```
-mgs dagster
+mag dagster
 ```
 
 
@@ -22,7 +22,7 @@ git clone https://github.com/unicef/magasin
 ```
 Create and activate the virtual environment
 ```sh
-cd mgasin/mgs-cli
+cd magasin/mag-cli
 python -m venv venv
 source venv/bin/activate
 ```

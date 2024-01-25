@@ -1,7 +1,7 @@
 import click
 
-from .mgs_core.realm import split_realm
-import mgs.version as version
+from .mag_core.realm import split_realm
+import mag.version as version
 
 
 
@@ -23,16 +23,16 @@ def cli(ctx, verbose):
 
 # TODO add this as dynamically
     
-from mgs.mgs_dagster import dagster
+from mag.mag_dagster import dagster
 cli.add_command(dagster)
 
-from mgs.mgs_minio import minio
+from mag.mag_minio import minio
 cli.add_command(minio)
 
-from mgs.mgs_superset import superset
+from mag.mag_superset import superset
 cli.add_command(superset)
 
-from mgs.mgs_daskhub import daskhub
+from mag.mag_daskhub import daskhub
 cli.add_command(daskhub)
 
 if __name__ == "__main__":
