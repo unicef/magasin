@@ -8,12 +8,6 @@ This is the first out of the three steps of the magasin tutorial. Generally, whe
 
 # Run jupyter notebooks.
 
-1. Download the jupyter-notebook.
-
-[Download tutorial jupyter notebook](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb){.btn-action-primary .btn-action .btn .btn-outline-primary  role="button"}.
-
-The notebook is a file called [dpg-insights.ipynb](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb). We will use it later.
-
 2. Launch Jupter Hub webpage on our cluster. 
 
     Run the command: 
@@ -36,15 +30,139 @@ The notebook is a file called [dpg-insights.ipynb](https://github.com/unicef/mag
 
     This will display a login page
 
-     ![Jupyterhub login](../images/jupyterhub-login.png)
+     ![Jupyterhub login](../images/get-started/jupyterhub-login.png)
 
 :::{.callout-warning}
-Note that (1) the default installation does not use an encrypted connection between the client and the server and (2) anyone can launch the jupyter hub.
+Note that (1) the default installation does not use an encrypted connection between the client and the server and (2) anyone can launch the jupyter hub by accessing the public ip address of the kubernetes cluster.
 :::
 
 4. If you followed the default installation, just enter any username. For example: `magasin`.
-   
 
-5. Load the 
+5. Once it has loaded, create a new python notebook.  
 
+      ![Create notebook](../images/get-started/jupyterhub-create-python-notebook.png)
+
+## Basic analysis
+
+In this basic analysis we're going to
+
+1. Download the list of dpgs from the API
+2. Transform the data to get the number of deployments per country.
+3. Display a chart with the top 20 ountries that have more deployments.
+
+You can download the resulting file with the [jupyer notebook](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-basic.ipynb)
+
+
+First, let's see some buttons of your newly created notebook you have the following buttons that will be required:
+
+   ![Jupyterhub basic buttons](../images/get-started/jupyterhub-basic-ui-cells.png)
+
+
+Ok. so now we can start coding. Copy this code in the first cell and run the cell.
+
+```python
+!pip install requests pandas seaborn
+```
+
+This will install some python pacakges. You can run command-line commands by prepending '!' to the command.
+
+Now, add a new cell, copy the code below and run the cell
+```python
+import requests
+import pandas as pd
+
+dpgs_json_dict = requests.get("https://api.digitalpublicgoods.net/dpgs").json()
+df = pd.DataFrame.from_dict(dpgs_json_dict)
+
+df.head()
+```
+
+Now that we have the dpg data, let's proceed to the analysis.
+
+Add a new cell with the below contents:
+```python
+# Extract deploymentCountries and developmentCountries from the locations column.
+df_loc = pd.merge(df, pd.json_normalize(df["locations"]), left_index=True, right_index=True)
+
+# Now we have two new columns in the dataframe. 
+# Let's see the contents
+df_loc[["deploymentCountries", "developmentCountries"]]
+```
+
+These two new columns contain arrays each with the list of countries in which the DPG has been deployed and countries where de DPG has been developed.
+
+If we run the cell below, if you have `[India, Panama]` in the `deploymentCountries` row of the dpg A, then there will be two rows for that DGP. 
+
+```python
+df_deployment_countries = df_loc.explode("deploymentCountries")
+df_development_countries = df_loc.explode("deploymentCountries")
+
+# Check the output:
+df_deployment_countries[["name","deploymentCountries"]]
+```
+
+Finally, lets present a graph with the number of deployments per country.
+
+```python
+# Let's draw something
+
+pd.plotting.register_matplotlib_converters()
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+
+
+#ignoring case
+deployments_per_country = df_deployment_countries
+                                .groupby(df_deployment_countries['deploymentCountries'].str.lower()) # group by country
+                                .size() # size of the group
+                                .sort_values(ascending=False)  # sort descending
+                                .reset_index(name="numberOfDPGs")[:20] # Only 20
+
+#Display deployment countries and numberOfDPGs
+sns.set(rc={"figure.figsize":(20, 10)}) #Set size of the image
+# Tell what are the axis
+ax = sns.barplot(y="deploymentCountries", x="numberOfDPGs", data=deployments_per_country )
+_ = ax.bar_label(ax.containers[0])
+
+# Set the titles of the graph and the axis
+plt.title("Number of DPGs deployed per country", size=30)
+plt.xlabel("Number of DPGs", size=20)
+plt.ylabel("To 20 Country of development", size=20)
+```
+
+You should see something like this:
+
+![Graph displayed after running the cell above](../images/get-started/jupyterhub-graph-deployment-countries.png)
+
+
+## Deeper analysis (optional)
+
+In addition to this basic analysis you can optionally see some additional exploratory analysis and details.
+
+1. Download the jupyter-notebook.
+
+[Download tutorial jupyter notebook](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb){.btn-action-primary .btn-action .btn .btn-outline-primary  role="button"}.
+
+The notebook is a file called [dpg-insights.ipynb](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb). It has additional exploratory analysis of the information provided by the DPGA API.
+
+Drag and drop the [dpgs-insights.ipynb](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb) in the left column where the files are located.
+
+6. Read the document and try to get a rough idea of what is the analysis about and what data is being displayed. We will use this dataset for the rest of the tutorial.
+
+
+## Summary
+
+In this step we have explored one of the components of Magasin, Jupyterhub, which provides us with an interactive user interface that allows us to explore our data one step (cell) at a time. 
+
+This component is specially oriented for data scientists and/or data engineers that are exploring how to convert the data into something that can be used to get insights for the business.
+
+Once you found that this information is useful, typically, the next step is to automate creating the insights in a regular pace.
+
+## What's next
+
+1. [Automate the data ingestion](./automate-data-ingestion.qmd)
+2. [Project Jupyter Documentation](https://docs.jupyter.org/en/latest/)
+
+<!-- TODO add link to setup jupyter hub -->
 
