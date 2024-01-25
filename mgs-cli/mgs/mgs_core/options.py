@@ -2,7 +2,7 @@
 Reusable command line options
 """
 import click
-from .realm import validate_realm
+from .validators import validate_realm
 
 def validate_realm_callback(ctx, param, value):
   """Validates if the realm has a correct value
@@ -38,9 +38,10 @@ realm = click.option('-r', '--realm', default="magasin",
                      help='magasin realm', 
                      callback=validate_realm_callback)
 
+
 def ports(default: str):
   return click.option('-p', '--ports', 
                      default=default,
                      show_default=True, 
-                     help='redirection ports. Format <localhost_port>:<pod_port>. Example: 8080:8080', 
+                     help='Redirection ports. Format <localhost_port>:<pod_port>. Example: 8080:8080', 
                      callback=validate_port_callback)

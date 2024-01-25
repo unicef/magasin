@@ -1,32 +1,155 @@
 import click
-from mgs.mgs_core import options, get_namespace, launch_ui
+import subprocess
+import signal
+
+from mgs.mgs_core import options, launch_ui, forward_port, generate_random_string
+
+from . import minio_options
+from . import mc
 
 COMPONENT='tenant'
 
-def validate_tenant_callback(ctx, param, value):
-  
-  return value
 
-tenant_option = click.option('-t', '--tenant', default="myminio", 
-                     show_default=True, 
-                     help='minio tenant name', 
-                     callback=validate_tenant_callback)
+def launch_hl(realm:str, tenant:str, ports:str, wait=False) -> None:
+  forward_port(realm=realm, component=COMPONENT, service_name=f'svc/{tenant}-hl', ports=ports)
+  if wait:
+    try:
+      # Wait for user to press Ctrl+C
+        signal.pause()
+    except KeyboardInterrupt:
+          # Handle Ctrl+C: terminate the server and clean up
+          #process.terminate()
+          #os.waitpid(process.pid, 0)
+          click.echo("\nServer terminated. Exiting.")
+
+
+
+#----------
+# minio
+#----------
 @click.group
 @options.realm
-@tenant_option
-def minio(realm,tenant):
+@minio_options.tenant()
+def minio(realm, tenant):
   """minio commands"""
+  #namespace = get_namespace(component_name=COMPONENT, realm=realm)
+  #click.echo("namespace: " + namespace)
 
-  namespace = get_namespace(component_name=COMPONENT, realm=realm)
-  click.echo("namespace: " + namespace)
 
+
+#----------
+# minio   ui
+#----------
 @click.command
 @options.realm
 @options.ports(default="9443:9443")
-@tenant_option
-def ui(realm,tenant, ports):
+@minio_options.tenant()
+def ui(realm, tenant, ports):
   """Launch user tenant user interface"""
   launch_ui(realm, component=COMPONENT, service_name=f"svc/{tenant}-console", ports=ports, protocol="https")
 
+#----------
+# minio add
+#----------
+@click.group
+def add():
+  pass
 
+#----------
+# minio api
+#----------
+@click.command
+@options.realm
+@options.ports(default="9000:9000")
+@minio_options.tenant()
+def api(realm, tenant, ports):
+  """Launch minio server API. Launch this to be able to use mc command."""
+  click.echo("")
+  launch_hl(realm=realm, tenant=tenant, ports=ports, wait=True)
+  
+
+#----------
+# minio add bucket 
+#----------
+@click.command
+@options.realm
+@options.ports(default="9000:9000")
+@minio_options.tenant()
+@click.option("-b", "--bucket-name", help="Bucket name", default="")
+def bucket(realm, tenant, ports, bucket_name):
+  """Create a minio bucket in the tenant"""
+  click.echo("Create Bucket")  
+
+  # TODO use https://min.io/docs/minio/linux/developers/python/minio-py.html
+  # May need Minio(..., cert_check=False)
+  launch_hl(realm=realm, tenant=tenant, ports=ports)
+  from time import sleep 
+  sleep(1)
+  # Check if the tenant alias is set
+  if not mc.check_mc_admin_info(tenant):
+    # TODO This needs to be removed if bucket is created with python library
+    click.echo(f"minio tenant configuration alias '{tenant}' not set. Try running:", err=True)
+    click.echo(f"      mgs minio api; mc alias set {tenant} https://localhost:9000 <accesskey/user> <secretkey/password> --insecure")
+    exit(-1)
+  else: 
+    click.echo("tenant alias setup")
+  if bucket_name == "":
+      bucket_name = "magasin-" + generate_random_string(5)
+  try:
+    mc_command = f"mc mb {tenant}/{bucket_name} --insecure"
+    click.echo("mc command:" + mc_command)    
+    subprocess.run(mc_command, shell=True)
+  except Exception as e:
+    print('exception', e)
+
+#----------
+#    minio add user
+#----------
+@click.command
+@options.realm
+@options.ports(default="9000:9000")
+@minio_options.tenant()
+@click.option("-a", "--accesskey", help="user name", default="")
+@click.option("-s", "--secretkey", help="password", default="")
+def user(realm, tenant, ports, accesskey, secretkey):
+  """Create a minio user in the tenant"""
+
+  # TODO use https://min.io/docs/minio/linux/developers/python/minio-py.html
+  # May need Minio(..., cert_check=False)
+  launch_hl(realm=realm, tenant=tenant, ports=ports)
+  from time import sleep 
+  sleep(1)
+  # Check if the tenant alias is set
+  if not mc.check_mc_admin_info(tenant):
+    # TODO This needs to be removed if bucket is created with python library
+    click.echo(f"minio tenant configuration alias '{tenant}' not set. Try running:", err=True)
+    click.echo(f"      mgs minio api; mc alias set {tenant} https://localhost:9000 <accesskey/user> <secretkey/password> --insecure")
+    exit(-1)
+  else: 
+     click.echo(f"minio tenant ok")
+
+  if accesskey == "":
+      accesskey = "magasin-" + generate_random_string(5)
+  if secretkey == "":
+      secretkey = generate_random_string(32)
+  try:
+    mc_command = f"mc admin user add {tenant} {accesskey} {secretkey} --insecure"
+    click.echo("mc command:" + mc_command)    
+    subprocess.run(mc_command, shell=True)
+    click.echo("")
+    click.echo(f"Created\n    user/accesskey: {accesskey}\n    password/secretkey: {secretkey}")
+    click.echo(f"\nNote: you still need to assign permissions/policies to the user. You can do it with the UI: `mgs minio ui`")
+    click.echo("")
+  except Exception as e:
+    print('exception', e)
+
+
+
+# Minio Sub Commands
 minio.add_command(ui)
+minio.add_command(api)
+minio.add_command(add)
+
+# Add subcommands
+add.add_command(bucket)
+add.add_command(user)

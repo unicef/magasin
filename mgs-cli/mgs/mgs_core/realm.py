@@ -1,21 +1,4 @@
 
-import re
-
-def validate_realm(realm: str) -> bool:
-    """
-    Verify if the realm contains only letters, numbers, "-", and "_".
-
-    Args:
-    - realm (str): The input realm string.
-
-    Returns:
-    - bool: True if the realm contains only valid characters, False otherwise.
-    """
-    # Define a regular expression pattern for valid characters
-    pattern = re.compile(r'^[a-z0-9-]+$')
-
-    # Use re.match to check if the entire string matches the pattern
-    return bool(pattern.match(realm))
 
 
 def split_realm(realm: str) -> tuple:
