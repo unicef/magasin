@@ -34,3 +34,27 @@ def validate_ports(ports: str) -> bool:
         return 1 <= localhost <= 65535 and 1 <= pod_port <= 65535
     except ValueError:
         return False
+    
+
+def validate_pod_name(name: str) -> bool:
+    """
+    Validates if a Kubernetes pod name is valid according to Kubernetes naming conventions.
+
+    Parameters:
+    - name (str): The pod name to validate.
+
+    Returns:
+    bool: True if the pod name is valid, False otherwise.
+    """
+    if not name:
+        return False
+
+    # Pod name must be no more than 253 characters in length
+    if len(name) > 253:
+        return False
+
+    # Pod name must consist of lower case alphanumeric characters, '-' or '.', and
+    # must start and end with an alphanumeric character
+    pattern = re.compile(r'^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$')
+    return bool(pattern.match(name))
+    

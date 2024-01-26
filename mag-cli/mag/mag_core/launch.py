@@ -106,3 +106,17 @@ def launch_ui(realm:str, component: str, service_name:str, ports:str, protocol: 
         process.terminate()
         os.waitpid(process.pid, 0)
         click.echo("\nServer terminated. Exiting.")
+
+
+def launch_command(realm: str, component:str, pod_name:str, command:str='/bin/bash'):
+  """
+    Launch a command. Defaults to launch a shell
+  """
+  namespace = get_namespace(component_name=component, realm=realm)
+  user_root=''
+
+  command = f"kubectl exec {pod_name} --namespace {namespace} -ti -- {command}"
+  click.echo(f"Running: {command}")
+  subprocess.run(command, shell=True)
+
+

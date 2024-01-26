@@ -35,5 +35,8 @@ cli.add_command(superset)
 from mag.mag_daskhub import daskhub
 cli.add_command(daskhub)
 
+from mag.mag_drill import drill
+cli.add_command(drill)
+
 if __name__ == "__main__":
     cli()
