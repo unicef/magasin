@@ -95,6 +95,7 @@ extraSecretEnv: {}
   # GOOGLE_SECRET: ...
   #   # Generate your own secret key for encryption. Use openssl rand -base64 42 to generate a good key
   #  SUPERSET_SECRET_KEY: 'CHANGE_ME_TO_A_COMPLEX_RANDOM_SECRET'
+  SUPERSET_SECRET_KEY: 'LNS78tGfwCYyiIggQxLBviTT83itPTgbho822Wr9IWjo/cNcojL/CZK5'
 
 # -- Extra files to mount on `/app/pythonpath`
 extraConfigs: {}
