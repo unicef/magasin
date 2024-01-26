@@ -6,6 +6,8 @@ format: html
 
 If for some reason the installation scripts do not work for you, or your system is not covered by them, you can install all requirements manually manually.
 
+This installation asumes that you already have kubernetes cluster. You can follow this [guide to setup a cluster](./setup-kubernetes.qmd).
+
 ## Install tools in your computer
 
 1. [Install kubectl](https://kubernetes.io/docs/tasks/tools/)
