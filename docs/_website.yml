@@ -77,9 +77,10 @@ website:
 
       - section: "Admin Guides"
         contents:
+            - file: admin-guides/drill.qmd
             - file: admin-guides/kubernetes.qmd   
-            - file: admin-guides/drill.qmd  
             - file: admin-guides/superset.qmd  
+            - file: admin-guides/daskhub.qmd
 
       - section: "Deployment"      
         contents:
