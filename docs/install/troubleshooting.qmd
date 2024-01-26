@@ -34,7 +34,81 @@ In case that you run `kubectl cluster-info` and it is not pointing to the kubern
     kubectl config use-context magasin-dev
     ```
 
-## Afte installation a container is not in `Complete` or `Running` status.
+## During installation an error is displayed while installing one component
+
+While installing it may happen that any of the components is not properly installed. You may see a message like the one below:
+
+![Error during install](../images/install/install-error-install-chart.png)
+
+Once the setup has finished you can check the status of all components: 
+
+```
+helm list --all-namespaces                                          
+```
+
+It may output something like
+```
+NAME    	NAMESPACE       	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION       
+dagster 	magasin-dagster 	1       	2024-01-26 08:00:11.343903 +0300 EAT	deployed	dagster-1.6.0   	1.6.0             
+daskhub 	magasin-daskhub 	1       	2024-01-26 07:56:59.908074 +0300 EAT	deployed	daskhub-2024.1.0	jh3.2.1-dg2023.9.0
+drill   	magasin-drill   	1       	2024-01-26 07:56:50.414646 +0300 EAT	deployed	drill-0.6.1     	1.21.1-3.9.1      
+operator	magasin-operator	1       	2024-01-26 08:05:29.432176 +0300 EAT	deployed	operator-5.0.11 	v5.0.11           
+superset	magasin-superset	1       	2024-01-26 08:52:53.146091 +0300 EAT	failed  	superset-0.10.15	3.0.1             
+tenant  	magasin-tenant  	1       	2024-01-26 08:05:35.925144 +0300 EAT	deployed	tenant-5.0.11   	v5.0.11     
+```
+
+In our case `superset` which was installed in `magasin-superset` namespace `failed`.
+
+We can gather more information by getting the list of pods (containers) of superset's namespace
+
+```sh
+kubectl get pods --namespace magasin-superset
+```
+
+```
+NAME                               READY   STATUS                  RESTARTS   AGE
+superset-68865d55bc-rvxq5          0/1     Init:ImagePullBackOff   0          68m
+superset-init-db-c9vcr             0/1     Init:ImagePullBackOff   0          68m
+superset-postgresql-0              1/1     Running                 0          68m
+superset-redis-master-0            1/1     Running                 0          68m
+superset-worker-6c65786947-vcwvx   0/1     Init:ImagePullBackOff   0          68m
+```
+
+Lastly, we can get details of one of the pods that did not go through:
+
+```sh
+kubectl describe pod superset-68865d55bc-rvxq5 --namespace magasin-superset
+```
+```
+Events:
+  Type    Reason   Age                    From     Message
+  ----    ------   ----                   ----     -------
+  Normal  BackOff  2m38s (x276 over 66m)  kubelet  Back-off pulling image "apache/superset:dockerize"
+```
+In this case it seems there is an error getting the image. One option is to try to delete the pod. Kubernetes will create a new one 
+
+```sh
+kubectl delete pod superset-68865d55bc-rvxq5 --namespace magasin-superset
+```
+
+The new one will have a different name. So we need to run again `kubectl get pods --namespace magasin-superset`. 
+
+If this does not work, an alternative is to try to reinstall the helm chart manually. First uninstall the current chart:
+```sh
+helm uninstall superset --namespace magasin-superset
+release "superset" uninstalled
+```
+
+Then install install manually the magasin component. We will use the same command that was used by the installer (which you can see in the screenshot with the error)
+
+```sh
+helm install superset magasin/superset --namespace magasin-superset 
+```
+
+If this does not work, you may try to find similar issues within the [magasin discussion forum](https://github.com/unicef/magasin/discussions) and/or file an [issue](https://github.com/unicef/magasin/issues).
+
+
+## After installation a container is not in `Complete` or `Running` status.
 
 After a few minutes finishing the installation all the containers (pods) of the `magasin-*` namespaces should be in `Complete` or `Running` status. If there is any issue these may have another status.
 
