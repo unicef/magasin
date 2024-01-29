@@ -4,3 +4,24 @@ description-meta: Superset step
 ---
 
 Step 3: Create a Dashboard 
+
+
+## Setup Apache Drill
+
+```
+{
+  "type": "file",
+  "connection": "s3a://magasin",
+  "config": {
+    "fs.s3a.connection.ssl.enabled": "true",
+    "fs.s3a.path.style.access": "true",
+    "fs.s3a.endpoint": "myminio-hl.magasin-tenant.svc.cluster.local",
+    "fs.s3a.access.key": "minio",
+    "fs.s3a.secret.key": "minio123"
+  },
+...
+}
+```
+
+## Create the Dashboard in superset
+
