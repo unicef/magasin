@@ -1,6 +1,8 @@
 import subprocess
 import signal
 import sys
+import socket
+import time
 import os
 import time
 import atexit
@@ -15,7 +17,7 @@ def port_forward_command_arr(realm:str, component: str, service_name:str, ports:
     namespace = get_namespace(component, realm)
     port_forward_command_arr = ["kubectl", "port-forward",  "--namespace", namespace, service_name, ports]
     if verbose:
-      click.echo("Launch_ui command:" + " ".port_forward_command_arr.join())
+      click.echo("port_forward_command_arr: " + " ".port_forward_command_arr.join())
     return port_forward_command_arr
 
 def port_forward_command_str(realm:str, component: str, service_name:str, ports:str, verbose=False) -> str:
@@ -41,6 +43,20 @@ def terminate_process(process):
    if process.poll() is None:
         process.terminate()
         process.wait()
+
+
+def is_port_open(host, port, timeout=15):
+    """Check if a TCP port is open and responding."""
+    start_time = time.time()
+    while time.time() - start_time < timeout:
+        try:
+            with socket.create_connection((host, port), timeout=1) as sock:
+                return True
+        except (socket.timeout, ConnectionRefusedError):
+            time.sleep(1)  # Wait for 1 second before retrying
+    return False
+
+
 
 def forward_port(realm:str, component: str, service_name:str, ports:str, verbose=False) -> None:
     """
@@ -78,8 +94,16 @@ def forward_port(realm:str, component: str, service_name:str, ports:str, verbose
       is terminated when the script exits.
     """
     port_forward_command = port_forward_command_arr(realm, component, service_name, ports, verbose)
-    click.echo("forward_port command: " + " ".join(port_forward_command_arr))
+    click.echo("forward_port command: " + " ".join(port_forward_command))
     process = subprocess.Popen(port_forward_command, shell=False)  
+
+    local, _ =  split_ports(ports)
+    click.echo("Waiting for port to be open...")
+    if not is_port_open(host='localhost', port=local):
+        click.echo("Port could not be opened.")
+        exit(-1)
+    click.echo("Port ready.")
+
     atexit.register(terminate_process, process)
    
 
@@ -87,11 +111,12 @@ def forward_port(realm:str, component: str, service_name:str, ports:str, verbose
 def launch_ui(realm:str, component: str, service_name:str, ports:str, protocol: str = "http", verbose=False)-> None:
     
     #
-    port_forward_command = port_forward_command_str(realm=realm, component=component, service_name=service_name, ports=ports, verbose=verbose)
+    #port_forward_command = port_forward_command_str(realm=realm, component=component, service_name=service_name, ports=ports, verbose=verbose)
     
-    click.echo(port_forward_command)
-    process = subprocess.Popen(port_forward_command, shell=True)
-
+    #click.echo(port_forward_command)
+    #process = subprocess.Popen(port_forward_command, shell=True)
+    forward_port(realm=realm, component=component, service_name=service_name, ports=ports, verbose=verbose)
+    
     localhost_port, _ = split_ports(ports)
     url = f"{protocol}://localhost:{localhost_port}"
     click.echo(f"Open browser at: {url}")

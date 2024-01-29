@@ -8,22 +8,12 @@ def validate_realm_callback(ctx, param, value):
   """Validates if the realm has a correct value
      See: https://click.palletsprojects.com/en/8.1.x/options/#callbacks-for-validation
   Raises:
-      click.BadParameter: If does 
+      click.BadParameter: If name is not valid
   """
   if not validate_realm(value):
       raise click.BadParameter("Realm can only contain letters, numbers and '-'")
   return value
 
-
-def validate_realm_callback(ctx, param, value):
-  """Validates if the realm has a correct value
-     See: https://click.palletsprojects.com/en/8.1.x/options/#callbacks-for-validation
-  Raises:
-      click.BadParameter: If does 
-  """
-  if not validate_realm(value):
-      raise click.BadParameter("Realm can only contain letters, numbers and '-'")
-  return value
 
 # TODO
 def validate_port_callback(ctx, param, value):
