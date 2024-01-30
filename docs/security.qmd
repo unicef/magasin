@@ -9,6 +9,7 @@ Ensuring robust security measures within a Kubernetes cluster hosting diverse op
 Each component of magasin has its own level of security
 
 * [Kubernetes Security](https://kubernetes.io/docs/concepts/security/)
+* [Jupterhub Security](https://jupyterhub.readthedocs.io/en/stable/explanation/websecurity.html)
 * [Apache Superset Security](https://superset.apache.org/docs/security/)
 * [Apache Drill Security](https://drill.apache.org/docs/securing-drill/)
 * [Apache Zookeeper](https://zookeeper.apache.org/doc/r3.9.1/zookeeperAdmin.html)

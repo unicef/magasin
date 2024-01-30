@@ -22,7 +22,7 @@ First install Docker Desktop. It is available for:
 
 Once installed. Go to **Settings / Kubernetes **, and enable Kubernetes. It will automatically install everything required, including the command line utility `kubectl`.
 
-![Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes ](../images/install-enable-kubernetes-docker-desktop.png)
+![Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes ](../images/install/install-enable-kubernetes-docker-desktop.png)
 
 Lastly, on a command line, create the new cluster and use it:
 
