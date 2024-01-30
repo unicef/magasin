@@ -23,5 +23,58 @@ Step 3: Create a Dashboard
 }
 ```
 
-## Create the Dashboard in superset
+https://superset.apache.org/docs/databases/drill/
+
+## Create the Dashboard in Apache Superset
+
+To create a dashboard in superset the first step is to connect 
+
+## Setting up the Drill-Superset database connection
+
+
+1. Lauch the Apache Superset user interface
+
+    ```sh
+    mag superset ui
+    ```
+
+2. As credentials, enter **`admin` / `admin`**
+
+    ![Superset login page:](../images/get-started/superset-login.png)
+
+   .
+3. Go to top right corner and go to **Settings > Database connections** 
+
+    ![Settings > Database connections](../images/get-started/superset-settings-database.png)
+    .
+4. Click on the + Database > Select Apache Drill as database
+
+    ![ Database > Select apache drill](../images/get-started/superset-connect-to-database.png)
+    .
+
+5. Add the below SQLAlechemy URI and, then, click on **Test the connection**.
+
+    ```sh
+    drill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/dfs?use_ssl=False
+    ```
+
+
+    ![ Test connection](../images/get-started/superset-test-connection.png)
+ 
+    This is a connection that comes out of the box with Apache Drill. If this works, it means that superset has access to Apache Drill. Now, we will use the storage we created earlier, the `s3` connection. 
+
+6. If the connection suceeds, replace the string with the following and click on Test the connection
+
+    ```sh
+    drill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/s3?use_ssl=False
+    ```
+
+    If something does not work double check the previous steps and go to the [troubleshooting](#troubleshooting) section
+
+7.
+    
+
+
+## Troubleshooting
+
 
