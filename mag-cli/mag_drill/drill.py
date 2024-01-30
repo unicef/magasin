@@ -1,5 +1,7 @@
 import click
-from mag.mag_core import options, launch_command, launch_ui
+from click_aliases import ClickAliasedGroup
+from mag.mag import cli
+from mag.mag_core import options, launch_command, launch_ui, std_aliases
 
 
 COMPONENT='drill'
@@ -7,7 +9,7 @@ COMPONENT='drill'
 #----------
 # drill
 #----------
-@click.group
+@cli.group('drill', cls=ClickAliasedGroup, aliases=['dr'])
 @options.realm
 def drill(realm):
   """Apache Drill commands"""
@@ -41,7 +43,7 @@ def validate_pod_name_callback(ctx, param, value):
 #----------
 # drill shell
 #----------
-@click.command
+@drill.command(aliases=std_aliases.shell)
 @options.realm
 @click.option('-n', '--pod-name', help='name of the pod to open the shell', default='drillbit-0', show_default=True, callback=validate_pod_name_callback)
 def shell(realm, pod_name):
@@ -53,14 +55,14 @@ def shell(realm, pod_name):
 #----------
 # drill add
 #----------
-@click.group
+@drill.group('add', cls=ClickAliasedGroup, aliases=std_aliases.add)
 def add():
   """Add items to Drill"""
 
 #----------
 # drill add store
 #----------
-@click.command
+@add.command
 @options.realm
 @options.ports(default="8047:8047")
 @click.option('-e', '--endpoint', help='MinIO API Endpoint', default='')
@@ -73,9 +75,3 @@ def store(realm, endpoint, bucket, access_key, secret_key, ports):
   if (endpoint == ""):
     # Use the standard for the realm 
     print("hola")
-
-drill.add_command(ui)
-drill.add_command(shell)
-drill.add_command(add)
-
-add.add_command(store)

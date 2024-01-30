@@ -26,16 +26,16 @@ def cli(ctx, verbose):
 from mag_dagster import dagster
 cli.add_command(dagster)
 
-from mag.mag_minio import minio
+from mag_minio import minio
 cli.add_command(minio)
 
-from mag.mag_superset import superset
+from mag_superset import superset
 cli.add_command(superset)
 
-from mag.mag_daskhub import daskhub
+from mag_daskhub import daskhub
 cli.add_command(daskhub)
 
-from mag.mag_drill import drill
+from mag_drill import drill
 cli.add_command(drill)
 
 if __name__ == "__main__":

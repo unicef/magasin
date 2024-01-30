@@ -1,8 +1,12 @@
 import click
+from click_aliases import ClickAliasedGroup
 import subprocess
 import signal
 
-from mag.mag_core import options, launch_ui, forward_port, generate_random_string
+
+from mag.mag import cli
+from mag.mag_core import options, launch_ui, forward_port, generate_random_string, std_aliases
+
 
 from . import minio_options
 from . import mc
@@ -27,11 +31,11 @@ def launch_hl(realm:str, tenant:str, ports:str, wait=False) -> None:
 #----------
 # minio
 #----------
-@click.group
+@cli.group('minio', cls=ClickAliasedGroup, aliases=["m"])
 @options.realm
 @minio_options.tenant()
 def minio(realm, tenant):
-  """minio commands"""
+  """MinIO commands"""
   #namespace = get_namespace(component_name=COMPONENT, realm=realm)
   #click.echo("namespace: " + namespace)
 
@@ -40,7 +44,7 @@ def minio(realm, tenant):
 #----------
 # minio   sui
 #----------
-@click.command
+@minio.command
 @options.realm
 @options.ports(default="9443:9443")
 @minio_options.tenant()
@@ -52,7 +56,7 @@ def sui(realm, tenant, ports):
 #----------
 # minio ui
 #----------
-@click.command
+@minio.command
 @options.realm
 @options.ports(default="9090:9090")
 @minio_options.tenant()
@@ -64,14 +68,14 @@ def ui(realm, tenant, ports):
 #----------
 # minio add
 #----------
-@click.group
+@minio.group('add', cls=ClickAliasedGroup, aliases=std_aliases.add)
 def add():
   pass
 
 #----------
 # minio api
 #----------
-@click.command
+@minio.command
 @options.realm
 @options.ports(default="9000:9000")
 @minio_options.tenant()
@@ -84,7 +88,7 @@ def api(realm, tenant, ports):
 #----------
 # minio add bucket 
 #----------
-@click.command
+@add.command(aliases=["b"])
 @options.realm
 @options.ports(default="9000:9000")
 @minio_options.tenant()
@@ -118,7 +122,7 @@ def bucket(realm, tenant, ports, bucket_name):
 #----------
 #    minio add user
 #----------
-@click.command
+@add.command(aliases=["u"])
 @options.realm
 @options.ports(default="9000:9000")
 @minio_options.tenant()
