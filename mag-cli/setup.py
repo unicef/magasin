@@ -10,6 +10,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'Click==8.1.7',
+        'click-aliases==1.0.4',
         'requests'
     ],
     extras_require={

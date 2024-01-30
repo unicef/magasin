@@ -1,6 +1,5 @@
 import click
-
-from .mag_core.realm import split_realm
+from click_aliases import ClickAliasedGroup
 import mag.version as version
 
 
@@ -12,7 +11,7 @@ def print_version(ctx, param, value):
     ctx.exit()
 
 
-@click.group()
+@click.group(cls=ClickAliasedGroup)
 @click.option('-v', '--verbose', count=True)
 @click.option('--version', is_flag=True, callback=print_version,
               expose_value=False, is_eager=True)
@@ -21,9 +20,10 @@ def cli(ctx, verbose):
     """magasin client is the glue between magasin components, it makes easier common tasks"""
     ctx.ensure_object(dict)
 
+
 # TODO add this as dynamically
     
-from mag.mag_dagster import dagster
+from mag_dagster import dagster
 cli.add_command(dagster)
 
 from mag.mag_minio import minio
