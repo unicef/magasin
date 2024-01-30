@@ -6,6 +6,9 @@ rbac:
 jupyterhub:
   # JupyterHub configuration goes here.
   # See https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/jupyterhub/values.yaml
+  proxy:
+    service:
+      type: ClusterIP
   hub:
     services:
       dask-gateway:
