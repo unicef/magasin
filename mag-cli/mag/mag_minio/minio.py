@@ -44,13 +44,13 @@ def minio(realm, tenant):
 @options.realm
 @options.ports(default="9443:9443")
 @minio_options.tenant()
-def ui(realm, tenant, ports):
+def sui(realm, tenant, ports):
   """Launch user tenant ssl secured user interface"""
   launch_ui(realm, component=COMPONENT, service_name=f"svc/{tenant}-console", ports=ports, protocol="https")
 
 
 #----------
-# minio   ui
+# minio ui
 #----------
 @click.command
 @options.realm
