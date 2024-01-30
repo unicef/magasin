@@ -1,7 +1,7 @@
 import click
 from click_aliases import ClickAliasedGroup
 from mag.mag import cli
-from mag.mag_core import options, get_namespace
+from mag.mag_core import options, get_namespace, launch_ui
 
 COMPONENT='daskhub'
 
@@ -14,8 +14,8 @@ def daskhub(realm):
 
 @daskhub.command()
 @options.realm
-@click.option("-p",'--port', default="80",show_default=True, help="daskhub proxy-public service port")
-def ui(realm, port):
+@options.ports(default="8001:80")
+def ui(realm, ports):
   """Launch jupyterhub user interface"""
-  click.launch(f"http://localhost:{port}")
+  launch_ui(realm=realm,component=COMPONENT, service_name='service/proxy-public', ports=ports)
 
