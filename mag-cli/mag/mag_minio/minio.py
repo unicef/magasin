@@ -38,15 +38,28 @@ def minio(realm, tenant):
 
 
 #----------
-# minio   ui
+# minio   sui
 #----------
 @click.command
 @options.realm
 @options.ports(default="9443:9443")
 @minio_options.tenant()
 def ui(realm, tenant, ports):
-  """Launch user tenant user interface"""
+  """Launch user tenant ssl secured user interface"""
   launch_ui(realm, component=COMPONENT, service_name=f"svc/{tenant}-console", ports=ports, protocol="https")
+
+
+#----------
+# minio   ui
+#----------
+@click.command
+@options.realm
+@options.ports(default="9090:9090")
+@minio_options.tenant()
+def ui(realm, tenant, ports):
+  """Launch user tenant non-ssl user interface"""
+  launch_ui(realm, component=COMPONENT, service_name=f"svc/{tenant}-console", ports=ports, protocol="http")
+
 
 #----------
 # minio add
@@ -147,6 +160,7 @@ def user(realm, tenant, ports, accesskey, secretkey):
 
 # Minio Sub Commands
 minio.add_command(ui)
+minio.add_command(sui)
 minio.add_command(api)
 minio.add_command(add)
 
