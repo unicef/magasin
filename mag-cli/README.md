@@ -11,10 +11,7 @@ pip install mag
 ## Usage
 
 ```sh
-mag --help
-```
-
-```sh
+ mag
 Usage: mag [OPTIONS] COMMAND [ARGS]...
 
   magasin client is the glue between magasin components, it makes easier
@@ -26,11 +23,11 @@ Options:
   --help         Show this message and exit.
 
 Commands:
-  dagster   dagster commands
-  daskhub   daskhub commands
-  drill     Apache Drill commands
-  minio     minio commands
-  superset  superset commands
+  dagster (d)    Dagster commands
+  daskhub (dh)   Daskhub/Jupyterhub commands
+  drill (dr)     Apache Drill commands
+  minio (m)      MinIO commands
+  superset (ss)  Apache Superset commands
 ```
 
 
