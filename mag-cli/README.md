@@ -1,6 +1,6 @@
 # Magasin Command Line Interface (mag)
 
-Command line interface client that helps to manage the different modules.
+Command line interface client that helps to manage the different modules of [magasin](http://github.com/unicef/magasin)
 
 ## Install
 
