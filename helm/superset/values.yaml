@@ -180,15 +180,23 @@ configMountPath: "/app/pythonpath"
 extraConfigMountPath: "/app/configs"
 
 image:
+  #AMD64
   repository: apachesuperset.docker.scarf.sh/apache/superset
   tag: ""
+  # ARM64
+  #repository: apache/superset 
+  #tag: dfc614bdc3c8daaf21eb8a0d1259901399af7dd8-lean310-linux-arm64-3.9-slim-bookworm
+
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 
 initImage:
   repository: apache/superset
+  # AMD64 (Intel)
   tag: ea6cbcef3e980e42d3a19b8fc5928f973fd7be4a-dockerize-linux-amd64-3.9-slim-bookworm
+  # ARM64 (M1, M2...)
+  #tag: dockerize
   pullPolicy: IfNotPresent
 
 service:
