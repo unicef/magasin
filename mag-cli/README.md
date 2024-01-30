@@ -9,8 +9,28 @@ pip install mag
 ```
 
 ## Usage
+
+```sh
+mag --help
 ```
-mag dagster
+
+```sh
+Usage: mag [OPTIONS] COMMAND [ARGS]...
+
+  magasin client is the glue between magasin components, it makes easier
+  common tasks
+
+Options:
+  -v, --verbose
+  --version
+  --help         Show this message and exit.
+
+Commands:
+  dagster   dagster commands
+  daskhub   daskhub commands
+  drill     Apache Drill commands
+  minio     minio commands
+  superset  superset commands
 ```
 
 
@@ -31,3 +51,7 @@ Install module in editing mode
 ```sh
 pip install -e '.[dev]'
 ```
+
+Start coding!
+
+
