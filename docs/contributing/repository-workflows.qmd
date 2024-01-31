@@ -1,5 +1,6 @@
 ---
-title: "Contributing"
+title: "Repository workflows"
+description_meta: "Guidlines for contributing to this repository"
 format: html
 ---
 

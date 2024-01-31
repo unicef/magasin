@@ -3,4 +3,11 @@ title: "Magasin documentation"
 format: html
 ---
 
+# TODO 
+
+Some intro of magasin, and the main categories to get started, 
+
+- more details about magasin 
+- get started
+- Amnisitrator guides
 Main page

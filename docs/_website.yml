@@ -52,8 +52,14 @@ website:
     style: "docked"
     search: false
     contents:
-      - text: Welcome
-        file: docs-home.qmd
+      - section: "Welcome"
+        contents:
+        - text: Welcome
+          file: docs-home.qmd
+        - text: Why magasin?
+          file: why-magasin.qmd
+        - text: "Architecture"
+          file: architecture.qmd
       - section: "Get started"
         contents:
           - file: get-started/index.qmd 
@@ -68,19 +74,17 @@ website:
           - file: install/setup-kubernetes.qmd
           - file: install/troubleshooting.qmd
           - file: install/uninstall.qmd
-
-
-      - text: "Architecture"
-        file: architecture.qmd
+      
       - text: "End user guides"
         file: end-user-guides.qmd
 
       - section: "Admin Guides"
         contents:
+            - file: admin-guides/kubernetes.qmd  
+            - file: admin-guides/daskhub.qmd        
             - file: admin-guides/drill.qmd
-            - file: admin-guides/kubernetes.qmd   
             - file: admin-guides/superset.qmd  
-            - file: admin-guides/daskhub.qmd
+      
 
       - section: "Deployment"      
         contents:

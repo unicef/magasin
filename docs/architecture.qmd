@@ -3,6 +3,7 @@ title: "Architecture"
 description-meta: "More about the architecture of magasin architecture"
 format: html
 ---
+# TODO: Complete
 
 Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a [kubernetes cluster](https://kubernetes.io).
 
