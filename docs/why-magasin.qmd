@@ -2,3 +2,11 @@
 title: Why magasin?
 ---
 # TODO
+
+Write down the reasoning behind creating magasin that we've used 
+- complex landscape 
+- open source
+
+- good value for money
+
+etc.

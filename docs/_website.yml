@@ -56,10 +56,8 @@ website:
         contents:
         - text: Welcome
           file: docs-home.qmd
-        - text: Why magasin?
-          file: why-magasin.qmd
-        - text: "Architecture"
-          file: architecture.qmd
+        - file: why-magasin.qmd
+        - file: architecture.qmd
       - section: "Get started"
         contents:
           - file: get-started/index.qmd 
@@ -80,12 +78,14 @@ website:
 
       - section: "Admin Guides"
         contents:
-            - file: admin-guides/kubernetes.qmd  
-            - file: admin-guides/daskhub.qmd        
+            - file: admin-guides/mag-cli.qmd
+            - file: admin-guides/kubernetes.qmd
+            - file: admin-guides/daskhub.qmd   
+            - file: admin-guides/minio.qmd
+            - file: admin-guides/dagster.qmd
             - file: admin-guides/drill.qmd
             - file: admin-guides/superset.qmd  
       
-
       - section: "Deployment"      
         contents:
           - text: "Deploying to production"

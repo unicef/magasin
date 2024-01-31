@@ -1,0 +1,4 @@
+---
+title: "MinIO guide"
+format: html
+---
