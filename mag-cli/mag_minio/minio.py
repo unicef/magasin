@@ -92,8 +92,9 @@ def api(realm, tenant, ports):
 @options.realm
 @options.ports(default="9000:9000")
 @minio_options.tenant()
-@click.option("-b", "--bucket-name", help="Bucket name", default="")
-def bucket(realm, tenant, ports, bucket_name):
+@minio_options.alias()
+@click.option("-b", "--bucket-name", help="Bucket name. If not set will create magasin-?????", default="")
+def bucket(realm, tenant, alias, ports, bucket_name):
   """Create a minio bucket in the tenant"""
   click.echo("Create Bucket")  
 
@@ -103,17 +104,17 @@ def bucket(realm, tenant, ports, bucket_name):
   from time import sleep 
   sleep(1)
   # Check if the tenant alias is set
-  if not mc.check_mc_admin_info(tenant):
+  if not mc.check_mc_admin_info(alias):
     # TODO This needs to be removed if bucket is created with python library
-    click.echo(f"minio tenant configuration alias '{tenant}' not set. Try running:", err=True)
-    click.echo(f"      mag minio api; mc alias set {tenant} https://localhost:9000 <accesskey/user> <secretkey/password> --insecure")
+    click.echo(f"minio tenant configuration alias '{alias}' not set. Try running:", err=True)
+    click.echo(f"      mag minio api; mc alias set {alias} http://localhost:9000 <accesskey/user> <secretkey/password> --insecure")
     exit(-1)
   else: 
-    click.echo("tenant alias setup")
+    click.echo("alias check successful")
   if bucket_name == "":
       bucket_name = "magasin-" + generate_random_string(5)
   try:
-    mc_command = f"mc mb {tenant}/{bucket_name} --insecure"
+    mc_command = f"mc mb {alias}/{bucket_name} --insecure"
     click.echo("mc command:" + mc_command)    
     subprocess.run(mc_command, shell=True)
   except Exception as e:
