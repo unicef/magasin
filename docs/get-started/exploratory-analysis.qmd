@@ -3,7 +3,7 @@ title: "Step 1: Exploratory analysis"
 description-meta: ""
 ---
 
-This is the first out of the three steps of the magasin tutorial. Generally, when you are analyzing data, you may want to learn about the data itself. Jupyter notebooks provide a nice and fast user programming interface that allows you to explore the data.
+This is the first out of the three steps of the [getting started magasin tutorial](tutorial-overview.qmd). Generally, when you are analyzing data, you may want to learn about the data itself. Jupyter notebooks provide a nice and fast user programming interface that allows you to explore the data.
 
 In this example we will explore the Digital Public Goods API
 
