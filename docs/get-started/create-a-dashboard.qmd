@@ -23,6 +23,11 @@ Step 3: Create a Dashboard
 }
 ```
 
+Test query
+```sql 
+USE `s3`.`data`;
+```
+
 https://superset.apache.org/docs/databases/drill/
 
 ## Create the Dashboard in Apache Superset

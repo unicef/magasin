@@ -2,46 +2,113 @@
 title: "Step 2: Automate data ingestion"
 ---
 
-Now let's automate our jupyter notebook.
+This is the second step of the [magasin getting started tutorial](tutorial-overview.qmd). In this step we will see how to automate the data ingestion.
+
+In the [previous step](./exploratory-analysis.qmd), we delved into the DPG Alliance API data, generating graphs and uncovering insights along the way. 
+
+Typically, after identifying intriguing insights, it's common as next step to periodically update the data to monitor the evolution of the data.
+
+Automating this process is highly advantageous as it eliminates the need for repetitive tasks. In our scenario, the workflow involves fetching data from the DPG API, followed by cleaning and processing it for seamless integration with a business intelligence dashboard creation tool, Superset, that will be used in the [next step](./create-a-dashboard.qmd).
+
+The good news is that we have already completed the heavy lifting using the Jupyter Notebook. This is advantageous because the code we will be writing is essentially the same; we just need to make some tweaks to adapt it into a [Dagster pipeline](https://dagster.io).
+
+## Advantages of using dagster
+
+[Dagster](https://dagster.io) is what is known as a pipeline orchestrator, which essentially helps us manage the ingestion of data from multiple sources. 
+
+The benefits of using a framework like Dagster are manifold. It allows us to approach tasks in a structured manner, facilitating scalability and monitoring. Anyone who has dealt with gathering data from multiple sources will attest that it can quickly turn into a nightmare if not managed properly. Dagster provides an excellent starting point for tackling such challenges.
+
+What usually happends when you start automating gathering data, processing and mixing data from multiple data sources is that:
+
+1) It begins simple but with time it becomes more complex. You add more and more data sources, more logic to clean the data, stablish more dependencies between the data sources, etc. If this is not done properly you end up with a mess. Dagster provides us a framework that helps to write our code in a more structured way, as well as tools to debug and monitor the ingestion of the data.
+
+2) It eventually may break. Data sources may change with time and with that your pipelines break. For instance, DPGA may change the API unexpectedly, and with that our automation will fail too. Dagster allows you to monitor failures as well as to debug where it failed. 
+
+Another advantage of Dagster, it that it uses Python as programming language, so, as we said earlier, most of the work we did for the Jupyter Notebook can be reused.
+
+## Storing data as parquet files
+
+In the magasin architecture, as general approach, we stand to store data assets as files. In particular, we recommend the use of [Apache parquet file format](https://parquet.apache.org/). 
+
+The main reason to use files is:
+
+1. First, because it is an economic way to store data. Storage services in the cloud or in premises is relatively cheap. 
+
+2. Second, because it does provide more flexibility when changes on the underlying structure are introduced, at least compared with setting up a SQL database downstream. 
+
+3. In addition, it allows also to easily store more types of data such as documents or images. Lastly, in terms of governance and sharing the datasets, the problem is simplified to setting up file sharing permissions.  
 
 
-# Setup our storage in MinIO
+
+## Parquet format for structured data.
+
+Parquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data. 
+
+Using Parquet to store processed datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular Big Data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.
+
+## A 
+
+For keeping a consistent approach across the different cloud providers, magasin includes a component called  [MinIO](http://min.io). It gives an [Amazon S3](https://en.wikipedia.org/wiki/Amazon_S3) compatible file (object) store. 
+
+Thanks to MinIO, regardless of what infrastructure you're using, your pipelines will work the same, you do not need to adapt how you store the data if you move to another provider. 
+
+Whereas to maintain a vendor-agnostic architecture we leverage MinIO.You have the flexibility to bypass this component if you find alternative methods more suitable for storing your ingested data. This decision may be based on better alignment with your existing processes or specific use case requirements.
+
+For instance, instead of MinIO, you can directly utilize a vendor-specific object store like Azure Blobs, Amazon S3, or Google Cloud Storage. Alternatively, you may choose to write your data directly into a database, such as DuckDB or PostgreSQL.
+
+For the purposes of this tutorial we will be using MinIO. And the first step is to setup a bucket. A bucket is somewhat similar to a folder.
+
+So, let's start. 
+
+## Setup a bucket in MinIO
 
 The first thing we need to do is to setup where we are going to store our data. Till now, we've been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets.
 
-Magasin includes MinIO to provide this function.
-
-
-
-
-## On the UI
-
+In one command line shell launch the minio API
 ```sh
-  kubectl --namespace magasin-tenant port-forward svc/myminio-console 9443:9443
+mag minio api
 ```
 
-Then visit the MinIO Console at https://127.0.0.1:9443 (note the https).
+Set the minio client alias
+```sh
 
-Most probably a warning will be displayed in your browser, you can continue browsing securely, this is because minio uses an self-signed certificate encrypted connection which is not recognized by your browser. 
-
-In the login screen use `myminio` and `minio123` as user and password respectively.
-
-![MinIO login page](../images/minio-tenant-login.png)
-
-
- kubectl get secret myminio-env-configuration -o jsonpath='{.data.config\.env}' --namespace magasin-tenant  | base64 --decode
-
-
-
-#  Dagster 
-
-```
-export DAGSTER_WEBSERVER_POD_NAME=$(kubectl get pods --namespace magasin-dagster -l "app.kubernetes.io/name=dagster,app.kubernetes.io/instance=dagster,component=dagster-webserver" -o jsonpath="{.items[0].metadata.name}")
-echo "Visit http://127.0.0.1:8080 to open the Dagster UI"
-kubectl --namespace magasin-dagster port-forward $DAGSTER_WEBSERVER_POD_NAME 8080:80
+mc alias set myminio http://localhost:9000 minio minio123
+# mc alias set <alias-name> <endpoint> <access-key> <secret-key>
 ```
 
+Create the magasin bucket
+```
+ mag minio add bucket -b magasin 
+```
+
+Now, we have a bucket in MinIO that allows us to store files.
+
+# Create a dagster pipeline 
+
+So, the next step is to create a pipeline. A pipeline is just a piece of code that moves data from place to another. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.
+
+The first thing we need to do is to install dagster.
+
+
+```
+pip install dagster
+```
+
+```
 
 
 
 
+
+## Summary
+
+## What's next
+
+[Go to next step, create a dashboard in Superset](./create-a-dashboard.qmd)
+
+Dagster has a learning curve, and it requires some work in order to get used to it, but the documentation is fairly good.
+
+Here you have a few links to get started with dagster:
+
+1. [Get started with dagster](https://docs.dagster.io/getting-started)
+. [Dagster Essentials](https://courses.dagster.io/courses/dagster-essentials)

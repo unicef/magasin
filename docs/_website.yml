@@ -60,7 +60,7 @@ website:
           - file: get-started/tutorial-overview.qmd
           - file: get-started/exploratory-analysis.qmd
           - file: get-started/automate-data-ingestion.qmd
-          - file: get-started/create-dashboard.qmd
+          - file: get-started/create-a-dashboard.qmd
       - section: "Install"
         contents:
           - file: install/index.qmd 
