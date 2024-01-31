@@ -7,8 +7,9 @@ setup(
         "dagster",
         "dagster-cloud",
         "pandas",
-        "requests"
-        
+        "requests",
+        "fsspec",
+        "s3fs"
     ],
     extras_require={"dev": ["dagster-webserver", "pytest"]},
 )

@@ -6,13 +6,14 @@ This is the second step of the [magasin getting started tutorial](tutorial-overv
 
 In the [previous step](./exploratory-analysis.qmd), we delved into the DPG Alliance API data, generating graphs and uncovering insights along the way. 
 
+## Background 
 Typically, after identifying intriguing insights, it's common as next step to periodically update the data to monitor the evolution of the data.
 
 Automating this process is highly advantageous as it eliminates the need for repetitive tasks. In our scenario, the workflow involves fetching data from the DPG API, followed by cleaning and processing it for seamless integration with a business intelligence dashboard creation tool, Superset, that will be used in the [next step](./create-a-dashboard.qmd).
 
 The good news is that we have already completed the heavy lifting using the Jupyter Notebook. This is advantageous because the code we will be writing is essentially the same; we just need to make some tweaks to adapt it into a [Dagster pipeline](https://dagster.io).
 
-## Advantages of using dagster
+### Advantages of using dagster
 
 [Dagster](https://dagster.io) is what is known as a pipeline orchestrator, which essentially helps us manage the ingestion of data from multiple sources. 
 
@@ -26,7 +27,7 @@ What usually happends when you start automating gathering data, processing and m
 
 Another advantage of Dagster, it that it uses Python as programming language, so, as we said earlier, most of the work we did for the Jupyter Notebook can be reused.
 
-## Storing data as parquet files
+### Storing data as parquet files
 
 In the magasin architecture, as general approach, we stand to store data assets as files. In particular, we recommend the use of [Apache parquet file format](https://parquet.apache.org/). 
 
@@ -40,64 +41,331 @@ The main reason to use files is:
 
 
 
-## Parquet format for structured data.
+### Parquet format for structured data.
 
 Parquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data. 
 
 Using Parquet to store processed datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular Big Data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.
 
-## A 
+### MinIO, magasin's storage layer (optional)
 
 For keeping a consistent approach across the different cloud providers, magasin includes a component called  [MinIO](http://min.io). It gives an [Amazon S3](https://en.wikipedia.org/wiki/Amazon_S3) compatible file (object) store. 
 
 Thanks to MinIO, regardless of what infrastructure you're using, your pipelines will work the same, you do not need to adapt how you store the data if you move to another provider. 
 
-Whereas to maintain a vendor-agnostic architecture we leverage MinIO.You have the flexibility to bypass this component if you find alternative methods more suitable for storing your ingested data. This decision may be based on better alignment with your existing processes or specific use case requirements.
+Whereas to maintain a vendor-agnostic architecture we leverage MinIO. You have the flexibility to bypass this component if you find alternative methods more suitable for storing your ingested data. This decision may be based on better alignment with your existing processes or specific use case requirements.
 
-For instance, instead of MinIO, you can directly utilize a vendor-specific object store like Azure Blobs, Amazon S3, or Google Cloud Storage. Alternatively, you may choose to write your data directly into a database, such as DuckDB or PostgreSQL.
+For instance, instead of MinIO, you can directly utilize a vendor-specific object store like Azure Blobs, Amazon S3, or Google Cloud Storage. Alternatively, in contrast to the file-storage approach of the datasets you may choose to write your data directly into a database, such as DuckDB or PostgreSQL.
 
 For the purposes of this tutorial we will be using MinIO. And the first step is to setup a bucket. A bucket is somewhat similar to a folder.
 
 So, let's start. 
 
-## Setup a bucket in MinIO
+## Create a bucket in MinIO
 
 The first thing we need to do is to setup where we are going to store our data. Till now, we've been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets.
 
 In one command line shell launch the minio API
+
 ```sh
 mag minio api
 ```
 
-Set the minio client alias
+Set the [minio client] alias. 
 ```sh
-
 mc alias set myminio http://localhost:9000 minio minio123
 # mc alias set <alias-name> <endpoint> <access-key> <secret-key>
 ```
 
-Create the magasin bucket
+Behind the scenes magasin command line interface, `mag`, uses minio client command (`mc`) to create the bucket and this is a setup `mc` needs.
+
+Once we have configured the alias, we just need to create the bucket:
+```sh
+ mag minio add bucket --bucket-name magasin 
 ```
- mag minio add bucket -b magasin 
+
+Note that the default alias that `mag` asumes is `myminio`. If you used another alias you can use `--alias` option: `mag minio add bucket --bucket-name magasin --alias myalias`.
+
+::: {.callout-tip}
+## Tip: mag shortcuts
+`mag` allows you to shorten the commands using the alias. For example:
+`mag minio add bucket --bucket-name magasin --alias myalias` can be written as `mag m a b -b magasin -a myalias`. Using the shorten version is a way of speeding up your interaction with the command, but it is less readable. 
+
+When you type `mag --help` or `mag <command> --help` you can see the shortcut versions in parenthesis
+
+For example for `mag --help`, you can see that daskhub shortcut is `dh` and minio is `m`
+```sh
+Usage: mag [OPTIONS] COMMAND [ARGS]...
+...
+Commands:
+  dagster (d)    Dagster commands
+  daskhub (dh)   Daskhub/Jupyterhub commands
+  drill (dr)     Apache Drill commands
+  minio (m)      MinIO commands
+  superset (ss)  Apache Superset commands
 ```
+:::
 
 Now, we have a bucket in MinIO that allows us to store files.
 
-# Create a dagster pipeline 
+## Create a dagster pipeline 
 
-So, the next step is to create a pipeline. A pipeline is just a piece of code that moves data from place to another. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.
+So, the next step is to create a pipeline. A pipeline is just a piece of code that moves data from place to another and that can introduce some changes before saving it in the destination place. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.
 
 The first thing we need to do is to install dagster.
 
-
-```
-pip install dagster
-```
-
+```sh
+pip install dagster==1.6.0 dagster-webserver==1.6.0
 ```
 
+:::{.callout-note}
+Dagster is a very agile product that is continuously evolving, this means that you have to be cognizant of the version you're running. 
+   
+ You can check the version installed in your cluster by running `helm list --all-namespaces` and looking at the `APP VERSION` column.
+ 
+ Then run pip install `pip install dagster==<version>`
+:::
 
 
+### Add the pipeline code 
+
+Once dagster is installed, we're going to create a new project using the default structure prodivded by dagster. This should be the default procedure for creating any new pipeline.
+
+```sh
+dagster project scaffold --name dpga-pipeline
+```
+```sh
+Creating a Dagster project at /home/magasin/dpga-pipeline.
+Creating a Dagster code location at /home/magasin/dpga-pipeline.
+Generated files for Dagster code location in /home/magasin/dpga-pipeline.
+Generated files for Dagster project in /home/magasin/dpga-pipeline.
+Success! Created dpga-pipeline at /home/magasin/dpga-pipeline.
+```
+
+By scaffolding our project, dagster creates a basic structure of a python package that could be installed using `pip` as any other package as well as some additional metadata files that will 
+be used by dagster to run the pipeline. You ahve some more info in the [dagster documentation](https://docs.dagster.io/guides/understanding-dagster-project-files).
+
+Now, lets add our code. Open the file `dpga-pipeline/dpga_pipeline/assets.py`
+
+```{.python filename="dpga-pipeline/dpga_pipeline/assets.py"}
+import requests
+import pandas as pd
+from pandas import DataFrame
+
+from dagster import asset
+
+@asset
+def raw_dpgs() -> DataFrame:
+  """ DPGs data from the API"""
+  dpgs_json_dict = requests.get("https://api.digitalpublicgoods.net/dpgs").json()
+  df = pd.DataFrame.from_dict(dpgs_json_dict)
+  return df
+
+@asset
+def deployment_countries(raw_dpgs: DataFrame) -> DataFrame:
+  df = raw_dpgs
+  df_loc = pd.merge(df, pd.json_normalize(df["locations"]), left_index=True, right_index=True)
+  df_deployment_countries = df_loc.explode("deploymentCountries")
+  df_deployment_countries[["name","deploymentCountries"]]
+
+  return df_deployment_countries
+```
+
+As you can see the code seems pretty similar to what we wrote in our [exploratory analysis](exploratory-analysis.qmd). 
+
+The in the code we have defined two `@assets`. An asset according to the dagster definition is:
+
+> An asset is an object in persistent storage, such as a table, file, or persisted machine learning model. A Software-defined Asset is a Dagster object that couples an asset to the function and upstream assets used to produce its contents.
+ 
+In our case, `raw_dpgs`, stores the dpgs as they come from the API as a DataFrame, and `deployment_countries` that extracts the one row per country in which the DPG has been deplayed.
+
+Another thing that you can notice in the code is that in the definition of the deployment_countries asset, we are passing `raw_dpgs: DataFrame`. That will tell dagster that deployment_countries depends on the `raw_dpgs` and it will be used as input.
+
+As you noticed, we are using a couple of packages that need to be installed `pandas` and `requests`. To install them,  in `dpga-pipeline/setup.py` we add them in the `install_requires` array.
+
+```{.python filename="dagster-pipeline/setup.py"}
+setup(
+  # ...
+  install_requires=[
+        "dagster",
+        "dagster-cloud",
+        "pandas",       # <--- Add this line 
+        "requests"      # <---- Add this line too
+    ],
+  #...
+)
+```
+
+Ok, So now let's test if this is working so far. To do that we will first install the pipeline package in [editable mode](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs) (`-e`). This allows you to edit the package without needing to install it again.
+
+```sh
+pip install -e '.[dev]'
+```
+
+Then, we will launch the dagster user interface:
+```sh 
+dagster dev
+```
+
+This launches a server in port 3000 on localhost. So just open `http://localhost:3000`
+
+You should see something like:
+
+![Dagster user interface](../images/get-started/dagster-ui-unmaterialized.png)
+
+#### Save the assets in MinIO.
+
+Till now, we've been working on the development machine file system. The next step is to save the information we want to keep in MinIO. 
+
+To access the MinIO bucket we will use [fsspec](https://filesystem-spec.readthedocs.io/en/latest/). This python library provides an standard interface regardless of the underlying filesystem. So, if you chose to use other file system to run this example, you can just change the environment variables and the  address. 
+
+MinIO provides an S3 compatible bucket file system, so we will use it.
+First we will add the dependencies `fsspec` and `s3fs`. 
+
+```{.python filename="dagster-pipeline/setup.py"}
+setup(
+   #...
+    install_requires=[
+        "dagster",
+        "dagster-cloud",
+        "pandas",
+        "requests",
+        "fsspec",   # <---- New dependency
+        "s3fs"      # <---- New dependency
+    ],
+    #...
+)
+
+```
+
+Now, we're going to modify our assets to use the minio filesystem.
+
+```{.python filename="dpga-pipeline/dpga_pipeline/assets.py"}
+import fsspec
+import requests
+import pandas as pd
+from pandas import DataFrame
+from dagster import asset
+
+@asset
+def raw_dpgs() -> DataFrame:
+  """ DPGs data from the API"""
+  # Load from API
+  dpgs_json_dict = requests.get("https://api.digitalpublicgoods.net/dpgs").json()  
+
+  # Convert to pandas dataframe
+  df = pd.DataFrame.from_dict(dpgs_json_dict)
+  return df
+
+@asset
+def deployment_countries(raw_dpgs: DataFrame) -> DataFrame:
+   
+  df = raw_dpgs
+  df_loc = pd.merge(df, pd.json_normalize(df["locations"]), left_index=True, right_index=True)
+  df_deployment_countries = df_loc.explode("deploymentCountries")
+  df_deployment_countries = df_deployment_countries[["id", "name","deploymentCountries"]]
+  
+  # Save to MinIO
+  fs= fsspec.filesystem('s3')
+  with fs.open('/magasin/data/deployment_countries.parquet','wb') as f:
+    df_deployment_countries.to_parquet(f)
+    
+  return df_deployment_countries
+```
+
+Then, we will setup some environment variables that will setup the Minio S3 bucket credentials. Add the `.env` file in the root of your project (same folder as `setup.py`). 
+
+```sh
+FSSPEC_S3_ENDPOINT_URL='http://localhost:9000'
+FSSPEC_S3_KEY='minio'
+FSSPEC_S3_SECRET='minio123'
+```
+
+As you can see we are indicating in the `.env` file that the endpoint of our minio is in localhost port 9000. To enable this service we need to run the following command 
+
+```sh
+mag minio api
+```
+
+While this command is running it will forward any connection to the port 9000 to the our minio instance in the kubernetes cluster. You shoud keep running during this till you are instructed to do close it.
+
+In another window, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run dagster:
+
+```sh
+
+pip install -e '.[dev]'
+dagster dev
+```
+
+Note that after you launch dagster dev you should see something like:
+
+```
+dagster - INFO - Loaded environment variables from .env file: FSSPEC_S3_ENDPOINT_URL,FSSPEC_S3_KEY,FSSPEC_S3_SECRET
+```
+
+This is because Dagster loads all the .env file automatically and exposes the variables to the code.
+
+Open again the browser pointing to `http://localhost:3000` and in the dagster UI and run `Materialize all`. 
+
+This time, all files should have been materialized in the `magasin` bucket.
+
+To test if the files are there. In a terminal run:
+
+```sh
+source .env
+export FSSPEC_S3_ENDPOINT_URL FSSPEC_S3_KEY FSSPEC_S3_SECRET
+python
+```
+
+And then type these lines 
+```python
+import fsspec 
+fs = fsspec.filesystem('s3')
+fs.ls("magasin")
+# You should see the names of the file 'magasin/deployment_countries.parquet'
+exit()
+```
+
+
+### Adding a scheduler
+
+Until now, we have been materializing manually our assets. However, automating this task is indeed the ultimate goal of setting a pipeline.
+
+In dagster, you have available [schedulers](https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules) which basically run your pipeline, or pieces of it, in a fixed interval. Dagster schedulers follow a [cron style format](https://en.wikipedia.org/wiki/Cron).
+
+```python
+#__init__.py
+
+
+```
+
+Here you have some [examples of cron intervals](https://crontab.guru/examples.html)
+
+
+
+```python
+# Scheduler code
+```
+
+### Deploy the pipeline in the cluster
+
+Till now we have been working on a development environment on our computer. However what we want is to send our pipeline to be 
+
+
+
+Now we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in dagster terminology)
+
+```
+helm upgrade dagster --namespace magasin-dagster -f
+```
+
+To open the dagster user interface of the instance running in our Kubernetes cluster we need to run
+
+```sh
+mag dagster ui
+```
+
+To check 
 
 
 ## Summary
@@ -111,4 +379,4 @@ Dagster has a learning curve, and it requires some work in order to get used to 
 Here you have a few links to get started with dagster:
 
 1. [Get started with dagster](https://docs.dagster.io/getting-started)
-. [Dagster Essentials](https://courses.dagster.io/courses/dagster-essentials)
+2.. [Dagster Essentials](https://courses.dagster.io/courses/dagster-essentials)

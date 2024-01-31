@@ -36,7 +36,7 @@ Jupyter Notebooks are excellent for an initial analysis, but there are many use 
 
 Automating is great, it frees us on needing to do repeated work. In our example, we will automate the ingestion and transformation of the DPGA API data. The data as it is served by the API is not fully ready to be analyzed, we need to perform some transformations to leave it ready to be displayed. 
 
-We did the heavy-lifting interactively with the first analysis and now we just need to convert it to a [dagster pipeline](). 
+We did the heavy-lifting interactively with the first analysis and now we just need to convert it to a [dagster pipeline](https://dagster.io). 
 
 [Dagster](https://dagster.io) is what is called a pipeline orchestrator, which basically helps us to manage the ingestion of data from multiple data sources.
 
