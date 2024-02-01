@@ -76,15 +76,16 @@ website:
       - text: "End user guides"
         file: end-user-guides.qmd
 
-      - section: "Admin Guides"
-        contents:
-            - file: admin-guides/mag-cli.qmd
-            - file: admin-guides/kubernetes.qmd
-            - file: admin-guides/daskhub.qmd   
-            - file: admin-guides/minio.qmd
-            - file: admin-guides/dagster.qmd
-            - file: admin-guides/drill.qmd
-            - file: admin-guides/superset.qmd  
+      # TODO
+      #- section: "Admin Guides"
+      #  contents:
+      #      - file: admin-guides/mag-cli.qmd
+      #      - file: admin-guides/kubernetes.qmd
+      #      - file: admin-guides/daskhub.qmd   
+      #      - file: admin-guides/minio.qmd
+      #      - file: admin-guides/dagster.qmd
+      #      - file: admin-guides/drill.qmd
+      #      - file: admin-guides/superset.qmd  
       
       - section: "Deployment"      
         contents:
