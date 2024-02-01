@@ -82,7 +82,7 @@ jobs:
 
           # We run a local helm repo in background 
           pwd
-          cd dev-scripts
+          cd helm-scripts
           ./local-helm-repo.sh &
           sleep 15
           cd ..
