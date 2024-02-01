@@ -7,14 +7,17 @@ format: html
 
 Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a [kubernetes cluster](https://kubernetes.io).
 
+In this getting started you will install magasin within your local machine for testing purposes, then you will perform an [end-to-end data analysis](tutorial-overview.qmd) that includes: [exploratory analysis](exploratory-analysis.qmd) of a data source, [create a pipeline](./automate-data-ingestion.qmd) to automate data ingestion and [create a dashboard](create-a-dashboard.qmd) to present your findings.
 
-## Setup a kubernetes cluster
+Let's start by setting getting the pre-requisites:
 
-To run magasin you need to have a kubernetes cluster in any [cloud provider](../install/setup-kubernetes.qmd#setup-a-cluster-in-a-major-cloud-provider) or, for testing purposes, you can set up a local kubernetes cluster in your own computer.
+## Pre-requisite: a kubernetes cluster
 
-For this getting started, we are going to setup a kubernetes cluster through through [Docker Desktop](https://docs.docker.com/desktop/), but if you already have a cluster you can go directly to the [install magasin section](#install-magasin). 
+Prior to installing magasin,  you need to have a kubernetes cluster. But don't worry, you can setup one in your local machine very easily. In layman terms, Kubernetes is just a technology that enables managing cloud ready applications, such as magasin. 
 
-First install Docker Desktop. It is available for: 
+For this getting started, we are going to setup a kubernetes cluster through [Docker Desktop](https://docs.docker.com/desktop/), an application that can be installed in any computer. However, if you already have a cluster you can go directly to the [install magasin section](#install-magasin). 
+
+First, install Docker Desktop. It is available for: 
 
 * [GNU/Linux](https://docs.docker.com/desktop/install/linux-install/)
 * [Mac OS X](https://docs.docker.com/desktop/install/mac-install/)
@@ -47,7 +50,7 @@ kube-public       Active   49m
 kube-system       Active   49m
 ```
 
-You can also [install minikube](../install/setup-kubernetes.qmd#option-2-local-cluster-using-minikube).
+Alternatively, you can also [install minikube](../install/setup-kubernetes.qmd#option-2-local-cluster-using-minikube) or if you have a cluster in any [cloud provider](../install/setup-kubernetes.qmd#setup-a-cluster-in-a-major-cloud-provider) you can also use it. At the end, you just need your `kubectl` to be setup to use whatever kubernetes cluster you want to use.
 
 
 ## Install magasin
