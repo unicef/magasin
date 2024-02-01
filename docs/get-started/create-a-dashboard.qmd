@@ -3,36 +3,80 @@ title: "Step 3: Create a dashboard"
 description-meta: Superset step
 ---
 
-Step 3: Create a Dashboard 
+In the previous steps we did an [exploratory analysis](exploratory-analysis.qmd) that gave us the opportunity to learn about the data and what we could extract from it. After that we learnt to [automate the data ingestion](automate-data-ingestion.qmd), that is the process of gathering and processing the data though in a scheduled way.
 
+So now, we have our ready to use dataset which is automatically updated. The last step on the process is to create a beautiful dashboard that we can share with the decission makers to help them to take the organization to the next level thanks to the use of data informed decissions. 
 
-## Setup Apache Drill
+In magasin's open source architecture, [Apache Superset](https://superset.apache.org/) is the business intelligence dashboarding tool that comes out of the box, but similarly to what we mentioned about MinIO, the loosely coupled architecture of magasin allows organizations to choose to leverage other tools that the organization may be already using such as PowerBI or Tableau.
 
-```
+Apache Superset can consume any SQL based database engine. However, we stored our data as `.parquet` files. To allow us to use file based datasets in the architecture we have [Apache Drill](https://drill.apache.org/), which basically allows us to consume these datasets using a SQL interface. Indeed, you can also query other formats such as CSV or JSON and Apache Drill will provide a SQL interface to query them. 
+
+## Setup Apache Drill to connect to MinIO
+
+1. Launch Apache Drill User interface
+
+    ```sh
+    mag drill ui
+    ```
+
+    ![Drill user interface home](../images/get-started/drill-ui-home.png)
+
+Then in the "Storage" page within the "Disabled Storage Plugins" click on the Update button of S3. 
+
+![Drill Update the S3 storage plugin ](../images/get-started/drill-ui-storage.png)
+
+Modify the beggining of the JSON so it looks like: 
+```json
 {
   "type": "file",
   "connection": "s3a://magasin",
   "config": {
-    "fs.s3a.connection.ssl.enabled": "true",
+    "fs.s3a.connection.ssl.enabled": "false",
     "fs.s3a.path.style.access": "true",
-    "fs.s3a.endpoint": "myminio-hl.magasin-tenant.svc.cluster.local",
+    "fs.s3a.endpoint": "myminio-hl.magasin-tenant.svc.cluster.local:9000",
     "fs.s3a.access.key": "minio",
     "fs.s3a.secret.key": "minio123"
   },
-...
+  "workspaces": {
+    "data": {
+      "location": "/data",
+      "writable": false,
+      "defaultInputFormat": null,
+      "allowAccessOutsideWorkspace": false
+    },
+    "root": {
+      "location": "/",
+      "writable": false,
+      "defaultInputFormat": null,
+      "allowAccessOutsideWorkspace": false
+    }
+  },
+  "formats": { 
+    # ...
+    # KEEP THE REST OF THE FILE SAME AS THE ORIGINAL. 
+    # ...
+  }
 }
 ```
+Press **Update** button, and then the click on the **Enable** button.
 
-Test query
+
+Now, click on **Query** at the top navigation bar corner and submit this test query: 
+
 ```sql 
 USE `s3`.`data`;
 ```
 
-https://superset.apache.org/docs/databases/drill/
+![Drill query UI](../images/get-started/drill-ui-query.png)
+
+If every thing goes right, you should see something like:
+
+![Success query result](../images/get-started/drill-ui-success-query.png)
+
 
 ## Create the Dashboard in Apache Superset
 
-To create a dashboard in superset the first step is to connect 
+To create a dashboard in superset the first step is to create a new database connection to our Apache Drill instance.
 
 ## Setting up the Drill-Superset database connection
 
@@ -74,12 +118,6 @@ To create a dashboard in superset the first step is to connect
     drill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/s3?use_ssl=False
     ```
 
-    If something does not work double check the previous steps and go to the [troubleshooting](#troubleshooting) section
 
-7.
-    
-
-
-## Troubleshooting
-
+## Creating the Superset Dashboard
 

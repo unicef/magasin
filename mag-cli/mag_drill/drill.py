@@ -21,7 +21,7 @@ def drill(realm):
 #----------
 # drill ui
 #----------
-@click.command
+@drill.command
 @options.realm
 @options.ports(default="8047:8047")
 def ui(realm, ports):
