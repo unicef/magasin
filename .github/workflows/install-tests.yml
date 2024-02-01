@@ -22,7 +22,7 @@ jobs:
        # Tests if the script checks ok
       - name: Test install-magasin.sh -c (dependencies installed)
         run: |
-          cd scripts/installer
+          cd installer
           ./install-magasin.sh -c
 
       - name: Remove kubectl and helm
@@ -36,13 +36,13 @@ jobs:
       # Tests if the script checks ok
       - name: Test install-magasin.sh -c (dependencies missing)
         run: |
-          cd scripts/installer
+          cd installer
           ./install-magasin.sh -c
 
       # Tests if the script installs pedendencies ok
       - name: Test install-magasin.sh -i (dependencies missing)
         run: |
-          cd scripts/installer
+          cd installer
           ./install-magasin.sh -i -y
 
           # Double test dependencies were installed
@@ -88,7 +88,7 @@ jobs:
           cd ..
 
           # Now we install magasin
-          cd scripts/installer
+          cd installer
           
           # We will test that yaml files overwrite
           echo "drill: " > drill.yaml
@@ -114,13 +114,13 @@ jobs:
       # Test if the script tests
       - name: Test uninstall-magasin.sh -c
         run: |
-          cd scripts/installer
+          cd installer
           ./uninstall-magasin.sh -c
 
       # Test if the script tests
       - name: Test uninstall-magasin.sh -r mgs-test
         run: |
-          cd scripts/installer
+          cd installer
           ./uninstall-magasin.sh -r mgs-test
 
           # namespaces should not exist anymore
@@ -141,12 +141,12 @@ jobs:
 
       - name: Test install-magasin.sh -c (check dependencies)
         run: |
-          cd scripts/installer
+          cd installer
           zsh ./install-magasin.sh -c
     
       - name: Test install-magasin.sh -i (install dependencies)
         run: |  
-          cd scripts/installer
+          cd installer
           zsh ./install-magasin.sh -i -y
       
       # Note that we're not testing the setup in a kubernetes cluster. 
@@ -154,5 +154,5 @@ jobs:
       # Test uninstall 
       - name: Test uninstall-magasin.sh -c
         run: |
-          cd scripts/installer
+          cd installer
           zsh ./uninstall-magasin.sh -c
