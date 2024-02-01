@@ -5,13 +5,21 @@ format: html
 
 Ensuring robust security measures within a Kubernetes cluster hosting diverse open-source applications is paramount in safeguarding sensitive data and maintaining operational integrity. 
 
+If you want to disclose a potential vulnerability, please read our [vulnerability disclosure policy](./contributing/vulnerability-disclosure.qmd).
+
 ## Reference documentation  
 Each component of magasin has its own level of security
 
 * [Kubernetes Security](https://kubernetes.io/docs/concepts/security/)
 * [Jupterhub Security](https://jupyterhub.readthedocs.io/en/stable/explanation/websecurity.html)
-* [Apache Superset Security](https://superset.apache.org/docs/security/)
+* [Dask gateway Security](https://gateway.dask.org/security.html)
+* MinIO Security:
+    * [Checklist](https://min.io/docs/minio/linux/operations/checklists/security.html#minio-security-checklist)
+    * [Identity Access Management](https://min.io/docs/minio/linux/administration/identity-access-management.html)
+    * [Server Side Encryption](https://min.io/docs/minio/linux/administration/server-side-encryption.html)
+    * [Data Encryption](https://min.io/docs/minio/linux/operations/server-side-encryption.html)
+    * [Network Encryption](https://min.io/docs/minio/linux/operations/network-encryption.html) 
 * [Apache Drill Security](https://drill.apache.org/docs/securing-drill/)
 * [Apache Zookeeper](https://zookeeper.apache.org/doc/r3.9.1/zookeeperAdmin.html)
-
+* [Apache Superset Security](https://superset.apache.org/docs/security/)
 
