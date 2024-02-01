@@ -373,12 +373,10 @@ if [[ "$command_missing" == true ]]; then
 
     if [ "${install_status["mc"]}" == "not installed" ]; then
       echo_info "Installing mc..."
-      curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+      sudo curl https://dl.min.io/client/mc/release/linux-amd64/mc \
         --create-dirs \
-        -o $HOME/.mag/bin/mc
-
-      chmod +x $HOME/.mag/bin/mc
-      export PATH=$PATH:$HOME/.mag/bin/
+        -o /usr/local/bin/mc
+      sudo chmod +x /usr/local/bin/mc
     fi
  
 
