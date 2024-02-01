@@ -1,1 +1,1 @@
-Sitemap: https://github.com/unicef/magasin/sitemap.xml
+Sitemap: https://unicef.github.io/magasin/sitemap.xml
