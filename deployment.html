@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>deployment</title>
+<title>Production deployment</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./security.html" rel="next">
-<link href="./admin-guide-superset.html" rel="prev">
+<link href="./install/uninstall.html" rel="prev">
 <link href=".//images/magasin-star.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -71,6 +71,9 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<meta name="twitter:title" content="Production deployment">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -95,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./get-started.html" aria-current="page"> 
+    <a class="nav-link active" href="./get-started/index.html" aria-current="page"> 
 <span class="menu-text">Get started</span></a>
   </li>  
   <li class="nav-item">
@@ -130,27 +133,85 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./docs-home.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./get-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Get started</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Install</span></a>
+ <span class="menu-text">Welcome</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs-home.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./why-magasin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why magasin?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Get started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./get-started/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./get-started/tutorial-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./get-started/exploratory-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Step 1: Exploratory analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./get-started/automate-data-ingestion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Step 2: Automate data ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./get-started/create-a-dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Step 3: Create a dashboard</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Install</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install/index.html" class="sidebar-item-text sidebar-link">
@@ -183,56 +244,15 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./architecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Architecture</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./end-user-guides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">End user guides</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Admin Guides</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./admin-guide-kubernetes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Kubernetes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./admin-guide-drill.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Drill</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./admin-guide-superset.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Superset</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">Deployment</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./deployment.html" class="sidebar-item-text sidebar-link active">
@@ -249,23 +269,53 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Contributing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./contributing.html" class="sidebar-item-text sidebar-link">
+  <a href="./contributing/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Contributing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./repositories.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Repositories</span></a>
+  <a href="./contributing/repository-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repository workflows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contributing/documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Documenting magasin</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contributing/helm-repo-dev.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Helm repo development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contributing/installer-dev.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installer (Dev)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contributing/repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Source Code Repositories</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contributing/vulnerability-disclosure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vulnerability disclosure policy</span></a>
   </div>
 </li>
       </ul>
@@ -276,27 +326,95 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#daskhub" id="toc-daskhub" class="nav-link active" data-scroll-target="#daskhub"><span class="header-section-number">1</span> Daskhub</a></li>
+  <li><a href="#dagster" id="toc-dagster" class="nav-link" data-scroll-target="#dagster"><span class="header-section-number">2</span> Dagster</a></li>
+  <li><a href="#minio" id="toc-minio" class="nav-link" data-scroll-target="#minio"><span class="header-section-number">3</span> MinIO</a></li>
+  <li><a href="#apache-drill" id="toc-apache-drill" class="nav-link" data-scroll-target="#apache-drill"><span class="header-section-number">4</span> Apache Drill</a></li>
+  <li><a href="#apache-superset" id="toc-apache-superset" class="nav-link" data-scroll-target="#apache-superset"><span class="header-section-number">5</span> Apache Superset</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/deployment.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./deployment.html">Deployment</a></li><li class="breadcrumb-item"><a href="./deployment.html">Deploying to production</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Production deployment</h1>
+</div>
 
 
 
-<table class="table">
-<tbody>
-<tr class="odd">
-<td>title: “Deployment”</td>
-</tr>
-<tr class="even">
-<td>format: html</td>
-</tr>
-</tbody>
-</table>
-<p>All you need to know in order to deploy in a productivity system</p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p>Whereas the default installation of magasin is very convenient for testing, it is not ready for production.</p>
+<p>The major concerns you should have when deploying to production should be:</p>
+<ol type="1">
+<li><p><strong>Set strong admin passwords</strong>. For simplicity, the base installation includes hardcoded admin passwords. You should modify thse passwords and set strong passwords.</p></li>
+<li><p><strong>Enable access controls / Authorization / Authentication.</strong> The large majority of the components support ways to setup authorization and authentication as well as Single Sign-On (SSO).</p></li>
+<li><p><strong>Network encryption (TLS)</strong>. The default installation does not enable TSL (Transport Layer Security) in the communication between the components.</p></li>
+<li><p><strong>Setup encryption at rest</strong>. Depending on the sensitivity of the data you are managing, you may want to keep pipelines output encrypted at rest. There are two areas in which you need to focus. The first one is the underlying infrastructure encryption (f.i. hard disk). Cloud providers generally support keeping your data encrypted. If you opt to use MinIO, then you can apply also <a href="https://min.io/docs/minio/linux/operations/server-side-encryption.html">encryption at the application level</a>.</p></li>
+<li><p><strong>Enable monitoring</strong>. Whereas the components included in magasin support monitoring, the platform currently does not provide an solution for that. Open Source tools such as <a href="https://prometheus.io/">Prometheus</a> and/or <a href="https://grafana.com/">Graphana</a> may help you.</p></li>
+<li><p><strong>Performance</strong>. Basically with monitoring you will be able to learn where are your bottle necks. In terms of RAM and CPU demand, Apache Drill is the component that may require more attention.</p></li>
+<li><p><strong>Backup your and recovery</strong>. Setup data backups and recovery plans so that, in case of any incident you can restore your instance.</p></li>
+</ol>
+<p>Here you have some links to reference documentation from the original projects that may help you to setup a production release.</p>
+<section id="daskhub" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="daskhub"><span class="header-section-number">1</span> Daskhub</h2>
+<ul>
+<li><a href="https://artifacthub.io/packages/helm/dask/daskhub">Dask hub helm char</a></li>
+<li><a href="https://z2jh.jupyter.org/en/stable/">Jupyterhub helm Chart</a></li>
+<li><a href="https://gateway.dask.org/install-kube.html">Dask Gateway Helm</a></li>
+<li><a href="https://gateway.dask.org/install-kube.html#helm-chart-reference">Dask Gateway Hem Chart Reference</a></li>
+</ul>
+</section>
+<section id="dagster" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="dagster"><span class="header-section-number">2</span> Dagster</h2>
+<ul>
+<li><a href="https://docs.dagster.io/deployment/open-source">Deployment</a></li>
+<li><a href="https://docs.dagster.io/deployment/guides/kubernetes/deploying-with-helm">Deploying with helm</a></li>
+</ul>
+</section>
+<section id="minio" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="minio"><span class="header-section-number">3</span> MinIO</h2>
+<p>From MinIO magasin includes two helm chart. One is the operator, which basically allows you to deploy instances of tenants (provides multi-tenancy support). In the magasin default installation we do not use the operator to deploy the tenant but rather a helm chart, and we only install the operator as it is a requirement for a tenant. For one single organization, it may be enought to manage one single tenant.</p>
+<ul>
+<li><p><a href="https://min.io/docs/minio/kubernetes/upstream/reference/operator-chart-values.html#id2">Minio Tenant Helm Chart Reference</a></p></li>
+<li><p><a href="https://min.io/docs/minio/kubernetes/upstream/reference/operator-chart-values.html">Minio Operator Helm Chart Reference</a></p></li>
+<li><p><a href="https://min.io/docs/minio/kubernetes/upstream/operations/install-deploy-manage/deploy-operator-helm.html">Deploy minio operator with Helm</a></p></li>
+<li><p><a href="https://min.io/docs/minio/kubernetes/upstream/operations/install-deploy-manage/deploy-minio-tenant-helm.html#deploy-tenant-helm">Deploy a tenant with Helm</a></p></li>
+</ul>
+</section>
+<section id="apache-drill" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="apache-drill"><span class="header-section-number">4</span> Apache Drill</h2>
+<ul>
+<li><a href="https://github.com/unicef/magasin-drill">Helm chart Documentation</a></li>
+<li><a href="https://drill.apache.org/docs/configure-drill/">Apache Drill configuration</a></li>
+<li><a href="https://drill.apache.org/docs/connect-a-data-source-introduction/">Connecting Data Sources</a></li>
+</ul>
+</section>
+<section id="apache-superset" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="apache-superset"><span class="header-section-number">5</span> Apache Superset</h2>
+<ul>
+<li><a href="https://superset.apache.org/docs/installation/running-on-kubernetes/">Helm Chart documentation</a></li>
+<li><a href="https://superset.apache.org/docs/installation/configuring-superset">Configuring Superset</a></li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <!-- js.html included after <body> javascript -->
@@ -716,8 +834,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./admin-guide-superset.html" class="pagination-link  aria-label=" superset"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Superset</span>
+      <a href="./install/uninstall.html" class="pagination-link  aria-label=" uninstall="" magasin"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Uninstall magasin</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -734,7 +852,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="./privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="./images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></p>
-<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/deployment.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/deployment.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

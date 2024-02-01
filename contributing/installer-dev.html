@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setup kubernetes</title>
+<title>Installer (Dev)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../install/troubleshooting.html" rel="next">
-<link href="../install/advanced.html" rel="prev">
+<link href="../contributing/repositories.html" rel="next">
+<link href="../contributing/helm-repo-dev.html" rel="prev">
 <link href="..//images/magasin-star.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="Setup kubernetes">
+<meta name="twitter:title" content="Installer (Dev)">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -155,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../contributing/index.html">Contributing</a></li><li class="breadcrumb-item"><a href="../contributing/installer-dev.html">Installer (Dev)</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -260,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup kubernetes</span></a>
   </div>
 </li>
@@ -336,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../contributing/installer-dev.html" class="sidebar-item-text sidebar-link">
+  <a href="../contributing/installer-dev.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Installer (Dev)</span></a>
   </div>
 </li>
@@ -364,21 +330,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup-a-local-cluster" id="toc-setup-a-local-cluster" class="nav-link active" data-scroll-target="#setup-a-local-cluster"><span class="header-section-number">1</span> Setup a local cluster</a>
-  <ul class="collapse">
-  <li><a href="#option-1-local-cluster-using-docker-desktop" id="toc-option-1-local-cluster-using-docker-desktop" class="nav-link" data-scroll-target="#option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</a></li>
-  <li><a href="#option-2-local-cluster-using-minikube" id="toc-option-2-local-cluster-using-minikube" class="nav-link" data-scroll-target="#option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</a></li>
-  </ul></li>
-  <li><a href="#setup-a-cluster-in-a-major-cloud-provider" id="toc-setup-a-cluster-in-a-major-cloud-provider" class="nav-link" data-scroll-target="#setup-a-cluster-in-a-major-cloud-provider"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</a></li>
+  <li><a href="#installer-tests" id="toc-installer-tests" class="nav-link active" data-scroll-target="#installer-tests"><span class="header-section-number">1</span> Installer tests</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/contributing/installer-dev.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../contributing/index.html">Contributing</a></li><li class="breadcrumb-item"><a href="../contributing/installer-dev.html">Installer (Dev)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Setup kubernetes</h1>
+<h1 class="title">Installer (Dev)</h1>
 </div>
 
 
@@ -395,82 +356,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Magasin components are designed for installation within Kubernetes clusters. Major cloud providers offer the ability to set up these clusters, but for exploration and testing, you can create one on your desktop.</p>
-<p>If you already have a Kubernetes cluster, you may proceed without this step.</p>
-<p>For setting up a Magasin instance in a local cluster on a desktop, it is advisable to have a minimum of 32 GB of RAM.</p>
-<section id="setup-a-local-cluster" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Setup a local cluster</h1>
-<section id="option-1-local-cluster-using-docker-desktop" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</h2>
-<p>In case you do not have a Kubernetes cluster, another easy way to set it up is through <a href="https://docs.docker.com/desktop/">Docker Desktop</a>. It is available for:</p>
-<ul>
-<li><a href="https://docs.docker.com/desktop/install/linux-install/">GNU/Linux</a></li>
-<li><a href="https://docs.docker.com/desktop/install/mac-install/">Mac OS X</a></li>
-<li><a href="https://docs.docker.com/desktop/install/windows-install/">Windows</a></li>
-</ul>
-<p>Once installed. In <strong>Settings / Kubernetes </strong>, enable Kubernetes. It will automatically install</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/install/install-enable-kubernetes-docker-desktop.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes</figcaption>
-</figure>
-</div>
-<p>Lastly, on a command line, create the new cluster and use it:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config set-context magasin <span class="at">--namespace</span> default <span class="at">--cluster</span> docker-desktop <span class="at">--user</span><span class="op">=</span>docker-desktop</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config use-context magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To ensure that the kubernetes cluster is the correct one check if the name corresponds to the</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>             STATUS   ROLES           AGE   VERSION</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-desktop</span>   Ready    control-plane   48m   v1.28.2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get namespaces</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>              STATUS   AGE</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">default</span>           Active   49m</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-node-lease</span>   Active   49m</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-public</span>       Active   49m</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>       Active   49m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>More information:</p>
-<ul>
-<li><a href="https://docs.docker.com/desktop/kubernetes/">https://docs.docker.com/desktop/kubernetes/</a></li>
-<li><a href="https://birthday.play-with-docker.com/kubernetes-docker-desktop/">https://birthday.play-with-docker.com/kubernetes-docker-desktop/</a></li>
-</ul>
-</section>
-<section id="option-2-local-cluster-using-minikube" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</h2>
-<p>If you don’t have a kubernetes cluster, for testing purposes, you can easily install <a href="https://minikube.sigs.k8s.io/">minikube</a> in your desktop. Minikube is a kubernetes cluster created for practicing and learning purposes.</p>
-<p>The full installation details are described in <a href="https://minikube.sigs.k8s.io/docs/start/">https://minikube.sigs.k8s.io/docs/start/</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GNU/Linux Debian like</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LO</span> https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> minikube_latest_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac OS</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install minikube</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once minikube is installed, please make sure to run:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">minikube</span> start</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If your system does not have the command <code>kubectl</code> already installed, it is also recommended to add the <a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/"><code>kubeclt</code> alias</a></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that both of the two options above are just recommended for playing around without needing to deploy any infrastructure, but not for setting up an actual “shared” instance of magasin.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="setup-a-cluster-in-a-major-cloud-provider" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</h1>
-<p>Kubernetes enjoys broad support from major cloud providers, allowing you to choose based on your organization’s preferences and compliance requirements. Here are links to their respective pages.</p>
-<p>Setting up a Kubernetes cluster on the cloud is currently out of the scope of this documentation, however you can find more information in:</p>
-<ul>
-<li><p><a href="https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli">Azure Kubernetes Service (AKS)</a></p></li>
-<li><p><a href="https://aws.amazon.com/kubernetes/">Kubernetes in Amazon Web Services</a></p></li>
-<li><p><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Service (GKS)</a></p></li>
-<li><p><a href="https://www.digitalocean.com/products/kubernetes">Digital Ocean Kubernetes (DOKS)</a></p></li>
-</ul>
+<p>The <code>[install-magasin.sh](https://github.com/unicef/magasin/blob/main/installer/install-magasin.sh)</code> is a shell script that installs all the dependencies required to install magasin as well as setting up all the helm charts that compose magasin.</p>
+<p>You have more details about what it does, in the <a href="../install/advanced.html">advanced installation page</a></p>
+<p>It has a companion that is the <code>[uninstall-script.sh](https://github.com/unicef/magasin/blob/main/installer/uninstall-magasin.sh)</code></p>
+<p>The installer and uninstaller source code can be found under the <a href="">installer/</a> folder within the main magasin repository.</p>
+<section id="installer-tests" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="installer-tests"><span class="header-section-number">1</span> Installer tests</h2>
+<p>The installer includes several options, in order to verify these are working we have created a Github action that performs several tests in different operating systems.</p>
+<p>See the source code of <a href="https://github.com/unicef/magasin/blob/main/.github/workflows/install-tests.yml">install-tests.yaml</a></p>
 
 
 </section>
@@ -893,13 +786,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../install/advanced.html" class="pagination-link  aria-label=" advanced="" installation"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced installation</span>
+      <a href="../contributing/helm-repo-dev.html" class="pagination-link  aria-label=" helm="" repo="" development"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Helm repo development</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../install/troubleshooting.html" class="pagination-link" aria-label="Troubleshooting">
-        <span class="nav-page-text">Troubleshooting</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../contributing/repositories.html" class="pagination-link" aria-label="Source Code Repositories">
+        <span class="nav-page-text">Source Code Repositories</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -911,7 +804,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="../privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="../images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/contributing/installer-dev.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

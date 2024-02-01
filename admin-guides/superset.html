@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setup kubernetes</title>
+<title>Superset guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../install/troubleshooting.html" rel="next">
-<link href="../install/advanced.html" rel="prev">
 <link href="..//images/magasin-star.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="Setup kubernetes">
+<meta name="twitter:title" content="Superset guide">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -155,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Superset guide</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -260,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup kubernetes</span></a>
   </div>
 </li>
@@ -364,21 +362,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup-a-local-cluster" id="toc-setup-a-local-cluster" class="nav-link active" data-scroll-target="#setup-a-local-cluster"><span class="header-section-number">1</span> Setup a local cluster</a>
+  <li><a href="#backup-the-superset-database-into-the-local-filesystem" id="toc-backup-the-superset-database-into-the-local-filesystem" class="nav-link active" data-scroll-target="#backup-the-superset-database-into-the-local-filesystem"><span class="header-section-number">1</span> Backup the superset database into the local filesystem</a>
   <ul class="collapse">
-  <li><a href="#option-1-local-cluster-using-docker-desktop" id="toc-option-1-local-cluster-using-docker-desktop" class="nav-link" data-scroll-target="#option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</a></li>
-  <li><a href="#option-2-local-cluster-using-minikube" id="toc-option-2-local-cluster-using-minikube" class="nav-link" data-scroll-target="#option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</a></li>
+  <li><a href="#restore-superset-database-from-local-filesystem" id="toc-restore-superset-database-from-local-filesystem" class="nav-link" data-scroll-target="#restore-superset-database-from-local-filesystem"><span class="header-section-number">1.1</span> Restore superset database from local filesystem</a></li>
   </ul></li>
-  <li><a href="#setup-a-cluster-in-a-major-cloud-provider" id="toc-setup-a-cluster-in-a-major-cloud-provider" class="nav-link" data-scroll-target="#setup-a-cluster-in-a-major-cloud-provider"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</a></li>
+  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql"><span class="header-section-number">2</span> PostgreSQL</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">3</span> Troubleshooting</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/admin-guides/superset.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Setup kubernetes</h1>
+<h1 class="title">Superset guide</h1>
 </div>
 
 
@@ -395,81 +393,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Magasin components are designed for installation within Kubernetes clusters. Major cloud providers offer the ability to set up these clusters, but for exploration and testing, you can create one on your desktop.</p>
-<p>If you already have a Kubernetes cluster, you may proceed without this step.</p>
-<p>For setting up a Magasin instance in a local cluster on a desktop, it is advisable to have a minimum of 32 GB of RAM.</p>
-<section id="setup-a-local-cluster" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Setup a local cluster</h1>
-<section id="option-1-local-cluster-using-docker-desktop" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</h2>
-<p>In case you do not have a Kubernetes cluster, another easy way to set it up is through <a href="https://docs.docker.com/desktop/">Docker Desktop</a>. It is available for:</p>
+<p>A quick guide for an magasin administrator on superset.</p>
+<section id="backup-the-superset-database-into-the-local-filesystem" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="backup-the-superset-database-into-the-local-filesystem"><span class="header-section-number">1</span> Backup the superset database into the local filesystem</h2>
+<p>A dump (backup) of the database may be useful when a new version of superset is going to be installed, or to keep a regular scheduled backup of the superset data.</p>
+<p>To create a dump of the database, you can use the script <code>scripts/superset/dump-superset-db.sh</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./dump-superset-db.sh</span> <span class="at">-n</span> magasin-superset-prd<span class="kw">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Where the option <code>-n</code> is to specify the namespace of the superset instance (defaults to <code>magasin-superset</code>).</p>
+<p>This script will request request the password of the <code>superset</code> user, to perform the dump. You can get the password from the secret <code>superset-env</code> within the same namespace.</p>
+<p>The output of running this script is the file <code>superset_dump.sql</code> in the current working folder. Note that this script assumes that the name of the database is <code>superset</code>.</p>
+<p>Alternatively, these are the manual steps to do the same:</p>
+<ol type="1">
+<li><p>Launch a terminal in the posgresql pod (replace the namespace if required)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">kubectl</span> exec superset-postgresql-0 <span class="at">-ti</span> <span class="at">--namespace</span> magasin-superset <span class="at">--</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Within the pod shell, extract and compress the data. The below command will ask for the superset database password (you can find it in the superset-env secret, defaults to <code>superset</code>)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pg_dump</span> <span class="at">-U</span> superset <span class="at">-d</span> superset <span class="op">&gt;</span> /tmp/superset_dump.sql</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># where -U is the username of the database, and -d is the database name.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-C</span> /tmp <span class="at">-czvf</span> /tmp/supserset_dump.tgz supserset_dump.sql</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># where -C is to use /tmp as base folder -c collect, z zip, v=verboze and f output file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Exit the pod shell and copy the dump file into <code>/tmp</code> in the local filesystem of the pod. exit</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exit the pod shell</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the tgz to the local environment.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cp magasin-superset/superset-postgresql-0:/tmp/superset_dump.tgz <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>./supserset_dump.tgz <span class="at">--retries</span> 100</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Syntax: kubectl cp namespace/pod:path local-path. </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The option --retries is to fix potential network issues</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Lastly, delete the db dump from the postgres pod</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> exec magasin-superset/superset-postgresql-0 <span class="at">--</span> <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rm /tmp/supeset_dump.tgz /tmp/superset_dump.sql  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<section id="restore-superset-database-from-local-filesystem" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="restore-superset-database-from-local-filesystem"><span class="header-section-number">1.1</span> Restore superset database from local filesystem</h3>
+<p>To restore the database from the previous step.</p>
+<ol type="1">
+<li><p>Copy the database to the postgres pod.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cp superset_dump.sql magasin-superset/superset-postgresql-0:/tmp/superset_dump.sql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Launch the shell</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> exec superset-postgresql-0 <span class="at">-ti</span> <span class="at">--namespace</span> magasin-superset <span class="at">--</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>If the database exist, you may need to drop it first</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">--username</span> postgres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>The password can be found in <code>superset-postgresql</code> secret <code>postgres-password</code></p></li>
+<li><p>If you get an error indicating the database is being used run the command:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> pg_terminate_backend(pg_stat_activity.pid) </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> pg_stat_activity </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> pg_stat_activity.datname <span class="op">=</span> <span class="st">'superset'</span> <span class="kw">AND</span> pid <span class="op">&lt;&gt;</span> pg_backend_pid();</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- To delete the superset database: (don't forget the ; at the end)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> superset;</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">--- Then create an empty database (don't forget the ; at the end)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> superset;</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- Then quit psql</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>\q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Finally, restore the database</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">--username</span> superset <span class="at">--dbname</span> superset <span class="at">-f</span> /tmp/superset_dump.sql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or alternatively less verbose option</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> superset <span class="at">-d</span> superset2 <span class="at">-f</span> ./tmp/superset_dump.sql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>Now, you can restart the superset pod. First find the superset-xxxxxxxxx-xxxxx and delete it</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--namespace</span> magasin-superset</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>                               READY   STATUS      RESTARTS   AGE</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-75b79c6c8d-jttd9</span>          1/1     Running     0          62m</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-init-db-bhc25</span>             0/1     Completed   0          62m</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-postgresql-0</span>              1/1     Running     0          62m</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-redis-master-0</span>            1/1     Running     0          62m</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ex">superset-worker-85dfbb48dd-6bhjp</span>   1/1     Running     0          62m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete pod superset-75b79c6c8d-jttd9 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="postgresql" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="postgresql"><span class="header-section-number">2</span> PostgreSQL</h2>
 <ul>
-<li><a href="https://docs.docker.com/desktop/install/linux-install/">GNU/Linux</a></li>
-<li><a href="https://docs.docker.com/desktop/install/mac-install/">Mac OS X</a></li>
-<li><a href="https://docs.docker.com/desktop/install/windows-install/">Windows</a></li>
+<li><p>Get list of databases</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> datname <span class="kw">FROM</span> pg_database <span class="kw">WHERE</span> datistemplate <span class="op">=</span> <span class="kw">false</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Get the user owner of database ‘database_name’</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> d.datname <span class="kw">as</span> <span class="ot">"Name"</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pg_catalog.pg_get_userbyid(d.datdba) <span class="kw">as</span> <span class="ot">"Owner"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> pg_catalog.pg_database d</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> d.datname <span class="op">=</span> <span class="st">'database_name'</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dv">1</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<p>Once installed. In <strong>Settings / Kubernetes </strong>, enable Kubernetes. It will automatically install</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/install/install-enable-kubernetes-docker-desktop.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes</figcaption>
-</figure>
-</div>
-<p>Lastly, on a command line, create the new cluster and use it:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config set-context magasin <span class="at">--namespace</span> default <span class="at">--cluster</span> docker-desktop <span class="at">--user</span><span class="op">=</span>docker-desktop</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config use-context magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To ensure that the kubernetes cluster is the correct one check if the name corresponds to the</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>             STATUS   ROLES           AGE   VERSION</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-desktop</span>   Ready    control-plane   48m   v1.28.2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get namespaces</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>              STATUS   AGE</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">default</span>           Active   49m</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-node-lease</span>   Active   49m</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-public</span>       Active   49m</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>       Active   49m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>More information:</p>
+</section>
+<section id="troubleshooting" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">3</span> Troubleshooting</h2>
 <ul>
-<li><a href="https://docs.docker.com/desktop/kubernetes/">https://docs.docker.com/desktop/kubernetes/</a></li>
-<li><a href="https://birthday.play-with-docker.com/kubernetes-docker-desktop/">https://birthday.play-with-docker.com/kubernetes-docker-desktop/</a></li>
-</ul>
-</section>
-<section id="option-2-local-cluster-using-minikube" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</h2>
-<p>If you don’t have a kubernetes cluster, for testing purposes, you can easily install <a href="https://minikube.sigs.k8s.io/">minikube</a> in your desktop. Minikube is a kubernetes cluster created for practicing and learning purposes.</p>
-<p>The full installation details are described in <a href="https://minikube.sigs.k8s.io/docs/start/">https://minikube.sigs.k8s.io/docs/start/</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GNU/Linux Debian like</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LO</span> https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> minikube_latest_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac OS</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install minikube</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once minikube is installed, please make sure to run:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">minikube</span> start</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If your system does not have the command <code>kubectl</code> already installed, it is also recommended to add the <a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/"><code>kubeclt</code> alias</a></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that both of the two options above are just recommended for playing around without needing to deploy any infrastructure, but not for setting up an actual “shared” instance of magasin.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="setup-a-cluster-in-a-major-cloud-provider" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</h1>
-<p>Kubernetes enjoys broad support from major cloud providers, allowing you to choose based on your organization’s preferences and compliance requirements. Here are links to their respective pages.</p>
-<p>Setting up a Kubernetes cluster on the cloud is currently out of the scope of this documentation, however you can find more information in:</p>
-<ul>
-<li><p><a href="https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli">Azure Kubernetes Service (AKS)</a></p></li>
-<li><p><a href="https://aws.amazon.com/kubernetes/">Kubernetes in Amazon Web Services</a></p></li>
-<li><p><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Service (GKS)</a></p></li>
-<li><p><a href="https://www.digitalocean.com/products/kubernetes">Digital Ocean Kubernetes (DOKS)</a></p></li>
+<li><p><strong>Get the events of a pod</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> describe pod superset-564564dd4-2lzb6 <span class="at">--namespace</span> magasin-superset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Get logs of the containers</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> logs <span class="op">&lt;</span>podname<span class="op">&gt;</span> -f <span class="at">--namespace</span> <span class="op">&lt;</span>namespace<span class="op">&gt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> logs superset-564564dd4-2lzb6 <span class="at">-f</span> <span class="at">--namespace</span> magasin-superset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <code>-f</code> continues displaying the new logs.</p>
+<p>With <code>--all-containers</code> you can see the logs of all the containers instead of the one that is being executed. This is useful when the current container of the pod gets stuck because of the previous container output was not the expected. Example:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> logs superset-564564dd4-2lzb6 <span class="at">--namespace</span> magasin-superset <span class="at">--all-containers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 
 
@@ -891,18 +914,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../install/advanced.html" class="pagination-link  aria-label=" advanced="" installation"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced installation</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../install/troubleshooting.html" class="pagination-link" aria-label="Troubleshooting">
-        <span class="nav-page-text">Troubleshooting</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -911,7 +922,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="../privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="../images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/admin-guides/superset.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

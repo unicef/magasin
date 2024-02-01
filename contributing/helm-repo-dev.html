@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Information for getting started to contribute to the magasin helm repo">
 
-<title>Setup kubernetes</title>
+<title>Helm repo development</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../install/troubleshooting.html" rel="next">
-<link href="../install/advanced.html" rel="prev">
+<link href="../contributing/installer-dev.html" rel="next">
+<link href="../contributing/documentation.html" rel="prev">
 <link href="..//images/magasin-star.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="Setup kubernetes">
+<meta name="twitter:title" content="Helm repo development">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -155,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../contributing/index.html">Contributing</a></li><li class="breadcrumb-item"><a href="../contributing/helm-repo-dev.html">Helm repo development</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -260,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup kubernetes</span></a>
   </div>
 </li>
@@ -330,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../contributing/helm-repo-dev.html" class="sidebar-item-text sidebar-link">
+  <a href="../contributing/helm-repo-dev.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Helm repo development</span></a>
   </div>
 </li>
@@ -364,21 +365,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup-a-local-cluster" id="toc-setup-a-local-cluster" class="nav-link active" data-scroll-target="#setup-a-local-cluster"><span class="header-section-number">1</span> Setup a local cluster</a>
+  <li><a href="#working-with-the-charts" id="toc-working-with-the-charts" class="nav-link active" data-scroll-target="#working-with-the-charts"><span class="header-section-number">1</span> Working with the charts</a>
   <ul class="collapse">
-  <li><a href="#option-1-local-cluster-using-docker-desktop" id="toc-option-1-local-cluster-using-docker-desktop" class="nav-link" data-scroll-target="#option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</a></li>
-  <li><a href="#option-2-local-cluster-using-minikube" id="toc-option-2-local-cluster-using-minikube" class="nav-link" data-scroll-target="#option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</a></li>
+  <li><a href="#how-can-i-update-magasins-repo-helm-charts" id="toc-how-can-i-update-magasins-repo-helm-charts" class="nav-link" data-scroll-target="#how-can-i-update-magasins-repo-helm-charts"><span class="header-section-number">1.1</span> How can I update magasin’s repo helm charts?</a></li>
+  <li><a href="#how-can-i-test-changes-on-helm-charts" id="toc-how-can-i-test-changes-on-helm-charts" class="nav-link" data-scroll-target="#how-can-i-test-changes-on-helm-charts"><span class="header-section-number">1.2</span> How can I test changes on helm charts?</a></li>
+  <li><a href="#what-if-i-only-want-to-update-or-install-one-single-component" id="toc-what-if-i-only-want-to-update-or-install-one-single-component" class="nav-link" data-scroll-target="#what-if-i-only-want-to-update-or-install-one-single-component"><span class="header-section-number">1.3</span> What if I only want to update or install one single component?</a></li>
   </ul></li>
-  <li><a href="#setup-a-cluster-in-a-major-cloud-provider" id="toc-setup-a-cluster-in-a-major-cloud-provider" class="nav-link" data-scroll-target="#setup-a-cluster-in-a-major-cloud-provider"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/contributing/helm-repo-dev.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../contributing/index.html">Contributing</a></li><li class="breadcrumb-item"><a href="../contributing/helm-repo-dev.html">Helm repo development</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Setup kubernetes</h1>
+<h1 class="title">Helm repo development</h1>
 </div>
 
 
@@ -395,84 +396,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Magasin components are designed for installation within Kubernetes clusters. Major cloud providers offer the ability to set up these clusters, but for exploration and testing, you can create one on your desktop.</p>
-<p>If you already have a Kubernetes cluster, you may proceed without this step.</p>
-<p>For setting up a Magasin instance in a local cluster on a desktop, it is advisable to have a minimum of 32 GB of RAM.</p>
-<section id="setup-a-local-cluster" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Setup a local cluster</h1>
-<section id="option-1-local-cluster-using-docker-desktop" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</h2>
-<p>In case you do not have a Kubernetes cluster, another easy way to set it up is through <a href="https://docs.docker.com/desktop/">Docker Desktop</a>. It is available for:</p>
-<ul>
-<li><a href="https://docs.docker.com/desktop/install/linux-install/">GNU/Linux</a></li>
-<li><a href="https://docs.docker.com/desktop/install/mac-install/">Mac OS X</a></li>
-<li><a href="https://docs.docker.com/desktop/install/windows-install/">Windows</a></li>
-</ul>
-<p>Once installed. In <strong>Settings / Kubernetes </strong>, enable Kubernetes. It will automatically install</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/install/install-enable-kubernetes-docker-desktop.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes</figcaption>
-</figure>
-</div>
-<p>Lastly, on a command line, create the new cluster and use it:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config set-context magasin <span class="at">--namespace</span> default <span class="at">--cluster</span> docker-desktop <span class="at">--user</span><span class="op">=</span>docker-desktop</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config use-context magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To ensure that the kubernetes cluster is the correct one check if the name corresponds to the</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>             STATUS   ROLES           AGE   VERSION</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-desktop</span>   Ready    control-plane   48m   v1.28.2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get namespaces</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>              STATUS   AGE</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">default</span>           Active   49m</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-node-lease</span>   Active   49m</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-public</span>       Active   49m</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>       Active   49m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>More information:</p>
-<ul>
-<li><a href="https://docs.docker.com/desktop/kubernetes/">https://docs.docker.com/desktop/kubernetes/</a></li>
-<li><a href="https://birthday.play-with-docker.com/kubernetes-docker-desktop/">https://birthday.play-with-docker.com/kubernetes-docker-desktop/</a></li>
-</ul>
+<p>This content is specially focused on the common tasks of magasin contributors and maintainers of the helm charts.</p>
+<p>The core of magasin is the easy deployment of complex cloud-ready applications in a <a href="../install/setup-kubernetes.html">Kubernetes cluster</a>.</p>
+<p>We use <a href="https://helm.sh/">helm charts</a> for this purpose. Helm is a package manager such as <code>pip</code>, <code>apt</code>, <code>brew</code>, <code>npm</code> or <code>gem</code>.</p>
+<p>Helm uses a packaging format called <a href="https://helm.sh/docs/topics/charts/">charts</a>. A chart is a collection of files that describe a related set of Kubernetes resources. A single chart might be used to deploy something simple, like a pod, or something complex, like a full web app stack with HTTP servers, databases, caches, and so on.</p>
+<p>In general, our approach is to get the official helm chart provided by the maintainer of the component. of and then tweak the configuration to make it work seamless with the other components of magasin.</p>
+<p>There may be cases in which there is not official helm chart. In those situations we have developed ours, as in the case of <a href="http://github.com/unicef/magasin-drill">Apache Drill</a></p>
+<p>The helm charts are kept in the <strong><a href="http://github.com/unicef/magasin/tree/main/helm"><code>helm</code> folder</a></strong> within the <a href="http://github.com/magasin/">main magasin GitHub repository</a></p>
+<p>We have a shell script, <code>/helm-scripts/update-helm-charts.sh</code> that collects the helm charts from the different official repos an keep them in ours. The script itself includes its documentation.</p>
+<p>The repository itself is hosted in the GitHub pages of the main magasin repo. The process of releasing the repo (i.e.&nbsp;<a href="https://helm.sh/docs/helm/helm_repo_index/">updating the <code>index.yaml</code></a> and creating the <a href="https://helm.sh/docs/helm/helm_package/">helm packages</a>)is managed by a <a href="https://github.com/unicef/magasin/blob/main/.github/workflows/publish-helm-charts.yml">GitHub action</a></p>
+<section id="working-with-the-charts" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="working-with-the-charts"><span class="header-section-number">1</span> Working with the charts</h2>
+<p>Below you have some recipies that will help you to set things up when modifying the helm charts.</p>
+<p>Before working with the charts you need to <a href="../install/setup-kubernetes.html">setup a Kubernetes cluster</a>,</p>
+<section id="how-can-i-update-magasins-repo-helm-charts" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="how-can-i-update-magasins-repo-helm-charts"><span class="header-section-number">1.1</span> How can I update magasin’s repo helm charts?</h3>
+<p>Generally, magasin helm charts are just a copy of the “official” repositories. So, what we do is we get a copy of these externally developed charts and create a copy. Then we test interoperability the magasin tools are working and release the package. Magasin in that regard is similar to a GNU/Linux distribution.</p>
+<p>Currently, we have a script that updates the folder <code>/helm</code> that contains magasin’s charts. It gets them from from other helm repos and copies them to the <code>helm/</code> folder. The script is in <code>/helm-scripts/update-helm-charts.sh</code>.</p>
+<ol type="1">
+<li><p>Clone the repo</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/unicef/magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Update the versions editing <code>/helm-scripts/update-helm-charts.sh</code></p>
+<p>For now, it has the version numbers of the helm charts harcoded. So, you have to modify it whenever you want to update the charts. The script file is documented and should guide you on how to proceed.</p></li>
+<li><p>Run the script.</p></li>
+</ol>
 </section>
-<section id="option-2-local-cluster-using-minikube" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</h2>
-<p>If you don’t have a kubernetes cluster, for testing purposes, you can easily install <a href="https://minikube.sigs.k8s.io/">minikube</a> in your desktop. Minikube is a kubernetes cluster created for practicing and learning purposes.</p>
-<p>The full installation details are described in <a href="https://minikube.sigs.k8s.io/docs/start/">https://minikube.sigs.k8s.io/docs/start/</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GNU/Linux Debian like</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LO</span> https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> minikube_latest_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac OS</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install minikube</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once minikube is installed, please make sure to run:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">minikube</span> start</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If your system does not have the command <code>kubectl</code> already installed, it is also recommended to add the <a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/"><code>kubeclt</code> alias</a></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that both of the two options above are just recommended for playing around without needing to deploy any infrastructure, but not for setting up an actual “shared” instance of magasin.</p>
-</div>
-</div>
+<section id="how-can-i-test-changes-on-helm-charts" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="how-can-i-test-changes-on-helm-charts"><span class="header-section-number">1.2</span> How can I test changes on helm charts?</h3>
+<p>If you have updated or modified the helm charts of the <code>/helm</code> folder, you may want to test them before performing a release.</p>
+<p>The easiest way is to run a helm repo in your local machine, which basically is an HTTP server that has the helm charts packaged as <code>.tgz</code> files and a metadata file called <code>index.yaml</code>. Magasin includes a script that allows you to do this.</p>
+<p>Let’s wee what are the steps:</p>
+<ol type="1">
+<li><p>Clone the repo</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/unicef/magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Make the changes on the helm charts within the folder <code>/helm</code></p></li>
+<li><p>Serve the helm charts in a local repo.</p>
+<p>Go to the <code>helm-scripts</code> and run the <code>local-helm-repo.sh</code> script.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">cd</span> helm-scripts</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">./local-helm-repo.should</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This script packages the helm charts in the <code>/helm</code> folder and launches an HTTP server that points to the folder <code>/_helm-repo/</code> in the root folder of the repo in the port 8000. You can check it is running by opening a browser <a href="http://localhost:8000/index.yaml">http://localhost:8000/index.yaml</a></p></li>
+<li><p>Install magasin.</p>
+<p>Go to the <code>installer</code> folder and run the magasin installer specifying the url of the local repository</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">cd</span> magasin/installer</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">./install-magasin.sh</span> <span class="at">-u</span> http://localhost:8000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 </section>
-</section>
-<section id="setup-a-cluster-in-a-major-cloud-provider" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</h1>
-<p>Kubernetes enjoys broad support from major cloud providers, allowing you to choose based on your organization’s preferences and compliance requirements. Here are links to their respective pages.</p>
-<p>Setting up a Kubernetes cluster on the cloud is currently out of the scope of this documentation, however you can find more information in:</p>
-<ul>
-<li><p><a href="https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli">Azure Kubernetes Service (AKS)</a></p></li>
-<li><p><a href="https://aws.amazon.com/kubernetes/">Kubernetes in Amazon Web Services</a></p></li>
-<li><p><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Service (GKS)</a></p></li>
-<li><p><a href="https://www.digitalocean.com/products/kubernetes">Digital Ocean Kubernetes (DOKS)</a></p></li>
-</ul>
+<section id="what-if-i-only-want-to-update-or-install-one-single-component" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="what-if-i-only-want-to-update-or-install-one-single-component"><span class="header-section-number">1.3</span> What if I only want to update or install one single component?</h3>
+<p>In the previous section you had to install all the charts of magasin it assumed that you did not have an instance already running, but that you already have one instance and you want to update just one chart. To do that you can run the helm command:</p>
+<p>Assuming you are in the root folder of the repo and you want to upgrade Apache Drill (<code>helm/drill</code>)</p>
+<p>If you are installing the chart for the first time:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install drill ./helm/drill/  <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the namespace should match the realm you’re working on. We’re asssuming the starndard namespace</p>
+<p>If you’re updating the helm chart</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> upgrade drill ../../helm/drill/  <span class="at">--namespace</span> magasin-drill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In both cases you can also add custom values by adding <code>-f &lt;path-to-my-values-yaml-file&gt;</code>. Example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> upgrade drill ../../helm/drill/  <span class="at">--namespace</span> magasin-drill <span class="at">-f</span> drill.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that using this method, you don’t need to run the local helm repo script.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -893,13 +876,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../install/advanced.html" class="pagination-link  aria-label=" advanced="" installation"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced installation</span>
+      <a href="../contributing/documentation.html" class="pagination-link  aria-label=" documenting="" magasin"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Documenting magasin</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../install/troubleshooting.html" class="pagination-link" aria-label="Troubleshooting">
-        <span class="nav-page-text">Troubleshooting</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../contributing/installer-dev.html" class="pagination-link" aria-label="Installer (Dev)">
+        <span class="nav-page-text">Installer (Dev)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -911,7 +894,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="../privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="../images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/contributing/helm-repo-dev.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

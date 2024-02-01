@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setup kubernetes</title>
+<title>Drill guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../install/troubleshooting.html" rel="next">
-<link href="../install/advanced.html" rel="prev">
 <link href="..//images/magasin-star.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="Setup kubernetes">
+<meta name="twitter:title" content="Drill guide">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -155,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Drill guide</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -260,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup kubernetes</span></a>
   </div>
 </li>
@@ -364,21 +362,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup-a-local-cluster" id="toc-setup-a-local-cluster" class="nav-link active" data-scroll-target="#setup-a-local-cluster"><span class="header-section-number">1</span> Setup a local cluster</a>
-  <ul class="collapse">
-  <li><a href="#option-1-local-cluster-using-docker-desktop" id="toc-option-1-local-cluster-using-docker-desktop" class="nav-link" data-scroll-target="#option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</a></li>
-  <li><a href="#option-2-local-cluster-using-minikube" id="toc-option-2-local-cluster-using-minikube" class="nav-link" data-scroll-target="#option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</a></li>
-  </ul></li>
-  <li><a href="#setup-a-cluster-in-a-major-cloud-provider" id="toc-setup-a-cluster-in-a-major-cloud-provider" class="nav-link" data-scroll-target="#setup-a-cluster-in-a-major-cloud-provider"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</a></li>
+  <li><a href="#apache-drill-options-and-tuning" id="toc-apache-drill-options-and-tuning" class="nav-link active" data-scroll-target="#apache-drill-options-and-tuning"><span class="header-section-number">1</span> Apache Drill options and tuning</a></li>
+  <li><a href="#example-apache-drill-storage-plugin-for-azure-blob-storage" id="toc-example-apache-drill-storage-plugin-for-azure-blob-storage" class="nav-link" data-scroll-target="#example-apache-drill-storage-plugin-for-azure-blob-storage"><span class="header-section-number">2</span> Example Apache Drill storage plugin for Azure blob storage</a></li>
+  <li><a href="#backup-the-drill-storage-accounts-database" id="toc-backup-the-drill-storage-accounts-database" class="nav-link" data-scroll-target="#backup-the-drill-storage-accounts-database"><span class="header-section-number">3</span> Backup the drill storage accounts database</a></li>
+  <li><a href="#restore-the-drill-storage-configuration" id="toc-restore-the-drill-storage-configuration" class="nav-link" data-scroll-target="#restore-the-drill-storage-configuration"><span class="header-section-number">4</span> Restore the Drill storage configuration</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/admin-guides/drill.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Setup kubernetes</h1>
+<h1 class="title">Drill guide</h1>
 </div>
 
 
@@ -395,82 +391,144 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Magasin components are designed for installation within Kubernetes clusters. Major cloud providers offer the ability to set up these clusters, but for exploration and testing, you can create one on your desktop.</p>
-<p>If you already have a Kubernetes cluster, you may proceed without this step.</p>
-<p>For setting up a Magasin instance in a local cluster on a desktop, it is advisable to have a minimum of 32 GB of RAM.</p>
-<section id="setup-a-local-cluster" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Setup a local cluster</h1>
-<section id="option-1-local-cluster-using-docker-desktop" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</h2>
-<p>In case you do not have a Kubernetes cluster, another easy way to set it up is through <a href="https://docs.docker.com/desktop/">Docker Desktop</a>. It is available for:</p>
-<ul>
-<li><a href="https://docs.docker.com/desktop/install/linux-install/">GNU/Linux</a></li>
-<li><a href="https://docs.docker.com/desktop/install/mac-install/">Mac OS X</a></li>
-<li><a href="https://docs.docker.com/desktop/install/windows-install/">Windows</a></li>
-</ul>
-<p>Once installed. In <strong>Settings / Kubernetes </strong>, enable Kubernetes. It will automatically install</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/install/install-enable-kubernetes-docker-desktop.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes</figcaption>
-</figure>
-</div>
-<p>Lastly, on a command line, create the new cluster and use it:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config set-context magasin <span class="at">--namespace</span> default <span class="at">--cluster</span> docker-desktop <span class="at">--user</span><span class="op">=</span>docker-desktop</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config use-context magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To ensure that the kubernetes cluster is the correct one check if the name corresponds to the</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>             STATUS   ROLES           AGE   VERSION</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-desktop</span>   Ready    control-plane   48m   v1.28.2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get namespaces</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>              STATUS   AGE</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">default</span>           Active   49m</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-node-lease</span>   Active   49m</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-public</span>       Active   49m</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>       Active   49m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>More information:</p>
-<ul>
-<li><a href="https://docs.docker.com/desktop/kubernetes/">https://docs.docker.com/desktop/kubernetes/</a></li>
-<li><a href="https://birthday.play-with-docker.com/kubernetes-docker-desktop/">https://birthday.play-with-docker.com/kubernetes-docker-desktop/</a></li>
-</ul>
+<p>A quick guide for managing magasin’s Apache Drill instance.</p>
+<section id="apache-drill-options-and-tuning" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="apache-drill-options-and-tuning"><span class="header-section-number">1</span> Apache Drill options and tuning</h2>
+<p>The following option values are recommended for Apache Drill’s use in the Magasin context:</p>
+<pre><code>planner.width.max_per_node = 3
+planner.width.max_per_query = 12
+store.parquet.reader.int96_as_timestamp = true
+drill.exec.http.rest.errors.verbose = true
+exec.errors.verbose = true
+exec.queue.enable = true
+exec.queue.large = 2
+exec.queue.small = 10</code></pre>
 </section>
-<section id="option-2-local-cluster-using-minikube" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</h2>
-<p>If you don’t have a kubernetes cluster, for testing purposes, you can easily install <a href="https://minikube.sigs.k8s.io/">minikube</a> in your desktop. Minikube is a kubernetes cluster created for practicing and learning purposes.</p>
-<p>The full installation details are described in <a href="https://minikube.sigs.k8s.io/docs/start/">https://minikube.sigs.k8s.io/docs/start/</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GNU/Linux Debian like</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LO</span> https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> minikube_latest_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac OS</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install minikube</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once minikube is installed, please make sure to run:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">minikube</span> start</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If your system does not have the command <code>kubectl</code> already installed, it is also recommended to add the <a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/"><code>kubeclt</code> alias</a></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that both of the two options above are just recommended for playing around without needing to deploy any infrastructure, but not for setting up an actual “shared” instance of magasin.</p>
-</div>
-</div>
+<section id="example-apache-drill-storage-plugin-for-azure-blob-storage" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="example-apache-drill-storage-plugin-for-azure-blob-storage"><span class="header-section-number">2</span> Example Apache Drill storage plugin for Azure blob storage</h2>
+<p>Example Apache Drill storage plugin configuration for a specific Azure blob storage container (<code>unicef-magasin-dev</code>) in a given Azure blob storage account (<code>sauniwebsaksio</code>).</p>
+<p>The Apache Drill <a href="https://drill.apache.org/docs/azure-blob-storage-plugin/">Azure Blob Storage Plugin</a> must be present in <code>$DRILL_HOME/jars/3rdparty</code>. Note the Azure authentication key has been redacted in the below example.</p>
+<p>This configuration is read-only and specifies support for certain file formats within two directory locations (<code>/profiles</code> and <code>/datasets</code>) within the storage container.</p>
+<p>For production configuration, file formats should be restricted to the minimal set of expected formats. Multiple storage plugin instances can be configured in a single Apache Drill instance so separate Azure blob storage accounts and containers may be separately configured and queried.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span> <span class="fu">:</span> <span class="st">"storage_account_blob_container"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"config"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"file"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"connection"</span> <span class="fu">:</span> <span class="st">"wasbs://blob_container@storage_account.blob.core.windows.net"</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"config"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"fs.azure.account.key.storage_account.blob.core.windows.net"</span> <span class="fu">:</span> <span class="st">"*******"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"workspaces"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"profiles"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"location"</span> <span class="fu">:</span> <span class="st">"/profiles"</span><span class="fu">,</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"writable"</span> <span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"defaultInputFormat"</span> <span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"allowAccessOutsideWorkspace"</span> <span class="fu">:</span> <span class="kw">false</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"datasets"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"location"</span> <span class="fu">:</span> <span class="st">"/datasets"</span><span class="fu">,</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"writable"</span> <span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"defaultInputFormat"</span> <span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"allowAccessOutsideWorkspace"</span> <span class="fu">:</span> <span class="kw">false</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"formats"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"image"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"image"</span><span class="fu">,</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"jpg"</span><span class="ot">,</span> <span class="st">"jpeg"</span><span class="ot">,</span> <span class="st">"jpe"</span><span class="ot">,</span> <span class="st">"tif"</span><span class="ot">,</span> <span class="st">"tiff"</span><span class="ot">,</span> <span class="st">"dng"</span><span class="ot">,</span> <span class="st">"psd"</span><span class="ot">,</span> <span class="st">"png"</span><span class="ot">,</span> <span class="st">"bmp"</span><span class="ot">,</span> <span class="st">"gif"</span><span class="ot">,</span> <span class="st">"ico"</span><span class="ot">,</span> <span class="st">"pcx"</span><span class="ot">,</span> <span class="st">"wav"</span><span class="ot">,</span> <span class="st">"wave"</span><span class="ot">,</span> <span class="st">"avi"</span><span class="ot">,</span> <span class="st">"webp"</span><span class="ot">,</span> <span class="st">"mov"</span><span class="ot">,</span> <span class="st">"mp4"</span><span class="ot">,</span> <span class="st">"m4a"</span><span class="ot">,</span> <span class="st">"m4p"</span><span class="ot">,</span> <span class="st">"m4b"</span><span class="ot">,</span> <span class="st">"m4r"</span><span class="ot">,</span> <span class="st">"m4v"</span><span class="ot">,</span> <span class="st">"3gp"</span><span class="ot">,</span> <span class="st">"3g2"</span><span class="ot">,</span> <span class="st">"eps"</span><span class="ot">,</span> <span class="st">"epsf"</span><span class="ot">,</span> <span class="st">"epsi"</span><span class="ot">,</span> <span class="st">"ai"</span><span class="ot">,</span> <span class="st">"arw"</span><span class="ot">,</span> <span class="st">"crw"</span><span class="ot">,</span> <span class="st">"cr2"</span><span class="ot">,</span> <span class="st">"nef"</span><span class="ot">,</span> <span class="st">"orf"</span><span class="ot">,</span> <span class="st">"raf"</span><span class="ot">,</span> <span class="st">"rw2"</span><span class="ot">,</span> <span class="st">"rwl"</span><span class="ot">,</span> <span class="st">"srw"</span><span class="ot">,</span> <span class="st">"x3f"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"fileSystemMetadata"</span> <span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"descriptive"</span> <span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"parquet"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"parquet"</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"avro"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"avro"</span><span class="fu">,</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"avro"</span> <span class="ot">]</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"json"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"json"</span><span class="fu">,</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"json"</span> <span class="ot">]</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"sequencefile"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"sequencefile"</span><span class="fu">,</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"seq"</span> <span class="ot">]</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"tsv"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"tsv"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"fieldDelimiter"</span> <span class="fu">:</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"csvh"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"csvh"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extractHeader"</span> <span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"csv"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"csv"</span> <span class="ot">]</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"psv"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"tbl"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"fieldDelimiter"</span> <span class="fu">:</span> <span class="st">"|"</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"pcap"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"pcap"</span><span class="fu">,</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"pcap"</span> <span class="ot">]</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"httpd"</span> <span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span> <span class="fu">:</span> <span class="st">"httpd"</span><span class="fu">,</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"extensions"</span> <span class="fu">:</span> <span class="ot">[</span> <span class="st">"httpd"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"logFormat"</span> <span class="fu">:</span> <span class="st">"%h %t </span><span class="ch">\"</span><span class="st">%r</span><span class="ch">\"</span><span class="st"> %&gt;s %b </span><span class="ch">\"</span><span class="st">%{Referer}i</span><span class="ch">\"</span><span class="st">"</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"enabled"</span> <span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="backup-the-drill-storage-accounts-database" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="backup-the-drill-storage-accounts-database"><span class="header-section-number">3</span> Backup the drill storage accounts database</h2>
+<p>Apache Drill keeps a set of connections to storage accounts (S3 buckets, azure blobs, MinIO accounts…). The storage accounts is where the actual data is stored.</p>
+<p>However, in magasin given that Drill is setup in a <a href="https://drill.apache.org/docs/distributed-mode-prerequisites/">distributed mode</a>, the configuration of these connections is kept in <a href="https://zookeeper.apache.org/">zookeeper</a> which is used to sync the storage configuration among the different instances of Drill. So, to backup the storage accounts we need to backup the zookeeper database which is a plain database.</p>
+<ol type="1">
+<li><p>Launch a terminal within the zookeeper pod (zk-0).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> exec zk-0 <span class="at">--namespace</span> magasin-drill <span class="at">-ti</span> <span class="at">--</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Compress the files using <code>tar</code>, and leave the shell</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> /tmp/zk.tgz /var/lib/zookeeper/<span class="pp">*</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Save the file into our local filesystem</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cp magasin-drill/zk-0:/tmp/zk.tgz ./zk.tgz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Delete the <code>.tgz</code> file of the pod</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> exec zk-0 <span class="at">--namespace</span> magasin-drill <span class="at">--</span> rm tmp/zk.tgz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 </section>
-<section id="setup-a-cluster-in-a-major-cloud-provider" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</h1>
-<p>Kubernetes enjoys broad support from major cloud providers, allowing you to choose based on your organization’s preferences and compliance requirements. Here are links to their respective pages.</p>
-<p>Setting up a Kubernetes cluster on the cloud is currently out of the scope of this documentation, however you can find more information in:</p>
-<ul>
-<li><p><a href="https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli">Azure Kubernetes Service (AKS)</a></p></li>
-<li><p><a href="https://aws.amazon.com/kubernetes/">Kubernetes in Amazon Web Services</a></p></li>
-<li><p><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Service (GKS)</a></p></li>
-<li><p><a href="https://www.digitalocean.com/products/kubernetes">Digital Ocean Kubernetes (DOKS)</a></p></li>
-</ul>
+<section id="restore-the-drill-storage-configuration" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="restore-the-drill-storage-configuration"><span class="header-section-number">4</span> Restore the Drill storage configuration</h2>
+<p>To restore the backup created in the previous section:</p>
+<ol type="1">
+<li><p>Copy the backup to the cluster</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">kubectl</span> cp ./zk.tgz magasin-drill/zk-0:/tmp/zk.tgz </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Launch the shell in the zookeeper pod</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> exec zk-0 <span class="at">--namespace</span> magasin-drill <span class="at">-ti</span> <span class="at">--</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Unzip</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> /tmp/zk.tgz </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Kill the java process</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> <span class="at">-ax</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">PID</span> TTY      STAT   TIME COMMAND</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span> <span class="pp">?</span>          Ss     0:00 /rosetta/rosetta /usr/bin/bash /usr/bin/start.sh</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">25</span> <span class="pp">?</span>         Sl     0:03 /rosetta/rosetta /usr/bin/java <span class="at">-Dzookeeper.log.dir</span><span class="op">=</span>/opt/zookeeper/bin/../logs <span class="at">-Dzookeeper.log.file</span><span class="op">=</span>zookeeper-</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">116</span> pts/0    Ss     0:00 /rosetta/rosetta /bin/bash</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">148</span> <span class="pp">?</span>        S      0:00 /rosetta/rosetta /usr/bin/sleep 5</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">149</span> pts/0    R+     0:00 /usr/bin/ps <span class="at">-ax</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Where -9 is to force kill and 25 is the process number (PID)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">kill</span> <span class="at">-9</span> 25</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Relaunch the initalizer script in background (&amp;), then exit</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/bin/start.sh</span> <span class="kw">&amp;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 
 
 </section>
@@ -891,18 +949,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../install/advanced.html" class="pagination-link  aria-label=" advanced="" installation"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced installation</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../install/troubleshooting.html" class="pagination-link" aria-label="Troubleshooting">
-        <span class="nav-page-text">Troubleshooting</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -911,7 +957,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="../privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="../images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/admin-guides/drill.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

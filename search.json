@@ -1,183 +1,24 @@
 [
   {
-    "objectID": "contributing.html",
-    "href": "contributing.html",
-    "title": "Contributing",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "The purpose of this document is to outline the workflow and guidelines for code contributing to this repository.",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Contributing"
-    ]
+    "text": "Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end collection of open-source tools that are setup together to provide enterprise ready automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform Data analysis / ML / AI and visualization of datasets."
   },
   {
-    "objectID": "contributing.html#purpose",
-    "href": "contributing.html#purpose",
-    "title": "Contributing",
+    "objectID": "about.html#about-magasin",
+    "href": "about.html#about-magasin",
+    "title": "About",
     "section": "",
-    "text": "The purpose of this document is to outline the workflow and guidelines for code contributing to this repository.",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Contributing"
-    ]
+    "text": "Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end collection of open-source tools that are setup together to provide enterprise ready automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform Data analysis / ML / AI and visualization of datasets."
   },
   {
-    "objectID": "contributing.html#principles",
-    "href": "contributing.html#principles",
-    "title": "Contributing",
-    "section": "0.2 Principles",
-    "text": "0.2 Principles\nOur principles are the roots, core and foundation. All our standardization decisions are based on the following principles:\n\nEnhance the developer experience. Standards ultimate goal is to create a pleasant development experience.\nProvide management key information. Workflows should enable management to tackle inefficiencies, pain points and increase output.\nSeek for simplicity. If there are different options, we should aim for the simplest one.\n\nIn order to achieve these principles, Github is the main tool we use to track and manage development-related work, from requirements gathering to production release.",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Contributing"
-    ]
-  },
-  {
-    "objectID": "contributing.html#authors",
-    "href": "contributing.html#authors",
-    "title": "Contributing",
-    "section": "0.3 Authors",
-    "text": "0.3 Authors\nThis document was created by Juan Merlos (@merlos)",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Contributing"
-    ]
-  },
-  {
-    "objectID": "contributing.html#branch-strategy",
-    "href": "contributing.html#branch-strategy",
-    "title": "Contributing",
-    "section": "1.1 Branch strategy",
-    "text": "1.1 Branch strategy\nBranching in each repository will follow a trunk-based model. This model involves one eternal “trunk” called master or main from which all other branches originate.\nAll development work will take place on these branches and will be committed to master via pull requests with mandatory approval/review.\nThe goal of this approach is to have a highly stable codebase that is releasable on demand at all times.\nThe additional branches will be created for each feature, release, or hotfix. Each of these branches will have specific purposes and follow strict rules as to how they should be used. At a high level, the branching rules are described as follows:\n\n\n\nBranch type\nBranch from\nMerge to\nNaming convention\nExample\n\n\n\n\nfeature\nmain\nmain\nfeature/&lt;desc&gt;\nfeature/my-feature\n\n\nfix\nmain\nmain\nfeature/&lt;desc&gt;\nfeature/my-feature\n\n\nrelease\nmain\n-\nv&lt;semver&gt;\nv1.0.0\n\n\nhotfix\nmain\nmain, release\nhotfix/&lt;desc&gt;\nhotfix/my-fix\n\n\n\nThe purpose and correct usage of each supporting branch is elaborated in the following sub-sections. The below graphic can be used as an example of a complete workflow involving all branch types.\n\n\n\nBranch strategy flow\n\n\n\n1.1.1 Feature branches\nFor each new feature, or for updates to a given feature, a separate branch will be created. Feature branches must originate from the master branch. Since no development takes place on the master branch, feature branches are expected to be the most common type of branch.\nHowever, these branches should be short-lived. They will exist only as long as the feature is under development and never longer than a sprint. Ideally, a feature branch should involve one developer over a few (1-3) days of work.\nProduct backlog items (issues) should be defined with this in mind — if work on a feature is taking too long, then the item needs to be scoped differently (see the section on Delivery).\nOnce a feature branch is merged to master via pull request, it should be deleted. Any future work, even if it is related, will require a new branch.\nWhenever a feature branch is created, it should be related to an existing issue. Whereas issues will be tagged with the classification (bug, enhancement, etc), the naming of the feature branches is more free.\n\n\n1.1.2 Release branches\nRelease branches will be created for each version of the source that is destined for production release. This enables all preparation work for an upcoming release to take place even while development work for future releases is committed to the master.\nThe creation of a release branch will always correspond to an upcoming deployment. Since the master branch has a high standard of stability, it should be rare that further development work is needed to refine a release for production. If such a need arises, it will follow the hotfix strategy defined below.\nRelease branches never merge back into the trunk. A release branch should be representative of a release at a given point in time. There is no mandatory end of life for a release branch. These branches can exist indefinitely, as marker in release history and for potential rollback should the need arise.\nRelease branches follow the semantic version naming convention (i.e 1.0.0, 1.1.0). When a release branch is created it is also tagged with the same name.\n\n\n1.1.3 Hotfix branches\nHotfixes are small changes that need to be released to production more quickly (e.g. due to the severity of the issue). As with release and feature branches, they should always originate from master.\nUpon completion of the work, a hotfix branch will be merged into master. If the hotfix is also required in a release branch to be brought to production immediately, the change can be cherry-picked upon being merged into master. If no current release branch exists, one should be created for this purpose.\nOnce the corresponding pull requests complete, the temporary hotfix branch should be removed.\nWhenever there is a hotfix merged into a release branch, the commit that includes the fix shall be tagged updating the PATCH number, for instance, changing from 1.0.0 to 1.0.1.\nThis approach allows to provide long term support to a particular version.",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Contributing"
-    ]
-  },
-  {
-    "objectID": "contributing.html#pull-requests-and-commits-pr",
-    "href": "contributing.html#pull-requests-and-commits-pr",
-    "title": "Contributing",
-    "section": "1.2 Pull requests and commits (PR)",
-    "text": "1.2 Pull requests and commits (PR)\nThe merging of supporting branches (feature and hotfix) into the master branch will always require a pull request.\nPull requests should include a reference to the issue numbers either in the commit or in the description of the PR. in the commit comment, using the following convention (where 0000 is the issue number and &lt;comments&gt; is placeholder for any optional comments).\n&lt;comments&gt; #0000 &lt;comments&gt; \nUsing comments like this will ensure that the pull request is automatically linked to all related issues.\nWhen submitting a pull request ensure:\n\nWell-formatted code*: Ensure that the committed code adheres to established coding standards and is well-formatted. Consistent indentation, proper naming conventions, and clean formatting improve code readability and maintainability.\nNo debugging or temporary code: Avoid including debugging statements, temporary code, or commented-out blocks. These can clutter the codebase and make it harder for others to understand and maintain the code.\nAvoid unrelated changes: The PR should focus on a specificfeature. Avoid including unrelated changes in a single commit. If you have multiple unrelated changes, consider creating separate PR for each change.\nNo Sensitive information: Ensure that commits do not include any sensitive information like passwords, API keys, or personal data. Such information should be securely managed outside of the code repository.\nConsistency: Maintain a consistent style and structure throughout the project. Consistency helps establish good coding practices and makes it easier for the team to understand and collaborate on the codebase.\nDocumentation update: Ensure that the code, scripts, documentation and README files are up to date.\n\nCommit messages shall help the reviewer to understand what are the changes that have been introduced and the should tell the reviewer what changes have been introduced. These are properties that commits shall have:\n\nAtomicity: Commits should be atomic, meaning they should represent a single logical change. It’s best to keep each commit focused on a specific task within the PR. This allows for easier code review, debugging, and reverting if necessary.\nClarity and descriptive messages: Commit messages should be clear, descriptive, and concise. They should summarize the purpose and content of the commit. A good commit message helps others understand the changes at a glance and provides context for future reference.\nExample. Too generic not descriptive message ``` ❌ Avoid Updates Readme\n✅ Better Add CONTRIBUTING link to Readme ```\nLogical progression: Commits should follow a logical progression, building upon previous commits. Each commit should leave the codebase in a stable and working state, ensuring that others can pull changes without introducing errors.\n\n\n1.2.1 Approvals\nCompletion of pull requests on main be generally restricted to designated approvers. The job of the approvers is to diligently review all code being merged to master to ensure the utmost stability of that branch.\nReviewers shall ensure the quality of the code, style and documentation. They shall ensure that it follows the practices of the commits and pull requests exposed on this document.\nTheir aim should be to maintain a release-ready main branch at all times.",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Contributing"
-    ]
-  },
-  {
-    "objectID": "admin-guide-drill.html",
-    "href": "admin-guide-drill.html",
-    "title": "Drill Guide",
-    "section": "",
-    "text": "A quick guide for managing magasin’s Apache Drill instance.",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Drill"
-    ]
-  },
-  {
-    "objectID": "admin-guide-drill.html#apache-drill-options-and-tuning",
-    "href": "admin-guide-drill.html#apache-drill-options-and-tuning",
-    "title": "Drill Guide",
-    "section": "1 Apache Drill options and tuning",
-    "text": "1 Apache Drill options and tuning\nThe following option values are recommended for Apache Drill’s use in the Magasin context:\nplanner.width.max_per_node = 3\nplanner.width.max_per_query = 12\nstore.parquet.reader.int96_as_timestamp = true\ndrill.exec.http.rest.errors.verbose = true\nexec.errors.verbose = true\nexec.queue.enable = true\nexec.queue.large = 2\nexec.queue.small = 10",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Drill"
-    ]
-  },
-  {
-    "objectID": "admin-guide-drill.html#example-apache-drill-storage-plugin-for-azure-blob-storage",
-    "href": "admin-guide-drill.html#example-apache-drill-storage-plugin-for-azure-blob-storage",
-    "title": "Drill Guide",
-    "section": "2 Example Apache Drill storage plugin for Azure blob storage",
-    "text": "2 Example Apache Drill storage plugin for Azure blob storage\nExample Apache Drill storage plugin configuration for a specific Azure blob storage container (unicef-magasin-dev) in a given Azure blob storage account (sauniwebsaksio).\nThe Apache Drill Azure Blob Storage Plugin must be present in $DRILL_HOME/jars/3rdparty. Note the Azure authentication key has been redacted in the below example.\nThis configuration is read-only and specifies support for certain file formats within two directory locations (/profiles and /datasets) within the storage container.\nFor production configuration, file formats should be restricted to the minimal set of expected formats. Multiple storage plugin instances can be configured in a single Apache Drill instance so separate Azure blob storage accounts and containers may be separately configured and queried.\n{\n  \"name\" : \"storage_account_blob_container\",\n  \"config\" : {\n    \"type\" : \"file\",\n    \"connection\" : \"wasbs://blob_container@storage_account.blob.core.windows.net\",\n    \"config\" : {\n      \"fs.azure.account.key.storage_account.blob.core.windows.net\" : \"*******\"\n    },\n    \"workspaces\" : {\n      \"profiles\" : {\n        \"location\" : \"/profiles\",\n        \"writable\" : false,\n        \"defaultInputFormat\" : null,\n        \"allowAccessOutsideWorkspace\" : false\n      },\n      \"datasets\" : {\n        \"location\" : \"/datasets\",\n        \"writable\" : false,\n        \"defaultInputFormat\" : null,\n        \"allowAccessOutsideWorkspace\" : false\n      }\n    },\n    \"formats\" : {\n      \"image\" : {\n        \"type\" : \"image\",\n        \"extensions\" : [ \"jpg\", \"jpeg\", \"jpe\", \"tif\", \"tiff\", \"dng\", \"psd\", \"png\", \"bmp\", \"gif\", \"ico\", \"pcx\", \"wav\", \"wave\", \"avi\", \"webp\", \"mov\", \"mp4\", \"m4a\", \"m4p\", \"m4b\", \"m4r\", \"m4v\", \"3gp\", \"3g2\", \"eps\", \"epsf\", \"epsi\", \"ai\", \"arw\", \"crw\", \"cr2\", \"nef\", \"orf\", \"raf\", \"rw2\", \"rwl\", \"srw\", \"x3f\" ],\n        \"fileSystemMetadata\" : true,\n        \"descriptive\" : true\n      },\n      \"parquet\" : {\n        \"type\" : \"parquet\"\n      },\n      \"avro\" : {\n        \"type\" : \"avro\",\n        \"extensions\" : [ \"avro\" ]\n      },\n      \"json\" : {\n        \"type\" : \"json\",\n        \"extensions\" : [ \"json\" ]\n      },\n      \"sequencefile\" : {\n        \"type\" : \"sequencefile\",\n        \"extensions\" : [ \"seq\" ]\n      },\n      \"tsv\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"tsv\" ],\n        \"fieldDelimiter\" : \"\\t\"\n      },\n      \"csvh\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"csvh\" ],\n        \"extractHeader\" : true\n      },\n      \"csv\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"csv\" ]\n      },\n      \"psv\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"tbl\" ],\n        \"fieldDelimiter\" : \"|\"\n      },\n      \"pcap\" : {\n        \"type\" : \"pcap\",\n        \"extensions\" : [ \"pcap\" ]\n      },\n      \"httpd\" : {\n        \"type\" : \"httpd\",\n        \"extensions\" : [ \"httpd\" ],\n        \"logFormat\" : \"%h %t \\\"%r\\\" %&gt;s %b \\\"%{Referer}i\\\"\"\n      }\n    },\n    \"enabled\" : true\n  }\n}",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Drill"
-    ]
-  },
-  {
-    "objectID": "admin-guide-drill.html#backup-the-drill-storage-accounts-database",
-    "href": "admin-guide-drill.html#backup-the-drill-storage-accounts-database",
-    "title": "Drill Guide",
-    "section": "3 Backup the drill storage accounts database",
-    "text": "3 Backup the drill storage accounts database\nApache Drill keeps a set of connections to storage accounts (S3 buckets, azure blobs, MinIO accounts…). The storage accounts is where the actual data is stored.\nHowever, in magasin given that Drill is setup in a distributed mode, the configuration of these connections is kept in zookeeper which is used to sync the storage configuration among the different instances of Drill. So, to backup the storage accounts we need to backup the zookeeper database which is a plain database.\n\nLaunch a terminal within the zookeeper pod (zk-0).\nkubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash\nCompress the files using tar, and leave the shell\ntar -czvf /tmp/zk.tgz /var/lib/zookeeper/*\nexit\nSave the file into our local filesystem\nkubectl cp magasin-drill/zk-0:/tmp/zk.tgz ./zk.tgz\nDelete the .tgz file of the pod\nkubectl exec zk-0 --namespace magasin-drill -- rm tmp/zk.tgz",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Drill"
-    ]
-  },
-  {
-    "objectID": "admin-guide-drill.html#restore-the-drill-storage-configuration",
-    "href": "admin-guide-drill.html#restore-the-drill-storage-configuration",
-    "title": "Drill Guide",
-    "section": "4 Restore the Drill storage configuration",
-    "text": "4 Restore the Drill storage configuration\nTo restore the backup created in the previous section:\n\nCopy the backup to the cluster\n kubectl cp ./zk.tgz magasin-drill/zk-0:/tmp/zk.tgz \nLaunch the shell in the zookeeper pod\nkubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash\nUnzip shell     tar -xzvf /tmp/zk.tgz\nKill the java process\nps -ax \n\nPID TTY      STAT   TIME COMMAND\n1 ?          Ss     0:00 /rosetta/rosetta /usr/bin/bash /usr/bin/start.sh\n25 ?         Sl     0:03 /rosetta/rosetta /usr/bin/java -Dzookeeper.log.dir=/opt/zookeeper/bin/../logs -Dzookeeper.log.file=zookeeper-\n116 pts/0    Ss     0:00 /rosetta/rosetta /bin/bash\n148 ?        S      0:00 /rosetta/rosetta /usr/bin/sleep 5\n149 pts/0    R+     0:00 /usr/bin/ps -ax\n\n# Where -9 is to force kill and 25 is the process number (PID)\nkill -9 25\nRelaunch the initalizer script in background (&), then exit /usr/bin/start.sh &     exit",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Drill"
-    ]
-  },
-  {
-    "objectID": "admin-guide-superset.html",
-    "href": "admin-guide-superset.html",
-    "title": "Superset admin guide",
-    "section": "",
-    "text": "A quick guide for an magasin administrator on superset.",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Superset"
-    ]
-  },
-  {
-    "objectID": "admin-guide-superset.html#dump-the-superset-database-into-the-local-filesystem",
-    "href": "admin-guide-superset.html#dump-the-superset-database-into-the-local-filesystem",
-    "title": "Superset admin guide",
-    "section": "1 Dump the superset database into the local filesystem",
-    "text": "1 Dump the superset database into the local filesystem\nA dump (backup) of the database may be useful when a new version of superset is going to be installed, or to keep a regular scheduled backup of the superset data.\nTo create a dump of the database, you can use the script scripts/superset/dump-superset-db.sh:\n./dump-superset-db.sh -n magasin-superset-prd`\nWhere the option -n is to specify the namespace of the superset instance.\nThis script will request request the password of the superset user, to perform the dump. You can get the password from the secret superset-env within the same namespace.\nThe output of running this script is the file superset_dump.sql in the current working folder.\nNote that this script assumes that the name of the database is superset.\nAlternatively, these are the manual steps to do the same:\n1.Launch a terminal in the posgresql pod (replace the namespace if required)\n```shell\n kubectl exec superset-postgresql-0 -ti --namespace magasin-superset -- /bin/bash\n```\n\nWithin the pod shell, extract and compress the data. The below command will ask for the superset database password (you can find it in the superset-env secret, defaults to ‘superset’)\npg_dump -U superset -d superset &gt; /tmp/superset_dump.sql\n# where -U is the username of the database, and -d is the database name.\n\ntar -C /tmp -czvf /tmp/supserset_dump.tgz supserset_dump.sql\n# where -C is to use /tmp as base folder -c collect, z zip, v=verboze and f output file\nExit the pod shell and copy the dump file into /tmp in the local filesystem exit\n# Exit the pod shell\nexit\n\n# Copy the tgz to the local environment.\nkubectl cp magasin-superset/superset-postgresql-0:/tmp/superset_dump.tgz \\\n./supserset_dump.tgz --retries 100\n\n# Syntax: kubectl cp namespace/pod:path local-path. \n# The option --retries is to fix potential network issues\nLastly, delete the db dump from the superset pod shell     kubectl exec magasin-superset/superset-postgresql-0 -- \\     rm /tmp/supeset_dump.tgz /tmp/superset_dump.sql\n\n\n1.1 Restore superset database from local filesystem\nTo restore the database from the previous step.\n\n#  Copy the database to the postgres pod.\nkubectl cp superset_dump.sql magasin-superset/superset-postgresql-0:/tmp/superset_dump.sql\n\n# Launch the shell\nkubectl exec superset-postgresql-0 -ti --namespace magasin-superset -- /bin/bash\n\n# If the database exist, you may need to drop it first\npsql --username postgres\n# The password can be found in superset-env secret posgresql_posgres_password \n\n# If you get an error indicating the database is being used run the command:\nSELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'superset' AND pid &lt;&gt; pg_backend_pid();\n\n#To delete the superset database: (don't forget the ; at the end)\nDROP DATABASE superset;\n\n#Then create an empty database (don't forget the ; at the end)\nCREATE DATABASE superset;\n#the quit psql\n\\q\n# Finally, restore the database\npsql --username superset --dbname superset -f /tmp/superset_dump.sql\n\n# alternatively less verbose option\n#       psql -U superset -d superset2 -f ./tmp/superset_dump.sql\nNow, you can restart the superset pod. First find the superset-xxxxxxxxx-xxxxx and delete it\nkubectl get pods --namespace magasin-superset\n\nNAME                               READY   STATUS      RESTARTS   AGE\nsuperset-75b79c6c8d-jttd9          1/1     Running     0          62m\nsuperset-init-db-bhc25             0/1     Completed   0          62m\nsuperset-postgresql-0              1/1     Running     0          62m\nsuperset-redis-master-0            1/1     Running     0          62m\nsuperset-worker-85dfbb48dd-6bhjp   1/1     Running     0          62m\n\n\n```shell\nkubectl delete pod superset-75b79c6c8d-jttd9",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Superset"
-    ]
-  },
-  {
-    "objectID": "admin-guide-superset.html#postgresql",
-    "href": "admin-guide-superset.html#postgresql",
-    "title": "Superset admin guide",
-    "section": "2 PostgreSQL",
-    "text": "2 PostgreSQL\nGet list of databases\nSELECT datname FROM pg_database WHERE datistemplate = false;\nGet the user owner of database ‘database_name’\nSELECT d.datname as \"Name\",\npg_catalog.pg_get_userbyid(d.datdba) as \"Owner\"\nFROM pg_catalog.pg_database d\nWHERE d.datname = 'database_name'\nORDER BY 1;",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Superset"
-    ]
-  },
-  {
-    "objectID": "admin-guide-superset.html#troubleshooting",
-    "href": "admin-guide-superset.html#troubleshooting",
-    "title": "Superset admin guide",
-    "section": "3 Troubleshooting",
-    "text": "3 Troubleshooting\n\n3.1 Get the events of a pod\nkubectl describe pod superset-564564dd4-2lzb6 --namespace magasin-superset\n\n\n3.2 Get logs of the containers\nkubectl logs &lt;podname&gt; -f --namespace &lt;namespace&gt; \n\nExample:\nkubectl logs superset-564564dd4-2lzb6 -f --namespace magasin-superset\nwhere -f continues displaying the new logs.\nWith --all-containers you can see the logs of all the containers instead of the one that is being executed. This is useful when the current container of the pod gets stuck because of the previous container output was not the expected. Example:\nkubectl logs superset-564564dd4-2lzb6 --namespace magasin-superset --all-containers",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Superset"
-    ]
+    "objectID": "about.html#brief-history",
+    "href": "about.html#brief-history",
+    "title": "About",
+    "section": "2 Brief history",
+    "text": "2 Brief history\nMagasin grew out of Office of Innovation’s and Information and Communication Technology Division (ICTD) work to establish a RapidPro Data Warehouse to enable aggregation of global metrics across vendor instances.\nAlso informed by experiences of the Magic Box applied data science initiative, a range of components were evaluated and trialed with country offices to arrive at the current components and architecture.\nIn 2021, ICTD engaged one of its long term agreement vendors to assist with evolving the proof-of-concept into a minimum viable product (MVP).\nIn 2023, UNICEF started the journey to detach magasin from its organizational and cloud infrastructure dependencies, and release it as an open-source with the goal of becoming a Digital Public Good solution."
   },
   {
     "objectID": "architecture.html",
@@ -187,6 +28,7 @@
     "text": "Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a kubernetes cluster.\nBy end-to-end it means from the process of enabling the ingestion from multiple data sources, the storage in a cloud filesystems as well as enabling the processes of analyzing and visualizing.\nKubernetes is a container orchestration system designed to automate the deployment, scaling, and management of containerized applications. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.\nMagasin uses Kubernetes in combination with Helm, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called chart.\nA fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.\nThe core components of magasin are independent mature open source projects that support.",
     "crumbs": [
       "Home",
+      "Welcome",
       "Architecture"
     ]
   },
@@ -194,10 +36,11 @@
     "objectID": "architecture.html#kubernetes-containerization",
     "href": "architecture.html#kubernetes-containerization",
     "title": "Architecture",
-    "section": "1.1 Kubernetes containerization",
-    "text": "1.1 Kubernetes containerization\nKubernetes is a container orchestration system designed to automate the deployment, scaling, and management of containerized applications. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.",
+    "section": "2.1 Kubernetes containerization",
+    "text": "2.1 Kubernetes containerization\nKubernetes is a container orchestration system designed to automate the deployment, scaling, and management of containerized applications. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.",
     "crumbs": [
       "Home",
+      "Welcome",
       "Architecture"
     ]
   },
@@ -205,10 +48,11 @@
     "objectID": "architecture.html#helm-charts",
     "href": "architecture.html#helm-charts",
     "title": "Architecture",
-    "section": "1.2 Helm charts",
-    "text": "1.2 Helm charts\nMagasin uses Kubernetes in combination with Helm, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda, etc. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called chart.\nA fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.",
+    "section": "2.2 Helm charts",
+    "text": "2.2 Helm charts\nMagasin uses Kubernetes in combination with Helm, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda, etc. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called chart.\nA fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.",
     "crumbs": [
       "Home",
+      "Welcome",
       "Architecture"
     ]
   },
@@ -216,10 +60,11 @@
     "objectID": "architecture.html#ingestion-dagster",
     "href": "architecture.html#ingestion-dagster",
     "title": "Architecture",
-    "section": "2.1 Ingestion: Dagster",
-    "text": "2.1 Ingestion: Dagster\nThe Dagster framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster.\n\n2.1.1 Dagit\nDagster’s Dagit UI provides visibility of pipelines’ tasks, scheduling, run status, materialized assets, resources, and modes.",
+    "section": "3.1 Ingestion: Dagster",
+    "text": "3.1 Ingestion: Dagster\nThe Dagster framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster.\n\n3.1.1 Dagit\nDagster’s Dagit UI provides visibility of pipelines’ tasks, scheduling, run status, materialized assets, resources, and modes.",
     "crumbs": [
       "Home",
+      "Welcome",
       "Architecture"
     ]
   },
@@ -227,10 +72,11 @@
     "objectID": "architecture.html#cloud-storage-minio",
     "href": "architecture.html#cloud-storage-minio",
     "title": "Architecture",
-    "section": "2.2 Cloud storage: MinIO",
-    "text": "2.2 Cloud storage: MinIO\nTODO",
+    "section": "3.2 Cloud storage: MinIO",
+    "text": "3.2 Cloud storage: MinIO\nTODO",
     "crumbs": [
       "Home",
+      "Welcome",
       "Architecture"
     ]
   },
@@ -238,10 +84,11 @@
     "objectID": "architecture.html#query-engine-apache-drill",
     "href": "architecture.html#query-engine-apache-drill",
     "title": "Architecture",
-    "section": "2.3 Query engine: Apache Drill",
-    "text": "2.3 Query engine: Apache Drill\nApache Drill is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.\nWhile data marts for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time.\nInstead, a Dagster ingestion and transformation pipeline stores an ‘analyst-ready’ dataset that Apache Drill can query directly.",
+    "section": "3.3 Query engine: Apache Drill",
+    "text": "3.3 Query engine: Apache Drill\nApache Drill is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.\nWhile data marts for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time.\nInstead, a Dagster ingestion and transformation pipeline stores an ‘analyst-ready’ dataset that Apache Drill can query directly.",
     "crumbs": [
       "Home",
+      "Welcome",
       "Architecture"
     ]
   },
@@ -249,10 +96,11 @@
     "objectID": "architecture.html#dashboards-apache-superset",
     "href": "architecture.html#dashboards-apache-superset",
     "title": "Architecture",
-    "section": "2.4 Dashboards: Apache Superset",
-    "text": "2.4 Dashboards: Apache Superset\nApache Superset is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.",
+    "section": "3.4 Dashboards: Apache Superset",
+    "text": "3.4 Dashboards: Apache Superset\nApache Superset is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.",
     "crumbs": [
       "Home",
+      "Welcome",
       "Architecture"
     ]
   },
@@ -260,59 +108,12 @@
     "objectID": "architecture.html#notebook-environment-daskhub",
     "href": "architecture.html#notebook-environment-daskhub",
     "title": "Architecture",
-    "section": "2.5 Notebook environment: Daskhub",
-    "text": "2.5 Notebook environment: Daskhub\nDaskhub is a Helm chart to easily install JupyterHub and Dask Gateway for multiple users on a Kubernetes cluster.\n\n2.5.1 JupyterHub\nThe multi-tenant JupyterHub component creates on-demand, isolated pods for authenticated users, each with persistent storage for their R and Python notebook workspace.\n\n\n2.5.2 Dask Gateway\nDask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.\nReferences:\n\nJupyterhub - https://jupyterhub.readthedocs.io/en/stable/reference/index.html\nJupyterhub - kubernetes https://z2jh.jupyter.org/en/latest/index.html\nAuthentication for Jupyterhub https://oauthenticator.readthedocs.io/en/latest/index.html\nAWS Public Sector Blog article on Analyze terabyte-scale geospatial datasets with Dask and Jupyter on AWS",
+    "section": "3.5 Notebook environment: Daskhub",
+    "text": "3.5 Notebook environment: Daskhub\nDaskhub is a Helm chart to easily install JupyterHub and Dask Gateway for multiple users on a Kubernetes cluster.\n\n3.5.1 JupyterHub\nThe multi-tenant JupyterHub component creates on-demand, isolated pods for authenticated users, each with persistent storage for their R and Python notebook workspace.\n\n\n3.5.2 Dask Gateway\nDask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.\nReferences:\n\nJupyterhub - https://jupyterhub.readthedocs.io/en/stable/reference/index.html\nJupyterhub - kubernetes https://z2jh.jupyter.org/en/latest/index.html\nAuthentication for Jupyterhub https://oauthenticator.readthedocs.io/en/latest/index.html\nAWS Public Sector Blog article on Analyze terabyte-scale geospatial datasets with Dask and Jupyter on AWS",
     "crumbs": [
       "Home",
+      "Welcome",
       "Architecture"
-    ]
-  },
-  {
-    "objectID": "repositories.html",
-    "href": "repositories.html",
-    "title": "Source Code Repositories",
-    "section": "",
-    "text": "unicef/magasin\n\nPrimary respository, holds main components, setup and admin scripts, as well as documentation",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Repositories"
-    ]
-  },
-  {
-    "objectID": "repositories.html#magasin-main-project",
-    "href": "repositories.html#magasin-main-project",
-    "title": "Source Code Repositories",
-    "section": "",
-    "text": "unicef/magasin\n\nPrimary respository, holds main components, setup and admin scripts, as well as documentation",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Repositories"
-    ]
-  },
-  {
-    "objectID": "repositories.html#libraries-and-utilities",
-    "href": "repositories.html#libraries-and-utilities",
-    "title": "Source Code Repositories",
-    "section": "2 Libraries and utilities",
-    "text": "2 Libraries and utilities\n\nunicef/superset-dashboard-cloner Scripts for cloning Apache Superset dashboards to create copies that use different data sources.",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Repositories"
-    ]
-  },
-  {
-    "objectID": "repositories.html#custom-helm-charts",
-    "href": "repositories.html#custom-helm-charts",
-    "title": "Source Code Repositories",
-    "section": "3 Custom Helm charts",
-    "text": "3 Custom Helm charts\n\nunicef/magasin-drill A helm chart that allows setting up Apache Drill in cluster mode together with Zookeeper in a Kubernetes cluster.",
-    "crumbs": [
-      "Home",
-      "Contributing",
-      "Repositories"
     ]
   },
   {
@@ -320,44 +121,28 @@
     "href": "end-user-guides.html",
     "title": "End user guides",
     "section": "",
-    "text": "Each of the open source components included in magasin has its onw end user documentation.",
-    "crumbs": [
-      "Home",
-      "End user guides"
-    ]
+    "text": "Each of the open source components included in magasin has its onw end user documentation."
   },
   {
     "objectID": "end-user-guides.html#dagster",
     "href": "end-user-guides.html#dagster",
     "title": "End user guides",
     "section": "1 Dagster",
-    "text": "1 Dagster\n\nGetting started\nDagster University",
-    "crumbs": [
-      "Home",
-      "End user guides"
-    ]
+    "text": "1 Dagster\n\nGetting started\nDagster University"
   },
   {
     "objectID": "end-user-guides.html#jupyter-hub",
     "href": "end-user-guides.html#jupyter-hub",
     "title": "End user guides",
     "section": "2 Jupyter Hub",
-    "text": "2 Jupyter Hub\n\nProject Jupyter Documentation",
-    "crumbs": [
-      "Home",
-      "End user guides"
-    ]
+    "text": "2 Jupyter Hub\n\nProject Jupyter Documentation"
   },
   {
     "objectID": "end-user-guides.html#apache-superset",
     "href": "end-user-guides.html#apache-superset",
     "title": "End user guides",
     "section": "3 Apache Superset",
-    "text": "3 Apache Superset\n\nCreating your first dashboard\nExploring data in superset",
-    "crumbs": [
-      "Home",
-      "End user guides"
-    ]
+    "text": "3 Apache Superset\n\nCreating your first dashboard\nExploring data in superset"
   },
   {
     "objectID": "install/advanced.html",
@@ -388,7 +173,7 @@
     "href": "install/advanced.html#magasin-realms",
     "title": "Advanced installation",
     "section": "2 Magasin realms",
-    "text": "2 Magasin realms\nCompared with most of applications that are distributed using helm charts, instead of defining one unique chart that includes all the dependencies, magasin defines an indepenedent chart for each component. This results in loosely-coupled architecture which allows you to only setup and use the components that fit your organizational needs.\nWhen deploying a containerized application in Kubernetes using Helm charts, typically, a singular chart is defined. This chart can actually be composed of multiple sub-charts, which allows for a hierarchical structure within the deployment. This setup often leads to a well-defined architecture, beneficial for many scenarios, as it simplifies management and deployment.\nGiven that magasin setup uses independent charts, there is a need to setup at least one connection between these independent charts. This is done through a consistent naming convention which defines the concept of magasin realms.\nA realm is a way of linking independent helm charts through namespaces that follow consistent naming convention: --.\nBy convention, the default realm only has the prefix magasin and no postfix. For example, the namespace for the component drill that belongs to the default realm is magasin-drill.\nThe realm name is the concatenation of the prefix and the postfix, both separated by an hyphen - (if the postfix is not empty). Examples:\n\n\n\n\n\n\n\n\n\nRealm\nRealm prefix\nRealm postfix\nComponent “drill” namespace\n\n\n\n\nmagasin\nmagasin\n-\nmagasin-drill\n\n\nmagasin-dev\nmagasin\ndev\nmagasin-drill-dev\n\n\nmagasin-new-version-dev\nmagasin-new-version\ndev\nmagasin-new-version-drill-dev\n\n\n-dev\n-\ndev\ndrill-dev\n\n\n\nA realm prefix can have - as part of its names, but not the realm postfix. In the realm name, the last - specifies the start of the postfix.\nIf a realm name starts with - it only has a postfix.\nThe concept of realms allows us setup supporting tools that can make use of two independent helm charts",
+    "text": "2 Magasin realms\nCompared with most of applications that are distributed using helm charts, instead of defining one unique chart that includes all the dependencies, magasin defines an indepenedent chart for each component. This results in loosely-coupled architecture which allows you to only setup and use the components that fit your organizational needs.\nWhen deploying a containerized application in Kubernetes using Helm charts, typically, a singular chart is defined. This chart can actually be composed of multiple sub-charts, which allows for a hierarchical structure within the deployment. This setup often leads to a well-defined architecture, beneficial for many scenarios, as it simplifies management and deployment.\nGiven that magasin setup uses independent charts, there is a need to setup at least one connection between these independent charts. This is done through a consistent naming convention which defines the concept of magasin realms.\nA realm is a way of linking independent helm charts through namespaces that follow consistent naming convention: --.\nBy convention, the default realm only has the prefix magasin and no postfix. For example, the namespace for the component drill that belongs to the default realm is magasin-drill.\nThe realm name is the concatenation of the prefix and the postfix, both separated by an hyphen - (if the postfix is not empty). Examples:\n\n\n\n\n\n\n\n\n\nRealm\nRealm prefix\nRealm postfix\nResulting namespace for “drill”\n\n\n\n\nmagasin\nmagasin\n-\nmagasin-drill\n\n\nmagasin-dev\nmagasin\ndev\nmagasin-drill-dev\n\n\nmagasin-new-version-dev\nmagasin-new-version\ndev\nmagasin-new-version-drill-dev\n\n\n-dev\n-\ndev\ndrill-dev\n\n\n\nA realm prefix can have - as part of its names, but not the realm postfix. In the realm name, the last - specifies the start of the postfix.\nIf a realm name starts with - it only has a postfix.\nThe concept of realms allows us setup supporting tools that can make use of two independent helm charts.",
     "crumbs": [
       "Home",
       "Install",
@@ -400,7 +185,7 @@
     "href": "install/advanced.html#advanced-use-of-the-magasin-installer",
     "title": "Advanced installation",
     "section": "3 Advanced use of the magasin-installer",
-    "text": "3 Advanced use of the magasin-installer\nYou can check the options.\n ./install-magasin.sh -h\nUsage: install-magasin.sh [-y] [-c] [-r realm_prefix-realm_postfix (magasin)] [-f values_folder (./)] [-d] [-h]\n\nThis script checks dependencies and installs magasin components\nEach component is installed within its own namespace.\n\nOptions:\n  -y  Skip prompting questions during installation\n  -c  Only check if all pre-requisites are installed in the local machine.\n  -r  Realm prefix and suffix (default: magasin). Prefix and suffix are separated by '-'.\n        If more than one '-', the last one will be used as separator.\n        The realm 'magasin-new-dev' will set 'magasin-new' as prefix and 'dev' as suffix.\n  -f  Folder with custom values.yaml files (default: ./).\n        Files within the folder shall have the same name as the component. Example:\n        drill.yaml, dagster.yaml, superset.yaml, daskhub.yaml\n  -u  URL/path to the magasin's helm repository (default: https://unicef.github.io/magasin/)\n      \n  -d  Enable debug mode (displays all commands run).\n  -h  Display this help message and exit.\n \nExamples of usage:\n\nOnly check if all the required components are installed\n  install-magasin.sh -c \nSetup the realm test-. Will use test- as namespace. Setup the realm magasin-dev. Will use magasin--dev as namespaces\n  install-magasin.sh -r test",
+    "text": "3 Advanced use of the magasin-installer\nYou can check the options.\n ./install-magasin.sh -h\nUsage: install-magasin.sh [-y] [-c] [-r realm_prefix-realm_postfix (magasin)] [-f values_folder (./)] [-d] [-h]\n\nThis script checks dependencies and installs magasin components\nEach component is installed within its own namespace.\n\nOptions:\n  -y  Skip prompting questions during installation\n  -c  Only check if all pre-requisites are installed in the local machine.\n  -i  Only install all pre-requisites in the local machine. Does not install magasin in Kubernetes\n  -r  Realm prefix and suffix (default: magasin). Prefix and suffix are separated by '-'.\n        If more than one '-', the last one will be used as separator.\n        The realm 'magasin-new-dev' will set 'magasin-new' as prefix and 'dev' as suffix.\n  -f  Folder with custom values.yaml files (default: ./).\n        Files within the folder shall have the same name as the component. Example:\n        drill.yaml, dagster.yaml, superset.yaml, daskhub.yaml\n  -u  URL/path to the magasin's helm repository (default: https://unicef.github.io/magasin/)\n      \n  -d  Enable debug mode (displays all commands run).\n  -h  Display this help message and exit.\n \nExamples of usage:\n\nOnly check if all the required components are installed\n  install-magasin.sh -c \nInstall all pre-requisites to install and manage magasin within the current machine but without installing magasin. Installs all the missing components highlighted by the -c option install-magasin.sh -i This may be useful if you already have an instance of magasin and you want to seamlessly setup all the tools to manage that instance.\nSetup the realm test. Will use test-&lt;component&gt; as namespace.\n  install-magasin.sh -r test",
     "crumbs": [
       "Home",
       "Install",
@@ -420,11 +205,44 @@
     ]
   },
   {
+    "objectID": "install/advanced.html#whats-next",
+    "href": "install/advanced.html#whats-next",
+    "title": "Advanced installation",
+    "section": "5 What’s next?",
+    "text": "5 What’s next?\nCongratulations, now you have a magasin instance running on your kubernetes cluster. This is just the beggining of an interesting journey. Now you can:\n\nTake a look at magasin tutorial and start using magasin\nLearn about magasin’s architecture. Understand the different components and the underlying technology.\nLearn more about advanced installation. The steps showed in this page were the standard ways of installing magasin, but you can customize much more your setup.",
+    "crumbs": [
+      "Home",
+      "Install",
+      "Advanced installation"
+    ]
+  },
+  {
     "objectID": "install/manual-installation.html",
     "href": "install/manual-installation.html",
     "title": "Manual installation",
     "section": "",
-    "text": "If for some reason the installation scripts do not work for you, or your system is not covered by them, you can install all requirements manually manually.\n\nInstall kubectl\nInstall helm\nInstall Python/pip\n\nEnsure kubectl is pointing to the right kubernetes cluster\nkubectl cluster-info\nAdd the magasin helm repo\nhelm repo add https://unicef.github.io/magasin/\nUpdate the magasin helm repo\nhelm repo update magasin\nInstall the different helm charts (dagster, drill, superset, daskhub)\n# helm install &lt;component&gt; magasin/&lt;component&gt; --namespace magasin-&lt;component&gt; --create-namespace\nhelm install dagster magasin/dagster --namespace magasin-dagster --create-namespace\nhelm install drill magasin/drill --namespace magasin-drill --create-namespace\nhelm install superset magasin/superset --namespace magasin-superset --create-namespace\nhelm install daskhub magasin/daskhub --namespace magasin-daskhub --create-namespace"
+    "text": "If for some reason the installation scripts do not work for you, or your system is not covered by them, you can install all requirements manually manually.\nThis installation asumes that you already have kubernetes cluster. You can follow this guide to setup a cluster."
+  },
+  {
+    "objectID": "install/manual-installation.html#install-tools-in-your-computer",
+    "href": "install/manual-installation.html#install-tools-in-your-computer",
+    "title": "Manual installation",
+    "section": "1 Install tools in your computer",
+    "text": "1 Install tools in your computer\n\nInstall kubectl\nInstall helm\nInstall Python/pip\n\nEnsure kubectl is pointing to the right kubernetes cluster\nkubectl cluster-info"
+  },
+  {
+    "objectID": "install/manual-installation.html#deploy-magasin-in-your-cluster",
+    "href": "install/manual-installation.html#deploy-magasin-in-your-cluster",
+    "title": "Manual installation",
+    "section": "2 Deploy magasin in your cluster",
+    "text": "2 Deploy magasin in your cluster\nAdd the magasin helm repo\nhelm repo add https://unicef.github.io/magasin/\nUpdate the magasin helm repo\nhelm repo update magasin\nInstall the different helm charts (dagster, drill, superset, daskhub,…)\n# helm install &lt;component&gt; magasin/&lt;component&gt; --namespace magasin-&lt;component&gt; --create-namespace\nhelm install dagster magasin/dagster --namespace magasin-dagster --create-namespace\nhelm install drill magasin/drill --namespace magasin-drill --create-namespace\nhelm install superset magasin/superset --namespace magasin-superset --create-namespace\nhelm install daskhub magasin/daskhub --namespace magasin-daskhub --create-namespace\nhelm install operator magasin/operator --namespace magasin-operator --create-namespace\nhelm install operator magasin/tenant --namespace magasin-tenant --create-namespace\nCheck that all the pods in the magasin-* namespaces are in status Running or Completed. Note that, it may take a few minutes till all the items get that status.\nkubectl get pods --all-namespaces | grep magasin\nIf there is any issue, please check the troubleshooting page."
+  },
+  {
+    "objectID": "install/manual-installation.html#whats-next",
+    "href": "install/manual-installation.html#whats-next",
+    "title": "Manual installation",
+    "section": "3 What’s next?",
+    "text": "3 What’s next?\nCongratulations, now you have a magasin instance running on your kubernetes cluster. This is just the beggining of an interesting journey. Now you can:\n\nTake a look at magasin tutorial and start using magasin\nLearn about magasin’s architecture. Understand the different components and the underlying technology.\nLearn more about advanced installation. The steps showed in this page were the standard ways of installing magasin, but you can customize much more your setup."
   },
   {
     "objectID": "install/index.html",
@@ -439,11 +257,11 @@
     ]
   },
   {
-    "objectID": "install/index.html#advanced-use-of-the-magasin-installer",
-    "href": "install/index.html#advanced-use-of-the-magasin-installer",
+    "objectID": "install/index.html#deploy-magasin-using-the-installer-beta",
+    "href": "install/index.html#deploy-magasin-using-the-installer-beta",
     "title": "Installation",
-    "section": "1.1 Advanced use of the magasin-installer",
-    "text": "1.1 Advanced use of the magasin-installer\nYou can check the options.\n./install-magasin.sh -h\nUsage: install-magasin.sh [-y] [-c] [-r realm_prefix-realm_postfix (magasin)] [-d] [-h]\n\nThis script checks dependencies and installs magasin components\nEach component is installed within its own namespace.\n\nOptions:\n  -y  Skip prompting questions during installation\n  -c  Only check if all pre-requisites are installed.\n  -r  Realm prefix and suffix (default: magasin).\n      If more than one '-', the last one will be used as separator.\n      The realm 'magasin-new-dev' will set 'magasin-new' as prefix and 'dev' as suffix.\n      \n  -d  Enable debug mode (displays all commands run).\n  -h  Display this help message and exit.\nExamples of usage:\n\nOnly check if all the required components are installed\n  install-magasin.sh -c \nSetup the realm test-. Will use test- as namespace. Setup the realm magasin-dev. Will use magasin--dev as namespaces\n  install-magasin.sh -r test",
+    "section": "1 Deploy magasin using the installer (beta)",
+    "text": "1 Deploy magasin using the installer (beta)\nOnce you have access to a kubernetes cluster, you can use the installer to setup magasin in that cluster.\nThe major goal of this installer is to ease the setup of some tools that need to be installed in your computer, and then deploy magasin in the kubernetes cluster.\n\n\n\n\n\n\nWarning\n\n\n\nIt is highly recommended to take a look at the install script before running it will install several components on your system.\nYou should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you’re not confortable with this approach, proceed with the manual installation.\n\n\n\nDeploying magasin from a Debian/Like GNU/Linux computer\ncurl -X https://unicef.github.io/magasin/install-magasin.sh | bash\nDebian like distributions are Ubuntu, Raspbian, Kali Linux, etc. They use apt-get as package manager.\nDeploying magasin from a MacOS computer\ncurl -X https://unicef.github.io/magasin/install-magasin.sh | zsh\n\nIn both cases, you need a user that can run sudo.\nThe installer is in beta, in case it fails check the troubleshooting section and, if the problems persist, try the manual installation\n\nDeploying magasin from a Windows computer Please use the manual installation",
     "crumbs": [
       "Home",
       "Install",
@@ -451,15 +269,383 @@
     ]
   },
   {
+    "objectID": "install/index.html#whats-next",
+    "href": "install/index.html#whats-next",
+    "title": "Installation",
+    "section": "2 What’s next?",
+    "text": "2 What’s next?\nCongratulations, now you have a magasin instance running on your kubernetes cluster. This is just the beggining of an interesting journey. Now you can:\n\nTake a look at magasin tutorial and start using magasin\nLearn about magasin’s architecture. Understand the different components and the underlying technology.\nLearn more about advanced installation. The steps showed in this page were the standard ways of installing magasin, but you can customize much more your setup.",
+    "crumbs": [
+      "Home",
+      "Install",
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "admin-guides/daskhub.html",
+    "href": "admin-guides/daskhub.html",
+    "title": "Daskhub Admin Guide",
+    "section": "",
+    "text": "Because the default setup is only for testing purposes, by default dask’s Jupyterhub comes without authentication.\nTo setup the authentication mechanism you have all the documentation in: https://z2jh.jupyter.org/en/stable/administrator/authentication.html\nOnce you have created the yaml file that has the setup you can run helm upgrade\n# helm upgrade &lt;component&gt; --namespace &lt;component-namespace&gt; --values &lt;values-file.yaml&gt;\nhelm upgrade daskhub --namespace magasin-daskhub --values daskhub.yaml"
+  },
+  {
+    "objectID": "admin-guides/daskhub.html#authentication",
+    "href": "admin-guides/daskhub.html#authentication",
+    "title": "Daskhub Admin Guide",
+    "section": "",
+    "text": "Because the default setup is only for testing purposes, by default dask’s Jupyterhub comes without authentication.\nTo setup the authentication mechanism you have all the documentation in: https://z2jh.jupyter.org/en/stable/administrator/authentication.html\nOnce you have created the yaml file that has the setup you can run helm upgrade\n# helm upgrade &lt;component&gt; --namespace &lt;component-namespace&gt; --values &lt;values-file.yaml&gt;\nhelm upgrade daskhub --namespace magasin-daskhub --values daskhub.yaml"
+  },
+  {
+    "objectID": "admin-guides/mag-cli.html",
+    "href": "admin-guides/mag-cli.html",
+    "title": "mag CLI",
+    "section": "",
+    "text": "1 TODO"
+  },
+  {
+    "objectID": "admin-guides/drill.html",
+    "href": "admin-guides/drill.html",
+    "title": "Drill guide",
+    "section": "",
+    "text": "A quick guide for managing magasin’s Apache Drill instance."
+  },
+  {
+    "objectID": "admin-guides/drill.html#apache-drill-options-and-tuning",
+    "href": "admin-guides/drill.html#apache-drill-options-and-tuning",
+    "title": "Drill guide",
+    "section": "1 Apache Drill options and tuning",
+    "text": "1 Apache Drill options and tuning\nThe following option values are recommended for Apache Drill’s use in the Magasin context:\nplanner.width.max_per_node = 3\nplanner.width.max_per_query = 12\nstore.parquet.reader.int96_as_timestamp = true\ndrill.exec.http.rest.errors.verbose = true\nexec.errors.verbose = true\nexec.queue.enable = true\nexec.queue.large = 2\nexec.queue.small = 10"
+  },
+  {
+    "objectID": "admin-guides/drill.html#example-apache-drill-storage-plugin-for-azure-blob-storage",
+    "href": "admin-guides/drill.html#example-apache-drill-storage-plugin-for-azure-blob-storage",
+    "title": "Drill guide",
+    "section": "2 Example Apache Drill storage plugin for Azure blob storage",
+    "text": "2 Example Apache Drill storage plugin for Azure blob storage\nExample Apache Drill storage plugin configuration for a specific Azure blob storage container (unicef-magasin-dev) in a given Azure blob storage account (sauniwebsaksio).\nThe Apache Drill Azure Blob Storage Plugin must be present in $DRILL_HOME/jars/3rdparty. Note the Azure authentication key has been redacted in the below example.\nThis configuration is read-only and specifies support for certain file formats within two directory locations (/profiles and /datasets) within the storage container.\nFor production configuration, file formats should be restricted to the minimal set of expected formats. Multiple storage plugin instances can be configured in a single Apache Drill instance so separate Azure blob storage accounts and containers may be separately configured and queried.\n{\n  \"name\" : \"storage_account_blob_container\",\n  \"config\" : {\n    \"type\" : \"file\",\n    \"connection\" : \"wasbs://blob_container@storage_account.blob.core.windows.net\",\n    \"config\" : {\n      \"fs.azure.account.key.storage_account.blob.core.windows.net\" : \"*******\"\n    },\n    \"workspaces\" : {\n      \"profiles\" : {\n        \"location\" : \"/profiles\",\n        \"writable\" : false,\n        \"defaultInputFormat\" : null,\n        \"allowAccessOutsideWorkspace\" : false\n      },\n      \"datasets\" : {\n        \"location\" : \"/datasets\",\n        \"writable\" : false,\n        \"defaultInputFormat\" : null,\n        \"allowAccessOutsideWorkspace\" : false\n      }\n    },\n    \"formats\" : {\n      \"image\" : {\n        \"type\" : \"image\",\n        \"extensions\" : [ \"jpg\", \"jpeg\", \"jpe\", \"tif\", \"tiff\", \"dng\", \"psd\", \"png\", \"bmp\", \"gif\", \"ico\", \"pcx\", \"wav\", \"wave\", \"avi\", \"webp\", \"mov\", \"mp4\", \"m4a\", \"m4p\", \"m4b\", \"m4r\", \"m4v\", \"3gp\", \"3g2\", \"eps\", \"epsf\", \"epsi\", \"ai\", \"arw\", \"crw\", \"cr2\", \"nef\", \"orf\", \"raf\", \"rw2\", \"rwl\", \"srw\", \"x3f\" ],\n        \"fileSystemMetadata\" : true,\n        \"descriptive\" : true\n      },\n      \"parquet\" : {\n        \"type\" : \"parquet\"\n      },\n      \"avro\" : {\n        \"type\" : \"avro\",\n        \"extensions\" : [ \"avro\" ]\n      },\n      \"json\" : {\n        \"type\" : \"json\",\n        \"extensions\" : [ \"json\" ]\n      },\n      \"sequencefile\" : {\n        \"type\" : \"sequencefile\",\n        \"extensions\" : [ \"seq\" ]\n      },\n      \"tsv\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"tsv\" ],\n        \"fieldDelimiter\" : \"\\t\"\n      },\n      \"csvh\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"csvh\" ],\n        \"extractHeader\" : true\n      },\n      \"csv\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"csv\" ]\n      },\n      \"psv\" : {\n        \"type\" : \"text\",\n        \"extensions\" : [ \"tbl\" ],\n        \"fieldDelimiter\" : \"|\"\n      },\n      \"pcap\" : {\n        \"type\" : \"pcap\",\n        \"extensions\" : [ \"pcap\" ]\n      },\n      \"httpd\" : {\n        \"type\" : \"httpd\",\n        \"extensions\" : [ \"httpd\" ],\n        \"logFormat\" : \"%h %t \\\"%r\\\" %&gt;s %b \\\"%{Referer}i\\\"\"\n      }\n    },\n    \"enabled\" : true\n  }\n}"
+  },
+  {
+    "objectID": "admin-guides/drill.html#backup-the-drill-storage-accounts-database",
+    "href": "admin-guides/drill.html#backup-the-drill-storage-accounts-database",
+    "title": "Drill guide",
+    "section": "3 Backup the drill storage accounts database",
+    "text": "3 Backup the drill storage accounts database\nApache Drill keeps a set of connections to storage accounts (S3 buckets, azure blobs, MinIO accounts…). The storage accounts is where the actual data is stored.\nHowever, in magasin given that Drill is setup in a distributed mode, the configuration of these connections is kept in zookeeper which is used to sync the storage configuration among the different instances of Drill. So, to backup the storage accounts we need to backup the zookeeper database which is a plain database.\n\nLaunch a terminal within the zookeeper pod (zk-0).\nkubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash\nCompress the files using tar, and leave the shell\ntar -czvf /tmp/zk.tgz /var/lib/zookeeper/*\nexit\nSave the file into our local filesystem\nkubectl cp magasin-drill/zk-0:/tmp/zk.tgz ./zk.tgz\nDelete the .tgz file of the pod\nkubectl exec zk-0 --namespace magasin-drill -- rm tmp/zk.tgz"
+  },
+  {
+    "objectID": "admin-guides/drill.html#restore-the-drill-storage-configuration",
+    "href": "admin-guides/drill.html#restore-the-drill-storage-configuration",
+    "title": "Drill guide",
+    "section": "4 Restore the Drill storage configuration",
+    "text": "4 Restore the Drill storage configuration\nTo restore the backup created in the previous section:\n\nCopy the backup to the cluster\n kubectl cp ./zk.tgz magasin-drill/zk-0:/tmp/zk.tgz \nLaunch the shell in the zookeeper pod\nkubectl exec zk-0 --namespace magasin-drill -ti -- /bin/bash\nUnzip\ntar -xzvf /tmp/zk.tgz \nKill the java process\nps -ax \n\nPID TTY      STAT   TIME COMMAND\n1 ?          Ss     0:00 /rosetta/rosetta /usr/bin/bash /usr/bin/start.sh\n25 ?         Sl     0:03 /rosetta/rosetta /usr/bin/java -Dzookeeper.log.dir=/opt/zookeeper/bin/../logs -Dzookeeper.log.file=zookeeper-\n116 pts/0    Ss     0:00 /rosetta/rosetta /bin/bash\n148 ?        S      0:00 /rosetta/rosetta /usr/bin/sleep 5\n149 pts/0    R+     0:00 /usr/bin/ps -ax\n\n# Where -9 is to force kill and 25 is the process number (PID)\nkill -9 25\nRelaunch the initalizer script in background (&), then exit\n/usr/bin/start.sh &\nexit"
+  },
+  {
+    "objectID": "get-started/automate-data-ingestion.html",
+    "href": "get-started/automate-data-ingestion.html",
+    "title": "Step 2: Automate data ingestion",
+    "section": "",
+    "text": "This is the second step of the magasin getting started tutorial. In this step we will see how to automate the data ingestion.\nIn the previous step, we delved into the DPG Alliance API data, generating graphs and uncovering insights along the way.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 2: Automate data ingestion"
+    ]
+  },
+  {
+    "objectID": "get-started/automate-data-ingestion.html#background",
+    "href": "get-started/automate-data-ingestion.html#background",
+    "title": "Step 2: Automate data ingestion",
+    "section": "1 Background",
+    "text": "1 Background\nTypically, after identifying intriguing insights, it’s common as next step to periodically update the data to monitor the evolution of the data.\nAutomating this process is highly advantageous as it eliminates the need for repetitive tasks. In our scenario, the workflow involves fetching data from the DPG API, followed by cleaning and processing it for seamless integration with a business intelligence dashboard creation tool, Superset, that will be used in the next step.\nThe good news is that we have already completed the heavy lifting using the Jupyter Notebook. This is advantageous because the code we will be writing is essentially the same; we just need to make some tweaks to adapt it into a Dagster pipeline.\n\n1.1 Advantages of using dagster\nDagster is what is known as a pipeline orchestrator, which essentially helps us manage the ingestion of data from multiple sources.\nThe benefits of using a framework like Dagster are manifold. It allows us to approach tasks in a structured manner, facilitating scalability and monitoring. Anyone who has dealt with gathering data from multiple sources will attest that it can quickly turn into a nightmare if not managed properly. Dagster provides an excellent starting point for tackling such challenges.\nWhat usually happends when you start automating gathering data, processing and mixing data from multiple data sources is that:\n\nIt begins simple but with time it becomes more complex. You add more and more data sources, more logic to clean the data, stablish more dependencies between the data sources, etc. If this is not done properly you end up with a mess. Dagster provides us a framework that helps to write our code in a more structured way, as well as tools to debug and monitor the ingestion of the data.\nIt eventually may break. Data sources may change with time and with that your pipelines break. For instance, DPGA may change the API unexpectedly, and with that our automation will fail too. Dagster allows you to monitor failures as well as to debug where it failed.\n\nAnother advantage of Dagster, it that it uses Python as programming language, so, as we said earlier, most of the work we did for the Jupyter Notebook can be reused.\n\n\n1.2 Storing data as parquet files\nIn the magasin architecture, as general approach, we stand to store data assets as files. In particular, we recommend the use of Apache parquet file format.\nThe main reason to use files is:\n\nFirst, because it is an economic way to store data. Storage services in the cloud or in premises is relatively cheap.\nSecond, because it does provide more flexibility when changes on the underlying structure are introduced, at least compared with setting up a SQL database downstream.\nIn addition, it allows also to easily store more types of data such as documents or images. Lastly, in terms of governance and sharing the datasets, the problem is simplified to setting up file sharing permissions.\n\n\n\n1.3 Parquet format for structured data.\nParquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data.\nUsing Parquet to store processed datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular Big Data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.\n\n\n1.4 MinIO, magasin’s storage layer (optional)\nFor keeping a consistent approach across the different cloud providers, magasin includes a component called MinIO. It gives an Amazon S3 compatible file (object) store.\nThanks to MinIO, regardless of what infrastructure you’re using, your pipelines will work the same, you do not need to adapt how you store the data if you move to another provider.\nWhereas to maintain a vendor-agnostic architecture we leverage MinIO. You have the flexibility to bypass this component if you find alternative methods more suitable for storing your ingested data. This decision may be based on better alignment with your existing processes or specific use case requirements.\nFor instance, instead of MinIO, you can directly utilize a vendor-specific object store like Azure Blobs, Amazon S3, or Google Cloud Storage. Alternatively, in contrast to the file-storage approach of the datasets you may choose to write your data directly into a database, such as DuckDB or PostgreSQL.\nFor the purposes of this tutorial we will be using MinIO. And the first step is to setup a bucket. A bucket is somewhat similar to a folder.\nSo, let’s start.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 2: Automate data ingestion"
+    ]
+  },
+  {
+    "objectID": "get-started/automate-data-ingestion.html#create-a-bucket-in-minio",
+    "href": "get-started/automate-data-ingestion.html#create-a-bucket-in-minio",
+    "title": "Step 2: Automate data ingestion",
+    "section": "2 Create a bucket in MinIO",
+    "text": "2 Create a bucket in MinIO\nThe first thing we need to do is to setup where we are going to store our data. Till now, we’ve been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets.\nIn one command line shell launch the minio API\nmag minio api\nSet the [minio client] alias.\nmc alias set myminio http://localhost:9000 minio minio123\n# mc alias set &lt;alias-name&gt; &lt;endpoint&gt; &lt;access-key&gt; &lt;secret-key&gt;\nBehind the scenes magasin command line interface, mag, uses minio client command (mc) to create the bucket and this is a setup mc needs.\nOnce we have configured the alias, we just need to create the bucket:\n mag minio add bucket --bucket-name magasin \nNote that the default alias that mag asumes is myminio. If you used another alias you can use --alias option: mag minio add bucket --bucket-name magasin --alias myalias.\n\n\n\n\n\n\nTip: mag shortcuts\n\n\n\nmag allows you to shorten the commands using the alias. For example: mag minio add bucket --bucket-name magasin --alias myalias can be written as mag m a b -b magasin -a myalias. Using the shorten version is a way of speeding up your interaction with the command, but it is less readable.\nWhen you type mag --help or mag &lt;command&gt; --help you can see the shortcut versions in parenthesis\nFor example for mag --help, you can see that daskhub shortcut is dh and minio is m\nUsage: mag [OPTIONS] COMMAND [ARGS]...\n...\nCommands:\n  dagster (d)    Dagster commands\n  daskhub (dh)   Daskhub/Jupyterhub commands\n  drill (dr)     Apache Drill commands\n  minio (m)      MinIO commands\n  superset (ss)  Apache Superset commands\n\n\nNow, we have a bucket in MinIO that allows us to store files.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 2: Automate data ingestion"
+    ]
+  },
+  {
+    "objectID": "get-started/automate-data-ingestion.html#create-a-dagster-pipeline",
+    "href": "get-started/automate-data-ingestion.html#create-a-dagster-pipeline",
+    "title": "Step 2: Automate data ingestion",
+    "section": "3 Create a dagster pipeline",
+    "text": "3 Create a dagster pipeline\nSo, the next step is to create a pipeline. A pipeline is just a piece of code that moves data from place to another and that can introduce some changes before saving it in the destination place. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.\nThe first thing we need to do is to install dagster.\npip install dagster==1.6.0 dagster-webserver==1.6.0\n\n\n\n\n\n\nNote\n\n\n\nDagster is a very agile product that is continuously evolving, this means that you have to be cognizant of the version you’re running.\nYou can check the version installed in your cluster by running helm list --all-namespaces and looking at the APP VERSION column.\nThen run pip install pip install dagster==&lt;version&gt;\n\n\n\n3.1 Add the pipeline code\nOnce dagster is installed, we’re going to create a new project using the default structure prodivded by dagster. This should be the default procedure for creating any new pipeline.\ndagster project scaffold --name dpga-pipeline\nCreating a Dagster project at /home/magasin/dpga-pipeline.\nCreating a Dagster code location at /home/magasin/dpga-pipeline.\nGenerated files for Dagster code location in /home/magasin/dpga-pipeline.\nGenerated files for Dagster project in /home/magasin/dpga-pipeline.\nSuccess! Created dpga-pipeline at /home/magasin/dpga-pipeline.\nBy scaffolding our project, dagster creates a basic structure of a python package that could be installed using pip as any other package as well as some additional metadata files that will be used by dagster to run the pipeline. You ahve some more info in the dagster documentation.\nNow, lets add our code. Open the file dpga-pipeline/dpga_pipeline/assets.py\n\n\ndpga-pipeline/dpga_pipeline/assets.py\n\nimport requests\nimport pandas as pd\nfrom pandas import DataFrame\n\nfrom dagster import asset\n\n@asset\ndef raw_dpgs() -&gt; DataFrame:\n  \"\"\" DPGs data from the API\"\"\"\n  dpgs_json_dict = requests.get(\"https://api.digitalpublicgoods.net/dpgs\").json()\n  df = pd.DataFrame.from_dict(dpgs_json_dict)\n  return df\n\n@asset\ndef deployment_countries(raw_dpgs: DataFrame) -&gt; DataFrame:\n  df = raw_dpgs\n  df_loc = pd.merge(df, pd.json_normalize(df[\"locations\"]), left_index=True, right_index=True)\n  df_deployment_countries = df_loc.explode(\"deploymentCountries\")\n  df_deployment_countries[[\"name\",\"deploymentCountries\"]]\n\n  return df_deployment_countries\n\nAs you can see the code seems pretty similar to what we wrote in our exploratory analysis.\nThe in the code we have defined two @assets. An asset according to the dagster definition is:\n\nAn asset is an object in persistent storage, such as a table, file, or persisted machine learning model. A Software-defined Asset is a Dagster object that couples an asset to the function and upstream assets used to produce its contents.\n\nIn our case, raw_dpgs, stores the dpgs as they come from the API as a DataFrame, and deployment_countries that extracts the one row per country in which the DPG has been deplayed.\nAnother thing that you can notice in the code is that in the definition of the deployment_countries asset, we are passing raw_dpgs: DataFrame. That will tell dagster that deployment_countries depends on the raw_dpgs and it will be used as input.\nAs you noticed, we are using a couple of packages that need to be installed pandas and requests. To install them, in dpga-pipeline/setup.py we add them in the install_requires array.\n\n\ndagster-pipeline/setup.py\n\nsetup(\n  # ...\n  install_requires=[\n        \"dagster\",\n        \"dagster-cloud\",\n        \"pandas\",       # &lt;--- Add this line \n        \"requests\"      # &lt;---- Add this line too\n    ],\n  #...\n)\n\nOk, So now let’s test if this is working so far. To do that we will first install the pipeline package in editable mode (-e). This allows you to edit the package without needing to install it again.\npip install -e '.[dev]'\nThen, we will launch the dagster user interface:\ndagster dev\nThis launches a server in port 3000 on localhost. So just open http://localhost:3000\nYou should see something like:\n\n\n\nDagster user interface\n\n\n\n3.1.1 Save the assets in MinIO.\nTill now, we’ve been working on the development machine file system. The next step is to save the information we want to keep in MinIO.\nTo access the MinIO bucket we will use fsspec. This python library provides an standard interface regardless of the underlying filesystem. So, if you chose to use other file system to run this example, you can just change the environment variables and the address.\nMinIO provides an S3 compatible bucket file system, so we will use it. First we will add the dependencies fsspec and s3fs.\n\n\ndagster-pipeline/setup.py\n\nsetup(\n   #...\n    install_requires=[\n        \"dagster\",\n        \"dagster-cloud\",\n        \"pandas\",\n        \"requests\",\n        \"fsspec\",   # &lt;---- New dependency\n        \"s3fs\"      # &lt;---- New dependency\n    ],\n    #...\n)\n\nNow, we’re going to modify our assets to use the minio filesystem.\n\n\ndpga-pipeline/dpga_pipeline/assets.py\n\nimport fsspec\nimport requests\nimport pandas as pd\nfrom pandas import DataFrame\nfrom dagster import asset\n\n@asset\ndef raw_dpgs() -&gt; DataFrame:\n  \"\"\" DPGs data from the API\"\"\"\n  # Load from API\n  dpgs_json_dict = requests.get(\"https://api.digitalpublicgoods.net/dpgs\").json()  \n\n  # Convert to pandas dataframe\n  df = pd.DataFrame.from_dict(dpgs_json_dict)\n  return df\n\n@asset\ndef deployment_countries(raw_dpgs: DataFrame) -&gt; DataFrame:\n   \n  df = raw_dpgs\n  df_loc = pd.merge(df, pd.json_normalize(df[\"locations\"]), left_index=True, right_index=True)\n  df_deployment_countries = df_loc.explode(\"deploymentCountries\")\n  df_deployment_countries = df_deployment_countries[[\"id\", \"name\",\"deploymentCountries\"]]\n  \n  # Save to MinIO\n  fs= fsspec.filesystem('s3')\n  with fs.open('/magasin/data/deployment_countries.parquet','wb') as f:\n    df_deployment_countries.to_parquet(f)\n    \n  return df_deployment_countries\n\nThen, we will setup some environment variables that will setup the Minio S3 bucket credentials. Add the .env file in the root of your project (same folder as setup.py).\nFSSPEC_S3_ENDPOINT_URL='http://localhost:9000'\nFSSPEC_S3_KEY='minio'\nFSSPEC_S3_SECRET='minio123'\nAs you can see we are indicating in the .env file that the endpoint of our minio is in localhost port 9000. To enable this service we need to run the following command\nmag minio api\nWhile this command is running it will forward any connection to the port 9000 to the our minio instance in the kubernetes cluster. You shoud keep running during this till you are instructed to do close it.\nIn another window, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run dagster:\n\npip install -e '.[dev]'\ndagster dev\nNote that after you launch dagster dev you should see something like:\ndagster - INFO - Loaded environment variables from .env file: FSSPEC_S3_ENDPOINT_URL,FSSPEC_S3_KEY,FSSPEC_S3_SECRET\nThis is because Dagster loads all the .env file automatically and exposes the variables to the code.\nOpen again the browser pointing to http://localhost:3000 and in the dagster UI and run Materialize all.\nThis time, all files should have been materialized in the magasin bucket.\nTo test if the files are there. In a terminal run:\nsource .env\nexport FSSPEC_S3_ENDPOINT_URL FSSPEC_S3_KEY FSSPEC_S3_SECRET\npython\nAnd then type these lines\nimport fsspec \nfs = fsspec.filesystem('s3')\nfs.ls(\"magasin\")\n# You should see the names of the file 'magasin/deployment_countries.parquet'\nexit()\n\n\n\n3.2 Adding a scheduler\nUntil now, we have been materializing manually our assets. However, automating this task is indeed the ultimate goal of setting a pipeline.\nIn dagster, you have available schedulers which basically run your pipeline, or pieces of it, in a fixed interval. Dagster schedulers follow a cron style format.\n#__init__.py\n\nHere you have some examples of cron intervals\n# Scheduler code\n\n\n3.3 Deploy the pipeline in the cluster\nTill now we have been working on a development environment on our computer. However what we want is to send our pipeline to be\nNow we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in dagster terminology)\nhelm upgrade dagster --namespace magasin-dagster -f\nTo open the dagster user interface of the instance running in our Kubernetes cluster we need to run\nmag dagster ui\nTo check",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 2: Automate data ingestion"
+    ]
+  },
+  {
+    "objectID": "get-started/automate-data-ingestion.html#summary",
+    "href": "get-started/automate-data-ingestion.html#summary",
+    "title": "Step 2: Automate data ingestion",
+    "section": "4 Summary",
+    "text": "4 Summary",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 2: Automate data ingestion"
+    ]
+  },
+  {
+    "objectID": "get-started/automate-data-ingestion.html#whats-next",
+    "href": "get-started/automate-data-ingestion.html#whats-next",
+    "title": "Step 2: Automate data ingestion",
+    "section": "5 What’s next",
+    "text": "5 What’s next\nGo to next step, create a dashboard in Superset\nDagster has a learning curve, and it requires some work in order to get used to it, but the documentation is fairly good.\nHere you have a few links to get started with dagster:\n\nGet started with dagster 2.. Dagster Essentials",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 2: Automate data ingestion"
+    ]
+  },
+  {
+    "objectID": "get-started/create-a-dashboard.html",
+    "href": "get-started/create-a-dashboard.html",
+    "title": "Step 3: Create a dashboard",
+    "section": "",
+    "text": "In the previous steps we did an exploratory analysis that gave us the opportunity to learn about the data and what we could extract from it. After that we learnt to automate the data ingestion, that is the process of gathering and processing the data though in a scheduled way.\nSo now, we have our ready to use dataset which is automatically updated. The last step on the process is to create a beautiful dashboard that we can share with the decission makers to help them to take the organization to the next level thanks to the use of data informed decissions.\nIn magasin’s open source architecture, Apache Superset is the business intelligence dashboarding tool that comes out of the box, but similarly to what we mentioned about MinIO, the loosely coupled architecture of magasin allows organizations to choose to leverage other tools that the organization may be already using such as PowerBI or Tableau.\nApache Superset can consume any SQL based database engine. However, we stored our data as .parquet files. To allow us to use file based datasets in the architecture we have Apache Drill, which basically allows us to consume these datasets using a SQL interface. Indeed, you can also query other formats such as CSV or JSON and Apache Drill will provide a SQL interface to query them.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 3: Create a dashboard"
+    ]
+  },
+  {
+    "objectID": "get-started/create-a-dashboard.html#setup-apache-drill-to-connect-to-minio",
+    "href": "get-started/create-a-dashboard.html#setup-apache-drill-to-connect-to-minio",
+    "title": "Step 3: Create a dashboard",
+    "section": "1 Setup Apache Drill to connect to MinIO",
+    "text": "1 Setup Apache Drill to connect to MinIO\n\nLaunch Apache Drill User interface\nmag drill ui\n\n\n\nDrill user interface home\n\n\n\nThen in the “Storage” page within the “Disabled Storage Plugins” click on the Update button of S3.\n\n\n\nDrill Update the S3 storage plugin\n\n\nModify the beggining of the JSON so it looks like:\n{\n  \"type\": \"file\",\n  \"connection\": \"s3a://magasin\",\n  \"config\": {\n    \"fs.s3a.connection.ssl.enabled\": \"false\",\n    \"fs.s3a.path.style.access\": \"true\",\n    \"fs.s3a.endpoint\": \"myminio-hl.magasin-tenant.svc.cluster.local:9000\",\n    \"fs.s3a.access.key\": \"minio\",\n    \"fs.s3a.secret.key\": \"minio123\"\n  },\n  \"workspaces\": {\n    \"data\": {\n      \"location\": \"/data\",\n      \"writable\": false,\n      \"defaultInputFormat\": null,\n      \"allowAccessOutsideWorkspace\": false\n    },\n    \"root\": {\n      \"location\": \"/\",\n      \"writable\": false,\n      \"defaultInputFormat\": null,\n      \"allowAccessOutsideWorkspace\": false\n    }\n  },\n  \"formats\": { \n    # ...\n    # KEEP THE REST OF THE FILE SAME AS THE ORIGINAL. \n    # ...\n  }\n}\nPress Update button, and then the click on the Enable button.\nNow, click on Query at the top navigation bar corner and submit this test query:\nUSE `s3`.`data`;\n\n\n\nDrill query UI\n\n\nIf every thing goes right, you should see something like:\n\n\n\nSuccess query result",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 3: Create a dashboard"
+    ]
+  },
+  {
+    "objectID": "get-started/create-a-dashboard.html#create-the-dashboard-in-apache-superset",
+    "href": "get-started/create-a-dashboard.html#create-the-dashboard-in-apache-superset",
+    "title": "Step 3: Create a dashboard",
+    "section": "2 Create the Dashboard in Apache Superset",
+    "text": "2 Create the Dashboard in Apache Superset\nTo create a dashboard in superset the first step is to create a new database connection to our Apache Drill instance.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 3: Create a dashboard"
+    ]
+  },
+  {
+    "objectID": "get-started/create-a-dashboard.html#setting-up-the-drill-superset-database-connection",
+    "href": "get-started/create-a-dashboard.html#setting-up-the-drill-superset-database-connection",
+    "title": "Step 3: Create a dashboard",
+    "section": "3 Setting up the Drill-Superset database connection",
+    "text": "3 Setting up the Drill-Superset database connection\n\nLauch the Apache Superset user interface\nmag superset ui\nAs credentials, enter admin / admin\n\n\n\nSuperset login page:\n\n\n.\nGo to top right corner and go to Settings &gt; Database connections\n .\nClick on the + Database &gt; Select Apache Drill as database\n .\nAdd the below SQLAlechemy URI and, then, click on Test the connection.\ndrill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/dfs?use_ssl=False\n\n\n\nTest connection\n\n\nThis is a connection that comes out of the box with Apache Drill. If this works, it means that superset has access to Apache Drill. Now, we will use the storage we created earlier, the s3 connection.\nIf the connection suceeds, replace the string with the following and click on Test the connection\ndrill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/s3?use_ssl=False",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 3: Create a dashboard"
+    ]
+  },
+  {
+    "objectID": "get-started/create-a-dashboard.html#creating-the-superset-dashboard",
+    "href": "get-started/create-a-dashboard.html#creating-the-superset-dashboard",
+    "title": "Step 3: Create a dashboard",
+    "section": "4 Creating the Superset Dashboard",
+    "text": "4 Creating the Superset Dashboard",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 3: Create a dashboard"
+    ]
+  },
+  {
     "objectID": "deployment.html",
     "href": "deployment.html",
-    "title": "",
+    "title": "Production deployment",
     "section": "",
-    "text": "title: “Deployment”\n\n\nformat: html\n\n\n\nAll you need to know in order to deploy in a productivity system",
+    "text": "Whereas the default installation of magasin is very convenient for testing, it is not ready for production.\nThe major concerns you should have when deploying to production should be:\nHere you have some links to reference documentation from the original projects that may help you to setup a production release.",
     "crumbs": [
       "Home",
       "Deployment",
       "Deploying to production"
+    ]
+  },
+  {
+    "objectID": "deployment.html#daskhub",
+    "href": "deployment.html#daskhub",
+    "title": "Production deployment",
+    "section": "1 Daskhub",
+    "text": "1 Daskhub\n\nDask hub helm char\nJupyterhub helm Chart\nDask Gateway Helm\nDask Gateway Hem Chart Reference",
+    "crumbs": [
+      "Home",
+      "Deployment",
+      "Deploying to production"
+    ]
+  },
+  {
+    "objectID": "deployment.html#dagster",
+    "href": "deployment.html#dagster",
+    "title": "Production deployment",
+    "section": "2 Dagster",
+    "text": "2 Dagster\n\nDeployment\nDeploying with helm",
+    "crumbs": [
+      "Home",
+      "Deployment",
+      "Deploying to production"
+    ]
+  },
+  {
+    "objectID": "deployment.html#minio",
+    "href": "deployment.html#minio",
+    "title": "Production deployment",
+    "section": "3 MinIO",
+    "text": "3 MinIO\nFrom MinIO magasin includes two helm chart. One is the operator, which basically allows you to deploy instances of tenants (provides multi-tenancy support). In the magasin default installation we do not use the operator to deploy the tenant but rather a helm chart, and we only install the operator as it is a requirement for a tenant. For one single organization, it may be enought to manage one single tenant.\n\nMinio Tenant Helm Chart Reference\nMinio Operator Helm Chart Reference\nDeploy minio operator with Helm\nDeploy a tenant with Helm",
+    "crumbs": [
+      "Home",
+      "Deployment",
+      "Deploying to production"
+    ]
+  },
+  {
+    "objectID": "deployment.html#apache-drill",
+    "href": "deployment.html#apache-drill",
+    "title": "Production deployment",
+    "section": "4 Apache Drill",
+    "text": "4 Apache Drill\n\nHelm chart Documentation\nApache Drill configuration\nConnecting Data Sources",
+    "crumbs": [
+      "Home",
+      "Deployment",
+      "Deploying to production"
+    ]
+  },
+  {
+    "objectID": "deployment.html#apache-superset",
+    "href": "deployment.html#apache-superset",
+    "title": "Production deployment",
+    "section": "5 Apache Superset",
+    "text": "5 Apache Superset\n\nHelm Chart documentation\nConfiguring Superset",
+    "crumbs": [
+      "Home",
+      "Deployment",
+      "Deploying to production"
+    ]
+  },
+  {
+    "objectID": "contributing/helm-repo-dev.html",
+    "href": "contributing/helm-repo-dev.html",
+    "title": "Helm repo development",
+    "section": "",
+    "text": "This content is specially focused on the common tasks of magasin contributors and maintainers of the helm charts.\nThe core of magasin is the easy deployment of complex cloud-ready applications in a Kubernetes cluster.\nWe use helm charts for this purpose. Helm is a package manager such as pip, apt, brew, npm or gem.\nHelm uses a packaging format called charts. A chart is a collection of files that describe a related set of Kubernetes resources. A single chart might be used to deploy something simple, like a pod, or something complex, like a full web app stack with HTTP servers, databases, caches, and so on.\nIn general, our approach is to get the official helm chart provided by the maintainer of the component. of and then tweak the configuration to make it work seamless with the other components of magasin.\nThere may be cases in which there is not official helm chart. In those situations we have developed ours, as in the case of Apache Drill\nThe helm charts are kept in the helm folder within the main magasin GitHub repository\nWe have a shell script, /helm-scripts/update-helm-charts.sh that collects the helm charts from the different official repos an keep them in ours. The script itself includes its documentation.\nThe repository itself is hosted in the GitHub pages of the main magasin repo. The process of releasing the repo (i.e. updating the index.yaml and creating the helm packages)is managed by a GitHub action",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Helm repo development"
+    ]
+  },
+  {
+    "objectID": "contributing/helm-repo-dev.html#working-with-the-charts",
+    "href": "contributing/helm-repo-dev.html#working-with-the-charts",
+    "title": "Helm repo development",
+    "section": "1 Working with the charts",
+    "text": "1 Working with the charts\nBelow you have some recipies that will help you to set things up when modifying the helm charts.\nBefore working with the charts you need to setup a Kubernetes cluster,\n\n1.1 How can I update magasin’s repo helm charts?\nGenerally, magasin helm charts are just a copy of the “official” repositories. So, what we do is we get a copy of these externally developed charts and create a copy. Then we test interoperability the magasin tools are working and release the package. Magasin in that regard is similar to a GNU/Linux distribution.\nCurrently, we have a script that updates the folder /helm that contains magasin’s charts. It gets them from from other helm repos and copies them to the helm/ folder. The script is in /helm-scripts/update-helm-charts.sh.\n\nClone the repo\ngit clone https://github.com/unicef/magasin\nUpdate the versions editing /helm-scripts/update-helm-charts.sh\nFor now, it has the version numbers of the helm charts harcoded. So, you have to modify it whenever you want to update the charts. The script file is documented and should guide you on how to proceed.\nRun the script.\n\n\n\n1.2 How can I test changes on helm charts?\nIf you have updated or modified the helm charts of the /helm folder, you may want to test them before performing a release.\nThe easiest way is to run a helm repo in your local machine, which basically is an HTTP server that has the helm charts packaged as .tgz files and a metadata file called index.yaml. Magasin includes a script that allows you to do this.\nLet’s wee what are the steps:\n\nClone the repo\ngit clone https://github.com/unicef/magasin\nMake the changes on the helm charts within the folder /helm\nServe the helm charts in a local repo.\nGo to the helm-scripts and run the local-helm-repo.sh script.\n cd helm-scripts\n ./local-helm-repo.should\nThis script packages the helm charts in the /helm folder and launches an HTTP server that points to the folder /_helm-repo/ in the root folder of the repo in the port 8000. You can check it is running by opening a browser http://localhost:8000/index.yaml\nInstall magasin.\nGo to the installer folder and run the magasin installer specifying the url of the local repository\n cd magasin/installer\n ./install-magasin.sh -u http://localhost:8000\n\n\n\n1.3 What if I only want to update or install one single component?\nIn the previous section you had to install all the charts of magasin it assumed that you did not have an instance already running, but that you already have one instance and you want to update just one chart. To do that you can run the helm command:\nAssuming you are in the root folder of the repo and you want to upgrade Apache Drill (helm/drill)\nIf you are installing the chart for the first time:\nhelm install drill ./helm/drill/  --namespace magasin-drill --create-namespace\nNote that the namespace should match the realm you’re working on. We’re asssuming the starndard namespace\nIf you’re updating the helm chart\nhelm upgrade drill ../../helm/drill/  --namespace magasin-drill\nIn both cases you can also add custom values by adding -f &lt;path-to-my-values-yaml-file&gt;. Example:\nhelm upgrade drill ../../helm/drill/  --namespace magasin-drill -f drill.yaml\nNote that using this method, you don’t need to run the local helm repo script.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Helm repo development"
+    ]
+  },
+  {
+    "objectID": "contributing/repositories.html",
+    "href": "contributing/repositories.html",
+    "title": "Source Code Repositories",
+    "section": "",
+    "text": "unicef/magasin\n\nPrimary respository, holds main components, setup and admin scripts, as well as documentation",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Source Code Repositories"
+    ]
+  },
+  {
+    "objectID": "contributing/repositories.html#magasin-main-project",
+    "href": "contributing/repositories.html#magasin-main-project",
+    "title": "Source Code Repositories",
+    "section": "",
+    "text": "unicef/magasin\n\nPrimary respository, holds main components, setup and admin scripts, as well as documentation",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Source Code Repositories"
+    ]
+  },
+  {
+    "objectID": "contributing/repositories.html#libraries-and-utilities",
+    "href": "contributing/repositories.html#libraries-and-utilities",
+    "title": "Source Code Repositories",
+    "section": "2 Libraries and utilities",
+    "text": "2 Libraries and utilities\n\nunicef/superset-dashboard-cloner Scripts for cloning Apache Superset dashboards to create copies that use different data sources.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Source Code Repositories"
+    ]
+  },
+  {
+    "objectID": "contributing/repositories.html#custom-helm-charts",
+    "href": "contributing/repositories.html#custom-helm-charts",
+    "title": "Source Code Repositories",
+    "section": "3 Custom Helm charts",
+    "text": "3 Custom Helm charts\n\nunicef/magasin-drill A helm chart that allows setting up Apache Drill in cluster mode together with Zookeeper in a Kubernetes cluster.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Source Code Repositories"
+    ]
+  },
+  {
+    "objectID": "contributing/installer-dev.html",
+    "href": "contributing/installer-dev.html",
+    "title": "Installer (Dev)",
+    "section": "",
+    "text": "The [install-magasin.sh](https://github.com/unicef/magasin/blob/main/installer/install-magasin.sh) is a shell script that installs all the dependencies required to install magasin as well as setting up all the helm charts that compose magasin.\nYou have more details about what it does, in the advanced installation page\nIt has a companion that is the [uninstall-script.sh](https://github.com/unicef/magasin/blob/main/installer/uninstall-magasin.sh)\nThe installer and uninstaller source code can be found under the installer/ folder within the main magasin repository.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Installer (Dev)"
+    ]
+  },
+  {
+    "objectID": "contributing/installer-dev.html#installer-tests",
+    "href": "contributing/installer-dev.html#installer-tests",
+    "title": "Installer (Dev)",
+    "section": "1 Installer tests",
+    "text": "1 Installer tests\nThe installer includes several options, in order to verify these are working we have created a Github action that performs several tests in different operating systems.\nSee the source code of install-tests.yaml",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Installer (Dev)"
+    ]
+  },
+  {
+    "objectID": "why-magasin.html",
+    "href": "why-magasin.html",
+    "title": "Why magasin?",
+    "section": "",
+    "text": "1 TODO\nWrite down the reasoning behind creating magasin that we’ve used - complex landscape - open source\n\ngood value for money\n\netc.",
+    "crumbs": [
+      "Home",
+      "Welcome",
+      "Why magasin?"
     ]
   },
   {
@@ -470,13 +656,452 @@
     "text": "magasin is the cloud native open-source end-to-end data platform\n\n\nmagasin enables organizations to perform of automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale\n\n\n\nGet Started"
   },
   {
+    "objectID": "contributing/index.html",
+    "href": "contributing/index.html",
+    "title": "Contributing",
+    "section": "",
+    "text": "Magasin follows an open approach towards accepting contributions.\nIn this section you have access to specific documentation useful for developers that want to dive into the internals of magasin and the approach we are following regarding the processes and the documentation.\nOur main repo is in github.com/unicef/magasin.It holds main components, setup and admin scripts, as well as documentation\nWe are following a somewhat mono-repo approach with the large majority of the platform itself and the repository has the following sub-projects.\n\nHelm chart repository. Magasin, similarly to a GNU/Linux distribution is basically a collection of independent open source projects that are setup to work in a common environment.\n\nIn general, our approach is get a copy of the officially maintained helm chart. However, there may be projects that do not have an official helm chart. In that case we develop ours.\n\nmagasin installer. It is a shell script that allows us to install all the requirements (such as helm, kubectl, pip, mc) and the helm charts using one single command line.\nmag CLI: Magasin command line interface. It provides a consistent interface for some common tasks taking advangate of the common approach and conventions of deploying magasin. It is a python application based on click, a library for creating CLIs in a compostable way.\nProject documentation: Documentation is a key pillar for the platform. Magasin has a wide variety of audience users whith different needs. In addition, Magasin website is based on Quarto, a platform which allows us to write markdown and generate an static website. It allows us to focus on the content.\n\nIn addition to these, we have other libraries and tools that are in other repositories.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Contributing"
+    ]
+  },
+  {
+    "objectID": "contributing/vulnerability-disclosure.html",
+    "href": "contributing/vulnerability-disclosure.html",
+    "title": "Vulnerability disclosure policy",
+    "section": "",
+    "text": "Magasin team welcomes feedback from security researchers and the general public to help improve our security. If you believe you have discovered a vulnerability, privacy issue, exposed data, or other security issues in any of our assets, we want to hear from you. This policy outlines steps for reporting vulnerabilities to us, what we expect, what you can expect from us.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Vulnerability disclosure policy"
+    ]
+  },
+  {
+    "objectID": "contributing/vulnerability-disclosure.html#introduction",
+    "href": "contributing/vulnerability-disclosure.html#introduction",
+    "title": "Vulnerability disclosure policy",
+    "section": "",
+    "text": "Magasin team welcomes feedback from security researchers and the general public to help improve our security. If you believe you have discovered a vulnerability, privacy issue, exposed data, or other security issues in any of our assets, we want to hear from you. This policy outlines steps for reporting vulnerabilities to us, what we expect, what you can expect from us.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Vulnerability disclosure policy"
+    ]
+  },
+  {
+    "objectID": "contributing/vulnerability-disclosure.html#systems-in-scope",
+    "href": "contributing/vulnerability-disclosure.html#systems-in-scope",
+    "title": "Vulnerability disclosure policy",
+    "section": "2 Systems in Scope",
+    "text": "2 Systems in Scope\nThis policy applies to any digital assets owned, operated, or maintained within the magasin open source project.\n\n2.1 Supported versions\nMagasin is currently on beta and continuously evolving. Given this, we only provide full support to the latest version released.\n\n\n\nVersion\nSupported\n\n\n\n\nlatest\nYes\n\n\nprevious\nNo",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Vulnerability disclosure policy"
+    ]
+  },
+  {
+    "objectID": "contributing/vulnerability-disclosure.html#out-of-scope",
+    "href": "contributing/vulnerability-disclosure.html#out-of-scope",
+    "title": "Vulnerability disclosure policy",
+    "section": "3 Out of Scope",
+    "text": "3 Out of Scope\n\nAssets or other equipment not owned by parties participating in this policy.\n\nNote that Magasin makes use of several open source components such as Apache Drill, Dagster, MiniIO, Apache Supersest, Dask, Jupyterhub…, including their Helm charts. Vulnerabilities discovered or suppected on these systems should be reported to the approriate vendor or applicable authority.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Vulnerability disclosure policy"
+    ]
+  },
+  {
+    "objectID": "contributing/vulnerability-disclosure.html#our-commitments",
+    "href": "contributing/vulnerability-disclosure.html#our-commitments",
+    "title": "Vulnerability disclosure policy",
+    "section": "4 Our Commitments",
+    "text": "4 Our Commitments\nWhen working with us, according to this policy, you can expect us to:\n\nRespond to your report promptly, and work with you to understand and validate your report;\nStrive to keep you informed about the progress of a vulnerability as it is processed;\nWork to remediate discovered vulnerabilities in a timely manner, within our operational constraints; and\nExtend Safe Harbor for your vulnerability research that is related to this policy.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Vulnerability disclosure policy"
+    ]
+  },
+  {
+    "objectID": "contributing/vulnerability-disclosure.html#our-expectations",
+    "href": "contributing/vulnerability-disclosure.html#our-expectations",
+    "title": "Vulnerability disclosure policy",
+    "section": "5 Our Expectations",
+    "text": "5 Our Expectations\nIn participating in our vulnerability disclosure program in good faith, we ask that you:\n\nPlay by the rules, including following this policy and any other relevant agreements. If there is any inconsistency between this policy and any other applicable terms, the terms of this policy will prevail;\nReport any vulnerability you’ve discovered promptly;\nAvoid violating the privacy of others, disrupting our systems, destroying data, and/or harming user experience;\nUse only the Official Channels to discuss vulnerability information with us;\nProvide us a reasonable amount of time (at least 90 days from the initial report) to resolve the issue before you disclose it publicly;\nPerform testing only on in-scope systems, and respect systems and activities which are out-of-scope;\nIf a vulnerability provides unintended access to data: Limit the amount of data you access to the minimum required for effectively demonstrating a Proof of Concept; and cease testing and submit a report immediately if you encounter any user data during testing, such as Personally Identifiable Information (PII), Personal Healthcare Information (PHI), credit card data, or proprietary information;\nYou should only interact with test accounts you own or with explicit permission from the account holder; and\nDo not engage in extortion.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Vulnerability disclosure policy"
+    ]
+  },
+  {
+    "objectID": "contributing/vulnerability-disclosure.html#official-channels",
+    "href": "contributing/vulnerability-disclosure.html#official-channels",
+    "title": "Vulnerability disclosure policy",
+    "section": "6 Official Channels",
+    "text": "6 Official Channels\nPlease report security issues via an email to the UNICEF’s Information and Tecnology Division’s Digital Centre of Excellence : d _ c _ o _ e _ @ _ u _ n _ i _ c _ e _ f _ . _ o _ r _ g (remove the underscores and spaces), providing all relevant information. The more details you provide, the easier it will be for us to triage and fix the issue.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Vulnerability disclosure policy"
+    ]
+  },
+  {
+    "objectID": "contributing/vulnerability-disclosure.html#safe-harbor",
+    "href": "contributing/vulnerability-disclosure.html#safe-harbor",
+    "title": "Vulnerability disclosure policy",
+    "section": "7 Safe Harbor",
+    "text": "7 Safe Harbor\nWhen conducting vulnerability research, according to this policy, we consider this research conducted under this policy to be:\n\nAuthorized concerning any applicable anti-hacking laws, and we will not initiate or support legal action against you for accidental, good-faith violations of this policy;\nAuthorized concerning any relevant anti-circumvention laws, and we will not bring a claim against you for circumvention of technology controls;\nExempt from restrictions in our Terms of Service (TOS) and/or Acceptable Usage Policy (AUP) that would interfere with conducting security research, and we waive those restrictions on a limited basis; and\nLawful, helpful to the overall security of the Internet, and conducted in good faith.\n\nYou are expected, as always, to comply with all applicable laws. If legal action is initiated by a third party against you and you have complied with this policy, we will take steps to make it known that your actions were conducted in compliance with this policy.\nIf at any time you have concerns or are uncertain whether your security research is consistent with this policy, please submit a report through one of our Official Channels before going any further.\n\nNote that the Safe Harbor applies only to legal claims under the control of the organization participating in this policy, and that the policy does not bind independent third parties.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Vulnerability disclosure policy"
+    ]
+  },
+  {
+    "objectID": "contributing/documentation.html",
+    "href": "contributing/documentation.html",
+    "title": "Documenting magasin",
+    "section": "",
+    "text": "magasin is based on lots of underlying technologies such as docker, kubernetes, helm and comprises several components which are mature and complex products by themselves, not to mention that all these technologies and components generally have a very comprehensive documentation.\nGiven this instead of duplicating all the existing documentation, the goal of magasin’s documentation is to provide practical and task based, tutorial or step by step guidance in the concrete context of magasin.\nThe documentation should cover the needs of the following users in mind:\n\nNon-technical End Users (business users) - These are users that do not have a lot of technical background. They are mostly interested in the visualization part, how to use the business intelligence dashboard, and the potential use cases of magasin applied to their business.\nAs a subset of these users, we can consider the business analysts who may be evaluating the solution.\nTechnical End Users - These are users with technical background, you can consider as these data scientists, and data engineers. They work mostly in the ingestion and analysis.\nSystem Administrators (operations) - They are the responsible of setting up and maintaining an instance of magasin. They worry about permissions, security, reliability, monitoring…\nDevelopers and contributors - They are technical people that need to understand how magasin works internally in order to enhance the product itself.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Documenting magasin"
+    ]
+  },
+  {
+    "objectID": "contributing/documentation.html#documentation-policy",
+    "href": "contributing/documentation.html#documentation-policy",
+    "title": "Documenting magasin",
+    "section": "",
+    "text": "magasin is based on lots of underlying technologies such as docker, kubernetes, helm and comprises several components which are mature and complex products by themselves, not to mention that all these technologies and components generally have a very comprehensive documentation.\nGiven this instead of duplicating all the existing documentation, the goal of magasin’s documentation is to provide practical and task based, tutorial or step by step guidance in the concrete context of magasin.\nThe documentation should cover the needs of the following users in mind:\n\nNon-technical End Users (business users) - These are users that do not have a lot of technical background. They are mostly interested in the visualization part, how to use the business intelligence dashboard, and the potential use cases of magasin applied to their business.\nAs a subset of these users, we can consider the business analysts who may be evaluating the solution.\nTechnical End Users - These are users with technical background, you can consider as these data scientists, and data engineers. They work mostly in the ingestion and analysis.\nSystem Administrators (operations) - They are the responsible of setting up and maintaining an instance of magasin. They worry about permissions, security, reliability, monitoring…\nDevelopers and contributors - They are technical people that need to understand how magasin works internally in order to enhance the product itself.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Documenting magasin"
+    ]
+  },
+  {
+    "objectID": "contributing/documentation.html#documentation-of-our-own-utilities",
+    "href": "contributing/documentation.html#documentation-of-our-own-utilities",
+    "title": "Documenting magasin",
+    "section": "0.2 Documentation of our own utilities",
+    "text": "0.2 Documentation of our own utilities\nIn order to make magasin much easier to use, we are developing custom a set of utilities, scripts and applications that work as a glue between components or that act as accelerators of common operations (such as backing up, upgrading, etc…)\n\nIt is a must to document the source code including examples of usage (for other developers and contributors).\nDepending on what user is that tool for, there must be sysadmin and/or user documentation that explains how to use these utilities\nFor those utilities and scripts that automate common processes (for example, backing up the database of a component), there shall be also documentation on the manual process. This is because each magasin component may be setup in many different ways, by providing the manual steps the user will have more control in case the assumed setup by the utility is not compatible with his environment.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Documenting magasin"
+    ]
+  },
+  {
+    "objectID": "contributing/documentation.html#website-release",
+    "href": "contributing/documentation.html#website-release",
+    "title": "Documenting magasin",
+    "section": "1.1 Website release",
+    "text": "1.1 Website release\nThe website is published in the Github Page. The resulting site is in the gh-pages branch of the main repository. The URL http://unicef.github.com/magasin.\n\n1.1.1 ** NEVER USE quarto publish gh-pages **\nWhereas quarto command line has the option of releasing to github pages through the command line you shall NEVER use it.\nThis command wipes out all the gh-pages contents and then puts a fresh version of the site. This is because magasin’s gh-page contains some additional files such as the helm repo index (index.yaml) and the installer scripts (install-magasin.sh) which are not managed by quarto publication.\nThe right way to release the website is to use publish-web GitHub Action whose source code is in the file .github/workflows/publish-web.yml within the main repo.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Documenting magasin"
+    ]
+  },
+  {
+    "objectID": "contributing/repository-workflows.html",
+    "href": "contributing/repository-workflows.html",
+    "title": "Repository workflows",
+    "section": "",
+    "text": "The purpose of this document is to outline the workflow and guidelines for code contributing to this repository.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Repository workflows"
+    ]
+  },
+  {
+    "objectID": "contributing/repository-workflows.html#purpose",
+    "href": "contributing/repository-workflows.html#purpose",
+    "title": "Repository workflows",
+    "section": "",
+    "text": "The purpose of this document is to outline the workflow and guidelines for code contributing to this repository.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Repository workflows"
+    ]
+  },
+  {
+    "objectID": "contributing/repository-workflows.html#principles",
+    "href": "contributing/repository-workflows.html#principles",
+    "title": "Repository workflows",
+    "section": "0.2 Principles",
+    "text": "0.2 Principles\nOur principles are the roots, core and foundation. All our standardization decisions are based on the following principles:\n\nEnhance the developer experience. Standards ultimate goal is to create a pleasant development experience.\nProvide management key information. Workflows should enable management to tackle inefficiencies, pain points and increase output.\nSeek for simplicity. If there are different options, we should aim for the simplest one.\n\nIn order to achieve these principles, Github is the main tool we use to track and manage development-related work, from requirements gathering to production release.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Repository workflows"
+    ]
+  },
+  {
+    "objectID": "contributing/repository-workflows.html#authors",
+    "href": "contributing/repository-workflows.html#authors",
+    "title": "Repository workflows",
+    "section": "0.3 Authors",
+    "text": "0.3 Authors\nThis document was created by Juan Merlos (@merlos)",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Repository workflows"
+    ]
+  },
+  {
+    "objectID": "contributing/repository-workflows.html#branch-strategy",
+    "href": "contributing/repository-workflows.html#branch-strategy",
+    "title": "Repository workflows",
+    "section": "1.1 Branch strategy",
+    "text": "1.1 Branch strategy\nBranching in each repository will follow a trunk-based model. This model involves one eternal “trunk” called master or main from which all other branches originate.\nAll development work will take place on these branches and will be committed to master via pull requests with mandatory approval/review.\nThe goal of this approach is to have a highly stable codebase that is releasable on demand at all times.\nThe additional branches will be created for each feature, release, or hotfix. Each of these branches will have specific purposes and follow strict rules as to how they should be used. At a high level, the branching rules are described as follows:\n\n\n\nBranch type\nBranch from\nMerge to\nNaming convention\nExample\n\n\n\n\nfeature\nmain\nmain\nfeature/&lt;desc&gt;\nfeature/my-feature\n\n\nfix\nmain\nmain\nfeature/&lt;desc&gt;\nfeature/my-feature\n\n\nrelease\nmain\n-\nv&lt;semver&gt;\nv1.0.0\n\n\nhotfix\nmain\nmain, release\nhotfix/&lt;desc&gt;\nhotfix/my-fix\n\n\n\nThe purpose and correct usage of each supporting branch is elaborated in the following sub-sections. The below graphic can be used as an example of a complete workflow involving all branch types.\n\n\n\nBranch strategy flow\n\n\n\n1.1.1 Feature branches\nFor each new feature, or for updates to a given feature, a separate branch will be created. Feature branches must originate from the master branch. Since no development takes place on the master branch, feature branches are expected to be the most common type of branch.\nHowever, these branches should be short-lived. They will exist only as long as the feature is under development and never longer than a sprint. Ideally, a feature branch should involve one developer over a few (1-3) days of work.\nProduct backlog items (issues) should be defined with this in mind — if work on a feature is taking too long, then the item needs to be scoped differently (see the section on Delivery).\nOnce a feature branch is merged to master via pull request, it should be deleted. Any future work, even if it is related, will require a new branch.\nWhenever a feature branch is created, it should be related to an existing issue. Whereas issues will be tagged with the classification (bug, enhancement, etc), the naming of the feature branches is more free.\n\n\n1.1.2 Release branches\nRelease branches will be created for each version of the source that is destined for production release. This enables all preparation work for an upcoming release to take place even while development work for future releases is committed to the master.\nThe creation of a release branch will always correspond to an upcoming deployment. Since the master branch has a high standard of stability, it should be rare that further development work is needed to refine a release for production. If such a need arises, it will follow the hotfix strategy defined below.\nRelease branches never merge back into the trunk. A release branch should be representative of a release at a given point in time. There is no mandatory end of life for a release branch. These branches can exist indefinitely, as marker in release history and for potential rollback should the need arise.\nRelease branches follow the semantic version naming convention (i.e 1.0.0, 1.1.0). When a release branch is created it is also tagged with the same name.\n\n\n1.1.3 Hotfix branches\nHotfixes are small changes that need to be released to production more quickly (e.g. due to the severity of the issue). As with release and feature branches, they should always originate from master.\nUpon completion of the work, a hotfix branch will be merged into master. If the hotfix is also required in a release branch to be brought to production immediately, the change can be cherry-picked upon being merged into master. If no current release branch exists, one should be created for this purpose.\nOnce the corresponding pull requests complete, the temporary hotfix branch should be removed.\nWhenever there is a hotfix merged into a release branch, the commit that includes the fix shall be tagged updating the PATCH number, for instance, changing from 1.0.0 to 1.0.1.\nThis approach allows to provide long term support to a particular version.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Repository workflows"
+    ]
+  },
+  {
+    "objectID": "contributing/repository-workflows.html#pull-requests-and-commits-pr",
+    "href": "contributing/repository-workflows.html#pull-requests-and-commits-pr",
+    "title": "Repository workflows",
+    "section": "1.2 Pull requests and commits (PR)",
+    "text": "1.2 Pull requests and commits (PR)\nThe merging of supporting branches (feature and hotfix) into the master branch will always require a pull request.\nPull requests should include a reference to the issue numbers either in the commit or in the description of the PR. in the commit comment, using the following convention (where 0000 is the issue number and &lt;comments&gt; is placeholder for any optional comments).\n&lt;comments&gt; #0000 &lt;comments&gt; \nUsing comments like this will ensure that the pull request is automatically linked to all related issues.\nWhen submitting a pull request ensure:\n\nWell-formatted code*: Ensure that the committed code adheres to established coding standards and is well-formatted. Consistent indentation, proper naming conventions, and clean formatting improve code readability and maintainability.\nNo debugging or temporary code: Avoid including debugging statements, temporary code, or commented-out blocks. These can clutter the codebase and make it harder for others to understand and maintain the code.\nAvoid unrelated changes: The PR should focus on a specificfeature. Avoid including unrelated changes in a single commit. If you have multiple unrelated changes, consider creating separate PR for each change.\nNo Sensitive information: Ensure that commits do not include any sensitive information like passwords, API keys, or personal data. Such information should be securely managed outside of the code repository.\nConsistency: Maintain a consistent style and structure throughout the project. Consistency helps establish good coding practices and makes it easier for the team to understand and collaborate on the codebase.\nDocumentation update: Ensure that the code, scripts, documentation and README files are up to date.\n\nCommit messages shall help the reviewer to understand what are the changes that have been introduced and the should tell the reviewer what changes have been introduced. These are properties that commits shall have:\n\nAtomicity: Commits should be atomic, meaning they should represent a single logical change. It’s best to keep each commit focused on a specific task within the PR. This allows for easier code review, debugging, and reverting if necessary.\nClarity and descriptive messages: Commit messages should be clear, descriptive, and concise. They should summarize the purpose and content of the commit. A good commit message helps others understand the changes at a glance and provides context for future reference.\nExample. Too generic not descriptive message ``` ❌ Avoid Updates Readme\n✅ Better Add CONTRIBUTING link to Readme ```\nLogical progression: Commits should follow a logical progression, building upon previous commits. Each commit should leave the codebase in a stable and working state, ensuring that others can pull changes without introducing errors.\n\n\n1.2.1 Approvals\nCompletion of pull requests on main be generally restricted to designated approvers. The job of the approvers is to diligently review all code being merged to master to ensure the utmost stability of that branch.\nReviewers shall ensure the quality of the code, style and documentation. They shall ensure that it follows the practices of the commits and pull requests exposed on this document.\nTheir aim should be to maintain a release-ready main branch at all times.",
+    "crumbs": [
+      "Home",
+      "Contributing",
+      "Repository workflows"
+    ]
+  },
+  {
+    "objectID": "get-started/index.html",
+    "href": "get-started/index.html",
+    "title": "Get started",
+    "section": "",
+    "text": "Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a kubernetes cluster.\nIn this getting started you will install magasin within your local machine for testing purposes, then you will perform an end-to-end data analysis that includes: exploratory analysis of a data source, create a pipeline to automate data ingestion and create a dashboard to present your findings.\nLet’s start by setting getting the pre-requisites:",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Get started"
+    ]
+  },
+  {
+    "objectID": "get-started/index.html#pre-requisite-a-kubernetes-cluster",
+    "href": "get-started/index.html#pre-requisite-a-kubernetes-cluster",
+    "title": "Get started",
+    "section": "1 Pre-requisite: a kubernetes cluster",
+    "text": "1 Pre-requisite: a kubernetes cluster\nPrior to installing magasin, you need to have a kubernetes cluster. But don’t worry, you can setup one in your local machine very easily. In layman terms, Kubernetes is just a technology that enables managing cloud ready applications, such as magasin.\nFor this getting started, we are going to setup a kubernetes cluster through Docker Desktop, an application that can be installed in any computer. However, if you already have a cluster you can go directly to the install magasin section.\nFirst, install Docker Desktop. It is available for:\n\nGNU/Linux\nMac OS X\nWindows\n\nOnce installed. Go to Settings / Kubernetes , and enable Kubernetes. It will automatically install everything required, including the command line utility kubectl.\n\n\n\nScreenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes\n\n\nLastly, on a command line, create the new cluster and use it:\nkubectl config set-context magasin --namespace default --cluster docker-desktop --user=docker-desktop\nkubectl config use-context magasin\nTo ensure that the kubernetes cluster is the correct one check if the name corresponds to the\nkubectl get nodes\nNAME             STATUS   ROLES           AGE   VERSION\ndocker-desktop   Ready    control-plane   48m   v1.28.2\nkubectl get namespaces\nNAME              STATUS   AGE\ndefault           Active   49m\nkube-node-lease   Active   49m\nkube-public       Active   49m\nkube-system       Active   49m\nAlternatively, you can also install minikube or if you have a cluster in any cloud provider you can also use it. At the end, you just need your kubectl to be setup to use whatever kubernetes cluster you want to use.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Get started"
+    ]
+  },
+  {
+    "objectID": "get-started/index.html#install-magasin",
+    "href": "get-started/index.html#install-magasin",
+    "title": "Get started",
+    "section": "2 Install magasin",
+    "text": "2 Install magasin\nMagasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.\n\n\n\n\n\n\nWarning\n\n\n\nIt is highly recommended to take a look at the installer script before running it as it will install several components on your system.\nYou should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you’re not confortable with this approach, proceed with the manual installation.\n\n\nFor GNU/Linux Debian like\ncurl -X https://unicef.github.io/magasin/install-magasin.sh | bash\nFor MacOS devices\n curl -X https://unicef.github.io/magasin/install-magasin.sh | zsh\nFor Windows check the documentation for manual installation\nFor other systems please check the documentation for manual installation\nNote that the installation may take some minutes depending on the internet connection speed of the machines running the cluster (mainly because of the container images).",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Get started"
+    ]
+  },
+  {
+    "objectID": "get-started/index.html#check-everything-is-working",
+    "href": "get-started/index.html#check-everything-is-working",
+    "title": "Get started",
+    "section": "3 Check everything is working",
+    "text": "3 Check everything is working\nAfter running the setup you can check that all the pods in the magasin-* namespace are in status Running or Complete\nkubectl get pods --all-namespaces \nNAMESPACE          NAME                                                              READY   STATUS      RESTARTS        AGE\nkube-system        coredns-5dd5756b68-fj7bj                                          1/1     Running     0               30d\nkube-system        coredns-5dd5756b68-qbjf4                                          1/1     Running     0               30d\nkube-system        etcd-docker-desktop                                               1/1     Running     0               30d\nkube-system        kube-apiserver-docker-desktop                                     1/1     Running     1 (16d ago)     30d\nkube-system        kube-controller-manager-docker-desktop                            1/1     Running     0               30d\nkube-system        kube-proxy-n8wwq                                                  1/1     Running     0               30d\nkube-system        kube-scheduler-docker-desktop                                     1/1     Running     5               30d\nkube-system        storage-provisioner                                               1/1     Running     5 (16d ago)     30d\nkube-system        vpnkit-controller                                                 1/1     Running     0               30d\nmagasin-dagster    dagster-daemon-5cbb759cbd-gzczz                                   1/1     Running     0               31m\nmagasin-dagster    dagster-dagster-user-deployments-k8s-example-user-code-1-8qcjnt   1/1     Running     0               31m\nmagasin-dagster    dagster-dagster-webserver-755f9bc489-w9jdw                        1/1     Running     0               31m\nmagasin-dagster    dagster-postgresql-0                                              1/1     Running     0               31m\nmagasin-daskhub    api-daskhub-dask-gateway-6b7bf7ff6b-qqnjz                         1/1     Running     0               31m\nmagasin-daskhub    continuous-image-puller-jf6cd                                     1/1     Running     0               31m\nmagasin-daskhub    controller-daskhub-dask-gateway-7f4d8b9475-bfzg6                  1/1     Running     0               31m\nmagasin-daskhub    hub-6848dd9966-zxh7k                                              1/1     Running     0               31m\nmagasin-daskhub    proxy-797fc4d885-rrx4t                                            1/1     Running     0               31m\nmagasin-daskhub    traefik-daskhub-dask-gateway-6555db458-vp6xs                      1/1     Running     0               31m\nmagasin-daskhub    user-scheduler-5d8967fc5f-bfjt9                                   1/1     Running     0               31m\nmagasin-daskhub    user-scheduler-5d8967fc5f-tmn8r                                   1/1     Running     0               31m\nmagasin-drill      drillbit-0                                                        1/1     Running     0               33m\nmagasin-drill      drillbit-1                                                        1/1     Running     0               33m\nmagasin-drill      zk-0                                                              1/1     Running     0               33m\nmagasin-operator   console-654bf548c-5xf45                                           1/1     Running     0               30m\nmagasin-operator   minio-operator-7496fbc5d9-j82ml                                   1/1     Running     0               30m\nmagasin-operator   minio-operator-7496fbc5d9-znppq                                   1/1     Running     0               30m\nmagasin-superset   superset-7c88fcc74f-lrjwk                                         1/1     Running     0               31m\nmagasin-superset   superset-init-db-75rht                                            0/1     Completed   0               31m\nmagasin-superset   superset-postgresql-0                                             1/1     Running     0               31m\nmagasin-superset   superset-redis-master-0                                           1/1     Running     0               31m\nmagasin-superset   superset-worker-df94c5947-mw6k7                                   1/1     Running     0               31m\nIf you have any issue, check the troubleshooting section\n\n\n\n\n\n\nImportant\n\n\n\nThe default installation is fine for testing purposes, but for a production environment you should follow the production deployment guides",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Get started"
+    ]
+  },
+  {
+    "objectID": "get-started/index.html#next-steps",
+    "href": "get-started/index.html#next-steps",
+    "title": "Get started",
+    "section": "4 Next steps",
+    "text": "4 Next steps\nOk, now you have a fully running instance of magasin in your kubernetes cluster, so what now:\n\nStart using magasin. We have created a tutorial that will drive you through the typical steps for enabling a data informed decission organization using magasin.\nAlso, you can learn more about the components and architecture of magasin. Learn more about the the different components that come out of the box with magasin.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Get started"
+    ]
+  },
+  {
+    "objectID": "get-started/tutorial-overview.html",
+    "href": "get-started/tutorial-overview.html",
+    "title": "Tutorial overview",
+    "section": "",
+    "text": "In this tutorial, we’ll walk you through a straightforward example we’ve created that follows a standard data analysis process. We’ll show you how to launch each component, explain essential concepts, but we won’t dive too deep into all the nitty-gritty details of each component.\nWe wil follow this process simple process that is similar to what you may do in the real world:\nflowchart LR\n  A(1.Manual analysis using a \\nJupyter Notebook) --&gt; B(2.Automate data ingestion with\\n Dagster)\n  B --&gt; C(3.Create a Dashboard with\\n Superset)",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Tutorial overview"
+    ]
+  },
+  {
+    "objectID": "get-started/tutorial-overview.html#step-1-exploratory-data-analysis-in-a-jupyter-notebook",
+    "href": "get-started/tutorial-overview.html#step-1-exploratory-data-analysis-in-a-jupyter-notebook",
+    "title": "Tutorial overview",
+    "section": "0.1 Step 1: Exploratory data analysis in a Jupyter Notebook",
+    "text": "0.1 Step 1: Exploratory data analysis in a Jupyter Notebook\nGenerally, before you start automating any process of regularly using some data you want to do some initial research and analysis, you want to discover and understand how the data is shaped and what kind of insights can be extract from the data you have. For that, Jupyter Notebook is a great tool. It allows you to run small pieces of code (python or R) individually and interactively in a user friendly interface.\nMagasin comes with the Jupyter Hub, which allows different users to run jupyter notebooks on the cloud without the need of installing anything on their own system.\nIn this case, we are going play around with one simple API, the Digital Public Goods Alliance (DPGA) API.\nDigital Public Goods (DPGs) are public goods in the form of software, data sets, AI models, standards or content that are generally free cultural works and have an intention to contribute to sustainable national and international digital development. Several international agencies, including UNICEF and UNDP, are exploring DPGs as a possible solution to address the issue of digital inclusion, particularly for children in emerging economies.\nFrom the data that we extract from the API, we are going to query the data to get some insights how many DPGs are available, in which countries are being deployed, where are they developed, what types of licenses are more popular…\nJupyter Notebooks are excellent for an initial analysis, but there are many use cases in which you may to repeat the same process periodically. In our example, we may want to track if new DPGs are comming or what are the trends in terms of deployments. This is when the next steps of the process are useful.\nGo to step 1",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Tutorial overview"
+    ]
+  },
+  {
+    "objectID": "get-started/tutorial-overview.html#step-2-automate-data-ingestion-with-dagster",
+    "href": "get-started/tutorial-overview.html#step-2-automate-data-ingestion-with-dagster",
+    "title": "Tutorial overview",
+    "section": "0.2 Step 2: Automate data ingestion with Dagster",
+    "text": "0.2 Step 2: Automate data ingestion with Dagster\nAutomating is great, it frees us on needing to do repeated work. In our example, we will automate the ingestion and transformation of the DPGA API data. The data as it is served by the API is not fully ready to be analyzed, we need to perform some transformations to leave it ready to be displayed.\nWe did the heavy-lifting interactively with the first analysis and now we just need to convert it to a dagster pipeline.\nDagster is what is called a pipeline orchestrator, which basically helps us to manage the ingestion of data from multiple data sources.\nThe advantages of using a framework like dagster is that it will allow us to do things in a structured way which will allow you to scale and to monitor. If you ask anyone that has been gathering data from multiple data sources he will tell you that it can become a nightmare if you don’t do it properly. Dagster provides you a good starting point.\nWhat usually happends when you start automating stuff is that:\n\nIt starts simple but with time, you add more and more data sources that have dependencies between them. If it is not done properly you end up with a mess. Dagster provides us a framework to prevent that.\nIt eventually may break. Data sources may change with time and with that your pipelines break. For instance, DPGA may change the API and our automation will fail. Dagster allows you to monitor and to\n\nThe cool thing of Dagster, it that it uses Python as programming language too, so most of the work we did for the Jupyter Notebook can be reused.\nIn the magasin architecture, usually data assets are stored in files. In particular, we recommend the use of Apache parquet file format for storing the datasets.\nParquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data.\nUsing Parquet to store datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular Big Data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.\nIn this step, we will also use another component of magasin that will help us to be cloud agnostic. It is called MinIO and gives us an Amazon S3 compatible file store.\nThanks to MinIO, regardless of what infrastructure you’re using, your pipelines will work the same, you do not need to adapt how you store the data. Using files, compared to using a traditional SQL schema, allows you to store not only structured tabular data, but also images or documents. It simplifies also the governance of the datasets as the problem of sharing is reduced to assigning file/folder permissions.\nTo maintain a vendor-agnostic architecture, we leverage MinIO. However, in alignment with our loosely coupled design, you have the flexibility to bypass this component if you find alternative methods more suitable for storing your ingested data. This decision may be based on better alignment with your existing processes or specific use case requirements.\nFor instance, instead of MinIO, you can directly utilize a vendor-specific object store like Azure Blobs, Amazon S3, or Google Cloud Storage. Alternatively, you may choose to write your data into a database, such as DuckDB or PostgreSQL.\nGo to Step 2",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Tutorial overview"
+    ]
+  },
+  {
+    "objectID": "get-started/tutorial-overview.html#step-3-create-a-dashboard-with-superset",
+    "href": "get-started/tutorial-overview.html#step-3-create-a-dashboard-with-superset",
+    "title": "Tutorial overview",
+    "section": "0.3 Step 3: Create a dashboard with Superset",
+    "text": "0.3 Step 3: Create a dashboard with Superset\nDagster allows you to gather the data and transform it to something that can be displayed, but it does not come with advanced visualization capabilities. For that we need a tool that has many graphs, and allows us to interact with the data, that is a business intelligence dashboard tool.\nMagasin comes with Apache Superset, which allows you to create dashboard with many graphs.\nIn this last step, we will create a dashboard that will display the graphs.\nAgain, we did the heavy lifting on the first step with the notebook so now we just need to play with the user interface of superset.\nSuperset,",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Tutorial overview"
+    ]
+  },
+  {
+    "objectID": "get-started/exploratory-analysis.html",
+    "href": "get-started/exploratory-analysis.html",
+    "title": "Step 1: Exploratory analysis",
+    "section": "",
+    "text": "This is the first out of the three steps of the getting started magasin tutorial. Generally, when you are analyzing data, you may want to learn about the data itself. Jupyter notebooks provide a nice and fast user programming interface that allows you to explore the data.\nIn this example we will explore the Digital Public Goods API",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 1: Exploratory analysis"
+    ]
+  },
+  {
+    "objectID": "get-started/exploratory-analysis.html#basic-analysis",
+    "href": "get-started/exploratory-analysis.html#basic-analysis",
+    "title": "Step 1: Exploratory analysis",
+    "section": "1.1 Basic analysis",
+    "text": "1.1 Basic analysis\nIn this basic analysis we are going to:\n\nDownload the list of DPGs from the API.\nTransform the data to get the number of deployments per country.\nDisplay a chart with the top 20 ountries that have more deployments.\n\nYou can download the resulting file with the jupyer notebook.\nFirst, let’s see some buttons of your newly created notebook you have the following buttons that will be required:\n\n\n\nJupyterhub basic buttons\n\n\nOk. so now we can start coding. Copy this code in the first cell and run the cell.\n!pip install requests pandas seaborn\nThis will install some python packages. You can run command-line commands by prepending ‘!’ to the command.\nNow, add a new cell, copy the code below and run the cell\nimport requests\nimport pandas as pd\n\ndpgs_json_dict = requests.get(\"https://api.digitalpublicgoods.net/dpgs\").json()\ndf = pd.DataFrame.from_dict(dpgs_json_dict)\n\ndf.head()\nNow that we have the DPG data, let’s proceed to the analysis.\nAdd a new cell with the below contents:\n# Extract deploymentCountries and developmentCountries from the locations column.\ndf_loc = pd.merge(df, pd.json_normalize(df[\"locations\"]), left_index=True, right_index=True)\n\n# Now we have two new columns in the dataframe. \n# Let's see the contents\ndf_loc[[\"deploymentCountries\", \"developmentCountries\"]]\nThese two new columns contain arrays each with the list of countries in which the DPG has been deployed and countries where de DPG has been developed.\nIf we run the cell below, if you have [India, Panama] in the deploymentCountries row of the DPG A, then there will be two rows for that DGP.\ndf_deployment_countries = df_loc.explode(\"deploymentCountries\")\ndf_development_countries = df_loc.explode(\"deploymentCountries\")\n\n# Check the output:\ndf_deployment_countries[[\"name\",\"deploymentCountries\"]]\nFinally, lets present a graph with the number of deployments per country.\n# Let's draw something\n\npd.plotting.register_matplotlib_converters()\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n%matplotlib inline\n\n\n#ignoring case\ndeployments_per_country = df_deployment_countries\n                                .groupby(df_deployment_countries['deploymentCountries'].str.lower()) # group by country\n                                .size() # size of the group\n                                .sort_values(ascending=False)  # sort descending\n                                .reset_index(name=\"numberOfDPGs\")[:20] # Only 20\n\n#Display deployment countries and numberOfDPGs\nsns.set(rc={\"figure.figsize\":(20, 10)}) #Set size of the image\n# Tell what are the axis\nax = sns.barplot(y=\"deploymentCountries\", x=\"numberOfDPGs\", data=deployments_per_country )\n_ = ax.bar_label(ax.containers[0])\n\n# Set the titles of the graph and the axis\nplt.title(\"Number of DPGs deployed per country\", size=30)\nplt.xlabel(\"Number of DPGs\", size=20)\nplt.ylabel(\"To 20 Country of development\", size=20)\nYou should see something like this:\n\n\n\nGraph displayed after running the cell above",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 1: Exploratory analysis"
+    ]
+  },
+  {
+    "objectID": "get-started/exploratory-analysis.html#additional-explorations-optional",
+    "href": "get-started/exploratory-analysis.html#additional-explorations-optional",
+    "title": "Step 1: Exploratory analysis",
+    "section": "1.2 Additional explorations (optional)",
+    "text": "1.2 Additional explorations (optional)\nIn addition to this basic analysis, you can optionally see some additional exploratory analysis and details in the following notebook.\nDownload dpg-explorations.ipynb example.\nOnce you download it, drag and drop the fil to your Jupyter notebook environment within the left column where the list of files appear.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 1: Exploratory analysis"
+    ]
+  },
+  {
+    "objectID": "get-started/exploratory-analysis.html#summary",
+    "href": "get-started/exploratory-analysis.html#summary",
+    "title": "Step 1: Exploratory analysis",
+    "section": "1.3 Summary",
+    "text": "1.3 Summary\nIn this step we have explored one of the components of Magasin, Jupyterhub, which provides us with an interactive user interface that allows us to explore our data one step (cell) at a time.\nThis component is specially oriented for data scientists and/or data engineers that are exploring how to convert the data into something that can be used to get insights for the business.\nOnce you found that this information is useful, typically, the next step is to automate creating the insights in a regular pace.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 1: Exploratory analysis"
+    ]
+  },
+  {
+    "objectID": "get-started/exploratory-analysis.html#whats-next",
+    "href": "get-started/exploratory-analysis.html#whats-next",
+    "title": "Step 1: Exploratory analysis",
+    "section": "1.4 What’s next",
+    "text": "1.4 What’s next\n\nAutomate the data ingestion\nProject Jupyter Documentation",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 1: Exploratory analysis"
+    ]
+  },
+  {
+    "objectID": "admin-guides/kubernetes.html",
+    "href": "admin-guides/kubernetes.html",
+    "title": "Kubernetes guide",
+    "section": "",
+    "text": "A quick guide for a magasin cluster operator."
+  },
+  {
+    "objectID": "admin-guides/kubernetes.html#general-kubernetes",
+    "href": "admin-guides/kubernetes.html#general-kubernetes",
+    "title": "Kubernetes guide",
+    "section": "0.1 General kubernetes",
+    "text": "0.1 General kubernetes\nMagasin is installed in a kubernetes cluster, in this chapter you have a summary of common kubernetes commands.\n\n0.1.1 Get the list of namespaces.\nKubernetes resources are kept in namespaces. A namespace is like a folder but where you can keep kubernetes resources such as pods, secrets, etc.\nkubectl get namespaces\n\n\n0.1.2 Get the list of resources\nTo get the resources available within a particular namespace:\nkubectl get &lt;resource-type&gt; --namespace &lt;namespace&gt;\nwhere resource-type is one of\n\npod,\nsecret,\nservice,\npv (persistent volume),\npvc (persitstent volume claim),\n\nExamples:\nkubectl get pods --namespace magasin-drill\nkubectl get secrets --namespace magasin-drill\nOr alternatively\nkubectl get pods -n magasin-drill\nIf --namespace is not set, it displays the resources of the default namespace.\n\n\n\n\n\n\nTip: to change the default namespace use the command kubectl config set-context --current --namespace=&lt;namespace&gt; to update set the default namespace so you don’t need to set --namespace &lt;namespace&gt; on each command\n\n\n\n\n\n0.1.3 Get the list of secrets\nA secret is a type of resource in kubernetes that allows you to keep configuration information such as usernames, tokens, database names, etc.\nTo get the list of secrets of a particular namespace\nkubectl get secret --namespace magasin-superset\nIn magasin, these are some secrets that contain interesting information for the admin are (format application / secret-name):\n\nmagasin-dagster- / TODO-XXXX:\nmagasin-drill / drill-storage-plugin-secret: contains the initial setup of the storage.\nmagasin-superset / superset-env: Contains the environment variables of the application.\nmagasin-daskhub / hub-env. Contains the environment variables of the application.\n\nOne secret may contain more than variable. To view the different variables (items) of a particular secret:\nkubectl describe secret superset-env --namespace magasin-superset\nwhere superset-env is the name of the secret."
+  },
+  {
+    "objectID": "admin-guides/superset.html",
+    "href": "admin-guides/superset.html",
+    "title": "Superset guide",
+    "section": "",
+    "text": "A quick guide for an magasin administrator on superset."
+  },
+  {
+    "objectID": "admin-guides/superset.html#backup-the-superset-database-into-the-local-filesystem",
+    "href": "admin-guides/superset.html#backup-the-superset-database-into-the-local-filesystem",
+    "title": "Superset guide",
+    "section": "1 Backup the superset database into the local filesystem",
+    "text": "1 Backup the superset database into the local filesystem\nA dump (backup) of the database may be useful when a new version of superset is going to be installed, or to keep a regular scheduled backup of the superset data.\nTo create a dump of the database, you can use the script scripts/superset/dump-superset-db.sh:\n./dump-superset-db.sh -n magasin-superset-prd`\nWhere the option -n is to specify the namespace of the superset instance (defaults to magasin-superset).\nThis script will request request the password of the superset user, to perform the dump. You can get the password from the secret superset-env within the same namespace.\nThe output of running this script is the file superset_dump.sql in the current working folder. Note that this script assumes that the name of the database is superset.\nAlternatively, these are the manual steps to do the same:\n\nLaunch a terminal in the posgresql pod (replace the namespace if required)\n kubectl exec superset-postgresql-0 -ti --namespace magasin-superset -- /bin/bash\nWithin the pod shell, extract and compress the data. The below command will ask for the superset database password (you can find it in the superset-env secret, defaults to superset)\npg_dump -U superset -d superset &gt; /tmp/superset_dump.sql\n# where -U is the username of the database, and -d is the database name.\n\ntar -C /tmp -czvf /tmp/supserset_dump.tgz supserset_dump.sql\n# where -C is to use /tmp as base folder -c collect, z zip, v=verboze and f output file\nExit the pod shell and copy the dump file into /tmp in the local filesystem of the pod. exit\n# Exit the pod shell\nexit\n\n# Copy the tgz to the local environment.\nkubectl cp magasin-superset/superset-postgresql-0:/tmp/superset_dump.tgz \\\n./supserset_dump.tgz --retries 100\n\n# Syntax: kubectl cp namespace/pod:path local-path. \n# The option --retries is to fix potential network issues\nLastly, delete the db dump from the postgres pod\nkubectl exec magasin-superset/superset-postgresql-0 -- \\\nrm /tmp/supeset_dump.tgz /tmp/superset_dump.sql  \n\n\n1.1 Restore superset database from local filesystem\nTo restore the database from the previous step.\n\nCopy the database to the postgres pod.\nkubectl cp superset_dump.sql magasin-superset/superset-postgresql-0:/tmp/superset_dump.sql\nLaunch the shell\nkubectl exec superset-postgresql-0 -ti --namespace magasin-superset -- /bin/bash\nIf the database exist, you may need to drop it first\npsql --username postgres\nThe password can be found in superset-postgresql secret postgres-password\nIf you get an error indicating the database is being used run the command:\n\nSELECT pg_terminate_backend(pg_stat_activity.pid) \n    FROM pg_stat_activity \n    WHERE pg_stat_activity.datname = 'superset' AND pid &lt;&gt; pg_backend_pid();\n\n-- To delete the superset database: (don't forget the ; at the end)\nDROP DATABASE superset;\n\n--- Then create an empty database (don't forget the ; at the end)\nCREATE DATABASE superset;\n\n-- Then quit psql\n\\q\nFinally, restore the database\npsql --username superset --dbname superset -f /tmp/superset_dump.sql\nOr alternatively less verbose option\npsql -U superset -d superset2 -f ./tmp/superset_dump.sql\n\nNow, you can restart the superset pod. First find the superset-xxxxxxxxx-xxxxx and delete it\nkubectl get pods --namespace magasin-superset\n\nNAME                               READY   STATUS      RESTARTS   AGE\nsuperset-75b79c6c8d-jttd9          1/1     Running     0          62m\nsuperset-init-db-bhc25             0/1     Completed   0          62m\nsuperset-postgresql-0              1/1     Running     0          62m\nsuperset-redis-master-0            1/1     Running     0          62m\nsuperset-worker-85dfbb48dd-6bhjp   1/1     Running     0          62m\nkubectl delete pod superset-75b79c6c8d-jttd9"
+  },
+  {
+    "objectID": "admin-guides/superset.html#postgresql",
+    "href": "admin-guides/superset.html#postgresql",
+    "title": "Superset guide",
+    "section": "2 PostgreSQL",
+    "text": "2 PostgreSQL\n\nGet list of databases\nSELECT datname FROM pg_database WHERE datistemplate = false;\nGet the user owner of database ‘database_name’\nSELECT d.datname as \"Name\",\npg_catalog.pg_get_userbyid(d.datdba) as \"Owner\"\nFROM pg_catalog.pg_database d\nWHERE d.datname = 'database_name'\nORDER BY 1;"
+  },
+  {
+    "objectID": "admin-guides/superset.html#troubleshooting",
+    "href": "admin-guides/superset.html#troubleshooting",
+    "title": "Superset guide",
+    "section": "3 Troubleshooting",
+    "text": "3 Troubleshooting\n\nGet the events of a pod\nkubectl describe pod superset-564564dd4-2lzb6 --namespace magasin-superset\nGet logs of the containers\nkubectl logs &lt;podname&gt; -f --namespace &lt;namespace&gt; \nExample:\nkubectl logs superset-564564dd4-2lzb6 -f --namespace magasin-superset\nwhere -f continues displaying the new logs.\nWith --all-containers you can see the logs of all the containers instead of the one that is being executed. This is useful when the current container of the pod gets stuck because of the previous container output was not the expected. Example:\nkubectl logs superset-564564dd4-2lzb6 --namespace magasin-superset --all-containers"
+  },
+  {
     "objectID": "docs-home.html",
     "href": "docs-home.html",
     "title": "Magasin documentation",
     "section": "",
-    "text": "Main page",
+    "text": "1 TODO\nSome intro of magasin, and the main categories to get started,\n\nmore details about magasin\nget started\nAmnisitrator guides Main page",
     "crumbs": [
       "Home",
+      "Welcome",
       "Welcome"
     ]
   },
@@ -497,7 +1122,7 @@
     "href": "install/setup-kubernetes.html#option-1-local-cluster-using-docker-desktop",
     "title": "Setup kubernetes",
     "section": "1.1 Option 1: Local cluster using Docker-desktop",
-    "text": "1.1 Option 1: Local cluster using Docker-desktop\nIn case you do not have a Kubernetes cluster, another easy way to set it up is through Docker Desktop. It is available for:\n\nGNU/Linux\nMac OS X\nWindows\n\nOnce installed. In Settings / Kubernetes , enable Kubernetes. It will automatically install\n\n\n\nScreenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes\n\n\nLastly, on a command line, create the new cluster and use it:\nkubectl config set-context magasin --namespace default --cluster docker-desktop --user=docker-desktop\nkubectl config use-context magasin\nTo ensure that the kubernetes cluster is the correct one check if the name corresponds to the\nkubectl get nodes\nNAME             STATUS   ROLES           AGE   VERSION\ndocker-desktop   Ready    control-plane   48m   v1.28.2\nkubectl get namespaces\nNAME              STATUS   AGE\ndefault           Active   49m\nkube-node-lease   Active   49m\nkube-public       Active   49m\nkube-system       Active   49m\nMore information: * https://docs.docker.com/desktop/kubernetes/ * https://birthday.play-with-docker.com/kubernetes-docker-desktop/",
+    "text": "1.1 Option 1: Local cluster using Docker-desktop\nIn case you do not have a Kubernetes cluster, another easy way to set it up is through Docker Desktop. It is available for:\n\nGNU/Linux\nMac OS X\nWindows\n\nOnce installed. In Settings / Kubernetes , enable Kubernetes. It will automatically install\n\n\n\nScreenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes\n\n\nLastly, on a command line, create the new cluster and use it:\nkubectl config set-context magasin --namespace default --cluster docker-desktop --user=docker-desktop\nkubectl config use-context magasin\nTo ensure that the kubernetes cluster is the correct one check if the name corresponds to the\nkubectl get nodes\nNAME             STATUS   ROLES           AGE   VERSION\ndocker-desktop   Ready    control-plane   48m   v1.28.2\nkubectl get namespaces\nNAME              STATUS   AGE\ndefault           Active   49m\nkube-node-lease   Active   49m\nkube-public       Active   49m\nkube-system       Active   49m\nMore information:\n\nhttps://docs.docker.com/desktop/kubernetes/\nhttps://birthday.play-with-docker.com/kubernetes-docker-desktop/",
     "crumbs": [
       "Home",
       "Install",
@@ -557,7 +1182,7 @@
     "href": "install/troubleshooting.html",
     "title": "Troubleshooting",
     "section": "",
-    "text": "Please check the questions below, if you cannot find the answer you can try asking to magasin’s community within our discussions forum.\n\n\nIn case that you run kubectl cluster-info and it is not pointing to the kubernetes cluster you want to use for magasin you can use the following commands:\n\nGet the list different contexts available\nkubectl config get-contexts\nWhich may output something like: ```sh CURRENT NAME CLUSTER AUTHINFO NAMESPACE\n       docker-desktop              docker-desktop            docker-desktop                                        default\n\n    magasin                     docker-desktop            docker-desktop                                        default\n    magasin-dev                 docker-desktop            docker-desktop                                        default\n    minikube                    minikube                  minikube                                              default\n```\n\nUse the correct cluster (i.e. context). Currently, the context magasin is selected, but to use magasin-dev you can run this command:\nkubectl config use-context magasin-dev",
+    "text": "Please check the questions below, if you cannot find the answer you can try asking to magasin’s community within our discussions forum.\n\n\nIn case that you run kubectl cluster-info and it is not pointing to the kubernetes cluster you want to use for magasin you can use the following commands:\n\nGet the list different contexts available\nkubectl config get-contexts\nWhich may output something like: ```sh CURRENT NAME CLUSTER AUTHINFO NAMESPACE\n       docker-desktop              docker-desktop            docker-desktop                                        default\n\n    magasin                     docker-desktop            docker-desktop                                        default\n    magasin-dev                 docker-desktop            docker-desktop                                        default\n    minikube                    minikube                  minikube                                              default\n```\n\nUse the correct cluster (i.e. context). Currently, the context magasin is selected, but to use magasin-dev you can run this command:\nkubectl config use-context magasin-dev\n\n\n\n\nIf you see this error \nand then when you see the status of the pods:\nkubectl get pods --namespace magasin-superset\nNAME                               READY   STATUS                  RESTARTS   AGE\nsuperset-68865d55bc-rvxq5          0/1     Init:ImagePullBackOff   0          68m\nsuperset-init-db-c9vcr             0/1     Init:ImagePullBackOff   0          68m\nsuperset-postgresql-0              1/1     Running                 0          68m\nsuperset-redis-master-0            1/1     Running                 0          68m\nsuperset-worker-6c65786947-vcwvx   0/1     Init:ImagePullBackOff   0          68m\nThen, you may be in an ARM64 architecture. There is an issue with superset that does not provide multi architecture images. By default the x86 architecture (also known as amd64) is provided in the helm chart.\nTo fix this issue, create a file called superset.yaml with the following contents\nimage:\n  repository: apache/superset \n  tag: dfc614bdc3c8daaf21eb8a0d1259901399af7dd8-lean310-linux-arm64-3.9-slim-bookworm\n  pullPolicy: IfNotPresent\n\n\ninitImage:\n  repository: apache/superset\n  # ARM64 (M1, M2...)\n  tag: dfc614bdc3c8daaf21eb8a0d1259901399af7dd8-dockerize-linux-arm64-3.9-slim-bookworm\n  pullPolicy: IfNotPresent\n      \nThen, manually install superset:\nhelm upgrade superset magasin/superset --namespace magasin-superset --create-namespace -f superset.yaml -i \n\n\n\nTo check if all the helm charts were properly installed run this command\nhelm list --all-namespaces                                          \nIt may output something like\nNAME        NAMESPACE           REVISION    UPDATED                                 STATUS      CHART               APP VERSION       \ndagster     magasin-dagster     1           2024-01-26 08:00:11.343903 +0300 EAT    deployed    dagster-1.6.0       1.6.0             \ndaskhub     magasin-daskhub     1           2024-01-26 07:56:59.908074 +0300 EAT    deployed    daskhub-2024.1.0    jh3.2.1-dg2023.9.0\ndrill       magasin-drill       1           2024-01-26 07:56:50.414646 +0300 EAT    deployed    drill-0.6.1         1.21.1-3.9.1      \noperator    magasin-operator    1           2024-01-26 08:05:29.432176 +0300 EAT    deployed    operator-5.0.11     v5.0.11           \nsuperset    magasin-superset    1           2024-01-26 08:52:53.146091 +0300 EAT    failed      superset-0.10.15    3.0.1             \ntenant      magasin-tenant      1           2024-01-26 08:05:35.925144 +0300 EAT    deployed    tenant-5.0.11       v5.0.11     \nIn our case superset which was installed in magasin-superset namespace failed.\nWe can gather more information by getting the list of pods (containers) of superset’s namespace\nkubectl get pods --namespace magasin-superset\nNAME                               READY   STATUS                  RESTARTS   AGE\nsuperset-68865d55bc-rvxq5          0/1     Init:ImagePullBackOff   0          68m\nsuperset-init-db-c9vcr             0/1     Init:ImagePullBackOff   0          68m\nsuperset-postgresql-0              1/1     Running                 0          68m\nsuperset-redis-master-0            1/1     Running                 0          68m\nsuperset-worker-6c65786947-vcwvx   0/1     Init:ImagePullBackOff   0          68m\nLastly, we can get details of one of the pods that did not go through:\nkubectl describe pod superset-68865d55bc-rvxq5 --namespace magasin-superset\nEvents:\n  Type    Reason   Age                    From     Message\n  ----    ------   ----                   ----     -------\n  Normal  BackOff  2m38s (x276 over 66m)  kubelet  Back-off pulling image \"apache/superset:dockerize\"\nIn this case it seems there is an error getting the image. One option is to try to delete the pod. Kubernetes will create a new one\nkubectl delete pod superset-68865d55bc-rvxq5 --namespace magasin-superset\nThe new one will have a different name. So we need to run again kubectl get pods --namespace magasin-superset.\nIf this does not work, an alternative is to try to reinstall the helm chart manually. First uninstall the current chart:\nhelm uninstall superset --namespace magasin-superset\nrelease \"superset\" uninstalled\nThen install install manually the magasin component. We will use the same command that was used by the installer (which you can see in the screenshot with the error)\nhelm install superset magasin/superset --namespace magasin-superset \nIf this does not work, you may try to find similar issues within the magasin discussion forum and/or file an issue.\n\n\n\nAfter a few minutes finishing the installation all the containers (pods) of the magasin-* namespaces should be in Complete or Running status. If there is any issue these may have another status.\nYou can check the status by running\nkubectl get pods --all-namespaces\nLet’s see an example:\nNAMESPACE          NAME                                                              READY   STATUS      RESTARTS        AGE\n...\n...\nmagasin-drill      drillbit-0                                                        0/1     Running     15 (102s ago)   102m\nmagasin-drill      drillbit-1                                                        0/1     Pending     0               102m\nmagasin-drill      zk-0                                                              1/1     Running     0               102m\nIn the case above we see that the drillbit-* are having issues. One is Running but had many restarts and the other is in Pending status. To inspect what’s going on you can run\nkubectl describe pod drillbit-1 --namespace magasin-drill\nName:             drillbit-0\nNamespace:        magasin-drill\nPriority:         0\nService Account:  drill-sa\nNode:             docker-desktop/192.168.65.3\nStart Time:       Fri, 12 Jan 2024 15:50:47 +0300\nLabels:           app=drill-app\n                  apps.kubernetes.io/pod-index=0\n                  controller-revision-hash=drillbit-b668897d5\n                  statefulset.kubernetes.io/pod-name=drillbit-0\nAnnotations:      &lt;none&gt;\nStatus:           Running\nIP:               10.1.0.106\nIPs:\n  IP:           10.1.0.106\nControlled By:  StatefulSet/drillbit\n\n...\n...\n\nEvents:\n  Type     Reason     Age                  From     Message\n  ----     ------     ----                 ----     -------\n  Normal   Pulled     41m (x3 over 54m)    kubelet  (combined from similar events): Successfully pulled image \"merlos/drill:1.21.1-deb\" in 28.915s (28.915s including waiting)\n  Warning  Unhealthy  26m (x135 over 99m)  kubelet  Readiness probe failed: Running drill-env.sh...\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nUser=drill\n/opt/drill/drillbit.pid file is present but drillbit is not running.\n[WARN] Only DRILLBIT_MAX_PROC_MEM is defined. Auto-configuring for Heap & Direct memory\n[INFO] Attempting to start up Drill with the following settings\n  DRILL_HEAP=1G\n  DRILL_MAX_DIRECT_MEMORY=3G\n  DRILLBIT_CODE_CACHE_SIZE=768m\n[WARN] Total Memory Allocation for Drillbit (4GB) exceeds available free memory (1GB)\n[WARN] Drillbit will start up, but can potentially crash due to oversubscribing of system memory.\n  Warning  Unhealthy  70s (x131 over 99m)  kubelet  Liveness probe failed: Running drill-env.sh...\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nUser=drill\n/opt/drill/drillbit.pid file is present but drillbit is not running.\n[WARN] Only DRILLBIT_MAX_PROC_MEM is defined. Auto-configuring for Heap & Direct memory\n[INFO] Attempting to start up Drill with the following settings\n  DRILL_HEAP=1G\n  DRILL_MAX_DIRECT_MEMORY=3G\n  DRILLBIT_CODE_CACHE_SIZE=768m\n[WARN] Total Memory Allocation for Drillbit (4GB) exceeds available free memory (1GB)\n[WARN] Drillbit will start up, but can potentially crash due to oversubscribing of system memory.\nAs we can see, there is an issue with lack of memory. In this case we need to run the pod in a cluster with nodes with more RAM.",
     "crumbs": [
       "Home",
       "Install",
@@ -577,36 +1202,39 @@
     ]
   },
   {
-    "objectID": "get-started.html",
-    "href": "get-started.html",
-    "title": "Get started",
+    "objectID": "install/troubleshooting.html#superset-error-initimagepullbackoff-during-installation-on-arm64-apple-m1-m2-architectures",
+    "href": "install/troubleshooting.html#superset-error-initimagepullbackoff-during-installation-on-arm64-apple-m1-m2-architectures",
+    "title": "Troubleshooting",
     "section": "",
-    "text": "Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a kubernetes cluster.\nKubernetes is a container orchestration system designed to automate the deployment, scaling, and management of containerized applications. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.\nMagasin uses Kubernetes in combination with Helm, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides.",
+    "text": "If you see this error \nand then when you see the status of the pods:\nkubectl get pods --namespace magasin-superset\nNAME                               READY   STATUS                  RESTARTS   AGE\nsuperset-68865d55bc-rvxq5          0/1     Init:ImagePullBackOff   0          68m\nsuperset-init-db-c9vcr             0/1     Init:ImagePullBackOff   0          68m\nsuperset-postgresql-0              1/1     Running                 0          68m\nsuperset-redis-master-0            1/1     Running                 0          68m\nsuperset-worker-6c65786947-vcwvx   0/1     Init:ImagePullBackOff   0          68m\nThen, you may be in an ARM64 architecture. There is an issue with superset that does not provide multi architecture images. By default the x86 architecture (also known as amd64) is provided in the helm chart.\nTo fix this issue, create a file called superset.yaml with the following contents\nimage:\n  repository: apache/superset \n  tag: dfc614bdc3c8daaf21eb8a0d1259901399af7dd8-lean310-linux-arm64-3.9-slim-bookworm\n  pullPolicy: IfNotPresent\n\n\ninitImage:\n  repository: apache/superset\n  # ARM64 (M1, M2...)\n  tag: dfc614bdc3c8daaf21eb8a0d1259901399af7dd8-dockerize-linux-arm64-3.9-slim-bookworm\n  pullPolicy: IfNotPresent\n      \nThen, manually install superset:\nhelm upgrade superset magasin/superset --namespace magasin-superset --create-namespace -f superset.yaml -i",
     "crumbs": [
       "Home",
-      "Get started"
+      "Install",
+      "Troubleshooting"
     ]
   },
   {
-    "objectID": "get-started.html#local-kubernetes-cluster-for-testing",
-    "href": "get-started.html#local-kubernetes-cluster-for-testing",
-    "title": "Get started",
-    "section": "1.1 Local kubernetes cluster for testing",
-    "text": "1.1 Local kubernetes cluster for testing\nIn case you do not have a Kubernetes cluster, an way to set it up is through Docker Desktop. It is available for:\n\nGNU/Linux\nMac OS X\nWindows\n\nOnce installed. In Settings / Kubernetes , enable Kubernetes. It will automatically install everything required, including the command line utility kubectl.\n\n\n\nScreenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes\n\n\nLastly, on a command line, create the new cluster and use it:\nkubectl config set-context magasin --namespace default --cluster docker-desktop --user=docker-desktop\nkubectl config use-context magasin\nTo ensure that the kubernetes cluster is the correct one check if the name corresponds to the\nkubectl get nodes\nNAME             STATUS   ROLES           AGE   VERSION\ndocker-desktop   Ready    control-plane   48m   v1.28.2\nkubectl get namespaces\nNAME              STATUS   AGE\ndefault           Active   49m\nkube-node-lease   Active   49m\nkube-public       Active   49m\nkube-system       Active   49m\nYou can also install minikube",
+    "objectID": "install/troubleshooting.html#explore-issues-within-the-installation",
+    "href": "install/troubleshooting.html#explore-issues-within-the-installation",
+    "title": "Troubleshooting",
+    "section": "",
+    "text": "To check if all the helm charts were properly installed run this command\nhelm list --all-namespaces                                          \nIt may output something like\nNAME        NAMESPACE           REVISION    UPDATED                                 STATUS      CHART               APP VERSION       \ndagster     magasin-dagster     1           2024-01-26 08:00:11.343903 +0300 EAT    deployed    dagster-1.6.0       1.6.0             \ndaskhub     magasin-daskhub     1           2024-01-26 07:56:59.908074 +0300 EAT    deployed    daskhub-2024.1.0    jh3.2.1-dg2023.9.0\ndrill       magasin-drill       1           2024-01-26 07:56:50.414646 +0300 EAT    deployed    drill-0.6.1         1.21.1-3.9.1      \noperator    magasin-operator    1           2024-01-26 08:05:29.432176 +0300 EAT    deployed    operator-5.0.11     v5.0.11           \nsuperset    magasin-superset    1           2024-01-26 08:52:53.146091 +0300 EAT    failed      superset-0.10.15    3.0.1             \ntenant      magasin-tenant      1           2024-01-26 08:05:35.925144 +0300 EAT    deployed    tenant-5.0.11       v5.0.11     \nIn our case superset which was installed in magasin-superset namespace failed.\nWe can gather more information by getting the list of pods (containers) of superset’s namespace\nkubectl get pods --namespace magasin-superset\nNAME                               READY   STATUS                  RESTARTS   AGE\nsuperset-68865d55bc-rvxq5          0/1     Init:ImagePullBackOff   0          68m\nsuperset-init-db-c9vcr             0/1     Init:ImagePullBackOff   0          68m\nsuperset-postgresql-0              1/1     Running                 0          68m\nsuperset-redis-master-0            1/1     Running                 0          68m\nsuperset-worker-6c65786947-vcwvx   0/1     Init:ImagePullBackOff   0          68m\nLastly, we can get details of one of the pods that did not go through:\nkubectl describe pod superset-68865d55bc-rvxq5 --namespace magasin-superset\nEvents:\n  Type    Reason   Age                    From     Message\n  ----    ------   ----                   ----     -------\n  Normal  BackOff  2m38s (x276 over 66m)  kubelet  Back-off pulling image \"apache/superset:dockerize\"\nIn this case it seems there is an error getting the image. One option is to try to delete the pod. Kubernetes will create a new one\nkubectl delete pod superset-68865d55bc-rvxq5 --namespace magasin-superset\nThe new one will have a different name. So we need to run again kubectl get pods --namespace magasin-superset.\nIf this does not work, an alternative is to try to reinstall the helm chart manually. First uninstall the current chart:\nhelm uninstall superset --namespace magasin-superset\nrelease \"superset\" uninstalled\nThen install install manually the magasin component. We will use the same command that was used by the installer (which you can see in the screenshot with the error)\nhelm install superset magasin/superset --namespace magasin-superset \nIf this does not work, you may try to find similar issues within the magasin discussion forum and/or file an issue.",
     "crumbs": [
       "Home",
-      "Get started"
+      "Install",
+      "Troubleshooting"
     ]
   },
   {
-    "objectID": "get-started.html#check-everything-is-working",
-    "href": "get-started.html#check-everything-is-working",
-    "title": "Get started",
-    "section": "2.1 Check everything is working",
-    "text": "2.1 Check everything is working\nAfter running the setup you can check that all the pods in the magasin-* namespace are in status Running or Complete\nkubectl get pods --all-namespaces \nNAMESPACE          NAME                                                              READY   STATUS      RESTARTS        AGE\nkube-system        coredns-5dd5756b68-fj7bj                                          1/1     Running     0               7d\nkube-system        coredns-5dd5756b68-qbjf4                                          1/1     Running     0               7d\nkube-system        etcd-docker-desktop                                               1/1     Running     0               7d\nkube-system        kube-apiserver-docker-desktop                                     1/1     Running     0               7d\nkube-system        kube-controller-manager-docker-desktop                            1/1     Running     0               7d\nkube-system        kube-proxy-n8wwq                                                  1/1     Running     0               7d\nkube-system        kube-scheduler-docker-desktop                                     1/1     Running     0               7d\nkube-system        storage-provisioner                                               1/1     Running     0               7d\nkube-system        vpnkit-controller                                                 1/1     Running     0               7d\nmagasin-dagster    dagster-daemon-6f4fcbd697-z46xc                                   1/1     Running     0               6m24s\nmagasin-dagster    dagster-dagster-user-deployments-k8s-example-user-code-1-5qjrfh   1/1     Running     0               6m24s\nmagasin-dagster    dagster-dagster-webserver-788ddf4cf4-v8ndn                        1/1     Running     0               6m24s\nmagasin-dagster    dagster-postgresql-0                                              1/1     Running     0               6m24s\nmagasin-daskhub    api-daskhub-dask-gateway-6b6b84f47f-28pns                         1/1     Running     0               6m27s\nmagasin-daskhub    continuous-image-puller-9rv4q                                     1/1     Running     0               6m27s\nmagasin-daskhub    controller-daskhub-dask-gateway-c4d77dff9-rhgst                   1/1     Running     0               6m27s\nmagasin-daskhub    hub-6956d694bb-kl485                                              1/1     Running     0               6m27s\nmagasin-daskhub    proxy-666fbb4959-v99dj                                            1/1     Running     0               6m27s\nmagasin-daskhub    traefik-daskhub-dask-gateway-74965cbfbb-92m5f                     1/1     Running     0               6m27s\nmagasin-daskhub    user-scheduler-9b694f7d5-qvq4k                                    1/1     Running     0               6m27s\nmagasin-daskhub    user-scheduler-9b694f7d5-vbk69                                    1/1     Running     0               6m27s\nmagasin-drill      drillbit-0                                                        0/1     Running     1 (31s ago)     6m33s\nmagasin-drill      drillbit-1                                                        0/1     Pending     0               6m33s\nmagasin-drill      zk-0                                                              1/1     Running     0               6m33s\nmagasin-superset   superset-7c88fcc74f-kjbw9                                         1/1     Running     0               6m23s\nmagasin-superset   superset-init-db-q8tc8                                            0/1     Completed   0               6m23s\nmagasin-superset   superset-postgresql-0                                             1/1     Running     0               6m23s\nmagasin-superset   superset-redis-master-0                                           1/1     Running     0               6m23s\nmagasin-superset   superset-worker-df94c5947-lsvsl                                   1/1     Running     1 (2m44s ago)   6m23s",
+    "objectID": "install/troubleshooting.html#after-installation-a-container-is-not-in-complete-or-running-status.",
+    "href": "install/troubleshooting.html#after-installation-a-container-is-not-in-complete-or-running-status.",
+    "title": "Troubleshooting",
+    "section": "",
+    "text": "After a few minutes finishing the installation all the containers (pods) of the magasin-* namespaces should be in Complete or Running status. If there is any issue these may have another status.\nYou can check the status by running\nkubectl get pods --all-namespaces\nLet’s see an example:\nNAMESPACE          NAME                                                              READY   STATUS      RESTARTS        AGE\n...\n...\nmagasin-drill      drillbit-0                                                        0/1     Running     15 (102s ago)   102m\nmagasin-drill      drillbit-1                                                        0/1     Pending     0               102m\nmagasin-drill      zk-0                                                              1/1     Running     0               102m\nIn the case above we see that the drillbit-* are having issues. One is Running but had many restarts and the other is in Pending status. To inspect what’s going on you can run\nkubectl describe pod drillbit-1 --namespace magasin-drill\nName:             drillbit-0\nNamespace:        magasin-drill\nPriority:         0\nService Account:  drill-sa\nNode:             docker-desktop/192.168.65.3\nStart Time:       Fri, 12 Jan 2024 15:50:47 +0300\nLabels:           app=drill-app\n                  apps.kubernetes.io/pod-index=0\n                  controller-revision-hash=drillbit-b668897d5\n                  statefulset.kubernetes.io/pod-name=drillbit-0\nAnnotations:      &lt;none&gt;\nStatus:           Running\nIP:               10.1.0.106\nIPs:\n  IP:           10.1.0.106\nControlled By:  StatefulSet/drillbit\n\n...\n...\n\nEvents:\n  Type     Reason     Age                  From     Message\n  ----     ------     ----                 ----     -------\n  Normal   Pulled     41m (x3 over 54m)    kubelet  (combined from similar events): Successfully pulled image \"merlos/drill:1.21.1-deb\" in 28.915s (28.915s including waiting)\n  Warning  Unhealthy  26m (x135 over 99m)  kubelet  Readiness probe failed: Running drill-env.sh...\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nUser=drill\n/opt/drill/drillbit.pid file is present but drillbit is not running.\n[WARN] Only DRILLBIT_MAX_PROC_MEM is defined. Auto-configuring for Heap & Direct memory\n[INFO] Attempting to start up Drill with the following settings\n  DRILL_HEAP=1G\n  DRILL_MAX_DIRECT_MEMORY=3G\n  DRILLBIT_CODE_CACHE_SIZE=768m\n[WARN] Total Memory Allocation for Drillbit (4GB) exceeds available free memory (1GB)\n[WARN] Drillbit will start up, but can potentially crash due to oversubscribing of system memory.\n  Warning  Unhealthy  70s (x131 over 99m)  kubelet  Liveness probe failed: Running drill-env.sh...\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nUser=drill\n/opt/drill/drillbit.pid file is present but drillbit is not running.\n[WARN] Only DRILLBIT_MAX_PROC_MEM is defined. Auto-configuring for Heap & Direct memory\n[INFO] Attempting to start up Drill with the following settings\n  DRILL_HEAP=1G\n  DRILL_MAX_DIRECT_MEMORY=3G\n  DRILLBIT_CODE_CACHE_SIZE=768m\n[WARN] Total Memory Allocation for Drillbit (4GB) exceeds available free memory (1GB)\n[WARN] Drillbit will start up, but can potentially crash due to oversubscribing of system memory.\nAs we can see, there is an issue with lack of memory. In this case we need to run the pod in a cluster with nodes with more RAM.",
     "crumbs": [
       "Home",
-      "Get started"
+      "Install",
+      "Troubleshooting"
     ]
   },
   {
@@ -614,19 +1242,7 @@
     "href": "security.html",
     "title": "Security",
     "section": "",
-    "text": "Ensuring robust security measures within a Kubernetes cluster hosting diverse open-source applications is paramount in safeguarding sensitive data and maintaining operational integrity.",
-    "crumbs": [
-      "Home",
-      "Deployment",
-      "Security"
-    ]
-  },
-  {
-    "objectID": "security.html#general-considerations",
-    "href": "security.html#general-considerations",
-    "title": "Security",
-    "section": "",
-    "text": "Ensuring robust security measures within a Kubernetes cluster hosting diverse open-source applications is paramount in safeguarding sensitive data and maintaining operational integrity.",
+    "text": "Ensuring robust security measures within a Kubernetes cluster hosting diverse open-source applications is paramount in safeguarding sensitive data and maintaining operational integrity.\nIf you want to disclose a potential vulnerability, please read our vulnerability disclosure policy.",
     "crumbs": [
       "Home",
       "Deployment",
@@ -637,8 +1253,8 @@
     "objectID": "security.html#reference-documentation",
     "href": "security.html#reference-documentation",
     "title": "Security",
-    "section": "2 Reference documentation",
-    "text": "2 Reference documentation\nEach component of magasin has its own level of security\n\nKubernetes Security\nApache Superset Security\nApache Drill Security\nApache Zookeeper",
+    "section": "1 Reference documentation",
+    "text": "1 Reference documentation\nEach component of magasin has its own level of security\n\nKubernetes Security\nJupterhub Security\nDask gateway Security\nMinIO Security:\n\nChecklist\nIdentity Access Management\nServer Side Encryption\nData Encryption\nNetwork Encryption\n\nApache Drill Security\nApache Zookeeper\nApache Superset Security",
     "crumbs": [
       "Home",
       "Deployment",
@@ -693,50 +1309,5 @@
     "title": "Privacy Policy",
     "section": "6 Third party hosting",
     "text": "6 Third party hosting\nThe Site is hosted under GitHub Pages Service. Please visit https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
-  },
-  {
-    "objectID": "admin-guide-kubernetes.html",
-    "href": "admin-guide-kubernetes.html",
-    "title": "Operations Guide",
-    "section": "",
-    "text": "A quick guide for a magasin cluster operator.",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Kubernetes"
-    ]
-  },
-  {
-    "objectID": "admin-guide-kubernetes.html#general-kubernetes",
-    "href": "admin-guide-kubernetes.html#general-kubernetes",
-    "title": "Operations Guide",
-    "section": "0.1 General kubernetes",
-    "text": "0.1 General kubernetes\nMagasin is installed in a kubernetes cluster, in this chapter you have a summary of common kubernetes commands.\n\n0.1.1 Get the list of namespaces.\nKubernetes resources are kept in namespaces. A namespace is like a folder but where you can keep kubernetes resources such as pods, secrets, etc.\nkubectl get namespaces\n\n\n0.1.2 Get the list of resources\nTo get the resources available within a particular namespace:\nkubectl get &lt;resource-type&gt; --namespace &lt;namespace&gt;\nwhere resource-type is one of\n\npod,\nsecret,\nservice,\npv (persistent volume),\npvc (persitstent volume claim),\n\nExamples:\nkubectl get pods --namespace magasin-drill\nkubectl get secrets --namespace magasin-drill\nOr alternatively\nkubectl get pods -n magasin-drill\nIf --namespace is not set, it displays the resources of the default namespace.\n\n\n\n\n\n\nTip: to change the default namespace use the command kubectl config set-context --current --namespace=&lt;namespace&gt; to update set the default namespace so you don’t need to set --namespace &lt;namespace&gt; on each command\n\n\n\n\n\n0.1.3 Get the list of secrets\nA secret is a type of resource in kubernetes that allows you to keep configuration information such as usernames, tokens, database names, etc.\nTo get the list of secrets of a particular namespace\nkubectl get secret --namespace magasin-superset\nIn magasin, these are some secrets that contain interesting information for the admin are (format application / secret-name):\n\nmagasin-dagster- / TODO-XXXX:\nmagasin-drill / drill-storage-plugin-secret: contains the initial setup of the storage.\nmagasin-superset / superset-env: Contains the environment variables of the application.\nmagasin-daskhub / hub-env. Contains the environment variables of the application.\n\nOne secret may contain more than variable. To view the different variables (items) of a particular secret:\nkubectl describe secret superset-env --namespace magasin-superset\nwhere superset-env is the name of the secret.",
-    "crumbs": [
-      "Home",
-      "Admin Guides",
-      "Kubernetes"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end collection of open-source tools that are setup together to provide enterprise ready automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform Data analysis / ML / AI and visualization of datasets."
-  },
-  {
-    "objectID": "about.html#about-magasin",
-    "href": "about.html#about-magasin",
-    "title": "About",
-    "section": "",
-    "text": "Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end collection of open-source tools that are setup together to provide enterprise ready automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform Data analysis / ML / AI and visualization of datasets."
-  },
-  {
-    "objectID": "about.html#brief-history",
-    "href": "about.html#brief-history",
-    "title": "About",
-    "section": "2 Brief history",
-    "text": "2 Brief history\nMagasin grew out of Office of Innovation’s and Information and Communication Technology Division (ICTD) work to establish a RapidPro Data Warehouse to enable aggregation of global metrics across vendor instances.\nAlso informed by experiences of the Magic Box applied data science initiative, a range of components were evaluated and trialed with country offices to arrive at the current components and architecture.\nIn 2021, ICTD engaged one of its long term agreement vendors to assist with evolving the proof-of-concept into a minimum viable product (MVP).\nIn 2023, UNICEF started the journey to detach magasin from its organizational and cloud infrastructure dependencies, and release it as an open-source with the goal of becoming a Digital Public Good solution."
   }
 ]

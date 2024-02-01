@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Overview of the workflow that usually is followed">
 
-<title>Setup kubernetes</title>
+<title>Tutorial overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +31,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../install/troubleshooting.html" rel="next">
-<link href="../install/advanced.html" rel="prev">
+<link href="../get-started/exploratory-analysis.html" rel="next">
+<link href="../get-started/index.html" rel="prev">
 <link href="..//images/magasin-star.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -103,9 +70,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
-<meta name="twitter:title" content="Setup kubernetes">
+<meta name="twitter:title" content="Tutorial overview">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -155,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../get-started/index.html">Get started</a></li><li class="breadcrumb-item"><a href="../get-started/tutorial-overview.html">Tutorial overview</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -213,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../get-started/tutorial-overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../get-started/tutorial-overview.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tutorial overview</span></a>
   </div>
 </li>
@@ -260,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup kubernetes</span></a>
   </div>
 </li>
@@ -364,21 +334,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup-a-local-cluster" id="toc-setup-a-local-cluster" class="nav-link active" data-scroll-target="#setup-a-local-cluster"><span class="header-section-number">1</span> Setup a local cluster</a>
-  <ul class="collapse">
-  <li><a href="#option-1-local-cluster-using-docker-desktop" id="toc-option-1-local-cluster-using-docker-desktop" class="nav-link" data-scroll-target="#option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</a></li>
-  <li><a href="#option-2-local-cluster-using-minikube" id="toc-option-2-local-cluster-using-minikube" class="nav-link" data-scroll-target="#option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</a></li>
-  </ul></li>
-  <li><a href="#setup-a-cluster-in-a-major-cloud-provider" id="toc-setup-a-cluster-in-a-major-cloud-provider" class="nav-link" data-scroll-target="#setup-a-cluster-in-a-major-cloud-provider"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</a></li>
+  <li><a href="#step-1-exploratory-data-analysis-in-a-jupyter-notebook" id="toc-step-1-exploratory-data-analysis-in-a-jupyter-notebook" class="nav-link active" data-scroll-target="#step-1-exploratory-data-analysis-in-a-jupyter-notebook"><span class="header-section-number">0.1</span> Step 1: Exploratory data analysis in a Jupyter Notebook</a></li>
+  <li><a href="#step-2-automate-data-ingestion-with-dagster" id="toc-step-2-automate-data-ingestion-with-dagster" class="nav-link" data-scroll-target="#step-2-automate-data-ingestion-with-dagster"><span class="header-section-number">0.2</span> Step 2: Automate data ingestion with Dagster</a></li>
+  <li><a href="#step-3-create-a-dashboard-with-superset" id="toc-step-3-create-a-dashboard-with-superset" class="nav-link" data-scroll-target="#step-3-create-a-dashboard-with-superset"><span class="header-section-number">0.3</span> Step 3: Create a dashboard with Superset</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">1</span> What’s next?</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/tutorial-overview.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../install/index.html">Install</a></li><li class="breadcrumb-item"><a href="../install/setup-kubernetes.html">Setup kubernetes</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../get-started/index.html">Get started</a></li><li class="breadcrumb-item"><a href="../get-started/tutorial-overview.html">Tutorial overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Setup kubernetes</h1>
+<h1 class="title">Tutorial overview</h1>
 </div>
 
 
@@ -395,82 +363,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Magasin components are designed for installation within Kubernetes clusters. Major cloud providers offer the ability to set up these clusters, but for exploration and testing, you can create one on your desktop.</p>
-<p>If you already have a Kubernetes cluster, you may proceed without this step.</p>
-<p>For setting up a Magasin instance in a local cluster on a desktop, it is advisable to have a minimum of 32 GB of RAM.</p>
-<section id="setup-a-local-cluster" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Setup a local cluster</h1>
-<section id="option-1-local-cluster-using-docker-desktop" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="option-1-local-cluster-using-docker-desktop"><span class="header-section-number">1.1</span> Option 1: Local cluster using Docker-desktop</h2>
-<p>In case you do not have a Kubernetes cluster, another easy way to set it up is through <a href="https://docs.docker.com/desktop/">Docker Desktop</a>. It is available for:</p>
-<ul>
-<li><a href="https://docs.docker.com/desktop/install/linux-install/">GNU/Linux</a></li>
-<li><a href="https://docs.docker.com/desktop/install/mac-install/">Mac OS X</a></li>
-<li><a href="https://docs.docker.com/desktop/install/windows-install/">Windows</a></li>
-</ul>
-<p>Once installed. In <strong>Settings / Kubernetes </strong>, enable Kubernetes. It will automatically install</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/install/install-enable-kubernetes-docker-desktop.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes</figcaption>
-</figure>
+<p>In this tutorial, we’ll walk you through a straightforward example we’ve created that follows a standard data analysis process. We’ll show you how to launch each component, explain essential concepts, but we won’t dive too deep into all the nitty-gritty details of each component.</p>
+<p>We wil follow this process simple process that is similar to what you may do in the real world:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(1.Manual analysis using a \nJupyter Notebook) --&gt; B(2.Automate data ingestion with\n Dagster)
+  B --&gt; C(3.Create a Dashboard with\n Superset)
+</pre>
 </div>
-<p>Lastly, on a command line, create the new cluster and use it:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config set-context magasin <span class="at">--namespace</span> default <span class="at">--cluster</span> docker-desktop <span class="at">--user</span><span class="op">=</span>docker-desktop</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> config use-context magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To ensure that the kubernetes cluster is the correct one check if the name corresponds to the</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>             STATUS   ROLES           AGE   VERSION</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-desktop</span>   Ready    control-plane   48m   v1.28.2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get namespaces</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>              STATUS   AGE</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">default</span>           Active   49m</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-node-lease</span>   Active   49m</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-public</span>       Active   49m</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>       Active   49m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>More information:</p>
-<ul>
-<li><a href="https://docs.docker.com/desktop/kubernetes/">https://docs.docker.com/desktop/kubernetes/</a></li>
-<li><a href="https://birthday.play-with-docker.com/kubernetes-docker-desktop/">https://birthday.play-with-docker.com/kubernetes-docker-desktop/</a></li>
-</ul>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="step-1-exploratory-data-analysis-in-a-jupyter-notebook" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="step-1-exploratory-data-analysis-in-a-jupyter-notebook"><span class="header-section-number">0.1</span> Step 1: Exploratory data analysis in a Jupyter Notebook</h2>
+<p>Generally, before you start automating any process of regularly using some data you want to do some initial research and analysis, you want to discover and understand how the data is shaped and what kind of insights can be extract from the data you have. For that, <a href="https://jupyter.org/">Jupyter Notebook</a> is a great tool. It allows you to run small pieces of code (python or R) individually and interactively in a user friendly interface.</p>
+<p>Magasin comes with the <a href="https://jupyter.org/hub">Jupyter Hub</a>, which allows different users to run jupyter notebooks on the cloud without the need of installing anything on their own system.</p>
+<p>In this case, we are going play around with one simple API, the <a href="https://github.com/DPGAlliance/publicgoods-api?tab=readme-ov-file">Digital Public Goods Alliance (DPGA) API</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Digital_public_goods">Digital Public Goods (DPGs)</a> are public goods in the form of software, data sets, AI models, standards or content that are generally free cultural works and have an intention to contribute to sustainable national and international digital development. Several international agencies, including <a href="https://www.unicef.org">UNICEF</a> and <a href="https://undp.org">UNDP</a>, are exploring DPGs as a possible solution to address the issue of digital inclusion, particularly for children in emerging economies.</p>
+<p>From the data that we extract from the API, we are going to query the data to get some insights how many DPGs are available, in which countries are being deployed, where are they developed, what types of licenses are more popular…</p>
+<p>Jupyter Notebooks are excellent for an initial analysis, but there are many use cases in which you may to repeat the same process periodically. In our example, we may want to track if new DPGs are comming or what are the trends in terms of deployments. This is when the next steps of the process are useful.</p>
+<p><a href="../get-started/exploratory-analysis.html">Go to step 1</a></p>
 </section>
-<section id="option-2-local-cluster-using-minikube" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="option-2-local-cluster-using-minikube"><span class="header-section-number">1.2</span> Option 2: Local cluster using Minikube</h2>
-<p>If you don’t have a kubernetes cluster, for testing purposes, you can easily install <a href="https://minikube.sigs.k8s.io/">minikube</a> in your desktop. Minikube is a kubernetes cluster created for practicing and learning purposes.</p>
-<p>The full installation details are described in <a href="https://minikube.sigs.k8s.io/docs/start/">https://minikube.sigs.k8s.io/docs/start/</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GNU/Linux Debian like</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LO</span> https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> minikube_latest_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mac OS</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install minikube</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once minikube is installed, please make sure to run:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">minikube</span> start</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If your system does not have the command <code>kubectl</code> already installed, it is also recommended to add the <a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/"><code>kubeclt</code> alias</a></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that both of the two options above are just recommended for playing around without needing to deploy any infrastructure, but not for setting up an actual “shared” instance of magasin.</p>
-</div>
-</div>
+<section id="step-2-automate-data-ingestion-with-dagster" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="step-2-automate-data-ingestion-with-dagster"><span class="header-section-number">0.2</span> Step 2: Automate data ingestion with Dagster</h2>
+<p>Automating is great, it frees us on needing to do repeated work. In our example, we will automate the ingestion and transformation of the DPGA API data. The data as it is served by the API is not fully ready to be analyzed, we need to perform some transformations to leave it ready to be displayed.</p>
+<p>We did the heavy-lifting interactively with the first analysis and now we just need to convert it to a <a href="https://dagster.io">dagster pipeline</a>.</p>
+<p><a href="https://dagster.io">Dagster</a> is what is called a pipeline orchestrator, which basically helps us to manage the ingestion of data from multiple data sources.</p>
+<p>The advantages of using a framework like dagster is that it will allow us to do things in a structured way which will allow you to scale and to monitor. If you ask anyone that has been gathering data from multiple data sources he will tell you that it can become a nightmare if you don’t do it properly. Dagster provides you a good starting point.</p>
+<p>What usually happends when you start automating stuff is that:</p>
+<ol type="1">
+<li><p>It starts simple but with time, you add more and more data sources that have dependencies between them. If it is not done properly you end up with a mess. Dagster provides us a framework to prevent that.</p></li>
+<li><p>It eventually may break. Data sources may change with time and with that your pipelines break. For instance, DPGA may change the API and our automation will fail. Dagster allows you to monitor and to</p></li>
+</ol>
+<p>The cool thing of Dagster, it that it uses Python as programming language too, so most of the work we did for the Jupyter Notebook can be reused.</p>
+<p>In the magasin architecture, usually data assets are stored in files. In particular, we recommend the use of <a href="https://parquet.apache.org/">Apache parquet file format</a> for storing the datasets.</p>
+<p>Parquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data.</p>
+<p>Using Parquet to store datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular Big Data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.</p>
+<p>In this step, we will also use another component of magasin that will help us to be cloud agnostic. It is called <a href="http://min.io">MinIO</a> and gives us an <a href="https://en.wikipedia.org/wiki/Amazon_S3">Amazon S3</a> compatible file store.</p>
+<p>Thanks to MinIO, regardless of what infrastructure you’re using, your pipelines will work the same, you do not need to adapt how you store the data. Using files, compared to using a traditional SQL schema, allows you to store not only structured tabular data, but also images or documents. It simplifies also the governance of the datasets as the problem of sharing is reduced to assigning file/folder permissions.</p>
+<p>To maintain a vendor-agnostic architecture, we leverage MinIO. However, in alignment with our loosely coupled design, you have the flexibility to bypass this component if you find alternative methods more suitable for storing your ingested data. This decision may be based on better alignment with your existing processes or specific use case requirements.</p>
+<p>For instance, instead of MinIO, you can directly utilize a vendor-specific object store like Azure Blobs, Amazon S3, or Google Cloud Storage. Alternatively, you may choose to write your data into a database, such as DuckDB or PostgreSQL.</p>
+<p><a href="../get-started/automate-data-ingestion.html">Go to Step 2</a></p>
 </section>
+<section id="step-3-create-a-dashboard-with-superset" class="level2" data-number="0.3">
+<h2 data-number="0.3" class="anchored" data-anchor-id="step-3-create-a-dashboard-with-superset"><span class="header-section-number">0.3</span> Step 3: Create a dashboard with Superset</h2>
+<p>Dagster allows you to gather the data and transform it to something that can be displayed, but it does not come with advanced visualization capabilities. For that we need a tool that has many graphs, and allows us to interact with the data, that is a business intelligence dashboard tool.</p>
+<p>Magasin comes with <a href="https://superset.apache.org/">Apache Superset</a>, which allows you to create dashboard with many graphs.</p>
+<p>In this last step, we will create a dashboard that will display the graphs.</p>
+<p>Again, we did the heavy lifting on the first step with the notebook so now we just need to play with the user interface of superset.</p>
+<p>Superset,</p>
 </section>
-<section id="setup-a-cluster-in-a-major-cloud-provider" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Setup a cluster in a major cloud provider</h1>
-<p>Kubernetes enjoys broad support from major cloud providers, allowing you to choose based on your organization’s preferences and compliance requirements. Here are links to their respective pages.</p>
-<p>Setting up a Kubernetes cluster on the cloud is currently out of the scope of this documentation, however you can find more information in:</p>
-<ul>
-<li><p><a href="https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli">Azure Kubernetes Service (AKS)</a></p></li>
-<li><p><a href="https://aws.amazon.com/kubernetes/">Kubernetes in Amazon Web Services</a></p></li>
-<li><p><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Service (GKS)</a></p></li>
-<li><p><a href="https://www.digitalocean.com/products/kubernetes">Digital Ocean Kubernetes (DOKS)</a></p></li>
-</ul>
+<section id="whats-next" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> What’s next?</h1>
+<p>Now that you have an overview, let’s start working with magasin:</p>
+<p><strong><a href="../get-started/exploratory-analysis.html">Go to the step 1: Initial analysis</a></strong></p>
 
 
 </section>
@@ -893,13 +844,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../install/advanced.html" class="pagination-link  aria-label=" advanced="" installation"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced installation</span>
+      <a href="../get-started/index.html" class="pagination-link  aria-label=" get="" started"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Get started</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../install/troubleshooting.html" class="pagination-link" aria-label="Troubleshooting">
-        <span class="nav-page-text">Troubleshooting</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../get-started/exploratory-analysis.html" class="pagination-link" aria-label="Step 1: Exploratory analysis">
+        <span class="nav-page-text">Step 1: Exploratory analysis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -911,7 +862,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="../privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="../images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/setup-kubernetes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/tutorial-overview.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
