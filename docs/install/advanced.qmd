@@ -37,7 +37,7 @@ By convention, the default realm only has the prefix `magasin` and no postfix. F
 The realm name is the concatenation of the prefix and the postfix, both separated by an hyphen `-` (if the postfix is not empty).
 Examples:
 
-| **Realm**               | **Realm prefix**    | **Realm postfix** | **Component "drill" namespace** |
+| **Realm**               | **Realm prefix**    | **Realm postfix** | **Resulting namespace for "drill"** |
 |-------------------------|---------------------|-------------------|---------------------------------|
 | magasin                 | magasin             | -                 | magasin-drill                   |
 | magasin-dev             | magasin             | dev               | magasin-drill-dev               |
@@ -48,7 +48,7 @@ A realm prefix can have `-` as part of its names, but not the realm postfix. In 
 
 If a realm name starts with `-` it only has a postfix.
 
-The concept of realms allows us setup supporting tools that can make use of two independent helm charts
+The concept of realms allows us setup supporting tools that can make use of two independent helm charts.
 
 ## Advanced use of the magasin-installer
 
@@ -63,6 +63,7 @@ Each component is installed within its own namespace.
 Options:
   -y  Skip prompting questions during installation
   -c  Only check if all pre-requisites are installed in the local machine.
+  -i  Only install all pre-requisites in the local machine. Does not install magasin in Kubernetes
   -r  Realm prefix and suffix (default: magasin). Prefix and suffix are separated by '-'.
         If more than one '-', the last one will be used as separator.
         The realm 'magasin-new-dev' will set 'magasin-new' as prefix and 'dev' as suffix.
@@ -83,9 +84,13 @@ Examples of usage:
       ```sh
         install-magasin.sh -c 
       ```
+2. Install all pre-requisites to install and manage magasin within the current machine but without installing magasin. Installs all the missing components highlighted by the `-c` option
+      ```
+        install-magasin.sh -i
+      ```
+    This may be useful if you already have an instance of magasin and you want to seamlessly setup all the tools to manage that instance. 
 
-2.  Setup the realm test-. Will use test-<component> as namespace.
-    Setup the realm magasin-dev. Will use magasin-<component>-dev as namespaces
+3.  Setup the realm `test`. Will use `test-<component>` as namespace.
 
       ```sh
         install-magasin.sh -r test
@@ -157,3 +162,6 @@ install-magasin.sh -r magasin-prd -f ./prd
 ```
 
 Thanks to the concept of realms, you can have both instances even in the same cluster.
+
+
+{{< include _next_steps.qmd >}}

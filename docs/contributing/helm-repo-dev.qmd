@@ -1,0 +1,109 @@
+---
+title: "Helm repo development"
+description-meta: "Information for getting started to contribute to the magasin helm repo"
+---
+This content is specially focused on the common tasks of magasin contributors and maintainers of the helm charts.
+
+The core of magasin is the easy deployment of complex cloud-ready applications in a [Kubernetes cluster](../install/setup-kubernetes.qmd). 
+
+We use [helm charts](https://helm.sh/) for this purpose. Helm is a package manager such as `pip`, `apt`, `brew`, `npm` or `gem`.  
+
+Helm uses a packaging format called [charts](https://helm.sh/docs/topics/charts/). A chart is a collection of files that describe a related set of Kubernetes resources. A single chart might be used to deploy something simple, like a pod, or something complex, like a full web app stack with HTTP servers, databases, caches, and so on.
+
+In general, our approach is to get the official helm chart provided by the maintainer of the component. of  and then tweak the configuration to make it work seamless with the other components of magasin.
+
+There may be cases in which there is not official helm chart. In those situations we have developed ours, as in the case of [Apache Drill](http://github.com/unicef/magasin-drill)
+
+The helm charts are kept in the **[`helm` folder](http://github.com/unicef/magasin/tree/main/helm)** within the [main magasin GitHub repository](http://github.com/magasin/)
+
+We have a shell script, `/helm-scripts/update-helm-charts.sh` that collects the helm charts from the different official repos an keep them in ours. The script itself includes its documentation. 
+
+The repository itself is hosted in the GitHub pages of the main magasin repo. The process of releasing the repo (i.e. [updating the `index.yaml`](https://helm.sh/docs/helm/helm_repo_index/) and creating the [helm packages](https://helm.sh/docs/helm/helm_package/))is managed by a [GitHub action](https://github.com/unicef/magasin/blob/main/.github/workflows/publish-helm-charts.yml)
+
+
+## Working with the charts
+
+Below you have some recipies that will help you to set things up when modifying the helm charts.
+
+Before working with the charts you need to  [setup a Kubernetes cluster](../install/setup-kubernetes.qmd),
+
+### How can I update magasin's repo helm charts?
+
+Generally, magasin helm charts are just a copy of the "official" repositories. So, what we do is we get a copy of these externally developed charts and create a copy. Then we test interoperability the magasin tools are working and release the package. Magasin in that regard is similar to a GNU/Linux distribution.
+
+Currently, we have a script that updates the folder `/helm` that contains magasin's charts. It gets them from from other helm repos and copies them to the `helm/` folder. The script is in `/helm-scripts/update-helm-charts.sh`.
+
+1. Clone the repo
+  
+    ```sh
+    git clone https://github.com/unicef/magasin
+    ```
+
+2. Update the versions editing `/helm-scripts/update-helm-charts.sh`
+
+   For now, it has the version numbers of the helm charts harcoded. So, you have to modify it whenever you want to update the charts. 
+   The script file is documented and should guide you on how to proceed. 
+
+3. Run the script.
+
+
+### How can I test changes on helm charts?
+
+If you have updated or modified the helm charts of the `/helm` folder, you may want to test them before performing a release.
+
+The easiest way is to run a helm repo in your local machine, which basically is an HTTP server that has the helm charts packaged as `.tgz` files and a metadata file called `index.yaml`. Magasin includes a script that allows you to do this.
+
+Let's wee what are the steps:
+
+1. Clone the repo
+  
+    ```sh
+    git clone https://github.com/unicef/magasin
+    ```
+2. Make the changes on the helm charts within the folder `/helm` 
+
+3. Serve the helm charts in a local repo. 
+   
+   Go to the `helm-scripts` and run the `local-helm-repo.sh` script.
+   
+   ```sh
+    cd helm-scripts
+    ./local-helm-repo.should
+  ```  
+   
+   This script packages the helm charts in the `/helm` folder and launches an HTTP server that points to the folder `/_helm-repo/` in the root folder of the repo in the port 8000. You can check it is running by opening a browser [http://localhost:8000/index.yaml](http://localhost:8000/index.yaml)
+
+4. Install magasin.
+
+   Go to the `installer` folder and run the magasin installer specifying the url of the local repository
+
+   ```sh
+    cd magasin/installer
+    ./install-magasin.sh -u http://localhost:8000
+   ```
+
+### What if I only want to update or install one single component?
+
+In the previous section you had to install all the charts of magasin it assumed that you did not have an instance already running, but that you already have one instance and you want to update just one chart. To do that you can run the helm command:
+
+Assuming you are in the root folder of the repo and you want to upgrade Apache Drill (`helm/drill`)
+
+If you are installing the chart for the first time:
+```sh
+helm install drill ./helm/drill/  --namespace magasin-drill --create-namespace
+```
+Note that the namespace should match the realm you're working on. We're asssuming the starndard namespace
+
+If you're updating the helm chart
+
+```sh
+helm upgrade drill ../../helm/drill/  --namespace magasin-drill
+```
+
+In both cases you can also add custom values by adding `-f <path-to-my-values-yaml-file>`. Example:
+
+```sh
+helm upgrade drill ../../helm/drill/  --namespace magasin-drill -f drill.yaml
+```
+
+Note that using this method, you don't need to run the local helm repo script.

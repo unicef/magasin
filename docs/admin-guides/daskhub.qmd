@@ -1,0 +1,17 @@
+---
+title: Daskhub Admin Guide
+description-meta: Magasin administrator guide
+---
+
+
+## Authentication
+
+Because the default setup is only for testing purposes, by default dask's Jupyterhub comes without authentication.
+
+To setup the authentication mechanism you have all the documentation in: https://z2jh.jupyter.org/en/stable/administrator/authentication.html
+
+Once you have created the yaml file that has the setup you can run `helm upgrade`
+```sh
+# helm upgrade <component> --namespace <component-namespace> --values <values-file.yaml>
+helm upgrade daskhub --namespace magasin-daskhub --values daskhub.yaml
+```

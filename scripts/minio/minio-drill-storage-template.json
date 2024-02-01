@@ -1,0 +1,80 @@
+{
+  "name" : "s3",
+  "config" : {
+    "type" : "file",
+    "connection" : "s3a://minio/**BUCKET_NAME**",
+    "config" : {
+      "fs.s3a.access.key" : "**ACCESS_KEY**",
+      "fs.s3a.secret.key" : "**SECRET_KEY**",
+      "fs.s3a.connection.ssl.enabled" : "false",
+      "fs.s3a.endpoint": "http://minio.**NAMESPACE**.svc.cluster.local:9443",
+      "fs.s3a.path.style.access": "true"
+    },
+    "workspaces" : {
+      "tmp" : {
+        "location" : "/tmp",
+        "writable" : true,
+        "defaultInputFormat" : null,
+        "allowAccessOutsideWorkspace" : false
+      },
+      "root" : {
+        "location" : "/",
+        "writable" : false,
+        "defaultInputFormat" : null,
+        "allowAccessOutsideWorkspace" : false
+      }
+    },
+    "formats" : {
+      "psv" : {
+        "type" : "text",
+        "extensions" : [ "tbl" ],
+        "delimiter" : "|"
+      },
+      "csv" : {
+        "type" : "text",
+        "extensions" : [ "csv" ],
+        "delimiter" : ","
+      },
+      "tsv" : {
+        "type" : "text",
+        "extensions" : [ "tsv" ],
+        "delimiter" : "\t"
+      },
+      "parquet" : {
+        "type" : "parquet"
+      },
+      "json" : {
+        "type" : "json",
+        "extensions" : [ "json" ]
+      },
+      "avro" : {
+        "type" : "avro"
+      },
+      "sequencefile" : {
+        "type" : "sequencefile",
+        "extensions" : [ "seq" ]
+      },
+      "csvh" : {
+        "type" : "text",
+        "extensions" : [ "csvh" ],
+        "extractHeader" : true,
+        "delimiter" : ","
+      },
+      "syslog" : {
+        "type" : "syslog",
+        "extensions" : [ "syslog" ]
+      },
+      "shp" : {
+        "type" : "shp"
+      },
+      "excel" : {
+        "type" : "excel"
+      },
+      "ltsv" : {
+        "type" : "ltsv",
+        "extensions" : [ "ltsv" ]
+      }
+    },
+    "enabled" : true
+  }
+}

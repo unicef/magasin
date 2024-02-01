@@ -1,0 +1,7 @@
+---
+title: "mag CLI"
+description_meta: "All you need to know about mag, magasin's Command Line Interface"
+---
+
+# TODO
+

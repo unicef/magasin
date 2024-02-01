@@ -43,6 +43,7 @@ serviceAccount:
 # @default -- see `values.yaml`
 bootstrapScript: |
   #!/bin/bash
+  pip install sqlalchemy-drill 
   if [ ! -f ~/bootstrap ]; then echo "Running Superset with uid {{ .Values.runAsUser }}" > ~/bootstrap; fi
 
 # -- The name of the secret which we will use to generate a superset_config.py file
@@ -88,11 +89,14 @@ extraEnvRaw: []
   #       key: password
 
 # -- Extra environment variables to pass as secrets
-extraSecretEnv: {}
+extraSecretEnv: #{}
   # MAPBOX_API_KEY: ...
   # # Google API Keys: https://console.cloud.google.com/apis/credentials
   # GOOGLE_KEY: ...
   # GOOGLE_SECRET: ...
+  #   # Generate your own secret key for encryption. Use openssl rand -base64 42 to generate a good key
+  #  SUPERSET_SECRET_KEY: 'CHANGE_ME_TO_A_COMPLEX_RANDOM_SECRET'
+  SUPERSET_SECRET_KEY: 'LNS78tGfwCYyiIggQxLBviTT83itPTgbho822Wr9IWjo/cNcojL/CZK5'
 
 # -- Extra files to mount on `/app/pythonpath`
 extraConfigs: {}
@@ -163,8 +167,8 @@ configOverrides: {}
   #   # The default user self registration role
   #   AUTH_USER_REGISTRATION_ROLE = "Admin"
   # secret: |
-  #   # Generate your own secret key for encryption. Use openssl rand -base64 42 to generate a good key
-  #   SECRET_KEY = 'YOUR_OWN_RANDOM_GENERATED_SECRET_KEY'
+  #   # Generate your own secret key for encryption. Use `openssl rand -base64 42` to generate a good key
+  #   SECRET_KEY = 'CHANGE_ME_TO_A_COMPLEX_RANDOM_SECRET'
 
 # -- Same as above but the values are files
 configOverridesFiles: {}
@@ -176,15 +180,23 @@ configMountPath: "/app/pythonpath"
 extraConfigMountPath: "/app/configs"
 
 image:
+  #AMD64
   repository: apachesuperset.docker.scarf.sh/apache/superset
   tag: ""
+  # ARM64
+  #repository: apache/superset 
+  #tag: dfc614bdc3c8daaf21eb8a0d1259901399af7dd8-lean310-linux-arm64-3.9-slim-bookworm
+
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 
 initImage:
   repository: apache/superset
-  tag: dockerize
+  # AMD64 (Intel)
+  tag: ea6cbcef3e980e42d3a19b8fc5928f973fd7be4a-dockerize-linux-amd64-3.9-slim-bookworm
+  # ARM64 (M1, M2...)
+  #tag: dockerize
   pullPolicy: IfNotPresent
 
 service:
@@ -441,6 +453,8 @@ supersetCeleryBeat:
         - /bin/sh
         - -c
         - dockerize -wait "tcp://$DB_HOST:$DB_PORT" -wait "tcp://$REDIS_HOST:$REDIS_PORT" -timeout 120s
+  # -- Launch additional containers into supersetCeleryBeat pods
+  extraContainers: []
   # -- Annotations to be added to supersetCeleryBeat deployment
   deploymentAnnotations: {}
   # -- Affinity to be added to supersetCeleryBeat deployment
@@ -522,6 +536,8 @@ supersetCeleryFlower:
         - /bin/sh
         - -c
         - dockerize -wait "tcp://$DB_HOST:$DB_PORT" -wait "tcp://$REDIS_HOST:$REDIS_PORT" -timeout 120s
+  # -- Launch additional containers into supersetCeleryFlower pods
+  extraContainers: []
   # -- Annotations to be added to supersetCeleryFlower deployment
   deploymentAnnotations: {}
   # -- Affinity to be added to supersetCeleryFlower deployment
@@ -588,6 +604,8 @@ supersetWebsockets:
       http: nil
   command: []
   resources: {}
+  # -- Launch additional containers into supersetWebsockets pods
+  extraContainers: []
   deploymentAnnotations: {}
   # -- Affinity to be added to supersetWebsockets deployment
   affinity: {}

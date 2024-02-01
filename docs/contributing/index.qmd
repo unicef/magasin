@@ -1,0 +1,26 @@
+---
+title: Contributing
+description-meta: How to contribute to magasin.
+---
+Magasin follows an open approach towards accepting contributions. 
+
+In this section you have access to specific documentation useful for developers that want to dive into the internals of magasin and the approach we are following regarding the processes and the documentation.
+
+
+Our main repo is in **[github.com/unicef/magasin](https://github.com/unicef/magasin)**.It holds main components, setup and admin scripts, as well as documentation
+
+We are following a somewhat mono-repo approach with the large majority of the platform itself and the repository has the following sub-projects.
+
+1. **[Helm chart repository](helm-repo-dev.qmd)**. Magasin, similarly to a GNU/Linux distribution is basically a collection of independent open source projects that are setup to work in a common environment.
+  
+  In general, our approach is get a copy of the officially maintained helm chart. However, there may be projects that do not have an official helm chart. In that case [we develop ours](./repositories.qmd).
+
+2. **[magasin installer](installer-dev.qmd)**. It is a shell script that allows us to install all the requirements (such as helm, kubectl, pip, mc) and the helm charts using one single command line. 
+
+3. **[`mag` CLI](https://github.com/unicef/magasin/tree/main/mag-cli/): Magasin command line interface**. It provides a consistent interface for some common tasks taking advangate of the common approach and conventions of deploying magasin. It is a python application based on [click](https://click.palletsprojects.com/en/8.1.x/), a library for creating CLIs in a compostable way. 
+
+4. **[Project documentation](documentation.qmd)**: Documentation is a key pillar for the platform. Magasin has a wide variety of audience users whith  different needs. In addition, Magasin website is based on [Quarto](https://quarto.org/), a platform which allows us to write markdown and generate an static website. It allows us to focus on the content.
+
+In addition to these, we have other libraries and tools that are in [other repositories](repositories.qmd).
+
+

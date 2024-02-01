@@ -1,0 +1,18 @@
+---
+title: Installer (Dev) 
+description_meta: Magasin installer and uninstaller documentation for developers.
+---
+
+The `[install-magasin.sh](https://github.com/unicef/magasin/blob/main/installer/install-magasin.sh)` is a shell script that installs all the dependencies required to install magasin as well as setting up all the helm charts that compose magasin. 
+
+You have more details about what it does, in the [advanced installation page](../install/advanced.qmd)
+
+It has a companion that is the `[uninstall-script.sh](https://github.com/unicef/magasin/blob/main/installer/uninstall-magasin.sh)`
+
+The installer and uninstaller source code can be found under the [installer/]() folder within the main magasin repository.
+
+## Installer tests
+
+The installer includes several options, in order to verify these are working we have created a Github action that performs several tests in different operating systems. 
+
+See the source code of [install-tests.yaml](https://github.com/unicef/magasin/blob/main/.github/workflows/install-tests.yml)

@@ -41,7 +41,7 @@ website:
       - text: "Home"
         file: index.qmd
       - text: "Get started" 
-        file: get-started.qmd
+        file: get-started/index.qmd
       - text: "Docs" 
         file: docs-home.qmd
       - text: "About"
@@ -52,10 +52,19 @@ website:
     style: "docked"
     search: false
     contents:
-      - text: Welcome
-        file: docs-home.qmd
-      - text: "Get started"
-        file: get-started.qmd  
+      - section: "Welcome"
+        contents:
+        - text: Welcome
+          file: docs-home.qmd
+        - file: why-magasin.qmd
+        - file: architecture.qmd
+      - section: "Get started"
+        contents:
+          - file: get-started/index.qmd 
+          - file: get-started/tutorial-overview.qmd
+          - file: get-started/exploratory-analysis.qmd
+          - file: get-started/automate-data-ingestion.qmd
+          - file: get-started/create-a-dashboard.qmd
       - section: "Install"
         contents:
           - file: install/index.qmd 
@@ -63,21 +72,21 @@ website:
           - file: install/setup-kubernetes.qmd
           - file: install/troubleshooting.qmd
           - file: install/uninstall.qmd
+      
+      #- text: "End user guides"
+      #  file: end-user-guides.qmd
 
-
-      - text: "Architecture"
-        file: architecture.qmd
-      - text: "End user guides"
-        file: end-user-guides.qmd
-
-      - section: "Admin Guides"
-        contents:
-          - text: "Kubernetes"
-            file: admin-guide-kubernetes.qmd   
-          - text: "Drill"
-            file: admin-guide-drill.qmd  
-          - text: "Superset"
-            file: admin-guide-superset.qmd  
+      # TODO
+      #- section: "Admin Guides"
+      #  contents:
+      #      - file: admin-guides/mag-cli.qmd
+      #      - file: admin-guides/kubernetes.qmd
+      #      - file: admin-guides/daskhub.qmd   
+      #      - file: admin-guides/minio.qmd
+      #      - file: admin-guides/dagster.qmd
+      #      - file: admin-guides/drill.qmd
+      #      - file: admin-guides/superset.qmd  
+      
       - section: "Deployment"      
         contents:
           - text: "Deploying to production"
@@ -87,12 +96,15 @@ website:
 
       - section: "Contributing"
         contents:
-          - text: "Contributing"
-            file: contributing.qmd
-          - text: "Repositories"
-            file: repositories.qmd
+          - file: contributing/index.qmd
+          - file: contributing/repository-workflows.qmd
+          - file: contributing/documentation.qmd
+          - file: contributing/helm-repo-dev.qmd
+          - file: contributing/installer-dev.qmd
+          - file: contributing/repositories.qmd
+          - file: contributing/vulnerability-disclosure.qmd
   page-footer: |
-    [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) | Docs are licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) | [Privacy policy](privacy.qmd) 
+    [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) | Docs are licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) | [Privacy policy](/privacy.qmd) 
     [![](/images/unicef-logo.png){fig-alt="UNICEF, for every child"}](https://www.unicef.org)
     
     
