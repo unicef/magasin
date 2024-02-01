@@ -1,7 +1,8 @@
 ---
 title: Documenting magasin
-description-meta: Our phylosofy on what we document and how we document it.
+description-meta: Our phylosophy on what we document and how we document it.
 ---
+
 
 ## Documentation policy
 
@@ -11,20 +12,40 @@ Given this instead of duplicating all the existing documentation, the goal of ma
 
 The documentation should cover the needs of the following users in mind:
 
-* Non-technical End Users (business users) - These are users that do not have a lot of technical background. They are mostly interested in the visualization part, how to use the business intelligence dashboard, and the potential use cases of magasin applied to their business.  
+* **Non-technical End Users (business users)** - These are users that do not have a lot of technical background. They are mostly interested in the visualization part, how to use the business intelligence dashboard, and the potential use cases of magasin applied to their business.  
     
     As a subset of these users, we can consider the business analysts who may be evaluating the solution.  
 
-* Technical End Users - These are users with technical background, you can consider as these data scientists, and data engineers. They work mostly in the ingestion and analysis. 
+* **Technical End Users** - These are users with technical background, you can consider as these data scientists, and data engineers. They work mostly in the ingestion and analysis. 
 
-* System Administrators (operations) - They are the responsible of setting up and maintaining an instance of magasin. They worry about 
+* **System Administrators (operations)** - They are the responsible of setting up and maintaining an instance of magasin. They worry about permissions, security, reliability, monitoring...
 
-## Documentation of our own code 
+* **Developers and contributors** - They are technical people that need to understand how magasin works internally in order to enhance the product itself.
+
+## Documentation of our own utilities
 
 In order to make magasin much easier to use, we are developing custom a set of utilities, scripts and applications that work as a glue between components or that act as accelerators of common operations (such as backing up, upgrading, etc...)
 
-* It is a must to document the source code including examples of usage.
+* It is a must to document the source code including examples of usage (for other developers and contributors).
 
-* There must be end user documentation that explains how to use these utilities.
+* Depending on what user is that tool for, there must be sysadmin and/or user documentation that explains how to use these utilities
 
 * For those utilities and scripts that automate common processes (for example, backing up the database of a component), there shall be also documentation on the manual process. This is because each magasin component may be setup in many different ways, by providing the manual steps the user will have more control in case the assumed setup by the utility is not compatible with his environment.
+
+# Magasin website and documentation
+
+Magasin website (http://unicef.github.io/magasin) uses [quarto](https://quarto.org) as content-management-system. It allows us to focus on writing Markdown and it generates a static website.
+
+Quarto is well integrated with Visual Studio Code, and has a preview.
+
+## Website release 
+
+The website is published in the [Github Page](https://pages.github.com/). The resulting site is in the [`gh-pages` branch](https://github.com/unicef/magasin/tree/gh-pages) of the main repository. The URL [http://unicef.github.com/magasin](http://unicef.github.com/magasin).
+
+### ** NEVER USE `quarto publish gh-pages` **
+
+Whereas quarto command line has the option of releasing to github pages through the command line you shall **NEVER** use it. 
+
+This command wipes out all the `gh-pages` contents and then puts a fresh version of the site.  This is because magasin's `gh-page` contains some additional files such as the helm repo index (`index.yaml`) and the installer scripts (install-magasin.sh) which are not managed by quarto publication.
+
+The right way to release the website is to use [publish-web GitHub Action](https://github.com/unicef/magasin/actions/workflows/publish-web.yml) whose source code is in the file [.github/workflows/publish-web.yml](https://github.com/unicef/magasin/blob/main/.github/workflows/publish-web.yml) within the main repo.

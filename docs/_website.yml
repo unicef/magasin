@@ -98,7 +98,8 @@ website:
           - file: contributing/index.qmd
           - file: contributing/repository-workflows.qmd
           - file: contributing/documentation.qmd
-          - file: contributing/developer-recipes.qmd
+          - file: contributing/helm-repo-dev.qmd
+          - file: contributing/installer-dev.qmd
           - file: contributing/repositories.qmd
   page-footer: |
     [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) | Docs are licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) | [Privacy policy](/privacy.qmd) 
