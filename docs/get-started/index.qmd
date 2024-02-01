@@ -110,8 +110,8 @@ magasin-daskhub    proxy-797fc4d885-rrx4t                                       
 magasin-daskhub    traefik-daskhub-dask-gateway-6555db458-vp6xs                      1/1     Running     0               31m
 magasin-daskhub    user-scheduler-5d8967fc5f-bfjt9                                   1/1     Running     0               31m
 magasin-daskhub    user-scheduler-5d8967fc5f-tmn8r                                   1/1     Running     0               31m
-magasin-drill      drillbit-0                                                        0/1     Running     0               33m
-magasin-drill      drillbit-1                                                        0/1     Running     0               33m
+magasin-drill      drillbit-0                                                        1/1     Running     0               33m
+magasin-drill      drillbit-1                                                        1/1     Running     0               33m
 magasin-drill      zk-0                                                              1/1     Running     0               33m
 magasin-operator   console-654bf548c-5xf45                                           1/1     Running     0               30m
 magasin-operator   minio-operator-7496fbc5d9-j82ml                                   1/1     Running     0               30m
@@ -135,5 +135,6 @@ The default installation is fine for testing purposes, but for a production envi
 
 Ok, now you have a fully running instance of magasin in your kubernetes cluster, so what now:
 
-* [Tutorial: Start using magasin](../get-started/tutorial-overview.qmd)
-* [Magasin compoents and architecture](../architecture.qmd). Learn more about the the different components that come out of the box with magasin.
+* **[Start using magasin](../get-started/tutorial-overview.qmd)**. We have created a tutorial that will drive you through the typical steps for enabling a data informed decission organization using magasin.
+
+* Also, you can [learn more about the components and architecture of magasin](../architecture.qmd). Learn more about the the different components that come out of the box with magasin.
