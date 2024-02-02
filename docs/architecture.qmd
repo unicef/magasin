@@ -3,7 +3,6 @@ title: "Architecture"
 description-meta: "More about the architecture of magasin architecture"
 format: html
 ---
-# TODO: Complete
 
 Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a [kubernetes cluster](https://kubernetes.io).
 
@@ -25,7 +24,12 @@ Kubernetes is a container orchestration system designed to automate the deployme
 ## Helm charts 
 Magasin uses Kubernetes in combination with [Helm](https://helm.sh/), a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda, etc. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called **chart**.
 
+
+## Loosely-coupled architecture
+
 A fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.
+
+
 
 # Core components 
 
@@ -38,12 +42,11 @@ Dagster's Dagit UI provides visibility of pipelines' tasks, scheduling, run stat
 
 ## Cloud storage: MinIO
 
-TODO
+MinIO is an open-source, high-performance object storage system designed for cloud-native and containerized applications. Founded in 2014, MinIO offers an S3-compatible API, enabling seamless integration with existing cloud storage ecosystems. It is known for its simplicity, scalability, and speed, making it a popular choice for organizations seeking efficient data storage solutions. MinIO's architecture is optimized for modern data workloads, leveraging erasure coding and distributed techniques to ensure data resilience and high availability. With its lightweight footprint and easy deployment on standard hardware, MinIO empowers developers to build scalable storage infrastructures tailored to their specific needs, whether for on-premises, hybrid, or multi-cloud environments.
 
 ## Query engine: Apache Drill
 
 [Apache Drill](https://drill.apache.org/) is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.
-
 
 While [data marts](https://en.wikipedia.org/wiki/Data_mart) for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time. 
 
@@ -61,13 +64,3 @@ The multi-tenant JupyterHub component creates on-demand, isolated pods for authe
 ### Dask Gateway
 Dask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.
 
-
-References:
-
-* Jupyterhub - https://jupyterhub.readthedocs.io/en/stable/reference/index.html
-
-* Jupyterhub - kubernetes https://z2jh.jupyter.org/en/latest/index.html
-
-* Authentication for Jupyterhub https://oauthenticator.readthedocs.io/en/latest/index.html
-
-* AWS Public Sector Blog article on [Analyze terabyte-scale geospatial datasets with Dask and Jupyter on AWS](https://aws.amazon.com/blogs/publicsector/analyze-terabyte-scale-geospatial-datasets-with-dask-and-jupyter-on-aws/)
