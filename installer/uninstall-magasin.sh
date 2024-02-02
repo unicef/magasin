@@ -28,13 +28,13 @@ echo_debug() {
 # Function to display failure to comply with a condition.
 # Prepends and x. 
 echo_fail() {
-    printf "\033[31m \xE2\x9C\x97 %s\033[0m\n" "$@" # \e[31m sets the color to red, \e[0m resets the color
+    printf "\033[31m[ \xE2\x9C\x97 ]\033[0m %s\n" "$@" # \e[31m sets the color to red, \e[0m resets the color
 }
 
 
 # Function to display error messages in red. Prepends ERROR
 echo_error() {
-    printf " \033[31mERROR: %s\033[0m\n" "$@"
+    printf " [\033[31mERROR:\033[0m %s\n" "$@"
 }
 
 # Exit displaying how to debug
@@ -49,12 +49,12 @@ exit_error() {
 
 # Function to display messages in green
 echo_success() {
-  printf "\033[32m \xE2\x9C\x93 %s\033[0m\n" "$@"
+  printf "\033[32m[ \xE2\x9C\x93 ]\033[0m %s\n" "$@"
 }
 
 # Information message in blue
 echo_info() {
-  printf "\033[34m i %s\033[0m\n" "$@"
+  printf "\033[34m[ i ]\033[0m %s\n" "$@"
 }
 
 is_namespace() {
@@ -164,7 +164,7 @@ echo "-----------"
 not_working=false
 
 echo_info "Verifying pre-required commands are working..."
-if ! kubectl version &> /dev/null; then
+if ! kubectl &> /dev/null; then
   echo_error "The kubectl command ($(command -v "kubectl")) is not working properly."
   echo_error "Installation documentation:"
   echo_error "  - For Linux: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/"
@@ -219,7 +219,7 @@ function uninstall_chart {
   echo_info "helm uninstall $chart --namespace $namespace"
   helm uninstall $chart --namespace $namespace $HELM_DEBUG_FLAG
   if [[ $? -ne 0 ]]; then
-    echo_fail "Could not uninstall  magasin/$chart in the namespace $namespace"
+    echo_fail "Could not uninstall magasin/$chart in the namespace $namespace"
     #exit_error 7
   else 
     echo_success "magasin/$chart uninstalled from the namespace $namespace"
