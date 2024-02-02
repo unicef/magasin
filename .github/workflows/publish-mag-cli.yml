@@ -23,7 +23,7 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
+  release-to-pypi:
 
     runs-on: ubuntu-latest
 
@@ -41,9 +41,10 @@ jobs:
       run: |
         cd mag-cli
         python -m build
+        ls -la ./dist
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
       with:
-        packages-dir: mag-cli/dist/
+        packages_dir: mag-cli/dist/
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
