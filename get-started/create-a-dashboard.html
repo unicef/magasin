@@ -279,6 +279,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../end-user-guides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">End user guides</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -366,9 +372,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#setup-apache-drill-to-connect-to-minio" id="toc-setup-apache-drill-to-connect-to-minio" class="nav-link active" data-scroll-target="#setup-apache-drill-to-connect-to-minio"><span class="header-section-number">1</span> Setup Apache Drill to connect to MinIO</a></li>
-  <li><a href="#create-the-dashboard-in-apache-superset" id="toc-create-the-dashboard-in-apache-superset" class="nav-link" data-scroll-target="#create-the-dashboard-in-apache-superset"><span class="header-section-number">2</span> Create the Dashboard in Apache Superset</a></li>
-  <li><a href="#setting-up-the-drill-superset-database-connection" id="toc-setting-up-the-drill-superset-database-connection" class="nav-link" data-scroll-target="#setting-up-the-drill-superset-database-connection"><span class="header-section-number">3</span> Setting up the Drill-Superset database connection</a></li>
-  <li><a href="#creating-the-superset-dashboard" id="toc-creating-the-superset-dashboard" class="nav-link" data-scroll-target="#creating-the-superset-dashboard"><span class="header-section-number">4</span> Creating the Superset Dashboard</a></li>
+  <li><a href="#setting-up-the-drill-superset-database-connection" id="toc-setting-up-the-drill-superset-database-connection" class="nav-link" data-scroll-target="#setting-up-the-drill-superset-database-connection"><span class="header-section-number">2</span> Setting up the Drill-Superset database connection</a></li>
+  <li><a href="#creating-the-superset-dashboard" id="toc-creating-the-superset-dashboard" class="nav-link" data-scroll-target="#creating-the-superset-dashboard"><span class="header-section-number">3</span> Creating the Superset Dashboard</a></li>
+  <li><a href="#awesome" id="toc-awesome" class="nav-link" data-scroll-target="#awesome"><span class="header-section-number">4</span> Awesome!</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">5</span> What’s next</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/create-a-dashboard.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -465,12 +472,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="create-the-dashboard-in-apache-superset" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="create-the-dashboard-in-apache-superset"><span class="header-section-number">2</span> Create the Dashboard in Apache Superset</h2>
-<p>To create a dashboard in superset the first step is to create a new database connection to our Apache Drill instance.</p>
-</section>
-<section id="setting-up-the-drill-superset-database-connection" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="setting-up-the-drill-superset-database-connection"><span class="header-section-number">3</span> Setting up the Drill-Superset database connection</h2>
+<section id="setting-up-the-drill-superset-database-connection" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="setting-up-the-drill-superset-database-connection"><span class="header-section-number">2</span> Setting up the Drill-Superset database connection</h2>
 <ol type="1">
 <li><p>Lauch the Apache Superset user interface</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> superset ui</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -499,8 +502,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/s3?use_ssl=False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
-<section id="creating-the-superset-dashboard" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="creating-the-superset-dashboard"><span class="header-section-number">4</span> Creating the Superset Dashboard</h2>
+<section id="creating-the-superset-dashboard" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="creating-the-superset-dashboard"><span class="header-section-number">3</span> Creating the Superset Dashboard</h2>
+<p>Ok, so we are in the final sprint to achieve our goal, but before we start, let’s do a quick introduction on some basic concepts of superset.</p>
+<ul>
+<li>Superset is a tool for creating dashboards. Dashboards are composed by <em>Charts</em>.</li>
+<li>A chart is a graph that displays a some data that comes from a dataset.</li>
+<li>A dataset is a subset of the data that can be found in a database such as a table or, in our case a parquet file.</li>
+<li>A database is just a collection of tables, or in our case, a folder of parquet files.</li>
+</ul>
+<p>If you take a look at the top navigation bar of superset, you will see precisely those items: Dashboards, Charts and Datasets.</p>
+<p>Now that we have some basics, let’s create our dashboard:</p>
+<ol type="1">
+<li><p>Click on <strong>Dashboards</strong> at the top navigation bar, and then click on the ** + Dashboard** button</p>
+<p><img src="../images/get-started/superset-new-dashboard.png" class="img-fluid" alt="Dahsboards, new dashboard screenshot"> .</p></li>
+<li><p>Click on the <strong>+ Create new chart</strong></p></li>
+<li><p>In the new screen, click on <strong>add dataset</strong></p>
+<p><img src="../images/get-started/superset-create-chart.png" class="img-fluid" alt="Create chart page screenshot"> .</p></li>
+<li><p>Using the drop-downs, fill the data as in the image below:</p>
+<ul>
+<li>Database: <code>Apache Drill</code> (the one we just created earlier)</li>
+<li>Schema: <code>s3.data</code></li>
+<li>Table: <code>deployment_countries.parquet</code></li>
+</ul>
+<p><img src="../images/get-started/superset-add-dataset.png" class="img-fluid" alt="create the dataset screenshot"> .</p></li>
+<li><p>Click on <strong>Create dataset and create chart</strong> button</p></li>
+<li><p>In the list of chart types, select the <strong>Bar chart</strong>, and then <strong>Create new chart</strong></p>
+<p><img src="../images/get-started/superset-create-chart-select-chart.png" class="img-fluid" alt="Select the bar cahrt"> .</p></li>
+<li><p>Fill the data as in the image below:</p>
+<ul>
+<li>X-Axis: deploymentCountries: The main column in the X axis</li>
+<li>X-Axis sort by: COUNT_DISTINCT(name) - We’re goint to sort them by counting the DPGs deployed for each country</li>
+<li>Uncheck the X-Axis sort ascending – So we see first on the left the country with more DPGs deployed.</li>
+<li>Row limit: 10 – this will limit the number fo countries displayed to 10 (top ten)</li>
+</ul></li>
+<li><p>Click on <strong>Update chart</strong> button.</p></li>
+<li><p>Click on <strong>Save</strong> at the top right corner</p>
+<p><img src="../images/get-started/superset-chart-edition.png" class="img-fluid" alt="Filling the chart data"> .</p></li>
+<li><p>In the dialog box, give it a name and click on <strong>Save &amp; go to dashboard</strong></p>
+<p><img src="../images/get-started/superset-save-chart-dialog-box.png" class="img-fluid" alt="Save chart"> .</p></li>
+</ol>
+<table class="table">
+<colgroup>
+<col style="width: 8%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Congratulations!</strong> You have added your first chart to your dataset.</td>
+</tr>
+</tbody>
+</table>
+<p>As an exercise you can complete the dashboard and add some more charts so it looks like this image:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/get-started/superset-final-dashboard.png" class="img-fluid figure-img"></p>
+<figcaption>Superset Dashboard</figcaption>
+</figure>
+</div>
+<p>Alternatively, you can import it:</p>
+<ol type="1">
+<li><p>Download the file <a href="https://github.com/unicef/magasin/tree/main/examples/dpga-superset-dashboard/dpga-superset-dashboard.zip">dpga-superset-dashboard.zip</a>.</p></li>
+<li><p>In Dashboard, import the dashboard:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/get-started/superset-import-dashboard.png" class="img-fluid figure-img"></p>
+<figcaption>steps to import the dashboard</figcaption>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="awesome" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="awesome"><span class="header-section-number">4</span> Awesome!</h2>
+<p>Excellent, you have completed this getting started, in the course of it, you were able to explore a dataset, create a pipeline and present your insights in a nice dashboard.</p>
+</section>
+<section id="whats-next" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">5</span> What’s next</h2>
+<p>Magasin is composed by several mature open source components, mastering and setting them up to fulfill your organization requirements may require some time and practice.</p>
+<ul>
+<li><p><a href="../end-user-guides.html">End user guides</a>. If you want to learn more about from an end user perspective on how to use some of the components of magasin.</p></li>
+<li><p><a href="../deployment.html">Custom deployment and setup</a>. This documents has useful references if you need to learn more on how to deploy magasin within your organization.</p></li>
+</ul>
 
 
 </section>

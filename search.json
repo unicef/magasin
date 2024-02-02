@@ -36,8 +36,8 @@
     "objectID": "architecture.html#kubernetes-containerization",
     "href": "architecture.html#kubernetes-containerization",
     "title": "Architecture",
-    "section": "2.1 Kubernetes containerization",
-    "text": "2.1 Kubernetes containerization\nKubernetes is a container orchestration system designed to automate the deployment, scaling, and management of containerized applications. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.",
+    "section": "1.1 Kubernetes containerization",
+    "text": "1.1 Kubernetes containerization\nKubernetes is a container orchestration system designed to automate the deployment, scaling, and management of containerized applications. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.",
     "crumbs": [
       "Home",
       "Welcome",
@@ -48,8 +48,20 @@
     "objectID": "architecture.html#helm-charts",
     "href": "architecture.html#helm-charts",
     "title": "Architecture",
-    "section": "2.2 Helm charts",
-    "text": "2.2 Helm charts\nMagasin uses Kubernetes in combination with Helm, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda, etc. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called chart.\nA fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.",
+    "section": "1.2 Helm charts",
+    "text": "1.2 Helm charts\nMagasin uses Kubernetes in combination with Helm, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda, etc. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called chart.",
+    "crumbs": [
+      "Home",
+      "Welcome",
+      "Architecture"
+    ]
+  },
+  {
+    "objectID": "architecture.html#loosely-coupled-architecture",
+    "href": "architecture.html#loosely-coupled-architecture",
+    "title": "Architecture",
+    "section": "1.3 Loosely-coupled architecture",
+    "text": "1.3 Loosely-coupled architecture\nA fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.",
     "crumbs": [
       "Home",
       "Welcome",
@@ -60,8 +72,8 @@
     "objectID": "architecture.html#ingestion-dagster",
     "href": "architecture.html#ingestion-dagster",
     "title": "Architecture",
-    "section": "3.1 Ingestion: Dagster",
-    "text": "3.1 Ingestion: Dagster\nThe Dagster framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster.\n\n3.1.1 Dagit\nDagster’s Dagit UI provides visibility of pipelines’ tasks, scheduling, run status, materialized assets, resources, and modes.",
+    "section": "2.1 Ingestion: Dagster",
+    "text": "2.1 Ingestion: Dagster\nThe Dagster framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster.\n\n2.1.1 Dagit\nDagster’s Dagit UI provides visibility of pipelines’ tasks, scheduling, run status, materialized assets, resources, and modes.",
     "crumbs": [
       "Home",
       "Welcome",
@@ -72,8 +84,8 @@
     "objectID": "architecture.html#cloud-storage-minio",
     "href": "architecture.html#cloud-storage-minio",
     "title": "Architecture",
-    "section": "3.2 Cloud storage: MinIO",
-    "text": "3.2 Cloud storage: MinIO\nTODO",
+    "section": "2.2 Cloud storage: MinIO",
+    "text": "2.2 Cloud storage: MinIO\nMinIO is an open-source, high-performance object storage system designed for cloud-native and containerized applications. Founded in 2014, MinIO offers an S3-compatible API, enabling seamless integration with existing cloud storage ecosystems. It is known for its simplicity, scalability, and speed, making it a popular choice for organizations seeking efficient data storage solutions. MinIO’s architecture is optimized for modern data workloads, leveraging erasure coding and distributed techniques to ensure data resilience and high availability. With its lightweight footprint and easy deployment on standard hardware, MinIO empowers developers to build scalable storage infrastructures tailored to their specific needs, whether for on-premises, hybrid, or multi-cloud environments.",
     "crumbs": [
       "Home",
       "Welcome",
@@ -84,8 +96,8 @@
     "objectID": "architecture.html#query-engine-apache-drill",
     "href": "architecture.html#query-engine-apache-drill",
     "title": "Architecture",
-    "section": "3.3 Query engine: Apache Drill",
-    "text": "3.3 Query engine: Apache Drill\nApache Drill is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.\nWhile data marts for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time.\nInstead, a Dagster ingestion and transformation pipeline stores an ‘analyst-ready’ dataset that Apache Drill can query directly.",
+    "section": "2.3 Query engine: Apache Drill",
+    "text": "2.3 Query engine: Apache Drill\nApache Drill is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.\nWhile data marts for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time.\nInstead, a Dagster ingestion and transformation pipeline stores an ‘analyst-ready’ dataset that Apache Drill can query directly.",
     "crumbs": [
       "Home",
       "Welcome",
@@ -96,8 +108,8 @@
     "objectID": "architecture.html#dashboards-apache-superset",
     "href": "architecture.html#dashboards-apache-superset",
     "title": "Architecture",
-    "section": "3.4 Dashboards: Apache Superset",
-    "text": "3.4 Dashboards: Apache Superset\nApache Superset is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.",
+    "section": "2.4 Dashboards: Apache Superset",
+    "text": "2.4 Dashboards: Apache Superset\nApache Superset is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.",
     "crumbs": [
       "Home",
       "Welcome",
@@ -108,8 +120,8 @@
     "objectID": "architecture.html#notebook-environment-daskhub",
     "href": "architecture.html#notebook-environment-daskhub",
     "title": "Architecture",
-    "section": "3.5 Notebook environment: Daskhub",
-    "text": "3.5 Notebook environment: Daskhub\nDaskhub is a Helm chart to easily install JupyterHub and Dask Gateway for multiple users on a Kubernetes cluster.\n\n3.5.1 JupyterHub\nThe multi-tenant JupyterHub component creates on-demand, isolated pods for authenticated users, each with persistent storage for their R and Python notebook workspace.\n\n\n3.5.2 Dask Gateway\nDask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.\nReferences:\n\nJupyterhub - https://jupyterhub.readthedocs.io/en/stable/reference/index.html\nJupyterhub - kubernetes https://z2jh.jupyter.org/en/latest/index.html\nAuthentication for Jupyterhub https://oauthenticator.readthedocs.io/en/latest/index.html\nAWS Public Sector Blog article on Analyze terabyte-scale geospatial datasets with Dask and Jupyter on AWS",
+    "section": "2.5 Notebook environment: Daskhub",
+    "text": "2.5 Notebook environment: Daskhub\nDaskhub is a Helm chart to easily install JupyterHub and Dask Gateway for multiple users on a Kubernetes cluster.\n\n2.5.1 JupyterHub\nThe multi-tenant JupyterHub component creates on-demand, isolated pods for authenticated users, each with persistent storage for their R and Python notebook workspace.\n\n\n2.5.2 Dask Gateway\nDask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.",
     "crumbs": [
       "Home",
       "Welcome",
@@ -121,28 +133,44 @@
     "href": "end-user-guides.html",
     "title": "End user guides",
     "section": "",
-    "text": "Each of the open source components included in magasin has its onw end user documentation."
+    "text": "Each of the open source components included in magasin has its onw end user documentation.",
+    "crumbs": [
+      "Home",
+      "End user guides"
+    ]
   },
   {
     "objectID": "end-user-guides.html#dagster",
     "href": "end-user-guides.html#dagster",
     "title": "End user guides",
     "section": "1 Dagster",
-    "text": "1 Dagster\n\nGetting started\nDagster University"
+    "text": "1 Dagster\n\nGetting started\nDagster University",
+    "crumbs": [
+      "Home",
+      "End user guides"
+    ]
   },
   {
     "objectID": "end-user-guides.html#jupyter-hub",
     "href": "end-user-guides.html#jupyter-hub",
     "title": "End user guides",
     "section": "2 Jupyter Hub",
-    "text": "2 Jupyter Hub\n\nProject Jupyter Documentation"
+    "text": "2 Jupyter Hub\n\nProject Jupyter Documentation",
+    "crumbs": [
+      "Home",
+      "End user guides"
+    ]
   },
   {
     "objectID": "end-user-guides.html#apache-superset",
     "href": "end-user-guides.html#apache-superset",
     "title": "End user guides",
     "section": "3 Apache Superset",
-    "text": "3 Apache Superset\n\nCreating your first dashboard\nExploring data in superset"
+    "text": "3 Apache Superset\n\nCreating your first dashboard\nExploring data in superset",
+    "crumbs": [
+      "Home",
+      "End user guides"
+    ]
   },
   {
     "objectID": "install/advanced.html",
@@ -365,7 +393,7 @@
     "href": "get-started/automate-data-ingestion.html#create-a-bucket-in-minio",
     "title": "Step 2: Automate data ingestion",
     "section": "2 Create a bucket in MinIO",
-    "text": "2 Create a bucket in MinIO\nThe first thing we need to do is to setup where we are going to store our data. Till now, we’ve been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets.\nIn one command line shell launch the minio API\nmag minio api\nSet the [minio client] alias.\nmc alias set myminio http://localhost:9000 minio minio123\n# mc alias set &lt;alias-name&gt; &lt;endpoint&gt; &lt;access-key&gt; &lt;secret-key&gt;\nBehind the scenes magasin command line interface, mag, uses minio client command (mc) to create the bucket and this is a setup mc needs.\nOnce we have configured the alias, we just need to create the bucket:\n mag minio add bucket --bucket-name magasin \nNote that the default alias that mag asumes is myminio. If you used another alias you can use --alias option: mag minio add bucket --bucket-name magasin --alias myalias.\n\n\n\n\n\n\nTip: mag shortcuts\n\n\n\nmag allows you to shorten the commands using the alias. For example: mag minio add bucket --bucket-name magasin --alias myalias can be written as mag m a b -b magasin -a myalias. Using the shorten version is a way of speeding up your interaction with the command, but it is less readable.\nWhen you type mag --help or mag &lt;command&gt; --help you can see the shortcut versions in parenthesis\nFor example for mag --help, you can see that daskhub shortcut is dh and minio is m\nUsage: mag [OPTIONS] COMMAND [ARGS]...\n...\nCommands:\n  dagster (d)    Dagster commands\n  daskhub (dh)   Daskhub/Jupyterhub commands\n  drill (dr)     Apache Drill commands\n  minio (m)      MinIO commands\n  superset (ss)  Apache Superset commands\n\n\nNow, we have a bucket in MinIO that allows us to store files.",
+    "text": "2 Create a bucket in MinIO\nThe first thing we need to do is to setup where we are going to store our data. Till now, we’ve been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets.\nIn one command line shell launch the minio API\nmag minio api\nSet the minio client alias.\nmc alias set myminio http://localhost:9000 minio minio123\n# mc alias set &lt;alias-name&gt; &lt;endpoint&gt; &lt;access-key&gt; &lt;secret-key&gt;\nWhere mc is a tool similar to mag, but specific for minio. It is installed during the magasin installation.\nOnce we have configured the alias, we just need to create the bucket:\n mag minio add bucket --bucket-name magasin \nNote that the default alias that mag asumes is myminio. If you used another alias you can use --alias option: mag minio add bucket --bucket-name magasin --alias myalias.\n\n\n\n\n\n\nTip: mag shortcuts\n\n\n\nmag allows you to shorten the commands using the alias. For example: mag minio add bucket --bucket-name magasin --alias myalias can be written as mag m a b -b magasin -a myalias. Using the shorten version is a way of speeding up your interaction with the command, but it is less readable.\nWhen you type mag --help or mag &lt;command&gt; --help you can see the shortcut versions in parenthesis\nFor example for mag --help, you can see that daskhub shortcut is dh and minio is m\nUsage: mag [OPTIONS] COMMAND [ARGS]...\n...\nCommands:\n  dagster (d)    Dagster commands\n  daskhub (dh)   Daskhub/Jupyterhub commands\n  drill (dr)     Apache Drill commands\n  minio (m)      MinIO commands\n  superset (ss)  Apache Superset commands\n\n\nNow, we have a bucket in MinIO that allows us to store files.",
     "crumbs": [
       "Home",
       "Get started",
@@ -377,7 +405,7 @@
     "href": "get-started/automate-data-ingestion.html#create-a-dagster-pipeline",
     "title": "Step 2: Automate data ingestion",
     "section": "3 Create a dagster pipeline",
-    "text": "3 Create a dagster pipeline\nSo, the next step is to create a pipeline. A pipeline is just a piece of code that moves data from place to another and that can introduce some changes before saving it in the destination place. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.\nThe first thing we need to do is to install dagster.\npip install dagster==1.6.0 dagster-webserver==1.6.0\n\n\n\n\n\n\nNote\n\n\n\nDagster is a very agile product that is continuously evolving, this means that you have to be cognizant of the version you’re running.\nYou can check the version installed in your cluster by running helm list --all-namespaces and looking at the APP VERSION column.\nThen run pip install pip install dagster==&lt;version&gt;\n\n\n\n3.1 Add the pipeline code\nOnce dagster is installed, we’re going to create a new project using the default structure prodivded by dagster. This should be the default procedure for creating any new pipeline.\ndagster project scaffold --name dpga-pipeline\nCreating a Dagster project at /home/magasin/dpga-pipeline.\nCreating a Dagster code location at /home/magasin/dpga-pipeline.\nGenerated files for Dagster code location in /home/magasin/dpga-pipeline.\nGenerated files for Dagster project in /home/magasin/dpga-pipeline.\nSuccess! Created dpga-pipeline at /home/magasin/dpga-pipeline.\nBy scaffolding our project, dagster creates a basic structure of a python package that could be installed using pip as any other package as well as some additional metadata files that will be used by dagster to run the pipeline. You ahve some more info in the dagster documentation.\nNow, lets add our code. Open the file dpga-pipeline/dpga_pipeline/assets.py\n\n\ndpga-pipeline/dpga_pipeline/assets.py\n\nimport requests\nimport pandas as pd\nfrom pandas import DataFrame\n\nfrom dagster import asset\n\n@asset\ndef raw_dpgs() -&gt; DataFrame:\n  \"\"\" DPGs data from the API\"\"\"\n  dpgs_json_dict = requests.get(\"https://api.digitalpublicgoods.net/dpgs\").json()\n  df = pd.DataFrame.from_dict(dpgs_json_dict)\n  return df\n\n@asset\ndef deployment_countries(raw_dpgs: DataFrame) -&gt; DataFrame:\n  df = raw_dpgs\n  df_loc = pd.merge(df, pd.json_normalize(df[\"locations\"]), left_index=True, right_index=True)\n  df_deployment_countries = df_loc.explode(\"deploymentCountries\")\n  df_deployment_countries[[\"name\",\"deploymentCountries\"]]\n\n  return df_deployment_countries\n\nAs you can see the code seems pretty similar to what we wrote in our exploratory analysis.\nThe in the code we have defined two @assets. An asset according to the dagster definition is:\n\nAn asset is an object in persistent storage, such as a table, file, or persisted machine learning model. A Software-defined Asset is a Dagster object that couples an asset to the function and upstream assets used to produce its contents.\n\nIn our case, raw_dpgs, stores the dpgs as they come from the API as a DataFrame, and deployment_countries that extracts the one row per country in which the DPG has been deplayed.\nAnother thing that you can notice in the code is that in the definition of the deployment_countries asset, we are passing raw_dpgs: DataFrame. That will tell dagster that deployment_countries depends on the raw_dpgs and it will be used as input.\nAs you noticed, we are using a couple of packages that need to be installed pandas and requests. To install them, in dpga-pipeline/setup.py we add them in the install_requires array.\n\n\ndagster-pipeline/setup.py\n\nsetup(\n  # ...\n  install_requires=[\n        \"dagster\",\n        \"dagster-cloud\",\n        \"pandas\",       # &lt;--- Add this line \n        \"requests\"      # &lt;---- Add this line too\n    ],\n  #...\n)\n\nOk, So now let’s test if this is working so far. To do that we will first install the pipeline package in editable mode (-e). This allows you to edit the package without needing to install it again.\npip install -e '.[dev]'\nThen, we will launch the dagster user interface:\ndagster dev\nThis launches a server in port 3000 on localhost. So just open http://localhost:3000\nYou should see something like:\n\n\n\nDagster user interface\n\n\n\n3.1.1 Save the assets in MinIO.\nTill now, we’ve been working on the development machine file system. The next step is to save the information we want to keep in MinIO.\nTo access the MinIO bucket we will use fsspec. This python library provides an standard interface regardless of the underlying filesystem. So, if you chose to use other file system to run this example, you can just change the environment variables and the address.\nMinIO provides an S3 compatible bucket file system, so we will use it. First we will add the dependencies fsspec and s3fs.\n\n\ndagster-pipeline/setup.py\n\nsetup(\n   #...\n    install_requires=[\n        \"dagster\",\n        \"dagster-cloud\",\n        \"pandas\",\n        \"requests\",\n        \"fsspec\",   # &lt;---- New dependency\n        \"s3fs\"      # &lt;---- New dependency\n    ],\n    #...\n)\n\nNow, we’re going to modify our assets to use the minio filesystem.\n\n\ndpga-pipeline/dpga_pipeline/assets.py\n\nimport fsspec\nimport requests\nimport pandas as pd\nfrom pandas import DataFrame\nfrom dagster import asset\n\n@asset\ndef raw_dpgs() -&gt; DataFrame:\n  \"\"\" DPGs data from the API\"\"\"\n  # Load from API\n  dpgs_json_dict = requests.get(\"https://api.digitalpublicgoods.net/dpgs\").json()  \n\n  # Convert to pandas dataframe\n  df = pd.DataFrame.from_dict(dpgs_json_dict)\n  return df\n\n@asset\ndef deployment_countries(raw_dpgs: DataFrame) -&gt; DataFrame:\n   \n  df = raw_dpgs\n  df_loc = pd.merge(df, pd.json_normalize(df[\"locations\"]), left_index=True, right_index=True)\n  df_deployment_countries = df_loc.explode(\"deploymentCountries\")\n  df_deployment_countries = df_deployment_countries[[\"id\", \"name\",\"deploymentCountries\"]]\n  \n  # Save to MinIO\n  fs= fsspec.filesystem('s3')\n  with fs.open('/magasin/data/deployment_countries.parquet','wb') as f:\n    df_deployment_countries.to_parquet(f)\n    \n  return df_deployment_countries\n\nThen, we will setup some environment variables that will setup the Minio S3 bucket credentials. Add the .env file in the root of your project (same folder as setup.py).\nFSSPEC_S3_ENDPOINT_URL='http://localhost:9000'\nFSSPEC_S3_KEY='minio'\nFSSPEC_S3_SECRET='minio123'\nAs you can see we are indicating in the .env file that the endpoint of our minio is in localhost port 9000. To enable this service we need to run the following command\nmag minio api\nWhile this command is running it will forward any connection to the port 9000 to the our minio instance in the kubernetes cluster. You shoud keep running during this till you are instructed to do close it.\nIn another window, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run dagster:\n\npip install -e '.[dev]'\ndagster dev\nNote that after you launch dagster dev you should see something like:\ndagster - INFO - Loaded environment variables from .env file: FSSPEC_S3_ENDPOINT_URL,FSSPEC_S3_KEY,FSSPEC_S3_SECRET\nThis is because Dagster loads all the .env file automatically and exposes the variables to the code.\nOpen again the browser pointing to http://localhost:3000 and in the dagster UI and run Materialize all.\nThis time, all files should have been materialized in the magasin bucket.\nTo test if the files are there. In a terminal run:\nsource .env\nexport FSSPEC_S3_ENDPOINT_URL FSSPEC_S3_KEY FSSPEC_S3_SECRET\npython\nAnd then type these lines\nimport fsspec \nfs = fsspec.filesystem('s3')\nfs.ls(\"magasin\")\n# You should see the names of the file 'magasin/deployment_countries.parquet'\nexit()\n\n\n\n3.2 Adding a scheduler\nUntil now, we have been materializing manually our assets. However, automating this task is indeed the ultimate goal of setting a pipeline.\nIn dagster, you have available schedulers which basically run your pipeline, or pieces of it, in a fixed interval. Dagster schedulers follow a cron style format.\n#__init__.py\n\nHere you have some examples of cron intervals\n# Scheduler code\n\n\n3.3 Deploy the pipeline in the cluster\nTill now we have been working on a development environment on our computer. However what we want is to send our pipeline to be\nNow we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in dagster terminology)\nhelm upgrade dagster --namespace magasin-dagster -f\nTo open the dagster user interface of the instance running in our Kubernetes cluster we need to run\nmag dagster ui\nTo check",
+    "text": "3 Create a dagster pipeline\nSo, the next step is to create a pipeline. A pipeline is just a piece of code that moves data from place to another and that can introduce some changes before saving it in the destination place. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.\nThe first thing we need to do is to install dagster.\npip install dagster==1.6.0 dagster-webserver==1.6.0\n\n\n\n\n\n\nNote\n\n\n\nDagster is a very agile product that is continuously evolving, this means that you have to be cognizant of the version you’re running.\nYou can check the version installed in your cluster by running helm list --all-namespaces and looking at the APP VERSION column.\nThen run pip install pip install dagster==&lt;version&gt;\n\n\n\n3.1 Add the pipeline code\nOnce dagster is installed, we’re going to create a new project using the default structure prodivded by dagster. This should be the default procedure for creating any new pipeline.\ndagster project scaffold --name dpga-pipeline\nCreating a Dagster project at /home/magasin/dpga-pipeline.\nCreating a Dagster code location at /home/magasin/dpga-pipeline.\nGenerated files for Dagster code location in /home/magasin/dpga-pipeline.\nGenerated files for Dagster project in /home/magasin/dpga-pipeline.\nSuccess! Created dpga-pipeline at /home/magasin/dpga-pipeline.\nBy scaffolding our project, dagster creates a basic structure of a python package that could be installed using pip as any other package as well as some additional metadata files that will be used by dagster to run the pipeline. You ahve some more info in the dagster documentation.\nNow, lets add our code. Open the file dpga-pipeline/dpga_pipeline/assets.py\n\n\ndpga-pipeline/dpga_pipeline/assets.py\n\nimport requests\nimport pandas as pd\nfrom pandas import DataFrame\n\nfrom dagster import asset\n\n@asset\ndef raw_dpgs() -&gt; DataFrame:\n  \"\"\" DPGs data from the API\"\"\"\n  dpgs_json_dict = requests.get(\"https://api.digitalpublicgoods.net/dpgs\").json()\n  df = pd.DataFrame.from_dict(dpgs_json_dict)\n  return df\n\n@asset\ndef deployment_countries(raw_dpgs: DataFrame) -&gt; DataFrame:\n  df = raw_dpgs\n  df_loc = pd.merge(df, pd.json_normalize(df[\"locations\"]), left_index=True, right_index=True)\n  df_deployment_countries = df_loc.explode(\"deploymentCountries\")\n  df_deployment_countries[[\"name\",\"deploymentCountries\"]]\n\n  return df_deployment_countries\n\nAs you can see the code seems pretty similar to what we wrote in our exploratory analysis.\nThe in the code we have defined two @assets. An asset according to the dagster definition is:\n\nAn asset is an object in persistent storage, such as a table, file, or persisted machine learning model. A Software-defined Asset is a Dagster object that couples an asset to the function and upstream assets used to produce its contents.\n\nIn our case, raw_dpgs, stores the dpgs as they come from the API as a DataFrame, and deployment_countries that extracts the one row per country in which the DPG has been deplayed.\nAnother thing that you can notice in the code is that in the definition of the deployment_countries asset, we are passing raw_dpgs: DataFrame. That will tell dagster that deployment_countries depends on the raw_dpgs and it will be used as input.\nAs you noticed, we are using a couple of packages that need to be installed pandas and requests. To install them, in dpga-pipeline/setup.py we add them in the install_requires array.\n\n\ndagster-pipeline/setup.py\n\nsetup(\n  # ...\n  install_requires=[\n        \"dagster\",\n        \"dagster-cloud\",\n        \"pandas\",       # &lt;--- Add this line \n        \"requests\"      # &lt;---- Add this line too\n    ],\n  #...\n)\n\nOk, So now let’s test if this is working so far. To do that we will first install the pipeline package in editable mode (-e). This allows you to edit the package without needing to install it again.\npip install -e '.[dev]'\nThen, we will launch the dagster user interface:\ndagster dev\nThis launches a server in port 3000 on localhost. So just open http://localhost:3000\nYou should see something like:\n\n\n\nDagster user interface\n\n\n\n3.1.1 Save the assets in MinIO.\nTill now, we’ve been working on the development machine file system. The next step is to save the information we want to keep in MinIO.\nTo access the MinIO bucket we will use fsspec. This python library provides an standard interface regardless of the underlying filesystem. So, if you chose to use other file system to run this example, you can just change the environment variables and the address.\nMinIO provides an S3 compatible bucket file system, so we will use it. First we will add the dependencies fsspec and s3fs.\n\n\ndagster-pipeline/setup.py\n\nsetup(\n   #...\n    install_requires=[\n        \"dagster\",\n        \"dagster-cloud\",\n        \"pandas\",\n        \"requests\",\n        \"fsspec\",   # &lt;---- New dependency\n        \"s3fs\"      # &lt;---- New dependency\n    ],\n    #...\n)\n\nNow, we’re going to modify our assets to use the minio filesystem.\n\n\ndpga-pipeline/dpga_pipeline/assets.py\n\nimport fsspec\nimport requests\nimport pandas as pd\nfrom pandas import DataFrame\nfrom dagster import asset\n\n@asset\ndef raw_dpgs() -&gt; DataFrame:\n  \"\"\" DPGs data from the API\"\"\"\n  # Load from API\n  dpgs_json_dict = requests.get(\"https://api.digitalpublicgoods.net/dpgs\").json()  \n\n  # Convert to pandas dataframe\n  df = pd.DataFrame.from_dict(dpgs_json_dict)\n  return df\n\n@asset\ndef deployment_countries(raw_dpgs: DataFrame) -&gt; DataFrame:\n   \n  df = raw_dpgs\n  df_loc = pd.merge(df, pd.json_normalize(df[\"locations\"]), left_index=True, right_index=True)\n  df_deployment_countries = df_loc.explode(\"deploymentCountries\")\n  df_deployment_countries = df_deployment_countries[[\"id\", \"name\",\"deploymentCountries\"]]\n  \n  # Save to MinIO\n  fs= fsspec.filesystem('s3')\n  with fs.open('/magasin/data/deployment_countries.parquet','wb') as f:\n    df_deployment_countries.to_parquet(f)\n    \n  return df_deployment_countries\n\nThen, we will setup some environment variables that will setup the Minio S3 bucket credentials. Add the .env file in the root of your project (same folder as setup.py).\nFSSPEC_S3_ENDPOINT_URL='http://localhost:9000'\nFSSPEC_S3_KEY='minio'\nFSSPEC_S3_SECRET='minio123'\nAs you can see we are indicating in the .env file that the endpoint of our minio is in localhost port 9000. To enable this service we need to run the following command\nmag minio api\nWhile this command is running it will forward any connection to the port 9000 to the our minio instance in the kubernetes cluster. You shoud keep running during this till you are instructed to do close it.\nIn another window, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run dagster:\n\npip install -e '.[dev]'\ndagster dev\nNote that after you launch dagster dev you should see something like:\ndagster - INFO - Loaded environment variables from .env file: FSSPEC_S3_ENDPOINT_URL,FSSPEC_S3_KEY,FSSPEC_S3_SECRET\nThis is because Dagster loads all the .env file automatically and exposes the variables to the code.\nOpen again the browser pointing to http://localhost:3000 and in the dagster UI and run Materialize all.\nThis time, all files should have been materialized in the magasin bucket.\nTo test if the files are there. In a terminal run:\nmc ls myminio/magasin/data\n\n\n\n3.2 Adding a scheduler\nUntil now, we have been materializing manually our assets. However, automating this task is indeed the ultimate goal of setting a pipeline.\nIn dagster, you have available schedulers which basically run your pipeline, or pieces of it, in a fixed interval. Dagster schedulers follow a cron style format.\n#__init__.py\n\nHere you have some examples of cron intervals\n# Scheduler code\n\n\n3.3 Deploy the pipeline in the cluster\nTill now we have been working on a development environment on our computer. However what we want is to send our pipeline to be\nNow we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in dagster terminology)\nhelm upgrade dagster --namespace magasin-dagster -f\nTo open the dagster user interface of the instance running in our Kubernetes cluster we need to run\nmag dagster ui\nTo check",
     "crumbs": [
       "Home",
       "Get started",
@@ -433,23 +461,11 @@
     ]
   },
   {
-    "objectID": "get-started/create-a-dashboard.html#create-the-dashboard-in-apache-superset",
-    "href": "get-started/create-a-dashboard.html#create-the-dashboard-in-apache-superset",
-    "title": "Step 3: Create a dashboard",
-    "section": "2 Create the Dashboard in Apache Superset",
-    "text": "2 Create the Dashboard in Apache Superset\nTo create a dashboard in superset the first step is to create a new database connection to our Apache Drill instance.",
-    "crumbs": [
-      "Home",
-      "Get started",
-      "Step 3: Create a dashboard"
-    ]
-  },
-  {
     "objectID": "get-started/create-a-dashboard.html#setting-up-the-drill-superset-database-connection",
     "href": "get-started/create-a-dashboard.html#setting-up-the-drill-superset-database-connection",
     "title": "Step 3: Create a dashboard",
-    "section": "3 Setting up the Drill-Superset database connection",
-    "text": "3 Setting up the Drill-Superset database connection\n\nLauch the Apache Superset user interface\nmag superset ui\nAs credentials, enter admin / admin\n\n\n\nSuperset login page:\n\n\n.\nGo to top right corner and go to Settings &gt; Database connections\n .\nClick on the + Database &gt; Select Apache Drill as database\n .\nAdd the below SQLAlechemy URI and, then, click on Test the connection.\ndrill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/dfs?use_ssl=False\n\n\n\nTest connection\n\n\nThis is a connection that comes out of the box with Apache Drill. If this works, it means that superset has access to Apache Drill. Now, we will use the storage we created earlier, the s3 connection.\nIf the connection suceeds, replace the string with the following and click on Test the connection\ndrill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/s3?use_ssl=False",
+    "section": "2 Setting up the Drill-Superset database connection",
+    "text": "2 Setting up the Drill-Superset database connection\n\nLauch the Apache Superset user interface\nmag superset ui\nAs credentials, enter admin / admin\n\n\n\nSuperset login page:\n\n\n.\nGo to top right corner and go to Settings &gt; Database connections\n .\nClick on the + Database &gt; Select Apache Drill as database\n .\nAdd the below SQLAlechemy URI and, then, click on Test the connection.\ndrill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/dfs?use_ssl=False\n\n\n\nTest connection\n\n\nThis is a connection that comes out of the box with Apache Drill. If this works, it means that superset has access to Apache Drill. Now, we will use the storage we created earlier, the s3 connection.\nIf the connection suceeds, replace the string with the following and click on Test the connection\ndrill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/s3?use_ssl=False",
     "crumbs": [
       "Home",
       "Get started",
@@ -460,8 +476,32 @@
     "objectID": "get-started/create-a-dashboard.html#creating-the-superset-dashboard",
     "href": "get-started/create-a-dashboard.html#creating-the-superset-dashboard",
     "title": "Step 3: Create a dashboard",
-    "section": "4 Creating the Superset Dashboard",
-    "text": "4 Creating the Superset Dashboard",
+    "section": "3 Creating the Superset Dashboard",
+    "text": "3 Creating the Superset Dashboard\nOk, so we are in the final sprint to achieve our goal, but before we start, let’s do a quick introduction on some basic concepts of superset.\n\nSuperset is a tool for creating dashboards. Dashboards are composed by Charts.\nA chart is a graph that displays a some data that comes from a dataset.\nA dataset is a subset of the data that can be found in a database such as a table or, in our case a parquet file.\nA database is just a collection of tables, or in our case, a folder of parquet files.\n\nIf you take a look at the top navigation bar of superset, you will see precisely those items: Dashboards, Charts and Datasets.\nNow that we have some basics, let’s create our dashboard:\n\nClick on Dashboards at the top navigation bar, and then click on the ** + Dashboard** button\n .\nClick on the + Create new chart\nIn the new screen, click on add dataset\n .\nUsing the drop-downs, fill the data as in the image below:\n\nDatabase: Apache Drill (the one we just created earlier)\nSchema: s3.data\nTable: deployment_countries.parquet\n\n .\nClick on Create dataset and create chart button\nIn the list of chart types, select the Bar chart, and then Create new chart\n .\nFill the data as in the image below:\n\nX-Axis: deploymentCountries: The main column in the X axis\nX-Axis sort by: COUNT_DISTINCT(name) - We’re goint to sort them by counting the DPGs deployed for each country\nUncheck the X-Axis sort ascending – So we see first on the left the country with more DPGs deployed.\nRow limit: 10 – this will limit the number fo countries displayed to 10 (top ten)\n\nClick on Update chart button.\nClick on Save at the top right corner\n .\nIn the dialog box, give it a name and click on Save & go to dashboard\n .\n\n\n\n\n\n\n\nCongratulations! You have added your first chart to your dataset.\n\n\n\nAs an exercise you can complete the dashboard and add some more charts so it looks like this image:\n\n\n\nSuperset Dashboard\n\n\nAlternatively, you can import it:\n\nDownload the file dpga-superset-dashboard.zip.\nIn Dashboard, import the dashboard:\n\n\n\nsteps to import the dashboard",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 3: Create a dashboard"
+    ]
+  },
+  {
+    "objectID": "get-started/create-a-dashboard.html#awesome",
+    "href": "get-started/create-a-dashboard.html#awesome",
+    "title": "Step 3: Create a dashboard",
+    "section": "4 Awesome!",
+    "text": "4 Awesome!\nExcellent, you have completed this getting started, in the course of it, you were able to explore a dataset, create a pipeline and present your insights in a nice dashboard.",
+    "crumbs": [
+      "Home",
+      "Get started",
+      "Step 3: Create a dashboard"
+    ]
+  },
+  {
+    "objectID": "get-started/create-a-dashboard.html#whats-next",
+    "href": "get-started/create-a-dashboard.html#whats-next",
+    "title": "Step 3: Create a dashboard",
+    "section": "5 What’s next",
+    "text": "5 What’s next\nMagasin is composed by several mature open source components, mastering and setting them up to fulfill your organization requirements may require some time and practice.\n\nEnd user guides. If you want to learn more about from an end user perspective on how to use some of the components of magasin.\nCustom deployment and setup. This documents has useful references if you need to learn more on how to deploy magasin within your organization.",
     "crumbs": [
       "Home",
       "Get started",
@@ -641,7 +681,31 @@
     "href": "why-magasin.html",
     "title": "Why magasin?",
     "section": "",
-    "text": "1 TODO\nWrite down the reasoning behind creating magasin that we’ve used - complex landscape - open source\n\ngood value for money\n\netc.",
+    "text": "In today’s data-informe world, governments and organizations face a monumental challenge: fragmented data spread across siloed systems. Departments, divisions, and units gather data independently, leading to inefficiencies and risks:\n\n\n\nTool Fragmentation: Organizations, especially those without centralized structures, struggle with diverse technologies across teams, hindering resource mobility and causing technology duplication.\nCapacity Issues: Siloed work exacerbates resource allocation challenges, limiting the organization’s overall potential.\n\n\n\n\n\nSecurity Concerns: Without secure data storage and sharing mechanisms, organizations risk data breaches and unauthorized access to sensitive information.\n\n\n\n\n\nLack of Comprehensive Insights: Siloed data prevents organizations from gaining a holistic understanding of their operations and stakeholders, leading to shortsighted decision-making.\n\nTo overcome these challenges and unlock the full potential of modern data analysis, machine learning, and artificial intelligence, organizations need a comprehensive set of tools.",
+    "crumbs": [
+      "Home",
+      "Welcome",
+      "Why magasin?"
+    ]
+  },
+  {
+    "objectID": "why-magasin.html#the-challenge",
+    "href": "why-magasin.html#the-challenge",
+    "title": "Why magasin?",
+    "section": "",
+    "text": "In today’s data-informe world, governments and organizations face a monumental challenge: fragmented data spread across siloed systems. Departments, divisions, and units gather data independently, leading to inefficiencies and risks:\n\n\n\nTool Fragmentation: Organizations, especially those without centralized structures, struggle with diverse technologies across teams, hindering resource mobility and causing technology duplication.\nCapacity Issues: Siloed work exacerbates resource allocation challenges, limiting the organization’s overall potential.\n\n\n\n\n\nSecurity Concerns: Without secure data storage and sharing mechanisms, organizations risk data breaches and unauthorized access to sensitive information.\n\n\n\n\n\nLack of Comprehensive Insights: Siloed data prevents organizations from gaining a holistic understanding of their operations and stakeholders, leading to shortsighted decision-making.\n\nTo overcome these challenges and unlock the full potential of modern data analysis, machine learning, and artificial intelligence, organizations need a comprehensive set of tools.",
+    "crumbs": [
+      "Home",
+      "Welcome",
+      "Why magasin?"
+    ]
+  },
+  {
+    "objectID": "why-magasin.html#marketplace-gaps",
+    "href": "why-magasin.html#marketplace-gaps",
+    "title": "Why magasin?",
+    "section": "Marketplace gaps",
+    "text": "Marketplace gaps\nWhen we go to the global market we find gaps.\n\nOverwhelming landscape\n\n\n\nBig Data Landascape 2019 by Matt Turck. Source\n\n\nEntering the world of data can be daunting, with a myriad of products each requiring trade-offs.\n\n\nLeaders are solving a specific problems set\nMost data systems are optimized for massive scale and low-latency, crucial for time-sensitive tasks like targeted advertising. However, not all organizations face such time-pressured scenarios.\n\n\nWith systems that require a high cost entry\nIt is important to note that these data systems are not designed for low-end hardware or low cost of entry, further complicating the landscape for organizations exploring data solutions without having a deep pocket.\n\n\nThat are proprietary\nTraditional end-to-end data platforms often come with proprietary restrictions, limiting flexibility and tying organizations to specific cloud vendors or industry niches.\nThis presents significant challenges for entities with decentralized structures and external collaborations, in particularly, UNICEF’s government partners who demand a cloud-agnostic, open-source solution that delivers maximum value for their investment.",
     "crumbs": [
       "Home",
       "Welcome",
@@ -1098,7 +1162,43 @@
     "href": "docs-home.html",
     "title": "Magasin documentation",
     "section": "",
-    "text": "1 TODO\nSome intro of magasin, and the main categories to get started,\n\nmore details about magasin\nget started\nAmnisitrator guides Main page",
+    "text": "Magasin is the cloud native open-source end-to-end data platform. Magasin enables organizations to perform of automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale.",
+    "crumbs": [
+      "Home",
+      "Welcome",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "docs-home.html#learn-more-about-magasin",
+    "href": "docs-home.html#learn-more-about-magasin",
+    "title": "Magasin documentation",
+    "section": "1 Learn more about magasin",
+    "text": "1 Learn more about magasin\n\nWhy magasin?\nArchitecture",
+    "crumbs": [
+      "Home",
+      "Welcome",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "docs-home.html#start-using-magasin",
+    "href": "docs-home.html#start-using-magasin",
+    "title": "Magasin documentation",
+    "section": "2 Start using magasin",
+    "text": "2 Start using magasin\n\nGet Started. Quick\nInstallation. More detailed explanation of the base installatin.\nEnd user guides. References to learn how to use the components\nDeployment. Learn more on the configuration of the different components.",
+    "crumbs": [
+      "Home",
+      "Welcome",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "docs-home.html#develop-magasin",
+    "href": "docs-home.html#develop-magasin",
+    "title": "Magasin documentation",
+    "section": "3 Develop magasin",
+    "text": "3 Develop magasin\n\nContributing. For developers and contributors.",
     "crumbs": [
       "Home",
       "Welcome",
