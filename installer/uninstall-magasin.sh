@@ -28,7 +28,7 @@ echo_debug() {
 # Function to display failure to comply with a condition.
 # Prepends and x. 
 echo_fail() {
-    printf "[\033[31m \xE2\x9C\x97 \033[0m] %s\n" "$@" # \e[31m sets the color to red, \e[0m resets the color
+    printf "\033[31m[ \xE2\x9C\x97 ]\033[0m %s\n" "$@" # \e[31m sets the color to red, \e[0m resets the color
 }
 
 
@@ -49,12 +49,12 @@ exit_error() {
 
 # Function to display messages in green
 echo_success() {
-  printf "[\033[32m \xE2\x9C\x93 \033[0m] %s\n" "$@"
+  printf "\033[32m[ \xE2\x9C\x93 ]\033[0m %s\n" "$@"
 }
 
 # Information message in blue
 echo_info() {
-  printf "[\033[34m i \033[0m]%s\n" "$@"
+  printf "\033[34m[ i ]\033[0m %s\n" "$@"
 }
 
 is_namespace() {
