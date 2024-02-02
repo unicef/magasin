@@ -105,8 +105,27 @@ jobs:
           helm list -n mgs-drill-test
           helm list -n mgs-dagster-test
           helm list -n mgs-daskhub-test
+          helm list -n mgs-operator-test
+          helm list -n mgs-tenant-test
           helm list -n mgs-superset-test
           
+          # Execute the helm command and count the number of charts 
+          # We have installed 6 charts + one header line == 7 lines
+          num_lines=$(helm list --all-namespaces | wc -l)
+
+          # Check if the number of lines is not equal to 7
+          if [ "$num_lines" -ne 7 ]; then
+            echo "Error: The command 'helm list --all-namespaces' did not return 7 lines of output."
+            exit 1
+          fi
+          
+          # Check if any line contains 'failed'
+          if helm list --all-namespaces | grep -q "failed"; then
+            echo "Error: One or more components have failed status."
+            exit 1
+          fi
+
+
       # 
       # UNINSTALLER tests GNU/Linux
       # 
