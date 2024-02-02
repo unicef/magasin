@@ -219,7 +219,7 @@ function uninstall_chart {
   echo_info "helm uninstall $chart --namespace $namespace"
   helm uninstall $chart --namespace $namespace $HELM_DEBUG_FLAG
   if [[ $? -ne 0 ]]; then
-    echo_fail "Could not uninstall  magasin/$chart in the namespace $namespace"
+    echo_fail "Could not uninstall magasin/$chart in the namespace $namespace"
     #exit_error 7
   else 
     echo_success "magasin/$chart uninstalled from the namespace $namespace"
