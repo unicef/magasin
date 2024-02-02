@@ -556,7 +556,7 @@ fi
 
 # check if the realm namespace exits
 if kubectl get namespace "$REALM_ARG" &> /dev/null; then
-    echo_error "Realm namespace $NAMESPACE exists."
+    echo_error "The realm namespace '$REALM_ARG' exists."
     echo_error " Do you have a magasin instance already installed? You can try: "
     echo_error "   1. Install magasin in another realm: '$script_name -r myrealm'"
     echo_error "   2. Uninstalling '$REALM_ARG' realm instance (see $UNINSTALL_MAGASIN_LINK)"
