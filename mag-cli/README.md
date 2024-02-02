@@ -5,7 +5,7 @@ Command line interface client that helps to manage the different modules of [mag
 ## Install
 
 ```sh
-pip install mag
+pip install mag-cli
 ```
 
 ## Usage
