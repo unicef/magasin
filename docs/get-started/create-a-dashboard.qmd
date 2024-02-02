@@ -73,11 +73,6 @@ If every thing goes right, you should see something like:
 
 ![Success query result](../images/get-started/drill-ui-success-query.png)
 
-
-## Create the Dashboard in Apache Superset
-
-To create a dashboard in superset the first step is to create a new database connection to our Apache Drill instance.
-
 ## Setting up the Drill-Superset database connection
 
 
@@ -120,4 +115,89 @@ To create a dashboard in superset the first step is to create a new database con
 
 
 ## Creating the Superset Dashboard
+
+Ok, so we are in the final sprint to achieve our goal, but before we start, let's do a quick introduction on some basic concepts of superset. 
+
+* Superset is a tool for creating dashboards. Dashboards are composed by _Charts_. 
+* A chart is a graph that displays a some data that comes from a dataset. 
+* A dataset is a subset of the data that can be found in a database such as a table or, in our case a parquet file.
+* A database is just a collection of tables, or in our case, a folder of parquet files.
+
+If you take a look at the top navigation bar of superset, you will see precisely those items: Dashboards, Charts and Datasets.
+
+Now that we have some basics, let's create our dashboard: 
+
+1. Click on **Dashboards** at the top navigation bar, and then click on the ** + Dashboard** button
+
+    ![Dahsboards, new dashboard screenshot](../images/get-started/superset-new-dashboard.png)
+    .
+
+2. Click on the **+ Create new chart**
+
+3. In the new screen, click on **add dataset**
+
+    ![Create chart page screenshot](../images/get-started/superset-create-chart.png)
+    .
+4. Using the drop-downs, fill the data as in the image below:
+    * Database: `Apache Drill` (the one we just created earlier)
+    * Schema: `s3.data`
+    * Table: `deployment_countries.parquet`
+
+    ![create the dataset screenshot](../images/get-started/superset-add-dataset.png)
+    .
+5. Click on **Create dataset and create chart** button
+
+6. In the list of chart types, select the **Bar chart**, and then **Create new chart**
+
+    ![Select the bar cahrt](../images/get-started/superset-create-chart-select-chart.png)
+    .
+
+7. Fill the data as in the image below:
+    * X-Axis: deploymentCountries: The main column in the X axis
+    * X-Axis sort by: COUNT_DISTINCT(name) - We're goint to sort them by counting the DPGs deployed for each country
+    * Uncheck the X-Axis sort ascending -- So we see first on the left the country with more DPGs deployed.
+    * Row limit: 10 -- this will limit the number fo countries displayed to 10 (top ten)
+
+8. Click on **Update chart** button.
+
+9. Click on **Save** at the top right corner
+
+    ![Filling the chart data](../images/get-started/superset-chart-edition.png)
+    .
+10. In the dialog box, give it a name and click on **Save & go to dashboard**
+
+    ![Save chart](../images/get-started/superset-save-chart-dialog-box.png)
+    .
+
+-----
+**Congratulations!** You have added your first chart to your dataset.
+
+-----
+As an exercise you can complete the dashboard and add some more charts so it looks like this image:
+
+  ![Superset Dashboard](../images/get-started/superset-final-dashboard.png)
+
+
+Alternatively, you can import it:
+
+1. Download the file [dpga-superset-dashboard.zip](https://github.com/unicef/magasin/tree/main/examples/dpga-superset-dashboard/dpga-superset-dashboard.zip).
+
+2. In Dashboard, import the dashboard:
+  
+    ![steps to import the dashboard](../images/get-started/superset-import-dashboard.png)
+
+
+
+## Awesome!
+
+Excellent, you have completed this getting started, in the course of it, you were able to explore a dataset, create a pipeline and present your insights in a nice dashboard.
+
+
+## What's next
+
+Magasin is composed by several mature open source components, mastering and setting them up to fulfill your organization requirements may require some time and practice.
+
+* End user guides. If you want to learn more about the dags
+* Custom deployment and setup. If you need to learn more about the options on how to deploy each
+
 
