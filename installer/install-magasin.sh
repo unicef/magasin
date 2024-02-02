@@ -445,7 +445,8 @@ if [[ "$command_missing" == true ]]; then
     echo_line
     brew install kubectl helm python minio/stable/mc
     echo_line
-    if [ "${install_status["mag"]}" == "not installed" ]; then
+
+    if [[ "${install_status["mag"]}" == "not installed" ]]; then
         echo_info "Installing mag CLI..."
         echo_info "Running pip install mag"
         echo_line
