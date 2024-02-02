@@ -8,9 +8,14 @@
 
 name: Publish mac CLI
 
+#on:
+#  release:
+#    types: [published]
+
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+
+
 
 permissions:
   contents: read
