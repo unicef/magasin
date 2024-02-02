@@ -1,12 +1,62 @@
 ---
 title: Why magasin?
+number-sections: false
 ---
-# TODO
 
-Write down the reasoning behind creating magasin that we've used 
-- complex landscape 
-- open source
+## The challenge
 
-- good value for money
+In today's data-informe world, governments and organizations face a monumental challenge: fragmented data spread across siloed systems. Departments, divisions, and units gather data independently, leading to inefficiencies and risks:
 
-etc.
+### Fragmentation in tools and capacity
+
+* **Tool Fragmentation:** Organizations, especially those without centralized structures, struggle with diverse technologies across teams, hindering resource mobility and causing technology duplication.
+
+* **Capacity Issues:** Siloed work exacerbates resource allocation challenges, limiting the organization's overall potential.
+
+### Risks of Data Breaches
+* **Security Concerns:** Without secure data storage and sharing mechanisms, organizations risk data breaches and unauthorized access to sensitive information.
+
+### Myopic Data Analysis
+* **Lack of Comprehensive Insights:** Siloed data prevents organizations from gaining a holistic understanding of their operations and stakeholders, leading to shortsighted decision-making.
+
+To overcome these challenges and unlock the full potential of modern data analysis, machine learning, and artificial intelligence, organizations need a comprehensive set of tools. 
+
+## Marketplace gaps
+When we go to the global market we find gaps.
+
+### Overwhelming landscape
+
+![Big Data Landascape 2019 by Matt Turck. [Source](https://mattturck.com/wp-content/uploads/2019/07/2019_Matt_Turck_Big_Data_Landscape_Final_Fullsize.png
+)](images/why-of-fry/data-landscape.png)
+
+
+Entering the world of data can be daunting, with a myriad of products each requiring trade-offs. 
+
+### Leaders are solving a specific problems set
+
+Most data systems are optimized for massive scale and low-latency, crucial for time-sensitive tasks like targeted advertising. However, not all organizations face such time-pressured scenarios. 
+
+### With systems that require a high cost entry
+
+It is important to note that these data systems are not designed for low-end hardware or low cost of entry, further complicating the landscape for organizations exploring data solutions without having a deep pocket.
+
+### That are proprietary
+
+Traditional end-to-end data platforms often come with proprietary restrictions, limiting flexibility and tying organizations to specific cloud vendors or industry niches. 
+
+This presents significant challenges for entities with decentralized structures and external collaborations, in particularly, UNICEF's government partners who demand a cloud-agnostic, open-source solution that delivers maximum value for their investment.
+
+# Magasin was needed
+
+Our solution is a game-changer in the data landscape. We offer a democratized approach to data anaylsis, empowering organizations of all sizes and structures to harness the power of data without compromising on cost, flexibility and proprietary vendor lock-in. 
+
+Magasin offers an open-source, cloud-native end-to-end solution covering data ingestion, storage, analysis, and visualization. Our [architecture](./architecture.qmd) is composed of loosely coupled, mature open-source solutions.
+
+Magasin fits the needs of any ublic or private organizations that generate data from multiple data sources, that realized the need of performing data Science, ML/AI at scale.​
+
+For the public sector and NGO organizations it is a cross-sectoral tool that can be implemented at the national, subnational, or department level.​
+
+For the private sector it fits any organization that wants to leverage data science to keep relevant and improve business outcomes​ with a low cost as barrier of entry​ and with full control of the data.
+
+
+**Don't just keep up – lead the charge with magasin and transform your organization's future today**.
