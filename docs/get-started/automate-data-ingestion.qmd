@@ -71,13 +71,14 @@ In one command line shell launch the minio API
 mag minio api
 ```
 
-Set the [minio client] alias. 
+Set the [minio client](https://min.io/docs/minio/linux/reference/minio-mc.html) alias. 
+
 ```sh
 mc alias set myminio http://localhost:9000 minio minio123
 # mc alias set <alias-name> <endpoint> <access-key> <secret-key>
 ```
 
-Behind the scenes magasin command line interface, `mag`, uses minio client command (`mc`) to create the bucket and this is a setup `mc` needs.
+Where `mc` is a tool similar to `mag`, but specific for minio. It is installed during the magasin installation.
 
 Once we have configured the alias, we just need to create the bucket:
 ```sh
@@ -312,18 +313,7 @@ This time, all files should have been materialized in the `magasin` bucket.
 To test if the files are there. In a terminal run:
 
 ```sh
-source .env
-export FSSPEC_S3_ENDPOINT_URL FSSPEC_S3_KEY FSSPEC_S3_SECRET
-python
-```
-
-And then type these lines 
-```python
-import fsspec 
-fs = fsspec.filesystem('s3')
-fs.ls("magasin")
-# You should see the names of the file 'magasin/deployment_countries.parquet'
-exit()
+mc ls myminio/magasin/data
 ```
 
 
