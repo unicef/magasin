@@ -416,7 +416,7 @@ if [[ "$command_missing" == true ]]; then
       echo_info "Installing mag CLI..."
       echo_info "Running: sudo pip install mag"
       echo_line
-      sudo pip install mag
+      sudo pip install mag-cli
       echo_line
     fi
 
@@ -448,9 +448,9 @@ if [[ "$command_missing" == true ]]; then
 
     if [[ "${install_status["mag"]}" == "not installed" ]]; then
         echo_info "Installing mag CLI..."
-        echo_info "Running pip install mag"
+        echo_info "Running pip install mag-cli"
         echo_line
-        pip install mag
+        pip install mag-cli
         echo_line
     fi
 
