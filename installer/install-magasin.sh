@@ -278,6 +278,7 @@ function check_linux_requirements_status {
   command_exists "kubectl"
   command_exists "helm" 
   command_exists "mc"
+  command_exists "mag"
   # only check if any of the previous does not exist
   if [[ "$command_missing" == true ]]; then 
     command_exists "apt-get"  # debian like package installer
@@ -291,6 +292,7 @@ function check_macos_requirements_status {
   command_exists "helm" 
   command_exists "pip3"
   command_exists "mc"
+  command_exists "mag"
 
   if [[ "$command_missing" == true ]]; then
     command_exists "brew" 
@@ -367,6 +369,8 @@ if [[ "$command_missing" == true ]]; then
     echo_info "Installing pre-requisites for GNU/Linux.."
     if [ "${install_status["kubectl"]}" == "not installed" ]; then
       # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+      echo_info "Installing kubectl..."
+      echo_line
       sudo apt-get update   
       # apt-transport-https may be a dummy package; if so, you can skip that package    
       sudo apt-get install -y apt-transport-https ca-certificates curl
@@ -377,29 +381,45 @@ if [[ "$command_missing" == true ]]; then
       echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
       sudo apt-get update
       sudo apt-get install -y kubectl
+      echo_line
     fi
 
     if [ "${install_status["helm"]}" == "not installed" ]; then
       echo_info "Installing helm..."
+      echo_line
       curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
       sudo apt-get install apt-transport-https --yes
       echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
       sudo apt-get update
       sudo apt-get install helm
+      echo_line
     fi
     
     if [ "${install_status["pip3"]}" == "not installed" ]; then
+        echo_info "Installing pip..."
+        echo_line
         sudo apt-get install python3 python3-pip --yes
+        echo_line
     fi
 
     if [ "${install_status["mc"]}" == "not installed" ]; then
       echo_info "Installing mc at /usr/local/bin/mc..."
+      echo_line
       sudo curl https://dl.min.io/client/mc/release/linux-amd64/mc \
         --create-dirs \
         -o /usr/local/bin/mc
       sudo chmod +x /usr/local/bin/mc
+      echo_line
     fi
- 
+
+    if [ "${install_status["mag"]}" == "not installed" ]; then
+      echo_info "Installing mag CLI..."
+      echo_info "Running: sudo pip install mag"
+      echo_line
+      sudo pip install mag
+      echo_line
+    fi
+
 
   elif [[ $PLATFORM == $MACOS ]]; then
     if [[ "$AUTO_INSTALL" == false ]]; then
@@ -417,9 +437,22 @@ if [[ "$command_missing" == true ]]; then
     # If brew does not exist => install it
     if [[ "${install_status["brew"]}" == "not installed" ]]; then
       echo_info "Installing brew..."
+      echo_line
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      echo_line
     fi
+    echo_info "Running: brew install kubectl helm python minio/stable/mc"
+    echo_line
     brew install kubectl helm python minio/stable/mc
+    echo_line
+    if [ "${install_status["mag"]}" == "not installed" ]; then
+        echo_info "Installing mag CLI..."
+        echo_info "Running pip install mag"
+        echo_line
+        pip install mag
+        echo_line
+    fi
+
   else 
     # this probably will never be reached
     echo_error "System not supported ($PLATFORM)."
@@ -530,6 +563,7 @@ if kubectl get namespace "$REALM_ARG" &> /dev/null; then
     echo_error "   3. Remove the namespace: 'kubectl delete namespace $REALM_ARG'"
     exit 60
 fi
+
 
 #
 # Add a configmap with a json with some metadata
