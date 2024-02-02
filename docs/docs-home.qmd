@@ -3,11 +3,22 @@ title: "Magasin documentation"
 format: html
 ---
 
-# TODO 
+Magasin is the cloud native open-source end-to-end data platform.
+Magasin enables organizations to perform of automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale.
 
-Some intro of magasin, and the main categories to get started, 
 
-- more details about magasin 
-- get started
-- Amnisitrator guides
-Main page
+## Learn more about magasin
+* **[Why magasin?](why-magasin.qmd)**
+* **[Architecture](architecture.qmd)**
+
+## Start using magasin
+* **[Get Started](get-started/)**. Quick 
+* **[Installation](install/)**. More detailed explanation of the base installatin.
+* **[End user guides](end-user-guides.qmd)**. References to learn how to use the components
+* **[Deployment](deployment.qmd)**. Learn more on the configuration of the different components.
+
+## Develop magasin
+
+ * **[Contributing](contributing/)**. For developers and contributors.
+
+
