@@ -36,7 +36,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install build
     - name: Build package
-      run: 
+      run: |
         cd mag-cli
         python -m build
     - name: Publish package
