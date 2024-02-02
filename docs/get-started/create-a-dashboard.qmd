@@ -197,7 +197,8 @@ Excellent, you have completed this getting started, in the course of it, you wer
 
 Magasin is composed by several mature open source components, mastering and setting them up to fulfill your organization requirements may require some time and practice.
 
-* End user guides. If you want to learn more about the dags
-* Custom deployment and setup. If you need to learn more about the options on how to deploy each
+* [End user guides](../end-user-guides.qmd). If you want to learn more about from an end user perspective on how to use some of the components of magasin.
+ 
+* [Custom deployment and setup](../deployment.qmd). This documents has useful  references if you need to learn more on how to deploy magasin within your organization.
 
 
