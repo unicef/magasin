@@ -5,9 +5,9 @@ description-meta: "Overview of the workflow that usually is followed"
 format: html
 ---
 
-In this tutorial, we'll walk you through a straightforward example we've created that follows a standard data analysis process. We'll show you how to launch each component, explain essential concepts, but we won't dive too deep into all the nitty-gritty details of each component.
+In this tutorial, we'll walk you through a straightforward example we've created that demonstrates a typical data processing workflow. We will show you how to launch each component, explain essential concepts, but we won't dive too deep into all the nitty-gritty details of each component.
 
-We wil follow this process simple process that is similar to what you may do in the real world:
+We will follow this process simple process that is similar to what you may do in the real world:
 
 ```{mermaid}
 flowchart LR
