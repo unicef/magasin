@@ -16,7 +16,7 @@ In the [get started](https://unicef.github.io/get-started/) you will install mag
 
 
 ## Documentation
-Features, architecture, Get started, advanced installation, 
+All the documentation, features, architecture, get started, advanced installation, deployment, contributing... 
 
 ### [📚 Go to documentation](https://unicef.github.io/magasin/docs-home.html)
 
