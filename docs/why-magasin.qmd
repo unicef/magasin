@@ -1,11 +1,11 @@
 ---
-title: Why magasin?
+title: Why Magasin?
 number-sections: false
 ---
 
 ## The challenge
 
-In today's data-informe world, governments and organizations face a monumental challenge: fragmented data spread across siloed systems. Departments, divisions, and units gather data independently, leading to inefficiencies and risks:
+In today's data-informed world, governments and organizations face a monumental challenge: fragmented data spread across siloed systems. Departments, divisions, and units gather data independently, leading to inefficiencies and risks:
 
 ### Fragmentation in tools and capacity
 
@@ -52,11 +52,11 @@ Our solution is a game-changer in the data landscape. We offer a democratized ap
 
 Magasin offers an open-source, cloud-native end-to-end solution covering data ingestion, storage, analysis, and visualization. Our [architecture](./architecture.qmd) is composed of loosely coupled, mature open-source solutions.
 
-Magasin fits the needs of any ublic or private organizations that generate data from multiple data sources, that realized the need of performing data Science, ML/AI at scale.​
+Magasin fits the needs of any public or private organizations that generate data from multiple data sources, that realized the need of performing data Science, ML/AI at scale.​
 
 For the public sector and NGO organizations it is a cross-sectoral tool that can be implemented at the national, subnational, or department level.​
 
 For the private sector it fits any organization that wants to leverage data science to keep relevant and improve business outcomes​ with a low cost as barrier of entry​ and with full control of the data.
 
 
-**Don't just keep up – lead the charge with magasin and transform your organization's future today**.
+**Don't just keep up – lead the change with Magasin and transform your organization's future today**.
