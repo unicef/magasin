@@ -23,7 +23,7 @@ Features, architecture, Get started, advanced installation,
 ## Contributing
 Magasin follows an open approach towards accepting contributions.
 
-###[🇺🇳 Learn about contributing](https://unicef.github.io/magasin/contributing/)
+### [🇺🇳 Learn about contributing](https://unicef.github.io/magasin/contributing/)
 
 ## License
 Apache License Version 2.0 [UNICEF](https://unicef.org)
