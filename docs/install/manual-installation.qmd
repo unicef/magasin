@@ -24,7 +24,7 @@ kubectl cluster-info
 
 Add the magasin helm repo
 ```sh
-helm repo add https://unicef.github.io/magasin/
+helm repo add magasin https://unicef.github.io/magasin/
 ```
 Update the magasin helm repo
 ```sh
