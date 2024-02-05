@@ -40,15 +40,15 @@ We did the heavy-lifting interactively with the first analysis and now we just n
 
 [Dagster](https://dagster.io) is a pipeline orchestrator, which basically helps us to manage the ingestion of data from multiple data sources.
 
-The advantages of using a framework like dagster is that it will allow us to do things in a structured way which will allow you to scale and monitor workflows. If you ask anyone that has been gathering data from multiple data sources they will tell you that it can become a daunting task if you don't do it systematically. Dagster provides you a good starting point.
+The advantages of using a framework like dagster is that it will allow us to do things in a structured way which will allow you to scale and monitor workflows more efficiently. If you ask anyone that has been gathering data from multiple data sources they will tell you that it can become a daunting task if you don't do it systematically. Dagster provides you a good starting point.
 
 What usually happends when you start automating stuff is that:
 
 1) It starts simple but with time, you add more and more data sources that have dependencies between them. If it is not done properly you end up with a mess. Dagster provides us a framework to prevent that. 
 
-2) It eventually may break. Data sources may change with time and with that your pipelines break. For instance, DPGA may update their API and our downstream automation could fail. Dagster allows you to monitor and to 
+2) It may eventually break. Data sources may change with time and subsequently your pipelines may break. For instance, DPGA may update their API and causing the downstream automation to fail. Dagster enhances the monitoring capabilities for data pipelines.
 
-The cool thing about Dagster, is that it uses Python as programming language too, so most of the work we did for the Jupyter Notebook can be reused.
+The cool thing about Dagster, is that it uses the Python programming language too, so most of the work we did in the Jupyter Notebook is reusable.
 
 In the Magasin architecture, usually data assets are stored in files. In particular, we recommend the use of [Apache parquet file format](https://parquet.apache.org/) for storing the datasets. 
 
@@ -56,7 +56,7 @@ Parquet is a columnar storage file format that is commonly used in the Big Data 
 
 Using Parquet to store datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular big data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.
 
-In this step, we will leverage another component of Magasin that will help us to be cloud agnostic. It is called [MinIO](http://min.io) and gives us an [Amazon S3](https://en.wikipedia.org/wiki/Amazon_S3) compatible file store. 
+In this step, we will leverage another component of Magasin to help us maintain a cloud agnostic architecture. It is called [MinIO](http://min.io) and gives us an [Amazon S3](https://en.wikipedia.org/wiki/Amazon_S3) compatible file store. 
 
 Thanks to MinIO, regardless of what infrastructure you're using, your pipelines will work the same and you do not need to adapt how you store the data. Using files, compared to using a traditional SQL schema, allows you to store not only structured tabular data, but also images or documents. It simplifies also the governance of the datasets as the problem of sharing is reduced to assigning file/folder permissions.
 
@@ -68,7 +68,7 @@ For instance, instead of MinIO, you can directly utilize a vendor-specific objec
 
 ## Step 3: Create a dashboard with Superset
 
-Dagster allows you to gather the data and transform it into something that can be showcased, but it does not come with advanced visualization capabilities. For that we need a tool that has better charting capabilities, and allows us to interact with the data, that is a Business Intelligence (BI) tool. 
+Dagster allows you to gather the data and transform it into something that can be displayed, but it does not come with advanced visualization capabilities. For that we need a tool that has better charting capabilities, and allows us to interact with the data, that is a Business Intelligence (BI) tool. 
 
 Magasin ships with [Apache Superset](https://superset.apache.org/), which allows you to author dashboard and reports from a wide array of beautiful visualizations.
 
