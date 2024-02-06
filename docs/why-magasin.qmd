@@ -1,5 +1,5 @@
 ---
-title: Why Magasin?
+title: Why magasin?
 number-sections: false
 ---
 
@@ -59,4 +59,4 @@ For the public sector and NGO organizations it is a cross-sectoral tool that can
 For the private sector it fits any organization that wants to leverage data science to keep relevant and improve business outcomes​ with a low cost as barrier of entry​ and with full control of the data.
 
 
-**Don't just keep up – lead the change with Magasin and transform your organization's future today**.
+**Don't just keep up – lead the change with magasin and transform your organization's digital future today**.
