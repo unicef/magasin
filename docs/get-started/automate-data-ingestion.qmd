@@ -13,7 +13,7 @@ Automating this process is highly advantageous as it eliminates the need for rep
 
 The good news is that we have already completed the heavy lifting using the Jupyter Notebook. This is advantageous because the code we will be writing is essentially the same; we just need to make some tweaks to adapt it into a [Dagster pipeline](https://dagster.io).
 
-### Advantages of using dagster
+### Advantages of using Dagster
 
 [Dagster](https://dagster.io) is what is known as a pipeline orchestrator, which essentially helps us manage the ingestion of data from multiple sources. 
 
@@ -113,7 +113,7 @@ Now, we have a bucket in MinIO that allows us to store files.
 
 So, the next step is to create a pipeline. A pipeline is just a piece of code that moves data from place to another and that can introduce some changes before saving it in the destination place. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.
 
-The first thing we need to do is to install dagster.
+The first thing we need to do is to install Dagster.
 
 ```sh
 pip install dagster==1.6.0 dagster-webserver==1.6.0
@@ -130,7 +130,7 @@ Dagster is a very agile product that is continuously evolving, this means that y
 
 ### Add the pipeline code 
 
-Once dagster is installed, we're going to create a new project using the default structure prodivded by dagster. This should be the default procedure for creating any new pipeline.
+Once Dagster is installed, we're going to create a new project using the default structure prodivded by Dagster. This should be the default procedure for creating any new pipeline.
 
 ```sh
 dagster project scaffold --name dpga-pipeline
@@ -143,8 +143,8 @@ Generated files for Dagster project in /home/magasin/dpga-pipeline.
 Success! Created dpga-pipeline at /home/magasin/dpga-pipeline.
 ```
 
-By scaffolding our project, dagster creates a basic structure of a python package that could be installed using `pip` as any other package as well as some additional metadata files that will 
-be used by dagster to run the pipeline. You ahve some more info in the [dagster documentation](https://docs.dagster.io/guides/understanding-dagster-project-files).
+By scaffolding our project, Dagster creates a basic structure of a python package that could be installed using `pip` as any other package as well as some additional metadata files that will 
+be used by Dagster to run the pipeline. You ahve some more info in the [Dagster documentation](https://docs.dagster.io/guides/understanding-dagster-project-files).
 
 Now, lets add our code. Open the file `dpga-pipeline/dpga_pipeline/assets.py`
 
@@ -174,13 +174,13 @@ def deployment_countries(raw_dpgs: DataFrame) -> DataFrame:
 
 As you can see the code seems pretty similar to what we wrote in our [exploratory analysis](exploratory-analysis.qmd). 
 
-The in the code we have defined two `@assets`. An asset according to the dagster definition is:
+The in the code we have defined two `@assets`. An asset according to the Dagster definition is:
 
 > An asset is an object in persistent storage, such as a table, file, or persisted machine learning model. A Software-defined Asset is a Dagster object that couples an asset to the function and upstream assets used to produce its contents.
  
 In our case, `raw_dpgs`, stores the dpgs as they come from the API as a DataFrame, and `deployment_countries` that extracts the one row per country in which the DPG has been deplayed.
 
-Another thing that you can notice in the code is that in the definition of the deployment_countries asset, we are passing `raw_dpgs: DataFrame`. That will tell dagster that deployment_countries depends on the `raw_dpgs` and it will be used as input.
+Another thing that you can notice in the code is that in the definition of the deployment_countries asset, we are passing `raw_dpgs: DataFrame`. That will tell Dagster that deployment_countries depends on the `raw_dpgs` and it will be used as input.
 
 As you noticed, we are using a couple of packages that need to be installed `pandas` and `requests`. To install them,  in `dpga-pipeline/setup.py` we add them in the `install_requires` array.
 
@@ -203,7 +203,7 @@ Ok, So now let's test if this is working so far. To do that we will first instal
 pip install -e '.[dev]'
 ```
 
-Then, we will launch the dagster user interface:
+Then, we will launch the Dagster user interface:
 ```sh 
 dagster dev
 ```
@@ -290,7 +290,7 @@ mag minio api
 
 While this command is running it will forward any connection to the port 9000 to the our minio instance in the kubernetes cluster. You shoud keep running during this till you are instructed to do close it.
 
-In another window, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run dagster:
+In another window, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run Dagster:
 
 ```sh
 
@@ -298,7 +298,7 @@ pip install -e '.[dev]'
 dagster dev
 ```
 
-Note that after you launch dagster dev you should see something like:
+Note that after you launch `dagster dev` you should see something like:
 
 ```
 dagster - INFO - Loaded environment variables from .env file: FSSPEC_S3_ENDPOINT_URL,FSSPEC_S3_KEY,FSSPEC_S3_SECRET
@@ -317,39 +317,100 @@ mc ls myminio/magasin/data
 ```
 
 
-### Adding a scheduler
+### Adding a job scheduler
 
-Until now, we have been materializing manually our assets. However, automating this task is indeed the ultimate goal of setting a pipeline.
+Until now, we have been materializing manually our assets. However, automating this task is indeed the ultimate goal of setting up a pipeline.
 
-In dagster, you have available [schedulers](https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules) which basically run your pipeline, or pieces of it, in a fixed interval. Dagster schedulers follow a [cron style format](https://en.wikipedia.org/wiki/Cron).
+In Dagster, you have available [schedulers](https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules) which basically run your pipeline, or pieces of it, in a fixed interval. Dagster schedulers follow a [cron style format](https://en.wikipedia.org/wiki/Cron).
 
-```python
+```{.python filename="dpga-pipeline/dpga_pipeline/assets.py"}
 #__init__.py
+from dagster import Definitions, load_assets_from_modules, define_asset_job, ScheduleDefinition
+from . import assets
 
+all_assets = load_assets_from_modules([assets])
 
+# Create an asset job that materializes all assets of the pipeline
+all_assets_job = define_asset_job(name="all_assets_job",
+                                  selection=all_assets,
+                                  description="Gets all the DPG assets")
+# Create a scheduler
+main_schedule = ScheduleDefinition(job=all_assets_job,
+                                   cron_schedule="* * * * *"
+                                   )
+
+defs = Definitions(
+    assets=all_assets,
+    jobs=[all_assets_job],
+    schedules=[main_schedule]
+)
 ```
+
+What we did in the code above is to:
+
+1. Add a `job`. A job, is basically a selection of assets that will be materialized together in the same run.
+
+2. Define a schedule. The schedule will launch the job at specified time intervals. In our case every minute (`* * * * *`). 
+
+::: {.callout-tip}
+## Tip: Understanding cron jobs
+The job cron format is used to specify the schedule for recurring tasks or jobs in Unix-like operating systems and cron job scheduling systems. It consists of **five fields separated by spaces**, representing different aspects of the schedule: 
+
+  ```
+  <minute> <hour> <day-of-month> <month> <day-of-week>
+  ```
+
+* Minute (0-59): Specifies the minute of the hour when the job should run. Valid values range from 0 to 59.
+
+* Hour (0-23): Specifies the hour of the day when the job should run. Valid values range from 0 to 23, where 0 represents midnight and 23 represents 11 PM.
+
+* Day of Month (1-31): Specifies the day of the month when the job should run. Valid values range from 1 to 31, depending on the month.
+
+* Month (1-12): Specifies the month of the year when the job should run. Valid values range from 1 to 12, where 1 represents January and 12 represents December.
+
+* Day of Week (0-7): Specifies the day of the week when the job should run. Both 0 and 7 represent Sunday, while 1 represents Monday, and so on, up to 6 representing Saturday.
+
+Each field can contain a single value, a list of values separated by commas, a range of values specified with a hyphen, or an asterisk (*) to indicate all possible values. Additionally, you can use special characters such as slashes (/) for specifying intervals and question marks (?) for leaving a field unspecified (e.g., for day of month or day of week when the other field should match).
 
 Here you have some [examples of cron intervals](https://crontab.guru/examples.html)
 
+| Cron Expression | Description                                         |
+|-----------------|-----------------------------------------------------|
+| `0 0 * * *`     | Run a task every day at midnight (00:00).           |
+| `15 2 * * *`    | Run a task at 2:15 AM every day.                    |
+| `0 0 * * 1`     | Run a task every Monday at midnight (00:00).        |
+| `0 12 * * 1-5`  | Run a task every weekday (Monday to Friday) at 12 PM (noon). |
+| `*/15 * * * *`  | Run a task every 15 minutes.                       |
+| `0 */2 * * *`   | Run a task every 2 hours, starting from midnight.  |
+| `30 3 * * 6`    | Run a task every Saturday at 3:30 AM.               |
+| `0 0 1 * *`     | Run a task at midnight on the first day of every month. |
+| `0 0 1 1 *`     | Run a task at midnight on January 1st every year.   |
 
+:::
 
-```python
-# Scheduler code
-```
+If you launch again `dagster dev` and you go to Overview -> Jobs, you can enable the job.
+
+![Scheduled job](../images/get-started/dagster-jobs.png)
+
 
 ### Deploy the pipeline in the cluster
 
-Till now we have been working on a development environment on our computer. However what we want is to send our pipeline to be 
+Till now we have been working on a development environment on our own computer. However, we should launch our pipeline within our kubernetes cluster.
 
+To do that we will deploy a container (pod) in our cluster that Dagster will use to run our pipeline.
 
-
-Now we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in dagster terminology)
 
 ```
-helm upgrade dagster --namespace magasin-dagster -f
+
 ```
 
-To open the dagster user interface of the instance running in our Kubernetes cluster we need to run
+Now we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in Dagster terminology)
+
+```
+helm upgrade dagster --namespace magasin-dagster -f code-dagster.yaml
+```
+
+To open the Dagster user interface of the instance running in our Kubernetes cluster we need to run
 
 ```sh
 mag dagster ui
