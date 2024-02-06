@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="More about the architecture of magasin architecture">
+<meta name="description" content="More about the architecture of Magasin architecture">
 
 <title>Architecture</title>
 <style>
@@ -152,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./why-magasin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Why magasin?</span></a>
+ <span class="menu-text">Why Magasin?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -223,6 +223,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./install/advanced.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Advanced installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install/manual-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manual installation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -383,12 +389,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">kubernetes cluster</a>.</p>
-<p>By end-to-end it means from the process of enabling the ingestion from multiple data sources, the storage in a cloud filesystems as well as enabling the processes of analyzing and visualizing.</p>
+<p>Magasin is a scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">Kubernetes cluster</a>.</p>
+<p>By end-to-end this describes a data processing pipeline including from how to ingest raw data from multiple data sources, transform the data, run analyses on the processed data, storage in a cloud or local filesystem to enabling visualisation.</p>
 <p>Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of <a href="https://kubernetes.io/docs/concepts/overview/#going-back-in-time">containerized applications</a>. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.</p>
-<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called <strong>chart</strong>.</p>
-<p>A fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.</p>
-<p>The core components of magasin are independent mature open source projects that support.</p>
+<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called a <strong>chart</strong>.</p>
+<p>A fundamental contrast between Magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in Magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, Magasin embraces a more open and modular approach, fostering flexibility in component selection and integration.</p>
+<p>The core components of Magasin are independent mature open source projects that support.</p>
 <section id="underlying-technologies" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Underlying technologies</h1>
 <section id="kubernetes-containerization" class="level2" data-number="1.1">
@@ -863,7 +869,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./why-magasin.html" class="pagination-link  aria-label=" why="" magasin?"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Why magasin?</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Why Magasin?</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

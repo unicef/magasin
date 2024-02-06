@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Steps to start using magasin, calable end-to-end data platform based on open-source components that is natively run in a kubernetes cluster">
+<meta name="description" content="Steps to start using Magasin, scalable end-to-end data platform based on open-source components that is natively run in a Kubernetes cluster">
 
 <title>Get started</title>
 <style>
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../why-magasin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Why magasin?</span></a>
+ <span class="menu-text">Why Magasin?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -257,6 +257,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../install/advanced.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Advanced installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/manual-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manual installation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -371,9 +377,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pre-requisite-a-kubernetes-cluster" id="toc-pre-requisite-a-kubernetes-cluster" class="nav-link active" data-scroll-target="#pre-requisite-a-kubernetes-cluster"><span class="header-section-number">1</span> Pre-requisite: a kubernetes cluster</a></li>
-  <li><a href="#install-magasin" id="toc-install-magasin" class="nav-link" data-scroll-target="#install-magasin"><span class="header-section-number">2</span> Install magasin</a></li>
-  <li><a href="#check-everything-is-working" id="toc-check-everything-is-working" class="nav-link" data-scroll-target="#check-everything-is-working"><span class="header-section-number">3</span> Check everything is working</a></li>
+  <li><a href="#pre-requisite-a-kubernetes-cluster" id="toc-pre-requisite-a-kubernetes-cluster" class="nav-link active" data-scroll-target="#pre-requisite-a-kubernetes-cluster"><span class="header-section-number">1</span> Pre-requisite: a Kubernetes cluster</a></li>
+  <li><a href="#install-magasin" id="toc-install-magasin" class="nav-link" data-scroll-target="#install-magasin"><span class="header-section-number">2</span> Install Magasin</a></li>
+  <li><a href="#verify-everything-is-working" id="toc-verify-everything-is-working" class="nav-link" data-scroll-target="#verify-everything-is-working"><span class="header-section-number">3</span> Verify everything is working</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">4</span> Next steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -400,13 +406,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">kubernetes cluster</a>.</p>
-<p>In this getting started you will install magasin within your local machine for testing purposes, then you will perform an <a href="../get-started/tutorial-overview.html">end-to-end data analysis</a> that includes: <a href="../get-started/exploratory-analysis.html">exploratory analysis</a> of a data source, <a href="../get-started/automate-data-ingestion.html">create a pipeline</a> to automate data ingestion and <a href="../get-started/create-a-dashboard.html">create a dashboard</a> to present your findings.</p>
-<p>Let’s start by setting getting the pre-requisites:</p>
+<p>Magasin is a scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">Kubernetes cluster</a>.</p>
+<p>In this getting started you will install Magasin on your local machine for testing purposes, then you will perform an <a href="../get-started/tutorial-overview.html">end-to-end data processing task</a> that involves: <a href="../get-started/exploratory-analysis.html">exploratory analysis</a> of a data source, <a href="../get-started/automate-data-ingestion.html">creating a pipeline</a> to automate data ingestion and <a href="../get-started/create-a-dashboard.html">authoring a dashboard</a> to present your findings.</p>
+<p>Let’s start by getting the pre-requisites:</p>
 <section id="pre-requisite-a-kubernetes-cluster" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="pre-requisite-a-kubernetes-cluster"><span class="header-section-number">1</span> Pre-requisite: a kubernetes cluster</h2>
-<p>Prior to installing magasin, you need to have a kubernetes cluster. But don’t worry, you can setup one in your local machine very easily. In layman terms, Kubernetes is just a technology that enables managing cloud ready applications, such as magasin.</p>
-<p>For this getting started, we are going to setup a kubernetes cluster through <a href="https://docs.docker.com/desktop/">Docker Desktop</a>, an application that can be installed in any computer. However, if you already have a cluster you can go directly to the <a href="#install-magasin">install magasin section</a>.</p>
+<h2 data-number="1" class="anchored" data-anchor-id="pre-requisite-a-kubernetes-cluster"><span class="header-section-number">1</span> Pre-requisite: a Kubernetes cluster</h2>
+<p>Prior to installing Magasin, you need to have a Kubernetes cluster. But don’t worry, you can setup one on your local machine very easily. In layman terms, Kubernetes is just a technology that enables managing cloud ready applications, such as Magasin.</p>
+<p>In this getting started tutorial, we are going to setup a Kubernetes cluster through <a href="https://docs.docker.com/desktop/">Docker Desktop</a>, an application that can be installed on most computers. However, if you already have a cluster you can go directly to the <a href="#install-magasin">install magasin section</a>.</p>
 <p>First, install Docker Desktop. It is available for:</p>
 <ul>
 <li><a href="https://docs.docker.com/desktop/install/linux-install/">GNU/Linux</a></li>
@@ -436,8 +442,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Alternatively, you can also <a href="../install/setup-kubernetes.html#option-2-local-cluster-using-minikube">install minikube</a> or if you have a cluster in any <a href="../install/setup-kubernetes.html#setup-a-cluster-in-a-major-cloud-provider">cloud provider</a> you can also use it. At the end, you just need your <code>kubectl</code> to be setup to use whatever kubernetes cluster you want to use.</p>
 </section>
 <section id="install-magasin" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="install-magasin"><span class="header-section-number">2</span> Install magasin</h2>
-<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.</p>
+<h2 data-number="2" class="anchored" data-anchor-id="install-magasin"><span class="header-section-number">2</span> Install Magasin</h2>
+<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup within the Kubernetes cluster.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -448,7 +454,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It is highly recommended to <a href="https://unicef.github.io/magasin/install-magasin.sh">take a look at the installer script</a> before running it as it will install several components on your system.</p>
+<p>It is highly recommended to <a href="https://unicef.github.io/magasin/install-magasin.sh">take a look at the installer script</a> before running as it will install several components on your system.</p>
 <p>You should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you’re not confortable with this approach, proceed with the <a href="../install/manual-installation.html">manual installation</a>.</p>
 </div>
 </div>
@@ -460,9 +466,9 @@ Warning
 <p>For <strong>other systems</strong> please check the documentation for <a href="../install/manual-installation.html">manual installation</a></p>
 <p>Note that the installation may take some minutes depending on the internet connection speed of the machines running the cluster (mainly because of the container images).</p>
 </section>
-<section id="check-everything-is-working" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="check-everything-is-working"><span class="header-section-number">3</span> Check everything is working</h2>
-<p>After running the setup you can check that all the pods in the magasin-* namespace are in status <code>Running</code> or <code>Complete</code></p>
+<section id="verify-everything-is-working" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="verify-everything-is-working"><span class="header-section-number">3</span> Verify everything is working</h2>
+<p>After running the setup you can confirm that all the pods in the magasin-* namespace are in status <code>Running</code> or <code>Complete</code></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--all-namespaces</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAMESPACE</span>          NAME                                                              READY   STATUS      RESTARTS        AGE</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        coredns-5dd5756b68-fj7bj                                          1/1     Running     0               30d</span>
@@ -514,10 +520,10 @@ Important
 </section>
 <section id="next-steps" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">4</span> Next steps</h2>
-<p>Ok, now you have a fully running instance of magasin in your kubernetes cluster, so what now:</p>
+<p>Ok, now you have a fully running instance of Magasin in your Kubernetes cluster, so what now:</p>
 <ul>
-<li><p><strong><a href="../get-started/tutorial-overview.html">Start using magasin</a></strong>. We have created a tutorial that will drive you through the typical steps for enabling a data informed decission organization using magasin.</p></li>
-<li><p>Also, you can <a href="../architecture.html">learn more about the components and architecture of magasin</a>. Learn more about the the different components that come out of the box with magasin.</p></li>
+<li><p><strong><a href="../get-started/tutorial-overview.html">Start using Magasin</a></strong>. We have created a tutorial that will take you through the typical steps for creating an end-to-end data processing pipeline and consequently for enabling a data-driven organization using Magasin.</p></li>
+<li><p>Also, you can <a href="../architecture.html">learn more about the components and architecture of Magasin</a>. Learn more about the the different components that come out of the box with Magasin.</p></li>
 </ul>
 
 

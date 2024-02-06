@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../why-magasin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Why magasin?</span></a>
+ <span class="menu-text">Why Magasin?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -226,6 +226,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../install/advanced.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Advanced installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/manual-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manual installation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -369,8 +375,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this tutorial, we’ll walk you through a straightforward example we’ve created that follows a standard data analysis process. We’ll show you how to launch each component, explain essential concepts, but we won’t dive too deep into all the nitty-gritty details of each component.</p>
-<p>We wil follow this process simple process that is similar to what you may do in the real world:</p>
+<p>In this tutorial, we’ll walk you through a straightforward example we’ve created that demonstrates a typical data processing workflow. We will show you how to launch each component, explain essential concepts, but we won’t dive too deep into all the nitty-gritty details of each component.</p>
+<p>We will follow this process simple process that is similar to what you may do in the real world:</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -387,46 +393,45 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="step-1-exploratory-data-analysis-in-a-jupyter-notebook" class="level2" data-number="0.1">
 <h2 data-number="0.1" class="anchored" data-anchor-id="step-1-exploratory-data-analysis-in-a-jupyter-notebook"><span class="header-section-number">0.1</span> Step 1: Exploratory data analysis in a Jupyter Notebook</h2>
-<p>Generally, before you start automating any process of regularly using some data you want to do some initial research and analysis, you want to discover and understand how the data is shaped and what kind of insights can be extract from the data you have. For that, <a href="https://jupyter.org/">Jupyter Notebook</a> is a great tool. It allows you to run small pieces of code (python or R) individually and interactively in a user friendly interface.</p>
-<p>Magasin comes with the <a href="https://jupyter.org/hub">Jupyter Hub</a>, which allows different users to run jupyter notebooks on the cloud without the need of installing anything on their own system.</p>
-<p>In this case, we are going play around with one simple API, the <a href="https://github.com/DPGAlliance/publicgoods-api?tab=readme-ov-file">Digital Public Goods Alliance (DPGA) API</a>.</p>
-<p><a href="https://en.wikipedia.org/wiki/Digital_public_goods">Digital Public Goods (DPGs)</a> are public goods in the form of software, data sets, AI models, standards or content that are generally free cultural works and have an intention to contribute to sustainable national and international digital development. Several international agencies, including <a href="https://www.unicef.org">UNICEF</a> and <a href="https://undp.org">UNDP</a>, are exploring DPGs as a possible solution to address the issue of digital inclusion, particularly for children in emerging economies.</p>
-<p>From the data that we extract from the API, we are going to query the data to get some insights how many DPGs are available, in which countries are being deployed, where are they developed, what types of licenses are more popular…</p>
-<p>Jupyter Notebooks are excellent for an initial analysis, but there are many use cases in which you may to repeat the same process periodically. In our example, we may want to track if new DPGs are comming or what are the trends in terms of deployments. This is when the next steps of the process are useful.</p>
+<p>Generally, before you start automating any process of regularly using some data you want to do some initial research and analysis, you want to discover and understand how the data is shaped and what kind of insights can be extract from the data you have. For that, <a href="https://jupyter.org/">Jupyter Notebook</a> is a great tool. It allows you to run small pieces of code (usually Python or R) interactively in a user friendly interface.</p>
+<p>Magasin comes with the <a href="https://jupyter.org/hub">JupyterHub</a>, which allows different users to run jupyter notebooks on the cloud without the need of installing anything on their own system.</p>
+<p>In this tutorial, we are going play around with one simple API, the <a href="https://github.com/DPGAlliance/publicgoods-api?tab=readme-ov-file">Digital Public Goods Alliance (DPGA) API</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Digital_public_goods">Digital Public Goods (DPGs)</a> are defined as open source software, open data, open AI models, open standards and open content that adhere to privacy and other applicable laws and best practices, do no harm, and help attain the SDGs. Several international agencies, including <a href="https://www.unicef.org">UNICEF</a> and <a href="https://undp.org">UNDP</a>, are exploring DPGs as a possible approach to address the issue of digital inclusion, particularly for children in emerging economies.</p>
+<p>From the data that we fetch from the API, we are going to query the data to derive some insights on how many DPGs are available, in which countries they are being deployed, where are they developed, what types of licenses are more popular…</p>
+<p>Jupyter Notebooks are excellent for an initial analysis, but there are many use cases in which you may need to repeat the same process periodically. In our example, we may want to track if new DPGs are announced or what are the trends in terms of deployments. This is when the next steps of the process are useful.</p>
 <p><a href="../get-started/exploratory-analysis.html">Go to step 1</a></p>
 </section>
 <section id="step-2-automate-data-ingestion-with-dagster" class="level2" data-number="0.2">
 <h2 data-number="0.2" class="anchored" data-anchor-id="step-2-automate-data-ingestion-with-dagster"><span class="header-section-number">0.2</span> Step 2: Automate data ingestion with Dagster</h2>
-<p>Automating is great, it frees us on needing to do repeated work. In our example, we will automate the ingestion and transformation of the DPGA API data. The data as it is served by the API is not fully ready to be analyzed, we need to perform some transformations to leave it ready to be displayed.</p>
+<p>Automating is great, it frees us the burden of needing to repeat work. In our example, we will automate the ingestion and transformation of the DPGA API data. The data as it is served by the API is not fully ready to be analyzed, we need to perform some transformations to make it ready to be visualized.</p>
 <p>We did the heavy-lifting interactively with the first analysis and now we just need to convert it to a <a href="https://dagster.io">dagster pipeline</a>.</p>
-<p><a href="https://dagster.io">Dagster</a> is what is called a pipeline orchestrator, which basically helps us to manage the ingestion of data from multiple data sources.</p>
-<p>The advantages of using a framework like dagster is that it will allow us to do things in a structured way which will allow you to scale and to monitor. If you ask anyone that has been gathering data from multiple data sources he will tell you that it can become a nightmare if you don’t do it properly. Dagster provides you a good starting point.</p>
+<p><a href="https://dagster.io">Dagster</a> is a pipeline orchestrator, which basically helps us to manage the ingestion of data from multiple data sources.</p>
+<p>The advantages of using a framework like dagster is that it will allow us to do things in a structured way which will allow you to scale and monitor workflows more efficiently. If you ask anyone that has been gathering data from multiple data sources they will tell you that it can become a daunting task if you don’t do it systematically. Dagster provides you a good starting point.</p>
 <p>What usually happends when you start automating stuff is that:</p>
 <ol type="1">
 <li><p>It starts simple but with time, you add more and more data sources that have dependencies between them. If it is not done properly you end up with a mess. Dagster provides us a framework to prevent that.</p></li>
-<li><p>It eventually may break. Data sources may change with time and with that your pipelines break. For instance, DPGA may change the API and our automation will fail. Dagster allows you to monitor and to</p></li>
+<li><p>It may eventually break. Data sources may change with time and subsequently your pipelines may break. For instance, DPGA may update their API and causing the downstream automation to fail. Dagster enhances the monitoring capabilities for data pipelines.</p></li>
 </ol>
-<p>The cool thing of Dagster, it that it uses Python as programming language too, so most of the work we did for the Jupyter Notebook can be reused.</p>
-<p>In the magasin architecture, usually data assets are stored in files. In particular, we recommend the use of <a href="https://parquet.apache.org/">Apache parquet file format</a> for storing the datasets.</p>
+<p>The cool thing about Dagster, is that it uses the Python programming language too, so most of the work we did in the Jupyter Notebook is reusable.</p>
+<p>In the Magasin architecture, usually data assets are stored in files. In particular, we recommend the use of <a href="https://parquet.apache.org/">Apache parquet file format</a> for storing the datasets.</p>
 <p>Parquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data.</p>
-<p>Using Parquet to store datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular Big Data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.</p>
-<p>In this step, we will also use another component of magasin that will help us to be cloud agnostic. It is called <a href="http://min.io">MinIO</a> and gives us an <a href="https://en.wikipedia.org/wiki/Amazon_S3">Amazon S3</a> compatible file store.</p>
-<p>Thanks to MinIO, regardless of what infrastructure you’re using, your pipelines will work the same, you do not need to adapt how you store the data. Using files, compared to using a traditional SQL schema, allows you to store not only structured tabular data, but also images or documents. It simplifies also the governance of the datasets as the problem of sharing is reduced to assigning file/folder permissions.</p>
+<p>Using Parquet to store datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular big data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.</p>
+<p>In this step, we will leverage another component of Magasin to help us maintain a cloud agnostic architecture. It is called <a href="http://min.io">MinIO</a> and gives us an <a href="https://en.wikipedia.org/wiki/Amazon_S3">Amazon S3</a> compatible file store.</p>
+<p>Thanks to MinIO, regardless of what infrastructure you’re using, your pipelines will work the same and you do not need to adapt how you store the data. Using files, compared to using a traditional SQL schema, allows you to store not only structured tabular data, but also images or documents. It simplifies also the governance of the datasets as the problem of sharing is reduced to assigning file/folder permissions.</p>
 <p>To maintain a vendor-agnostic architecture, we leverage MinIO. However, in alignment with our loosely coupled design, you have the flexibility to bypass this component if you find alternative methods more suitable for storing your ingested data. This decision may be based on better alignment with your existing processes or specific use case requirements.</p>
 <p>For instance, instead of MinIO, you can directly utilize a vendor-specific object store like Azure Blobs, Amazon S3, or Google Cloud Storage. Alternatively, you may choose to write your data into a database, such as DuckDB or PostgreSQL.</p>
 <p><a href="../get-started/automate-data-ingestion.html">Go to Step 2</a></p>
 </section>
 <section id="step-3-create-a-dashboard-with-superset" class="level2" data-number="0.3">
 <h2 data-number="0.3" class="anchored" data-anchor-id="step-3-create-a-dashboard-with-superset"><span class="header-section-number">0.3</span> Step 3: Create a dashboard with Superset</h2>
-<p>Dagster allows you to gather the data and transform it to something that can be displayed, but it does not come with advanced visualization capabilities. For that we need a tool that has many graphs, and allows us to interact with the data, that is a business intelligence dashboard tool.</p>
-<p>Magasin comes with <a href="https://superset.apache.org/">Apache Superset</a>, which allows you to create dashboard with many graphs.</p>
-<p>In this last step, we will create a dashboard that will display the graphs.</p>
-<p>Again, we did the heavy lifting on the first step with the notebook so now we just need to play with the user interface of superset.</p>
-<p>Superset,</p>
+<p>Dagster allows you to gather the data and transform it into something that can be displayed, but it does not come with advanced visualization capabilities. For that we need a tool that has better charting capabilities, and allows us to interact with the data, that is a Business Intelligence (BI) tool.</p>
+<p>Magasin ships with <a href="https://superset.apache.org/">Apache Superset</a>, which allows you to author dashboard and reports from a wide array of beautiful visualizations.</p>
+<p>In this last step, we will create a dashboard to showcase the data.</p>
+<p>Earlier, we already did the heavy-lifting in the first step using the notebook environment, so now we just need familiar with Superset’s intuitive interface for visualizing datasets and crafting interactive dashboards.</p>
 </section>
 <section id="whats-next" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> What’s next?</h1>
-<p>Now that you have an overview, let’s start working with magasin:</p>
+<p>Now that you have an overview, let’s start working with Magasin:</p>
 <p><strong><a href="../get-started/exploratory-analysis.html">Go to the step 1: Initial analysis</a></strong></p>
 
 
