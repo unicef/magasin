@@ -1,19 +1,19 @@
 ---
 title: "Get started"
-description-meta: "Steps to start using Magasin, scalable end-to-end data platform based on open-source components that is natively run in a Kubernetes cluster"
+description-meta: "Steps to start using magasin, scalable end-to-end data platform based on open-source components that is natively run in a Kubernetes cluster"
 
 format: html
 ---
 
 Magasin is a scalable end-to-end data platform based on open-source components that is natively run in a [Kubernetes cluster](https://kubernetes.io).
 
-In this getting started you will install Magasin on your local machine for testing purposes, then you will perform an [end-to-end data processing task](tutorial-overview.qmd) that involves: [exploratory analysis](exploratory-analysis.qmd) of a data source, [creating a pipeline](./automate-data-ingestion.qmd) to automate data ingestion and [authoring a dashboard](create-a-dashboard.qmd) to present your findings.
+In this getting started you will install magasin on your local machine for testing purposes, then you will perform an [end-to-end data processing task](tutorial-overview.qmd) that involves: [exploratory analysis](exploratory-analysis.qmd) of a data source, [creating a pipeline](./automate-data-ingestion.qmd) to automate data ingestion and [authoring a dashboard](create-a-dashboard.qmd) to present your findings.
 
 Let's start by getting the pre-requisites:
 
 ## Pre-requisite: a Kubernetes cluster
 
-Prior to installing Magasin,  you need to have a Kubernetes cluster. But don't worry, you can setup one on your local machine very easily. In layman terms, Kubernetes is just a technology that enables managing cloud ready applications, such as Magasin. 
+Prior to installing magasin,  you need to have a Kubernetes cluster. But don't worry, you can setup one on your local machine very easily. In layman terms, Kubernetes is just a technology that enables managing cloud ready applications, such as magasin. 
 
 In this getting started tutorial, we are going to setup a Kubernetes cluster through [Docker Desktop](https://docs.docker.com/desktop/), an application that can be installed on most computers. However, if you already have a cluster you can go directly to the [install magasin section](#install-magasin). 
 
@@ -53,7 +53,7 @@ kube-system       Active   49m
 Alternatively, you can also [install minikube](../install/setup-kubernetes.qmd#option-2-local-cluster-using-minikube) or if you have a cluster in any [cloud provider](../install/setup-kubernetes.qmd#setup-a-cluster-in-a-major-cloud-provider) you can also use it. At the end, you just need your `kubectl` to be setup to use whatever kubernetes cluster you want to use.
 
 
-## Install Magasin
+## Install magasin
 
 Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup within the Kubernetes cluster.
 
@@ -133,8 +133,8 @@ The default installation is fine for testing purposes, but for a production envi
 
 ## Next steps
 
-Ok, now you have a fully running instance of Magasin in your Kubernetes cluster, so what now:
+Ok, now you have a fully running instance of magasin in your Kubernetes cluster, so what now:
 
-* **[Start using Magasin](../get-started/tutorial-overview.qmd)**. We have created a tutorial that will take you through the typical steps for creating an end-to-end data processing pipeline and consequently for enabling a data-driven organization using Magasin.
+* **[Start using magasin](../get-started/tutorial-overview.qmd)**. We have created a tutorial that will take you through the typical steps for creating an end-to-end data processing pipeline and consequently for enabling a data-driven organization using magasin.
 
-* Also, you can [learn more about the components and architecture of Magasin](../architecture.qmd). Learn more about the the different components that come out of the box with Magasin.
+* Also, you can [learn more about the components and architecture of magasin](../architecture.qmd). Learn more about the the different components that come out of the box with magasin.
