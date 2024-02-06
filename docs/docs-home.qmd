@@ -7,17 +7,17 @@ Magasin is a cloud native open-source end-to-end data platform.
 Magasin enables organizations to perform automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale.
 
 
-## Learn more about Magasin
-* **[Why Magasin?](why-magasin.qmd)**
+## Learn more about magasin
+* **[Why magasin?](why-magasin.qmd)**
 * **[Architecture](architecture.qmd)**
 
-## Start using Magasin
+## Start using magasin
 * **[Get Started](get-started/)**. Quick setup
 * **[Installation](install/)**. Detailed explanation of the base installation.
 * **[End user guides](end-user-guides.qmd)**. References on how to use the components
 * **[Deployment](deployment.qmd)**. Learn more about the configuration of the different components.
 
-## Develop Magasin
+## Develop magasin
 
  * **[Contributing](contributing/)**. For developers and contributors.
 

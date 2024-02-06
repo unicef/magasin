@@ -50,13 +50,13 @@ What usually happends when you start automating stuff is that:
 
 The cool thing about Dagster, is that it uses the Python programming language too, so most of the work we did in the Jupyter Notebook is reusable.
 
-In the Magasin architecture, usually data assets are stored in files. In particular, we recommend the use of [Apache parquet file format](https://parquet.apache.org/) for storing the datasets. 
+In the magasin architecture, usually data assets are stored in files. In particular, we recommend the use of [Apache parquet file format](https://parquet.apache.org/) for storing the datasets. 
 
 Parquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data. 
 
 Using Parquet to store datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular big data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.
 
-In this step, we will leverage another component of Magasin to help us maintain a cloud agnostic architecture. It is called [MinIO](http://min.io) and gives us an [Amazon S3](https://en.wikipedia.org/wiki/Amazon_S3) compatible file store. 
+In this step, we will leverage another component of magasin to help us maintain a cloud agnostic architecture. It is called [MinIO](http://min.io) and gives us an [Amazon S3](https://en.wikipedia.org/wiki/Amazon_S3) compatible file store. 
 
 Thanks to MinIO, regardless of what infrastructure you're using, your pipelines will work the same and you do not need to adapt how you store the data. Using files, compared to using a traditional SQL schema, allows you to store not only structured tabular data, but also images or documents. It simplifies also the governance of the datasets as the problem of sharing is reduced to assigning file/folder permissions.
 
@@ -70,7 +70,7 @@ For instance, instead of MinIO, you can directly utilize a vendor-specific objec
 
 Dagster allows you to gather the data and transform it into something that can be displayed, but it does not come with advanced visualization capabilities. For that we need a tool that has better charting capabilities, and allows us to interact with the data, that is a Business Intelligence (BI) tool. 
 
-Magasin ships with [Apache Superset](https://superset.apache.org/), which allows you to author dashboard and reports from a wide array of beautiful visualizations.
+magasin ships with [Apache Superset](https://superset.apache.org/), which allows you to author dashboard and reports from a wide array of beautiful visualizations.
 
 In this last step, we will create a dashboard to showcase the data.
 
@@ -78,7 +78,7 @@ Earlier, we already did the heavy-lifting in the first step using the notebook e
 
 # What's next?
 
-Now that you have an overview, let's start working with Magasin:
+Now that you have an overview, let's start working with magasin:
 
 **[Go to the step 1: Initial analysis](./exploratory-analysis.qmd)**
 

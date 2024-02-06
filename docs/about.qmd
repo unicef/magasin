@@ -17,7 +17,7 @@ Also informed by experiences of the [Magic Box](https://www.unicef.org/innovatio
 
 In 2021, ICTD engaged one of its long term agreement vendors to assist with evolving the proof-of-concept into a minimum viable product (MVP).
 
-In 2023, UNICEF started the journey to detach _Magasin_ from its organizational and cloud infrastructure dependencies, and release it as an open-source platform with the goal of becoming a [Digital Public Good](https://digitalpublicgoods.net/digital-public-goods/).
+In 2023, UNICEF started the journey to detach _magasin_ from its organizational and cloud infrastructure dependencies, and release it as an open-source platform with the goal of becoming a [Digital Public Good](https://digitalpublicgoods.net/digital-public-goods/).
 
 
 
