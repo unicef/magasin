@@ -40,10 +40,10 @@ helm install drill magasin/drill --namespace magasin-drill --create-namespace
 helm install superset magasin/superset --namespace magasin-superset --create-namespace
 helm install daskhub magasin/daskhub --namespace magasin-daskhub --create-namespace
 helm install operator magasin/operator --namespace magasin-operator --create-namespace
-helm install operator magasin/tenant --namespace magasin-tenant --create-namespace
+helm install tenant magasin/tenant --namespace magasin-tenant --create-namespace
 ```
 
-Check that all the pods in the `magasin-*` namespaces are in status `Running` or `Completed`. Note that, it may take a few minutes till all the items get that status. 
+Verify all the pods in the `magasin-*` namespaces are in status `Running` or `Completed`. Note that, it may take a few minutes until all the items change to that status. 
 
 
 ```sh
