@@ -55,7 +55,7 @@ helm_pull() {
 helm_pull https://dagster-io.github.io/helm \
         dagster \
         dagster \
-        1.6.0   \
+        1.6.3   \
         $temp_charts          
 
 
