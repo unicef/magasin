@@ -1291,7 +1291,7 @@ migrate:
 # https://docs.dagster.io/getting-started/telemetry
 ####################################################################################################
 telemetry:
-  enabled: false
+  enabled: true
 
 serviceAccount:
   create: true
