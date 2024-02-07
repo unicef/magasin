@@ -185,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../why-magasin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Why Magasin?</span></a>
+ <span class="menu-text">Why magasin?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -429,8 +429,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install superset magasin/superset <span class="at">--namespace</span> magasin-superset <span class="at">--create-namespace</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install daskhub magasin/daskhub <span class="at">--namespace</span> magasin-daskhub <span class="at">--create-namespace</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install operator magasin/operator <span class="at">--namespace</span> magasin-operator <span class="at">--create-namespace</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install operator magasin/tenant <span class="at">--namespace</span> magasin-tenant <span class="at">--create-namespace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Check that all the pods in the <code>magasin-*</code> namespaces are in status <code>Running</code> or <code>Completed</code>. Note that, it may take a few minutes till all the items get that status.</p>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install tenant magasin/tenant <span class="at">--namespace</span> magasin-tenant <span class="at">--create-namespace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Verify all the pods in the <code>magasin-*</code> namespaces are in status <code>Running</code> or <code>Completed</code>. Note that, it may take a few minutes until all the items change to that status.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--all-namespaces</span> <span class="kw">|</span> <span class="fu">grep</span> magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If there is any issue, please check the <a href="../install/troubleshooting.html">troubleshooting page</a>.</p>
 </section>

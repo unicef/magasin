@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../why-magasin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Why Magasin?</span></a>
+ <span class="menu-text">Why magasin?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -413,10 +413,10 @@ ul.task-list li input[type="checkbox"] {
 <li><p>It may eventually break. Data sources may change with time and subsequently your pipelines may break. For instance, DPGA may update their API and causing the downstream automation to fail. Dagster enhances the monitoring capabilities for data pipelines.</p></li>
 </ol>
 <p>The cool thing about Dagster, is that it uses the Python programming language too, so most of the work we did in the Jupyter Notebook is reusable.</p>
-<p>In the Magasin architecture, usually data assets are stored in files. In particular, we recommend the use of <a href="https://parquet.apache.org/">Apache parquet file format</a> for storing the datasets.</p>
+<p>In the magasin architecture, usually data assets are stored in files. In particular, we recommend the use of <a href="https://parquet.apache.org/">Apache parquet file format</a> for storing the datasets.</p>
 <p>Parquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data.</p>
 <p>Using Parquet to store datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular big data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.</p>
-<p>In this step, we will leverage another component of Magasin to help us maintain a cloud agnostic architecture. It is called <a href="http://min.io">MinIO</a> and gives us an <a href="https://en.wikipedia.org/wiki/Amazon_S3">Amazon S3</a> compatible file store.</p>
+<p>In this step, we will leverage another component of magasin to help us maintain a cloud agnostic architecture. It is called <a href="http://min.io">MinIO</a> and gives us an <a href="https://en.wikipedia.org/wiki/Amazon_S3">Amazon S3</a> compatible file store.</p>
 <p>Thanks to MinIO, regardless of what infrastructure you’re using, your pipelines will work the same and you do not need to adapt how you store the data. Using files, compared to using a traditional SQL schema, allows you to store not only structured tabular data, but also images or documents. It simplifies also the governance of the datasets as the problem of sharing is reduced to assigning file/folder permissions.</p>
 <p>To maintain a vendor-agnostic architecture, we leverage MinIO. However, in alignment with our loosely coupled design, you have the flexibility to bypass this component if you find alternative methods more suitable for storing your ingested data. This decision may be based on better alignment with your existing processes or specific use case requirements.</p>
 <p>For instance, instead of MinIO, you can directly utilize a vendor-specific object store like Azure Blobs, Amazon S3, or Google Cloud Storage. Alternatively, you may choose to write your data into a database, such as DuckDB or PostgreSQL.</p>
@@ -425,13 +425,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="step-3-create-a-dashboard-with-superset" class="level2" data-number="0.3">
 <h2 data-number="0.3" class="anchored" data-anchor-id="step-3-create-a-dashboard-with-superset"><span class="header-section-number">0.3</span> Step 3: Create a dashboard with Superset</h2>
 <p>Dagster allows you to gather the data and transform it into something that can be displayed, but it does not come with advanced visualization capabilities. For that we need a tool that has better charting capabilities, and allows us to interact with the data, that is a Business Intelligence (BI) tool.</p>
-<p>Magasin ships with <a href="https://superset.apache.org/">Apache Superset</a>, which allows you to author dashboard and reports from a wide array of beautiful visualizations.</p>
+<p>magasin ships with <a href="https://superset.apache.org/">Apache Superset</a>, which allows you to author dashboard and reports from a wide array of beautiful visualizations.</p>
 <p>In this last step, we will create a dashboard to showcase the data.</p>
 <p>Earlier, we already did the heavy-lifting in the first step using the notebook environment, so now we just need familiar with Superset’s intuitive interface for visualizing datasets and crafting interactive dashboards.</p>
 </section>
 <section id="whats-next" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> What’s next?</h1>
-<p>Now that you have an overview, let’s start working with Magasin:</p>
+<p>Now that you have an overview, let’s start working with magasin:</p>
 <p><strong><a href="../get-started/exploratory-analysis.html">Go to the step 1: Initial analysis</a></strong></p>
 
 

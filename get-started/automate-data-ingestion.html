@@ -185,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../why-magasin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Why Magasin?</span></a>
+ <span class="menu-text">Why magasin?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -378,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">1</span> Background</a>
   <ul class="collapse">
-  <li><a href="#advantages-of-using-dagster" id="toc-advantages-of-using-dagster" class="nav-link" data-scroll-target="#advantages-of-using-dagster"><span class="header-section-number">1.1</span> Advantages of using dagster</a></li>
+  <li><a href="#advantages-of-using-dagster" id="toc-advantages-of-using-dagster" class="nav-link" data-scroll-target="#advantages-of-using-dagster"><span class="header-section-number">1.1</span> Advantages of using Dagster</a></li>
   <li><a href="#storing-data-as-parquet-files" id="toc-storing-data-as-parquet-files" class="nav-link" data-scroll-target="#storing-data-as-parquet-files"><span class="header-section-number">1.2</span> Storing data as parquet files</a></li>
   <li><a href="#parquet-format-for-structured-data." id="toc-parquet-format-for-structured-data." class="nav-link" data-scroll-target="#parquet-format-for-structured-data."><span class="header-section-number">1.3</span> Parquet format for structured data.</a></li>
   <li><a href="#minio-magasins-storage-layer-optional" id="toc-minio-magasins-storage-layer-optional" class="nav-link" data-scroll-target="#minio-magasins-storage-layer-optional"><span class="header-section-number">1.4</span> MinIO, magasin’s storage layer (optional)</a></li>
@@ -387,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#create-a-dagster-pipeline" id="toc-create-a-dagster-pipeline" class="nav-link" data-scroll-target="#create-a-dagster-pipeline"><span class="header-section-number">3</span> Create a dagster pipeline</a>
   <ul class="collapse">
   <li><a href="#add-the-pipeline-code" id="toc-add-the-pipeline-code" class="nav-link" data-scroll-target="#add-the-pipeline-code"><span class="header-section-number">3.1</span> Add the pipeline code</a></li>
-  <li><a href="#adding-a-scheduler" id="toc-adding-a-scheduler" class="nav-link" data-scroll-target="#adding-a-scheduler"><span class="header-section-number">3.2</span> Adding a scheduler</a></li>
+  <li><a href="#adding-a-job-scheduler" id="toc-adding-a-job-scheduler" class="nav-link" data-scroll-target="#adding-a-job-scheduler"><span class="header-section-number">3.2</span> Adding a job scheduler</a></li>
   <li><a href="#deploy-the-pipeline-in-the-cluster" id="toc-deploy-the-pipeline-in-the-cluster" class="nav-link" data-scroll-target="#deploy-the-pipeline-in-the-cluster"><span class="header-section-number">3.3</span> Deploy the pipeline in the cluster</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4</span> Summary</a></li>
@@ -425,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Automating this process is highly advantageous as it eliminates the need for repetitive tasks. In our scenario, the workflow involves fetching data from the DPG API, followed by cleaning and processing it for seamless integration with a business intelligence dashboard creation tool, Superset, that will be used in the <a href="../get-started/create-a-dashboard.html">next step</a>.</p>
 <p>The good news is that we have already completed the heavy lifting using the Jupyter Notebook. This is advantageous because the code we will be writing is essentially the same; we just need to make some tweaks to adapt it into a <a href="https://dagster.io">Dagster pipeline</a>.</p>
 <section id="advantages-of-using-dagster" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="advantages-of-using-dagster"><span class="header-section-number">1.1</span> Advantages of using dagster</h3>
+<h3 data-number="1.1" class="anchored" data-anchor-id="advantages-of-using-dagster"><span class="header-section-number">1.1</span> Advantages of using Dagster</h3>
 <p><a href="https://dagster.io">Dagster</a> is what is known as a pipeline orchestrator, which essentially helps us manage the ingestion of data from multiple sources.</p>
 <p>The benefits of using a framework like Dagster are manifold. It allows us to approach tasks in a structured manner, facilitating scalability and monitoring. Anyone who has dealt with gathering data from multiple sources will attest that it can quickly turn into a nightmare if not managed properly. Dagster provides an excellent starting point for tackling such challenges.</p>
 <p>What usually happends when you start automating gathering data, processing and mixing data from multiple data sources is that:</p>
@@ -500,7 +500,7 @@ Tip: mag shortcuts
 <section id="create-a-dagster-pipeline" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="create-a-dagster-pipeline"><span class="header-section-number">3</span> Create a dagster pipeline</h2>
 <p>So, the next step is to create a pipeline. A pipeline is just a piece of code that moves data from place to another and that can introduce some changes before saving it in the destination place. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.</p>
-<p>The first thing we need to do is to install dagster.</p>
+<p>The first thing we need to do is to install Dagster.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install dagster==1.6.0 dagster-webserver==1.6.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -519,14 +519,14 @@ Note
 </div>
 <section id="add-the-pipeline-code" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="add-the-pipeline-code"><span class="header-section-number">3.1</span> Add the pipeline code</h3>
-<p>Once dagster is installed, we’re going to create a new project using the default structure prodivded by dagster. This should be the default procedure for creating any new pipeline.</p>
+<p>Once Dagster is installed, we’re going to create a new project using the default structure prodivded by Dagster. This should be the default procedure for creating any new pipeline.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster</span> project scaffold <span class="at">--name</span> dpga-pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Creating</span> a Dagster project at /home/magasin/dpga-pipeline.</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Creating</span> a Dagster code location at /home/magasin/dpga-pipeline.</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Generated</span> files for Dagster code location in /home/magasin/dpga-pipeline.</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Generated</span> files for Dagster project in /home/magasin/dpga-pipeline.</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Success!</span> Created dpga-pipeline at /home/magasin/dpga-pipeline.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>By scaffolding our project, dagster creates a basic structure of a python package that could be installed using <code>pip</code> as any other package as well as some additional metadata files that will be used by dagster to run the pipeline. You ahve some more info in the <a href="https://docs.dagster.io/guides/understanding-dagster-project-files">dagster documentation</a>.</p>
+<p>By scaffolding our project, Dagster creates a basic structure of a python package that could be installed using <code>pip</code> as any other package as well as some additional metadata files that will be used by Dagster to run the pipeline. You ahve some more info in the <a href="https://docs.dagster.io/guides/understanding-dagster-project-files">Dagster documentation</a>.</p>
 <p>Now, lets add our code. Open the file <code>dpga-pipeline/dpga_pipeline/assets.py</code></p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -555,12 +555,12 @@ Note
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> df_deployment_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As you can see the code seems pretty similar to what we wrote in our <a href="../get-started/exploratory-analysis.html">exploratory analysis</a>.</p>
-<p>The in the code we have defined two <code>@assets</code>. An asset according to the dagster definition is:</p>
+<p>The in the code we have defined two <code>@assets</code>. An asset according to the Dagster definition is:</p>
 <blockquote class="blockquote">
 <p>An asset is an object in persistent storage, such as a table, file, or persisted machine learning model. A Software-defined Asset is a Dagster object that couples an asset to the function and upstream assets used to produce its contents.</p>
 </blockquote>
 <p>In our case, <code>raw_dpgs</code>, stores the dpgs as they come from the API as a DataFrame, and <code>deployment_countries</code> that extracts the one row per country in which the DPG has been deplayed.</p>
-<p>Another thing that you can notice in the code is that in the definition of the deployment_countries asset, we are passing <code>raw_dpgs: DataFrame</code>. That will tell dagster that deployment_countries depends on the <code>raw_dpgs</code> and it will be used as input.</p>
+<p>Another thing that you can notice in the code is that in the definition of the deployment_countries asset, we are passing <code>raw_dpgs: DataFrame</code>. That will tell Dagster that deployment_countries depends on the <code>raw_dpgs</code> and it will be used as input.</p>
 <p>As you noticed, we are using a couple of packages that need to be installed <code>pandas</code> and <code>requests</code>. To install them, in <code>dpga-pipeline/setup.py</code> we add them in the <code>install_requires</code> array.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -579,7 +579,7 @@ Note
 </div>
 <p>Ok, So now let’s test if this is working so far. To do that we will first install the pipeline package in <a href="https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs">editable mode</a> (<code>-e</code>). This allows you to edit the package without needing to install it again.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> <span class="st">'.[dev]'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then, we will launch the dagster user interface:</p>
+<p>Then, we will launch the Dagster user interface:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster</span> dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This launches a server in port 3000 on localhost. So just open <code>http://localhost:3000</code></p>
 <p>You should see something like:</p>
@@ -654,11 +654,11 @@ Note
 <p>As you can see we are indicating in the <code>.env</code> file that the endpoint of our minio is in localhost port 9000. To enable this service we need to run the following command</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> minio api</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>While this command is running it will forward any connection to the port 9000 to the our minio instance in the kubernetes cluster. You shoud keep running during this till you are instructed to do close it.</p>
-<p>In another window, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run dagster:</p>
+<p>In another window, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run Dagster:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> <span class="st">'.[dev]'</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster</span> dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that after you launch dagster dev you should see something like:</p>
+<p>Note that after you launch <code>dagster dev</code> you should see something like:</p>
 <pre><code>dagster - INFO - Loaded environment variables from .env file: FSSPEC_S3_ENDPOINT_URL,FSSPEC_S3_KEY,FSSPEC_S3_SECRET</code></pre>
 <p>This is because Dagster loads all the .env file automatically and exposes the variables to the code.</p>
 <p>Open again the browser pointing to <code>http://localhost:3000</code> and in the dagster UI and run <code>Materialize all</code>.</p>
@@ -667,22 +667,130 @@ Note
 <div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mc</span> ls myminio/magasin/data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="adding-a-scheduler" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="adding-a-scheduler"><span class="header-section-number">3.2</span> Adding a scheduler</h3>
-<p>Until now, we have been materializing manually our assets. However, automating this task is indeed the ultimate goal of setting a pipeline.</p>
-<p>In dagster, you have available <a href="https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules">schedulers</a> which basically run your pipeline, or pieces of it, in a fixed interval. Dagster schedulers follow a <a href="https://en.wikipedia.org/wiki/Cron">cron style format</a>.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#__init__.py</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="adding-a-job-scheduler" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="adding-a-job-scheduler"><span class="header-section-number">3.2</span> Adding a job scheduler</h3>
+<p>Until now, we have been materializing manually our assets. However, automating this task is indeed the ultimate goal of setting up a pipeline.</p>
+<p>In Dagster, you have available <a href="https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules">schedulers</a> which basically run your pipeline, or pieces of it, in a fixed interval. Dagster schedulers follow a <a href="https://en.wikipedia.org/wiki/Cron">cron style format</a>.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>dpga-pipeline/dpga_pipeline/assets.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb19" data-filename="dpga-pipeline/dpga_pipeline/assets.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#__init__.py</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dagster <span class="im">import</span> Definitions, load_assets_from_modules, define_asset_job, ScheduleDefinition</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> . <span class="im">import</span> assets</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>all_assets <span class="op">=</span> load_assets_from_modules([assets])</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an asset job that materializes all assets of the pipeline</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>all_assets_job <span class="op">=</span> define_asset_job(name<span class="op">=</span><span class="st">"all_assets_job"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                                  selection<span class="op">=</span>all_assets,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                                  description<span class="op">=</span><span class="st">"Gets all the DPG assets"</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scheduler</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>main_schedule <span class="op">=</span> ScheduleDefinition(job<span class="op">=</span>all_assets_job,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                                   cron_schedule<span class="op">=</span><span class="st">"* * * * *"</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>                                   )</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>defs <span class="op">=</span> Definitions(</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    assets<span class="op">=</span>all_assets,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    jobs<span class="op">=</span>[all_assets_job],</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    schedules<span class="op">=</span>[main_schedule]</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What we did in the code above is to:</p>
+<ol type="1">
+<li><p>Add a <code>job</code>. A job, is basically a selection of assets that will be materialized together in the same run.</p></li>
+<li><p>Define a schedule. The schedule will launch the job at specified time intervals. In our case every minute (<code>* * * * *</code>).</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip: Understanding cron jobs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The job cron format is used to specify the schedule for recurring tasks or jobs in Unix-like operating systems and cron job scheduling systems. It consists of <strong>five fields separated by spaces</strong>, representing different aspects of the schedule:</p>
+<pre><code>&lt;minute&gt; &lt;hour&gt; &lt;day-of-month&gt; &lt;month&gt; &lt;day-of-week&gt;</code></pre>
+<ul>
+<li><p>Minute (0-59): Specifies the minute of the hour when the job should run. Valid values range from 0 to 59.</p></li>
+<li><p>Hour (0-23): Specifies the hour of the day when the job should run. Valid values range from 0 to 23, where 0 represents midnight and 23 represents 11 PM.</p></li>
+<li><p>Day of Month (1-31): Specifies the day of the month when the job should run. Valid values range from 1 to 31, depending on the month.</p></li>
+<li><p>Month (1-12): Specifies the month of the year when the job should run. Valid values range from 1 to 12, where 1 represents January and 12 represents December.</p></li>
+<li><p>Day of Week (0-7): Specifies the day of the week when the job should run. Both 0 and 7 represent Sunday, while 1 represents Monday, and so on, up to 6 representing Saturday.</p></li>
+</ul>
+<p>Each field can contain a single value, a list of values separated by commas, a range of values specified with a hyphen, or an asterisk (*) to indicate all possible values. Additionally, you can use special characters such as slashes (/) for specifying intervals and question marks (?) for leaving a field unspecified (e.g., for day of month or day of week when the other field should match).</p>
 <p>Here you have some <a href="https://crontab.guru/examples.html">examples of cron intervals</a></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scheduler code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cron Expression</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0 0 * * *</code></td>
+<td>Run a task every day at midnight (00:00).</td>
+</tr>
+<tr class="even">
+<td><code>15 2 * * *</code></td>
+<td>Run a task at 2:15 AM every day.</td>
+</tr>
+<tr class="odd">
+<td><code>0 0 * * 1</code></td>
+<td>Run a task every Monday at midnight (00:00).</td>
+</tr>
+<tr class="even">
+<td><code>0 12 * * 1-5</code></td>
+<td>Run a task every weekday (Monday to Friday) at 12 PM (noon).</td>
+</tr>
+<tr class="odd">
+<td><code>*/15 * * * *</code></td>
+<td>Run a task every 15 minutes.</td>
+</tr>
+<tr class="even">
+<td><code>0 */2 * * *</code></td>
+<td>Run a task every 2 hours, starting from midnight.</td>
+</tr>
+<tr class="odd">
+<td><code>30 3 * * 6</code></td>
+<td>Run a task every Saturday at 3:30 AM.</td>
+</tr>
+<tr class="even">
+<td><code>0 0 1 * *</code></td>
+<td>Run a task at midnight on the first day of every month.</td>
+</tr>
+<tr class="odd">
+<td><code>0 0 1 1 *</code></td>
+<td>Run a task at midnight on January 1st every year.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>If you launch again <code>dagster dev</code> and you go to Overview -&gt; Jobs, you can enable the job.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/get-started/dagster-jobs.png" class="img-fluid figure-img"></p>
+<figcaption>Scheduled job</figcaption>
+</figure>
+</div>
 </section>
 <section id="deploy-the-pipeline-in-the-cluster" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="deploy-the-pipeline-in-the-cluster"><span class="header-section-number">3.3</span> Deploy the pipeline in the cluster</h3>
-<p>Till now we have been working on a development environment on our computer. However what we want is to send our pipeline to be</p>
-<p>Now we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in dagster terminology)</p>
-<pre><code>helm upgrade dagster --namespace magasin-dagster -f</code></pre>
-<p>To open the dagster user interface of the instance running in our Kubernetes cluster we need to run</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> dagster ui</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Till now we have been working on a development environment on our own computer. However, we should launch our pipeline within our kubernetes cluster.</p>
+<p>To do that we will deploy a container (pod) in our cluster that Dagster will use to run our pipeline.</p>
+<pre><code></code></pre>
+<p>Now we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in Dagster terminology)</p>
+<pre><code>helm upgrade dagster --namespace magasin-dagster -f code-dagster.yaml</code></pre>
+<p>To open the Dagster user interface of the instance running in our Kubernetes cluster we need to run</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> dagster ui</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To check</p>
 </section>
 </section>
