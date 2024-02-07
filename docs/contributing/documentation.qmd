@@ -6,37 +6,37 @@ description-meta: Our phylosophy on what we document and how we document it.
 
 ## Documentation policy
 
-magasin is based on lots of underlying technologies such as docker, kubernetes, helm and comprises several components which are mature and complex products by themselves, not to mention that all these technologies and components generally have a very comprehensive documentation. 
+Magasin is based on a handful of underlying technologies such as docker, kubernetes, helm and comprises several components which are mature and complex products by themselves; not to mention that all these technologies and components generally have very comprehensive documentation. 
 
-Given this instead of duplicating all the existing documentation, the goal of magasin's documentation is to provide practical and task based, tutorial or step by step guidance in the concrete context of magasin. 
+For that reason, instead of reinventing the wheel by duplicating all the existing documentation - the goal of magasin's documentation is to provide practical and task-oriented tutorials or step by step guidance in the context of magasin. 
 
 The documentation should cover the needs of the following users in mind:
 
-* **Non-technical End Users (business users)** - These are users that do not have a lot of technical background. They are mostly interested in the visualization part, how to use the business intelligence dashboard, and the potential use cases of magasin applied to their business.  
+* **Non-technical End Users (business users)** - These are users who may be tech-savvy and are able to describe or design an application's intended functionality, but do not participate in writing the code that constitutes an application. They are mostly interested in the visualization part, how to use the business intelligence dashboards, and the potential use cases of magasin applied to their business.  
     
     As a subset of these users, we can consider the business analysts who may be evaluating the solution.  
 
-* **Technical End Users** - These are users with technical background, you can consider as these data scientists, and data engineers. They work mostly in the ingestion and analysis. 
+* **Technical End Users** - These are users with a technical background such as data analysts, data engineers and data scientists. They work mostly on the building data ingestion pipelines, running analyses and writing reports, and creating predictions models among other tasks.
 
-* **System Administrators (operations)** - They are the responsible of setting up and maintaining an instance of magasin. They worry about permissions, security, reliability, monitoring...
+* **System Administrators (operations)** - They are the responsible of setting up and maintaining an instance of magasin. They are concerned about permissions, security, reliability, monitoring...
 
 * **Developers and contributors** - They are technical people that need to understand how magasin works internally in order to enhance the product itself.
 
 ## Documentation of our own utilities
 
-In order to make magasin much easier to use, we are developing custom a set of utilities, scripts and applications that work as a glue between components or that act as accelerators of common operations (such as backing up, upgrading, etc...)
+In order to enhance the user experience within magasin, we are developing custom a set of utilities, scripts and applications; that serve as a glue between components or that act as accelerators of common operations (such as backing up, upgrading etc)
 
-* It is a must to document the source code including examples of usage (for other developers and contributors).
+* It is a essential to document the source code including examples of usage for other future developers and contributors benefit.
 
-* Depending on what user is that tool for, there must be sysadmin and/or user documentation that explains how to use these utilities
+* Depending on the use case for a given tool, there must be sysadmin and/or user documentation that explains how to use these utilities.
 
-* For those utilities and scripts that automate common processes (for example, backing up the database of a component), there shall be also documentation on the manual process. This is because each magasin component may be setup in many different ways, by providing the manual steps the user will have more control in case the assumed setup by the utility is not compatible with his environment.
+* For those utilities and scripts that automate common processes (for example backing up the database of a component), corresponding documentation on the manual process will be provided. This is because each magasin component may be setup in multiple ways hence by providing the manual steps the user will have more control in case the assumed setup by the utility is not compatible with their environment.
 
 # Magasin website and documentation
 
-Magasin website (http://unicef.github.io/magasin) uses [quarto](https://quarto.org) as content-management-system. It allows us to focus on writing Markdown and it generates a static website.
+Magasin website (http://unicef.github.io/magasin) uses [quarto](https://quarto.org) as the open source technical publishing system. It allows us to focus on writing markdown and it generates a static website.
 
-Quarto is well integrated with Visual Studio Code, and has a preview.
+Quarto is well integrated with Visual Studio Code, and has a preview feature.
 
 ## Website release 
 
