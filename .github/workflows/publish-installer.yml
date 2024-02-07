@@ -1,2 +1,40 @@
+#
+# Installer and uinstaller release is done by publishing 
+# the scripts in the gh-pages
+#
+# TODO add some kind of artifact in the release list.
+
 on:
   workflow_dispatch:
+  #push:
+  #  branches: main
+
+name: Publish installer on the web
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      
+      - name: Checkout gh-pages in gh-pages folder
+        uses: actions/checkout@v4
+        with:
+          ref: 'gh-pages'
+          path: 'gh-pages'
+          
+      - name: Update the installer and the uninstaller in gh-pages
+        run: |
+          cp -f installer/install-magasin.sh ./gh-pages/
+          cp -f installer/uninstall-magasin.sh ./gh-pages/
+
+      - name: "Push gh-pages back"
+        uses: EndBug/add-and-commit@v9
+        with:
+            cwd: './gh-pages/'
+            message: "Update install and uninstall scripts to latest version"
+            committer_name: GitHub Actions
+            committer_email: actions@github.com

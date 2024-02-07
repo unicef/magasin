@@ -35,7 +35,11 @@ jobs:
         run: |
             ls gh-pages
             ls docs/*
-            cp gh-pages/index.yaml  index.yaml
+            cp gh-pages/index.yaml .
+            cp gh-pages/install-magasin.sh .
+            cp gh-pages/uninstall-magasin.sh .
+            
+            
           
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
@@ -51,10 +55,21 @@ jobs:
           ref: 'gh-pages'
           path: 'gh-pages'
       
-      - name: Add back the index file
+      - name: Add back the backuped files
         run: |
+          
           cp index.yaml ./gh-pages/
-
+          cp install-magasin.sh ./gh-pages/
+          cp uninstall-magasin.sh ./gh-pages/
+          
+      - name: Add security.txt to deployment
+        run: |
+          # Create the ./well-known folder
+          mkdir ./gh-pages/.well-known
+          # copy security
+          cp docs/security.txt ./gh-pages/.well-known
+          
+          
       - name: "Push the new index"
         uses: EndBug/add-and-commit@v9
         with:
