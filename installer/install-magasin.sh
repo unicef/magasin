@@ -628,10 +628,9 @@ function install_chart {
 
 } 
 
-
+install_chart dagster
 install_chart drill
 install_chart daskhub
-install_chart dagster
 install_chart superset
 install_chart operator
 install_chart tenant
