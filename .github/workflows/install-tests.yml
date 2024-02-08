@@ -18,37 +18,13 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-    
-       # Tests if the script checks ok
+
+      # Tests if the install script checks ok
       - name: Test install-magasin.sh -c (dependencies installed)
         run: |
           cd installer
           ./install-magasin.sh -c
-
-      - name: Remove kubectl and helm
-        run: |
-          whereis kubectl
-          whereis helm
-          dpkg -s kubectl
-          sudo apt-get remove -y kubectl
-          sudo rm /usr/local/bin/helm
-      
-      # Tests if the script checks ok
-      - name: Test install-magasin.sh -c (dependencies missing)
-        run: |
-          cd installer
-          ./install-magasin.sh -c
-
-      # Tests if the script installs pedendencies ok
-      - name: Test install-magasin.sh -i (dependencies missing)
-        run: |
-          cd installer
-          ./install-magasin.sh -i -y
-
-          # Double test dependencies were installed
-          helm version
-          kubectl 
-
+          cd ..
       
       # This action also installs helm
       - name: Start a local k8s cluster
@@ -58,9 +34,46 @@ jobs:
           metrics-enabled: false
           traefik-enabled: false
           docker-enabled: false
+      
+      # Run local Helm repo with the branch helm charts
+      - name: Run local repo 
+        run: |
+          pwd
+          cd helm-scripts
+          ./local-helm-repo.sh &
+          sleep 10
+          cd ..
+    
+      # To be removed
+      - name: TEST install only dagster
+        run: |
+          helm repo add mgs http://localhost:8000
+          helm install dagster mgs/dagster -n dag --create-namespace
+             
+      - name: Remove kubectl and helm
+        run: |
+          whereis kubectl
+          whereis helm
+          dpkg -s kubectl
+          sudo apt-get remove -y kubectl
+          sudo rm /usr/local/bin/helm    
 
-      #- name: Create k8s Kind Cluster
-      #  uses: helm/kind-action@v1.5.0
+      # Tests if the script checks ok
+      - name: Test install-magasin.sh -c (check with dependencies missing)
+        run: |
+          cd installer
+          ./install-magasin.sh -c
+          cd ..
+
+      # Tests if the script installs pedendencies ok
+      - name: Test install-magasin.sh -i (install with dependencies missing)
+        run: |
+          cd installer
+          ./install-magasin.sh -i -y
+
+          # Double test dependencies were installed
+          helm version
+          kubectl 
         
       - name: Verify function of k8s, kubectl, and helm
         run: |
@@ -76,17 +89,8 @@ jobs:
           whereis helm
           whereis kubectl
          
-      # Tests if the script checks ok
-      - name: Test install-magasin.sh
-        run: |
-
-          # We run a local helm repo in background 
-          pwd
-          cd helm-scripts
-          ./local-helm-repo.sh &
-          sleep 15
-          cd ..
-
+      - name: Install magasin from local repo
+        run: | 
           # Now we install magasin
           cd installer
           
