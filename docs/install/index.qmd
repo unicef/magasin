@@ -32,7 +32,7 @@ You should run curl-bashing (curl piped with bash/zsh) only on providers that yo
 
   Debian like distributions are Ubuntu, Raspbian, Kali Linux, etc. They use `apt-get` as package manager.  
 
-* **Deploying magasin on a MacOS computer**
+* **Deploying magasin on a Mac OS computer**
 
   ```bash
   curl -X https://unicef.github.io/magasin/install-magasin.sh | zsh
