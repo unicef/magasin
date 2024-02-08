@@ -4,23 +4,23 @@ title: "Manual installation"
 format: html
 ---
 
-If for some reason the installation scripts do not work for you, or your system is not covered by them, you can install all requirements manually manually.
+If for some reason the installation scripts do not work for you, or your system is not covered by them, you can install all requirements manually.
 
-This installation asumes that you already have kubernetes cluster. You can follow this [guide to setup a cluster](./setup-kubernetes.qmd).
+This installation assumes you already have a Kubernetes cluster. You can follow this [guide to setup a cluster](./setup-kubernetes.qmd).
 
-## Install tools in your computer
+## Install tools on your computer
 
 1. [Install kubectl](https://kubernetes.io/docs/tasks/tools/)
 2. [Install helm](https://helm.sh/docs/intro/install/)
 3. [Install Python/pip](https://www.python.org/downloads/)
 
-Ensure `kubectl` is pointing to the right kubernetes cluster
+Verify `kubectl` is pointing to the right Kubernetes cluster
 
 ```sh
 kubectl cluster-info
 ```
 
-## Deploy magasin in your cluster
+## Deploy magasin to your cluster
 
 Add the magasin helm repo
 ```sh
@@ -31,7 +31,7 @@ Update the magasin helm repo
 helm repo update magasin
 ```
 
-Install the different helm charts (dagster, drill, superset, daskhub,...)
+Install the different helm charts (dagster, drill, superset, daskhub ...)
 
 ```sh
 # helm install <component> magasin/<component> --namespace magasin-<component> --create-namespace
@@ -43,7 +43,7 @@ helm install operator magasin/operator --namespace magasin-operator --create-nam
 helm install tenant magasin/tenant --namespace magasin-tenant --create-namespace
 ```
 
-Verify all the pods in the `magasin-*` namespaces are in status `Running` or `Completed`. Note that, it may take a few minutes until all the items change to that status. 
+Verify all the pods in the `magasin-*` namespaces are in status `Running` or `Completed`. Note that, it may take a few minutes before all the items change to that status. 
 
 
 ```sh
