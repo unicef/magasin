@@ -1,18 +1,18 @@
 ---
 title: "Troubleshooting"
-description-meta: Though magasin is meant to be easy to setup, you may get in trouble when setting it up. Here we provide some FAQ to help you out
+description-meta: Though magasin is meant to be easy to setup, you may get into trouble while setting it up. Here we provide some FAQ to help you out
 format: html
 ---
 
 # Troubleshooting FAQ
 
-Please check the questions below, if you cannot find the answer you can try asking to magasin's community within [our discussions forum](https://github.com/unicef/magasin/discussions).
+Please check the questions below. If you cannot find the answer you looking for you can try asking on magasin's community [discussions forum](https://github.com/unicef/magasin/discussions).
 
-## How can I set the kubernetes correct cluster in `kubectl`?
+## How can I set the correct Kubernetes cluster in `kubectl`?
 
-In case that you run `kubectl cluster-info` and it is not pointing to the kubernetes cluster you want to use for magasin you can use the following commands:
+In case you run `kubectl cluster-info` and it is not pointing to the kubernetes cluster you want to use for magasin, you can use the following commands:
 
-1. Get the list different contexts available
+1. Get the list of different contexts available
 
     ```sh
     kubectl config get-contexts
@@ -55,9 +55,9 @@ superset-worker-6c65786947-vcwvx   0/1     Init:ImagePullBackOff   0          68
 ```
 
 
-Then, you may be in an ARM64 architecture.  There is an issue with superset that does not provide multi architecture images. By default the `x86` architecture (also known as `amd64`) is provided in the helm chart.
+Then, your operating system may be using an ARM64 architecture.  There is an issue with superset that does not provide multi-architecture images. By default the `x86` architecture (also known as `amd64`) is provided in the helm chart.
 
-To fix this issue, create a file called `superset.yaml` with the following contents
+To fix this issue, create a file called `superset.yaml` and paste the following contents below
 
 ```yaml
 image:
@@ -75,7 +75,7 @@ initImage:
 
 ```
 
-Then, manually install superset: 
+Then, manually install superset by running the command: 
 
 ```sh
 helm upgrade superset magasin/superset --namespace magasin-superset --create-namespace -f superset.yaml -i 
@@ -84,7 +84,7 @@ helm upgrade superset magasin/superset --namespace magasin-superset --create-nam
 
 ## Explore issues within the installation
 
-To check if all the helm charts were properly installed run this command
+To check if all the helm charts were properly installed, run this command
 
 ```sh
 helm list --all-namespaces                                          
@@ -118,7 +118,7 @@ superset-redis-master-0            1/1     Running                 0          68
 superset-worker-6c65786947-vcwvx   0/1     Init:ImagePullBackOff   0          68m
 ```
 
-Lastly, we can get details of one of the pods that did not go through:
+Lastly, we can get details of one of the pods that did not successfully launch using:
 
 ```sh
 kubectl describe pod superset-68865d55bc-rvxq5 --namespace magasin-superset
@@ -137,14 +137,14 @@ kubectl delete pod superset-68865d55bc-rvxq5 --namespace magasin-superset
 
 The new one will have a different name. So we need to run again `kubectl get pods --namespace magasin-superset`. 
 
-If this does not work, an alternative is to try to reinstall the helm chart manually. First uninstall the current chart:
+If this does not work, an alternative is to try to reinstall the helm chart manually. First uninstall the current chart as below:
 
 ```sh
 helm uninstall superset --namespace magasin-superset
 release "superset" uninstalled
 ```
 
-Then install install manually the magasin component. We will use the same command that was used by the installer (which you can see in the screenshot with the error)
+Then install manually the magasin component. We will use the same command that was used by the installer (which you can see in the screenshot with the error)
 
 ```sh
 helm install superset magasin/superset --namespace magasin-superset 
@@ -155,7 +155,7 @@ If this does not work, you may try to find similar issues within the [magasin di
 
 ## After installation a container is not in `Complete` or `Running` status.
 
-After a few minutes finishing the installation all the containers (pods) of the `magasin-*` namespaces should be in `Complete` or `Running` status. If there is any issue these may have another status.
+After a few minutes the installation of all the containers (pods) in the `magasin-*` namespaces should be in `Complete` or `Running` status. If there is any issue these may have another status.
 
 You can check the status by running
 
@@ -230,7 +230,7 @@ User=drill
 [WARN] Drillbit will start up, but can potentially crash due to oversubscribing of system memory.
 ```
 
-As we can see, there is an issue with lack of memory. In this case we need to run the pod in a cluster with nodes with more RAM.
+As we can see, there is an issue resulting from lack of sufficient memory. In this case we need to run the pod in a cluster with nodes having more RAM.
 
 
 
