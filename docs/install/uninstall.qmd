@@ -10,7 +10,7 @@ You can uninstall magasin either by using the uninstall script script or manuall
 
 A simple way of getting rid of an instance of magasin within a kubernetes cluster is to use the uninstaller.
 
-First, **ensure that `kubectl` is pointing to the target cluster**. For instance, by running `kubectl cluster-info`. Take a look at this link if [it is not pointing to the right cluster](troubleshooting.qmd#how-can-i-set-the-kubernetes-correct-cluster-in-kubectl). Then, proceed to run the uninstaller:
+First, **verify `kubectl` is pointing to the target cluster** by running the command `kubectl cluster-info`. Take a look at this link if [it is not pointing to the right cluster](troubleshooting.qmd#how-can-i-set-the-kubernetes-correct-cluster-in-kubectl). Then, proceed to run the uninstaller:
 
 * **Uninstall script for GNU/Linux**:
 
@@ -18,7 +18,7 @@ First, **ensure that `kubectl` is pointing to the target cluster**. For instance
     curl -X https://unicef.github.io/magasin/uninstall-magasin.sh | bash
     ```
 
-* **Uninstall script for MacOS:**
+* **Uninstall script for Mac OS:**
 
     ```bash
     curl -X https://unicef.github.io/magasin/uninstall-magasin.sh | zsh
@@ -51,7 +51,7 @@ Options:
 
 Examples:
 
-* Only check if your computer has all the pre-requisites to run the uninstaller (namely `kubectl` and `helm`).
+* Check if your computer has all the pre-requisites to run the uninstaller (namely `kubectl` and `helm`).
 
   ```sh
   uninstall-magasin.sh -c
@@ -64,7 +64,7 @@ Examples:
 
 # Manual uninstallation
 
-Ensure `kubectl` is pointing to the right kubernetes cluster
+Verify `kubectl` is pointing to the right Kubernetes cluster
 
 ```sh
 kubectl cluster-info
@@ -77,6 +77,8 @@ helm uninstall dagster --namespace=magasin-dagster
 helm uninstall drill --namespace=magasin-daskhub
 helm uninstall daskhub --namespace=magasin-drill
 helm unintall superset --namespace=magasin-superset
+helm uninstall operator --namespace=magasin-operator
+helm uninstall tenant --namespace=magasin-tenant
 ```
 
 Delete the namespaces
@@ -85,5 +87,7 @@ kubectl delete namespace magasin-dagster
 kubectl delete namespace magasin-daskhub
 kubectl delete namespace magasin-drill
 kubectl delete namespace magasin-superset
+kubectl delete namespace magasin-operator
+kubectl delete namespace magasin-tenant
 kubectl delete namespace magasin
 ```
