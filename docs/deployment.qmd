@@ -8,26 +8,26 @@ Whereas the default installation of magasin is very convenient for testing, it i
 The major concerns you should have when deploying to production should be:
 
 
-1) **Set strong admin passwords**. For simplicity, the base installation includes hardcoded admin passwords. You should modify thse passwords and set strong passwords.
+1) **Set strong admin passwords**. For simplicity, the base installation includes hardcoded admin passwords. You should modify these passwords and set strong passwords.
 
-2) **Enable access controls / Authorization / Authentication.** The large majority of the components support ways to setup authorization and authentication as well as Single Sign-On (SSO).
+2) **Enable access controls / Authorization / Authentication.** The majority of the components support ways to setup authentication, authorization as well as Single Sign-On (SSO).
 
-3) **Network encryption (TLS)**. The default installation does not enable TSL (Transport Layer Security) in the communication between the components.  
+3) **Network encryption (TLS)**. The default installation does not enable TLS (Transport Layer Security) for the communication between the components.  
 
-4) **Setup encryption at rest**. Depending on the sensitivity of the data you are managing, you may want to keep pipelines output encrypted at rest. There are two areas in which you need to focus. The first one is the underlying infrastructure encryption (f.i. hard disk). Cloud providers generally support keeping your data encrypted. If you opt to use MinIO, then you can apply also [encryption at the application level](https://min.io/docs/minio/linux/operations/server-side-encryption.html). 
+4) **Setup encryption at rest**. Depending on the sensitivity of the data you are managing, you may want to keep pipelines output encrypted at rest. There are two areas in which you need to focus. The first one is the underlying infrastructure encryption (f.i. hard disk). Cloud providers generally support keeping your data encrypted. If you opt to use MinIO, then you can also apply [encryption at the application level](https://min.io/docs/minio/linux/operations/server-side-encryption.html), the second area for consideration.
 
-5) **Enable monitoring**. Whereas the components included in magasin support monitoring, the platform currently does not provide an solution for that. Open Source tools such as [Prometheus](https://prometheus.io/) and/or [Graphana](https://grafana.com/) may help you.
+5) **Enable monitoring**. Whereas the components included in magasin support monitoring, the platform currently does not provide an out-of-the-box feature for that. Open Source tools such as [Prometheus](https://prometheus.io/) and/or [Graphana](https://grafana.com/) may help you.
 
-6) **Performance**. Basically with monitoring you will be able to learn where are your bottle necks. In terms of RAM and CPU demand, Apache Drill is the component that may require more attention.
+6) **Performance**. Basically with monitoring you will be able to discover where your bottlenecks are. In terms of RAM and CPU demand, Apache Drill is the most resource intensive component hence may require more attention.
 
-7) **Backup your and recovery**. Setup data backups and recovery plans so that, in case of any incident you can restore your instance.
+7) **Backup and recovery**. Setup data backups and recovery plans so that in case of any incident you can restore your instance.
 
 Here you have some links to reference documentation from the original projects that may help you to setup a production release.
 
 ## Daskhub
 
-* [Dask hub helm char](https://artifacthub.io/packages/helm/dask/daskhub)
-* [Jupyterhub helm Chart](https://z2jh.jupyter.org/en/stable/)
+* [DaskHub helm char](https://artifacthub.io/packages/helm/dask/daskhub)
+* [JupyterHub helm Chart](https://z2jh.jupyter.org/en/stable/)
 * [Dask Gateway Helm](https://gateway.dask.org/install-kube.html)
 * [Dask Gateway Hem Chart Reference](https://gateway.dask.org/install-kube.html#helm-chart-reference)
 
@@ -38,7 +38,7 @@ Here you have some links to reference documentation from the original projects t
 
 ## MinIO
 
-From MinIO magasin includes two helm chart. One is the operator, which basically allows you to deploy instances of tenants (provides multi-tenancy support). In the magasin default installation we do not use the operator to deploy the tenant but rather a helm chart, and we only install the operator as it is a requirement for a tenant. For one single organization, it may be enought to manage one single tenant.
+From MinIO, magasin includes two helm charts: the operator and tenant. The operator basically allows you to deploy instances of tenants (provides multi-tenancy support). In the magasin default installation we do not use the operator to deploy the tenant but rather a helm chart, and we only install the operator as it is a requirement for a tenant. For one single organization, it may be enough to manage a single tenant.
 
 * [Minio Tenant Helm Chart Reference](https://min.io/docs/minio/kubernetes/upstream/reference/operator-chart-values.html#id2)
 
