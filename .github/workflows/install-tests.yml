@@ -40,7 +40,7 @@ jobs:
         run: |
           pwd
           cd helm-scripts
-          ./local-helm-repo.sh
+          ./local-helm-repo.sh &
           sleep 10
           cd ..
     
