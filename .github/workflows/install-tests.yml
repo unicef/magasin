@@ -47,6 +47,9 @@ jobs:
       # To be removed
       - name: TEST install only dagster
         run: |
+          helm repo add dagster https://dagster-io.github.io/helm
+          helm install dagster dagster/dagster --namespace dagster-ori --create-namespace
+         
           # is it in the package action?
           helm install dagster ./helm/dagster --namespace dagter-file --create-namespace 
           # Test reindexing without existing index?
