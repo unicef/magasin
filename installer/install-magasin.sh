@@ -498,7 +498,7 @@ if ! mc --version &> /dev/null; then
   not_working=true
 
 else 
-  echo_success "helm is working"
+  echo_success "mc is working"
 fi
 
 
