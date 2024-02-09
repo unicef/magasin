@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Learn more details about about how to se magasin using the script">
+<meta name="description" content="Learn more details about how to use magasin using the script">
 
 <title>Advanced installation</title>
 <style>
@@ -410,13 +410,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This page provides further information that allows you to better understand how is magasin installed and how you can customize the <a href="../install/index.html">default installation</a></p>
-<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.</p>
+<p>This page provides further information that allows you to better understand how magasin is installed and how you can customize the <a href="../install/index.html">default installation</a></p>
+<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling seamless setup within the Kubernetes cluster.</p>
 <section id="understanding-the-installer-script" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="understanding-the-installer-script"><span class="header-section-number">1</span> Understanding the installer script</h2>
-<p>To install magasin, the most straight forward way is to use the installer. This script, <a href="https://github.com/unicef/magasin/tree/main/scripts/install/install-magasin.sh">install-magasin.sh</a> script is used for both MacOS and <a href="https://debian.org">Debian</a> like GNU/Linux and performs two tasks:</p>
+<p>To install magasin, the most straight forward way is to use the installer. This <a href="https://github.com/unicef/magasin/tree/main/scripts/install/install-magasin.sh">install-magasin.sh</a> script is used for both Mac OS and <a href="https://debian.org">Debian</a> like GNU/Linux and performs two tasks:</p>
 <ol type="1">
-<li>The first one is to install all the pre-requisites required in your computer in order to be able to deploy magasin in a kubernetes cluster</li>
+<li>The first one is to install all the pre-requisites required on your computer in order to be able to deploy magasin to a Kubernetes cluster</li>
 <li>The second one is to deploy magasin in the preselected kubernetes cluster.</li>
 </ol>
 <p>These are the steps the script takes:</p>
@@ -427,8 +427,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="magasin-realms" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="magasin-realms"><span class="header-section-number">2</span> Magasin realms</h2>
-<p>Compared with most of applications that are distributed using helm charts, instead of defining one unique chart that includes all the dependencies, magasin defines an indepenedent chart for each component. This results in loosely-coupled architecture which allows you to only setup and use the components that fit your organizational needs.</p>
-<p>When deploying a containerized application in Kubernetes using Helm charts, typically, a singular chart is defined. This chart can actually be composed of multiple sub-charts, which allows for a hierarchical structure within the deployment. This setup often leads to a well-defined architecture, beneficial for many scenarios, as it simplifies management and deployment.</p>
+<p>Compared with most of applications that are distributed using helm charts, instead of defining one unique chart that includes all the dependencies, magasin defines an independent chart for each component. This results in a loosely-coupled architecture which allows you to only setup and use the components that fit your organizational needs.</p>
+<p>When deploying a containerized application in Kubernetes using Helm charts, typically, a singular chart is defined. This chart can actually be composed of multiple sub-charts, which uses a hierarchical structure within the deployment. This setup often leads to a well-defined architecture, beneficial for many scenarios, as it simplifies management and deployment.</p>
 <p>Given that magasin setup uses independent charts, there is a need to setup at least one connection between these independent charts. This is done through a consistent naming convention which defines the concept of magasin realms.</p>
 <p>A realm is a way of linking independent helm charts through namespaces that follow consistent naming convention: <realm-prefix>-<magasin-component-name>-<realmpostfix>.</realmpostfix></magasin-component-name></realm-prefix></p>
 <p>By convention, the default realm only has the prefix <code>magasin</code> and no postfix. For example, the namespace for the component <code>drill</code> that belongs to the default realm is <code>magasin-drill</code>.</p>
@@ -505,9 +505,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="st"> </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Examples of usage:</p>
 <ol type="1">
-<li><p>Only check if all the required components are installed</p>
+<li><p>Allows you to check if all the required components are installed</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">install-magasin.sh</span> <span class="at">-c</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Install all pre-requisites to install and manage magasin within the current machine but without installing magasin. Installs all the missing components highlighted by the <code>-c</code> option <code>install-magasin.sh -i</code> This may be useful if you already have an instance of magasin and you want to seamlessly setup all the tools to manage that instance.</p></li>
+<li><p>Install all pre-requisites required and manage magasin within the current machine but without installing magasin. Installs all the missing components highlighted by the <code>-c</code> option <code>install-magasin.sh -i</code> This may be useful if you already have an instance of magasin and you want to seamlessly setup all the tools to manage that instance.</p></li>
 <li><p>Setup the realm <code>test</code>. Will use <code>test-&lt;component&gt;</code> as namespace.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">install-magasin.sh</span> <span class="at">-r</span> test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
@@ -516,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4" class="anchored" data-anchor-id="customizing-the-setup-of-each-component"><span class="header-section-number">4</span> Customizing the setup of each component</h2>
 <p>Helm charts allow you to customize some parameters such as the number of replicas, image version to load, startup script parameters, authentication schemas, etc. In order to do that you can create what is called a values file.</p>
 <p>The installer allows you use custom values file for each component. By default it searches in the current working directory (<code>./</code>) for files that have the name <code>&lt;component&gt;.yaml</code>. That is <code>dagster.yaml</code>, <code>drill.yaml</code>, <code>superset.yaml</code>, <code>daskhub.yaml</code>.</p>
-<p>For example, by default the Apache Drill helm chart launches two replicas of its main server. You can change the number of replicas by changing the <code>drill.count</code> value you can create the file <code>drill.yaml</code> with the following contents:</p>
+<p>For example, by default the Apache Drill helm chart launches two replicas of its main server. You can change the number of replicas by changing the <code>drill.count</code> value. You can create the file <code>drill.yaml</code> with the following contents:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drill.yaml</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drill</span><span class="kw">:</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">count</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -537,8 +537,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="setting-up-different-values-for-different-environments" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="setting-up-different-values-for-different-environments"><span class="header-section-number">4.1</span> Setting up different values for different environments</h3>
-<p>Whereas for a testing environment you may want to have some values, such as setting to 1 number of replicas of the drill server, for your production environment you may want to have 3 replicas. The <code>-f &lt;folder-path&gt;</code> option allows you to select the folder where you have the customized values the specific environment.</p>
-<p>Given the below structure</p>
+<p>Whereas for a testing environment you may want to have some values, such as setting to 1 number of replicas of the drill server. For your production environment you may want to have 3 replicas. The <code>-f &lt;folder-path&gt;</code> option allows you to select the folder where you have the customized values of the specific environment.</p>
+<p>Given the structure below:</p>
 <pre><code>  /
   |- dev
   |  |- drill.yaml
@@ -547,7 +547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
      |- drill.yaml
      |- dagster.yaml
      |- superset.yaml</code></pre>
-<p>Now, you can deploy magasin for development running:</p>
+<p>Now, you can deploy magasin for development by running:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">install-magasin.sh</span> <span class="at">-r</span> magasin-dev <span class="at">-f</span> ./dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And the production environment by running:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">install-magasin.sh</span> <span class="at">-r</span> magasin-prd <span class="at">-f</span> ./prd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

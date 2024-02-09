@@ -409,13 +409,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="uninstall-magasin-using-the-script-beta" class="level2" data-number="0.1">
 <h2 data-number="0.1" class="anchored" data-anchor-id="uninstall-magasin-using-the-script-beta"><span class="header-section-number">0.1</span> Uninstall magasin using the script (beta)</h2>
 <p>A simple way of getting rid of an instance of magasin within a kubernetes cluster is to use the uninstaller.</p>
-<p>First, <strong>ensure that <code>kubectl</code> is pointing to the target cluster</strong>. For instance, by running <code>kubectl cluster-info</code>. Take a look at this link if <a href="../install/troubleshooting.html#how-can-i-set-the-kubernetes-correct-cluster-in-kubectl">it is not pointing to the right cluster</a>. Then, proceed to run the uninstaller:</p>
+<p>First, <strong>verify <code>kubectl</code> is pointing to the target cluster</strong> by running the command <code>kubectl cluster-info</code>. Take a look at this link if <a href="../install/troubleshooting.html#how-can-i-set-the-kubernetes-correct-cluster-in-kubectl">it is not pointing to the right cluster</a>. Then, proceed to run the uninstaller:</p>
 <ul>
-<li><p><strong>Uninstall script for GNU/Linux</strong>:</p>
+<li><p><strong>Uninstall script using a computer with Debian like GNU/Linux</strong>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/uninstall-magasin.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Uninstall script for MacOS:</strong></p>
+<li><p><strong>Uninstall script using a Mac OS computer:</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/uninstall-magasin.sh <span class="kw">|</span> <span class="fu">zsh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Uninstall script for Windows:</strong></p>
+<li><p><strong>Uninstall script using a Windows computer:</strong></p>
 <p>Use the <a href="#manual-uninstallation">manual uninstall</a>.</p></li>
 </ul>
 </section>
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-h</span>  Display this help message and exit.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Examples:</p>
 <ul>
-<li><p>Only check if your computer has all the pre-requisites to run the uninstaller (namely <code>kubectl</code> and <code>helm</code>).</p>
+<li><p>Check if your computer has all the pre-requisites to run the uninstaller (namely <code>kubectl</code> and <code>helm</code>).</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uninstall-magasin.sh</span> <span class="at">-c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Uninstall magasin from a realm that is different from the standard one</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uninstall-magasin.sh</span> <span class="at">-r</span> magasin-dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -445,20 +445,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="manual-uninstallation" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Manual uninstallation</h1>
-<p>Ensure <code>kubectl</code> is pointing to the right kubernetes cluster</p>
+<p>Verify <code>kubectl</code> is pointing to the right Kubernetes cluster</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cluster-info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remove each of the components</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># helm uninstall &lt;component&gt; --namespace=magasin-&lt;component&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> uninstall dagster <span class="at">--namespace</span><span class="op">=</span>magasin-dagster</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> uninstall drill <span class="at">--namespace</span><span class="op">=</span>magasin-daskhub</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> uninstall daskhub <span class="at">--namespace</span><span class="op">=</span>magasin-drill</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> unintall superset <span class="at">--namespace</span><span class="op">=</span>magasin-superset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> unintall superset <span class="at">--namespace</span><span class="op">=</span>magasin-superset</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> uninstall operator <span class="at">--namespace</span><span class="op">=</span>magasin-operator</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> uninstall tenant <span class="at">--namespace</span><span class="op">=</span>magasin-tenant</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Delete the namespaces</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete namespace magasin-dagster</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete namespace magasin-daskhub</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete namespace magasin-drill</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete namespace magasin-superset</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete namespace magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete namespace magasin-operator</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete namespace magasin-tenant</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete namespace magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

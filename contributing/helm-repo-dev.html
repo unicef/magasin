@@ -409,44 +409,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>This content is specially focused on the common tasks of magasin contributors and maintainers of the helm charts.</p>
-<p>The core of magasin is the easy deployment of complex cloud-ready applications in a <a href="../install/setup-kubernetes.html">Kubernetes cluster</a>.</p>
-<p>We use <a href="https://helm.sh/">helm charts</a> for this purpose. Helm is a package manager such as <code>pip</code>, <code>apt</code>, <code>brew</code>, <code>npm</code> or <code>gem</code>.</p>
+<p>The core idea behind magasin is the easy deployment of complex cloud-ready applications in a <a href="../install/setup-kubernetes.html">Kubernetes cluster</a> to enable a robust fit for purpose end-to-end data platform.</p>
+<p>We use <a href="https://helm.sh/">helm charts</a> for provisioning the complex cloud-ready applications. Helm is a package manager such as <code>pip</code>, <code>apt</code>, <code>brew</code>, <code>npm</code> or <code>gem</code>.</p>
 <p>Helm uses a packaging format called <a href="https://helm.sh/docs/topics/charts/">charts</a>. A chart is a collection of files that describe a related set of Kubernetes resources. A single chart might be used to deploy something simple, like a pod, or something complex, like a full web app stack with HTTP servers, databases, caches, and so on.</p>
-<p>In general, our approach is to get the official helm chart provided by the maintainer of the component. of and then tweak the configuration to make it work seamless with the other components of magasin.</p>
-<p>There may be cases in which there is not official helm chart. In those situations we have developed ours, as in the case of <a href="http://github.com/unicef/magasin-drill">Apache Drill</a></p>
-<p>The helm charts are kept in the <strong><a href="http://github.com/unicef/magasin/tree/main/helm"><code>helm</code> folder</a></strong> within the <a href="http://github.com/magasin/">main magasin GitHub repository</a></p>
-<p>We have a shell script, <code>/helm-scripts/update-helm-charts.sh</code> that collects the helm charts from the different official repos an keep them in ours. The script itself includes its documentation.</p>
-<p>The repository itself is hosted in the GitHub pages of the main magasin repo. The process of releasing the repo (i.e.&nbsp;<a href="https://helm.sh/docs/helm/helm_repo_index/">updating the <code>index.yaml</code></a> and creating the <a href="https://helm.sh/docs/helm/helm_package/">helm packages</a>)is managed by a <a href="https://github.com/unicef/magasin/blob/main/.github/workflows/publish-helm-charts.yml">GitHub action</a></p>
+<p>In general, our approach is to get the official helm chart provided by the maintainer of the component and then tweak the configuration to make it work seamlessly with the other components of magasin.</p>
+<p>There may be cases where an official helm chart is non-existent. In those situations we have developed ours, as in the case of <a href="http://github.com/unicef/magasin-drill">Apache Drill</a></p>
+<p>The helm charts can be found in the <strong><a href="http://github.com/unicef/magasin/tree/main/helm"><code>helm</code> folder</a></strong> within the <a href="http://github.com/magasin/">main magasin GitHub repository</a>.</p>
+<p>We have a shell script, <code>/helm-scripts/update-helm-charts.sh</code> that collects the helm charts from the different official repos an saves them in our main repo. The script itself includes its documentation.</p>
+<p>The repository itself is hosted by GitHub pages on the main magasin repo. The process of releasing the repo (i.e.&nbsp;<a href="https://helm.sh/docs/helm/helm_repo_index/">updating the <code>index.yaml</code></a> and creating the <a href="https://helm.sh/docs/helm/helm_package/">helm packages</a>)is managed by a CI/CD pipeline implemented using a <a href="https://github.com/unicef/magasin/blob/main/.github/workflows/publish-helm-charts.yml">GitHub action</a></p>
 <section id="working-with-the-charts" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="working-with-the-charts"><span class="header-section-number">1</span> Working with the charts</h2>
-<p>Below you have some recipies that will help you to set things up when modifying the helm charts.</p>
-<p>Before working with the charts you need to <a href="../install/setup-kubernetes.html">setup a Kubernetes cluster</a>,</p>
+<p>Below you have some recipies to help you set up things up while modifying the helm charts.</p>
+<p>Before working with the charts you need to <a href="../install/setup-kubernetes.html">setup a Kubernetes cluster</a>.</p>
 <section id="how-can-i-update-magasins-repo-helm-charts" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="how-can-i-update-magasins-repo-helm-charts"><span class="header-section-number">1.1</span> How can I update magasin’s repo helm charts?</h3>
-<p>Generally, magasin helm charts are just a copy of the “official” repositories. So, what we do is we get a copy of these externally developed charts and create a copy. Then we test interoperability the magasin tools are working and release the package. Magasin in that regard is similar to a GNU/Linux distribution.</p>
+<p>Generally, magasin helm charts are just a copy of the “official” repositories. So, what we do is we download a copy of these externally developed charts. Then we test for interoperability to verify the magasin tools are working before release of the package. Magasin in that regard is similar to a GNU/Linux distribution.</p>
 <p>Currently, we have a script that updates the folder <code>/helm</code> that contains magasin’s charts. It gets them from from other helm repos and copies them to the <code>helm/</code> folder. The script is in <code>/helm-scripts/update-helm-charts.sh</code>.</p>
 <ol type="1">
 <li><p>Clone the repo</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/unicef/magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Update the versions editing <code>/helm-scripts/update-helm-charts.sh</code></p>
-<p>For now, it has the version numbers of the helm charts harcoded. So, you have to modify it whenever you want to update the charts. The script file is documented and should guide you on how to proceed.</p></li>
+<p>For now, it has the version numbers of the helm charts hard-coded. So, you have to modify it whenever you want to update the charts. The script file is documented and should guide you on how to proceed.</p></li>
 <li><p>Run the script.</p></li>
 </ol>
 </section>
 <section id="how-can-i-test-changes-on-helm-charts" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="how-can-i-test-changes-on-helm-charts"><span class="header-section-number">1.2</span> How can I test changes on helm charts?</h3>
-<p>If you have updated or modified the helm charts of the <code>/helm</code> folder, you may want to test them before performing a release.</p>
+<p>If you have updated or modified the helm charts in the <code>/helm</code> folder, you may want to test them before performing a release.</p>
 <p>The easiest way is to run a helm repo in your local machine, which basically is an HTTP server that has the helm charts packaged as <code>.tgz</code> files and a metadata file called <code>index.yaml</code>. Magasin includes a script that allows you to do this.</p>
 <p>Let’s wee what are the steps:</p>
 <ol type="1">
 <li><p>Clone the repo</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/unicef/magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Make the changes on the helm charts within the folder <code>/helm</code></p></li>
+<li><p>Make the changes tn the helm charts within the <code>/helm</code> folder</p></li>
 <li><p>Serve the helm charts in a local repo.</p>
 <p>Go to the <code>helm-scripts</code> and run the <code>local-helm-repo.sh</code> script.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">cd</span> helm-scripts</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">./local-helm-repo.should</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This script packages the helm charts in the <code>/helm</code> folder and launches an HTTP server that points to the folder <code>/_helm-repo/</code> in the root folder of the repo in the port 8000. You can check it is running by opening a browser <a href="http://localhost:8000/index.yaml">http://localhost:8000/index.yaml</a></p></li>
+<p>This script packages the helm charts in the <code>/helm</code> folder and launches an HTTP server that points to the folder <code>/_helm-repo/</code> in the root folder of the repo in the port 8000. You can check it is running by opening a browser and pointing to the URL <a href="http://localhost:8000/index.yaml">http://localhost:8000/index.yaml</a></p></li>
 <li><p>Install magasin.</p>
 <p>Go to the <code>installer</code> folder and run the magasin installer specifying the url of the local repository</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">cd</span> magasin/installer</span>
@@ -455,16 +455,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="what-if-i-only-want-to-update-or-install-one-single-component" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="what-if-i-only-want-to-update-or-install-one-single-component"><span class="header-section-number">1.3</span> What if I only want to update or install one single component?</h3>
-<p>In the previous section you had to install all the charts of magasin it assumed that you did not have an instance already running, but that you already have one instance and you want to update just one chart. To do that you can run the helm command:</p>
+<p>In the previous section you had to install all the charts of magasin basing on the assumption that you did not have an instance already running. In the event that you already have an instance running and you want to update just a single chart. To do that you can run the helm command:</p>
 <p>Assuming you are in the root folder of the repo and you want to upgrade Apache Drill (<code>helm/drill</code>)</p>
 <p>If you are installing the chart for the first time:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install drill ./helm/drill/  <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that the namespace should match the realm you’re working on. We’re asssuming the starndard namespace</p>
+<p>Note that the namespace should match the realm you’re working in. We’re asssuming the stardard namespace</p>
 <p>If you’re updating the helm chart</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> upgrade drill ../../helm/drill/  <span class="at">--namespace</span> magasin-drill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In both cases you can also add custom values by adding <code>-f &lt;path-to-my-values-yaml-file&gt;</code>. Example:</p>
+<p>In both cases you can also add custom values by adding using the option <code>-f &lt;path-to-my-values-yaml-file&gt;</code>. For example:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> upgrade drill ../../helm/drill/  <span class="at">--namespace</span> magasin-drill <span class="at">-f</span> drill.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that using this method, you don’t need to run the local helm repo script.</p>
+<p>Note that using this method, you won’t need to run the local helm repo script.</p>
 
 
 </section>

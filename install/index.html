@@ -403,14 +403,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Magasin is an scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">kubernetes cluster</a>.</p>
+<p>Magasin is a scalable end-to-end data platform based on open-source components that are natively run in a <a href="https://kubernetes.io">kubernetes cluster</a>.</p>
 <p><a href="https://kubernetes.io">Kubernetes</a> is a container orchestration system designed to automate the deployment, scaling, and management of <a href="https://kubernetes.io/docs/concepts/overview/#going-back-in-time">containerized applications</a>. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.</p>
-<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda.. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called <strong>chart</strong>.</p>
-<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of within the Kubernetes cluster.</p>
+<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called <strong>chart</strong>.</p>
+<p>Magasin includes an installer script that sets up all the necessary dependencies on your computer, enabling the seamless setup of the magasin within the Kubernetes cluster.</p>
 <section id="deploy-magasin-using-the-installer-beta" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="deploy-magasin-using-the-installer-beta"><span class="header-section-number">1</span> Deploy magasin using the installer (beta)</h2>
-<p>Once you have access to a kubernetes cluster, you can use the installer to setup magasin in that cluster.</p>
-<p>The major goal of this installer is to ease the setup of some tools that need to be installed in your computer, and then deploy magasin in the kubernetes cluster.</p>
+<p>Once you have access to a Kubernetes cluster, you can use the installer to setup magasin in that cluster.</p>
+<p>The major goal of this installer is to ease the setup of some tools that need to be installed on your computer, and then deploy magasin to the kubernetes cluster.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -421,21 +421,21 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It is highly recommended to <a href="https://unicef.github.io/magasin/install-magasin.sh">take a look at the install script</a> before running it will install several components on your system.</p>
+<p>It is highly recommended to <a href="https://unicef.github.io/magasin/install-magasin.sh">take a look at the install script</a> before running it as it will install several components on your system.</p>
 <p>You should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you’re not confortable with this approach, proceed with the <a href="../install/manual-installation.html">manual installation</a>.</p>
 </div>
 </div>
 <ul>
-<li><p><strong>Deploying magasin from a Debian/Like GNU/Linux computer</strong></p>
+<li><p><strong>Deploying magasin using a Debian/Like GNU/Linux computer</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/install-magasin.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Debian like distributions are Ubuntu, Raspbian, Kali Linux, etc. They use <code>apt-get</code> as package manager.</p></li>
-<li><p><strong>Deploying magasin from a MacOS computer</strong></p>
+<li><p><strong>Deploying magasin using a Mac OS computer</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> https://unicef.github.io/magasin/install-magasin.sh <span class="kw">|</span> <span class="fu">zsh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <p>In both cases, you need a user that can run sudo.</p>
 <p>The installer is in beta, in case it fails check the <a href="../install/troubleshooting.html">troubleshooting section</a> and, if the problems persist, try the <a href="../install/manual-installation.html">manual installation</a></p>
 <ul>
-<li><strong>Deploying magasin from a Windows computer</strong> Please use the <a href="../install/manual-installation.html">manual installation</a></li>
+<li><strong>Deploying magasin on a Windows computer</strong> Please use the <a href="../install/manual-installation.html">manual installation</a></li>
 </ul>
 </section>
 <section id="whats-next" class="level2" data-number="2">

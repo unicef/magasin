@@ -363,18 +363,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Magasin follows an open approach towards accepting contributions.</p>
-<p>In this section you have access to specific documentation useful for developers that want to dive into the internals of magasin and the approach we are following regarding the processes and the documentation.</p>
-<p>Our main repo is in <strong><a href="https://github.com/unicef/magasin">github.com/unicef/magasin</a></strong>.It holds main components, setup and admin scripts, as well as documentation</p>
-<p>We are following a somewhat mono-repo approach with the large majority of the platform itself and the repository has the following sub-projects.</p>
+<p>Magasin follows an open community approach towards accepting contributions.</p>
+<p>In this section you have access to specific documentation useful for developers who would wish to dive into the internals of magasin as well as the approach we are following regarding the processes and the documentation.</p>
+<p>Our main repo is Github-hosted at the site <strong><a href="https://github.com/unicef/magasin">github.com/unicef/magasin</a></strong>. It hosts the main components, setup and admin scripts plus documentation.</p>
+<p>We are following an adapted mono-repo approach for the larger trunk of the platform’s codebase. Below are the sub-projects of the core repository:</p>
 <ol type="1">
-<li><strong><a href="../contributing/helm-repo-dev.html">Helm chart repository</a></strong>. Magasin, similarly to a GNU/Linux distribution is basically a collection of independent open source projects that are setup to work in a common environment.</li>
+<li><strong><a href="../contributing/helm-repo-dev.html">Helm chart repository</a></strong>. Magasin, similarly to a GNU/Linux distribution is basically a collection of independent open source projects that are setup to work together in a common environment.</li>
 </ol>
-<p>In general, our approach is get a copy of the officially maintained helm chart. However, there may be projects that do not have an official helm chart. In that case <a href="../contributing/repositories.html">we develop ours</a>.</p>
+<p>In general, our approach is get a copy of the officially maintained helm chart. However, there may be projects that do not have an official helm chart. In such cases <a href="../contributing/repositories.html">we develop ours</a>.</p>
 <ol start="2" type="1">
-<li><p><strong><a href="../contributing/installer-dev.html">magasin installer</a></strong>. It is a shell script that allows us to install all the requirements (such as helm, kubectl, pip, mc) and the helm charts using one single command line.</p></li>
-<li><p><strong><a href="https://github.com/unicef/magasin/tree/main/mag-cli/"><code>mag</code> CLI</a>: Magasin command line interface</strong>. It provides a consistent interface for some common tasks taking advangate of the common approach and conventions of deploying magasin. It is a python application based on <a href="https://click.palletsprojects.com/en/8.1.x/">click</a>, a library for creating CLIs in a compostable way.</p></li>
-<li><p><strong><a href="../contributing/documentation.html">Project documentation</a></strong>: Documentation is a key pillar for the platform. Magasin has a wide variety of audience users whith different needs. In addition, Magasin website is based on <a href="https://quarto.org/">Quarto</a>, a platform which allows us to write markdown and generate an static website. It allows us to focus on the content.</p></li>
+<li><p><strong><a href="../contributing/installer-dev.html">magasin installer</a></strong>. This is a shell script that allows us to install all the requirements (such as helm, kubectl, pip, mc) and the helm charts using one single command.</p></li>
+<li><p><strong><a href="https://github.com/unicef/magasin/tree/main/mag-cli/"><code>mag</code> CLI</a></strong>. This stands for Magasin command line interface. It provides a consistent interface for some common tasks leveraging the common approach and conventions of deploying magasin. It is a python utility based on <a href="https://click.palletsprojects.com/en/8.1.x/">click</a>, a library for creating CLIs in a compostable way.</p></li>
+<li><p><strong><a href="../contributing/documentation.html">Project documentation</a></strong>: Documentation is a key pillar for the platform. Magasin has a diverse audience of users with varying needs. In addition, magasin website is based on <a href="https://quarto.org/">Quarto</a>, a publishing platform which allows us to write markdown and generate an static website. It allows us to focus on the content.</p></li>
 </ol>
 <p>In addition to these, we have other libraries and tools that are in <a href="../contributing/repositories.html">other repositories</a>.</p>
 

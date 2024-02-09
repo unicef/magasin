@@ -375,20 +375,20 @@ ul.task-list li input[type="checkbox"] {
 <p>Whereas the default installation of magasin is very convenient for testing, it is not ready for production.</p>
 <p>The major concerns you should have when deploying to production should be:</p>
 <ol type="1">
-<li><p><strong>Set strong admin passwords</strong>. For simplicity, the base installation includes hardcoded admin passwords. You should modify thse passwords and set strong passwords.</p></li>
-<li><p><strong>Enable access controls / Authorization / Authentication.</strong> The large majority of the components support ways to setup authorization and authentication as well as Single Sign-On (SSO).</p></li>
-<li><p><strong>Network encryption (TLS)</strong>. The default installation does not enable TSL (Transport Layer Security) in the communication between the components.</p></li>
-<li><p><strong>Setup encryption at rest</strong>. Depending on the sensitivity of the data you are managing, you may want to keep pipelines output encrypted at rest. There are two areas in which you need to focus. The first one is the underlying infrastructure encryption (f.i. hard disk). Cloud providers generally support keeping your data encrypted. If you opt to use MinIO, then you can apply also <a href="https://min.io/docs/minio/linux/operations/server-side-encryption.html">encryption at the application level</a>.</p></li>
-<li><p><strong>Enable monitoring</strong>. Whereas the components included in magasin support monitoring, the platform currently does not provide an solution for that. Open Source tools such as <a href="https://prometheus.io/">Prometheus</a> and/or <a href="https://grafana.com/">Graphana</a> may help you.</p></li>
-<li><p><strong>Performance</strong>. Basically with monitoring you will be able to learn where are your bottle necks. In terms of RAM and CPU demand, Apache Drill is the component that may require more attention.</p></li>
-<li><p><strong>Backup your and recovery</strong>. Setup data backups and recovery plans so that, in case of any incident you can restore your instance.</p></li>
+<li><p><strong>Set strong admin passwords</strong>. For simplicity, the base installation includes hardcoded admin passwords. You should modify these passwords and set strong passwords.</p></li>
+<li><p><strong>Enable access controls / Authorization / Authentication.</strong> The majority of the components support ways to setup authentication, authorization as well as Single Sign-On (SSO).</p></li>
+<li><p><strong>Network encryption (TLS)</strong>. The default installation does not enable TLS (Transport Layer Security) for the communication between the components.</p></li>
+<li><p><strong>Setup encryption at rest</strong>. Depending on the sensitivity of the data you are managing, you may want to keep pipelines output encrypted at rest. There are two areas in which you need to focus. The first one is the underlying infrastructure encryption (f.i. hard disk). Cloud providers generally support keeping your data encrypted. If you opt to use MinIO, then you can also apply <a href="https://min.io/docs/minio/linux/operations/server-side-encryption.html">encryption at the application level</a>, the second area for consideration.</p></li>
+<li><p><strong>Enable monitoring</strong>. Whereas the components included in magasin support monitoring, the platform currently does not provide an out-of-the-box feature for that. Open Source tools such as <a href="https://prometheus.io/">Prometheus</a> and/or <a href="https://grafana.com/">Graphana</a> may help you.</p></li>
+<li><p><strong>Performance</strong>. Basically with monitoring you will be able to discover where your bottlenecks are. In terms of RAM and CPU demand, Apache Drill is the most resource intensive component hence may require more attention.</p></li>
+<li><p><strong>Backup and recovery</strong>. Setup data backups and recovery plans so that in case of any incident you can restore your instance.</p></li>
 </ol>
 <p>Here you have some links to reference documentation from the original projects that may help you to setup a production release.</p>
 <section id="daskhub" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="daskhub"><span class="header-section-number">1</span> Daskhub</h2>
 <ul>
-<li><a href="https://artifacthub.io/packages/helm/dask/daskhub">Dask hub helm char</a></li>
-<li><a href="https://z2jh.jupyter.org/en/stable/">Jupyterhub helm Chart</a></li>
+<li><a href="https://artifacthub.io/packages/helm/dask/daskhub">DaskHub helm char</a></li>
+<li><a href="https://z2jh.jupyter.org/en/stable/">JupyterHub helm Chart</a></li>
 <li><a href="https://gateway.dask.org/install-kube.html">Dask Gateway Helm</a></li>
 <li><a href="https://gateway.dask.org/install-kube.html#helm-chart-reference">Dask Gateway Hem Chart Reference</a></li>
 </ul>
@@ -402,7 +402,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="minio" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="minio"><span class="header-section-number">3</span> MinIO</h2>
-<p>From MinIO magasin includes two helm chart. One is the operator, which basically allows you to deploy instances of tenants (provides multi-tenancy support). In the magasin default installation we do not use the operator to deploy the tenant but rather a helm chart, and we only install the operator as it is a requirement for a tenant. For one single organization, it may be enought to manage one single tenant.</p>
+<p>From MinIO, magasin includes two helm charts: the operator and tenant. The operator basically allows you to deploy instances of tenants (provides multi-tenancy support). In the magasin default installation we do not use the operator to deploy the tenant but rather a helm chart, and we only install the operator as it is a requirement for a tenant. For one single organization, it may be enough to manage a single tenant.</p>
 <ul>
 <li><p><a href="https://min.io/docs/minio/kubernetes/upstream/reference/operator-chart-values.html#id2">Minio Tenant Helm Chart Reference</a></p></li>
 <li><p><a href="https://min.io/docs/minio/kubernetes/upstream/reference/operator-chart-values.html">Minio Operator Helm Chart Reference</a></p></li>

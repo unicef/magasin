@@ -385,17 +385,17 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="purpose" class="level2" data-number="0.1">
 <h2 data-number="0.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">0.1</span> Purpose</h2>
-<p>The purpose of this document is to outline the workflow and guidelines for code contributing to this repository.</p>
+<p>The purpose of this section is to outline the workflow and guidelines for contributing code to this repository.</p>
 </section>
 <section id="principles" class="level2" data-number="0.2">
 <h2 data-number="0.2" class="anchored" data-anchor-id="principles"><span class="header-section-number">0.2</span> Principles</h2>
-<p>Our principles are the roots, core and foundation. All our standardization decisions are based on the following principles:</p>
+<p>Our principles are a set of fundamental guidelines that are meant to inform and streamline collaboration efforts. All our standardization decisions are based on the following principles:</p>
 <ul>
 <li><p><strong>Enhance the developer experience</strong>. Standards ultimate goal is to create a pleasant development experience.</p></li>
 <li><p><strong>Provide management key information</strong>. Workflows should enable management to tackle inefficiencies, pain points and increase output.</p></li>
-<li><p><strong>Seek for simplicity</strong>. If there are different options, we should aim for the simplest one.</p></li>
+<li><p><strong>Aim for simplicity</strong>. If there are different options, we should aim for the simplest one.</p></li>
 </ul>
-<p>In order to achieve these principles, <a href="https://github.com">Github</a> is the main tool we use to track and manage development-related work, from requirements gathering to production release.</p>
+<p>In order to achieve these principles, <a href="https://github.com">Github</a> is the main tool we use to track and manage product development related tasks, from requirements gathering to production release.</p>
 </section>
 <section id="authors" class="level2" data-number="0.3">
 <h2 data-number="0.3" class="anchored" data-anchor-id="authors"><span class="header-section-number">0.3</span> Authors</h2>
@@ -405,8 +405,8 @@ ul.task-list li input[type="checkbox"] {
 <h1 data-number="1"><span class="header-section-number">1</span> Source code management</h1>
 <section id="branch-strategy" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="branch-strategy"><span class="header-section-number">1.1</span> Branch strategy</h2>
-<p>Branching in each repository will follow a trunk-based model. This model involves one eternal “trunk” called <code>master</code> or <code>main</code> from which all other branches originate.</p>
-<p>All development work will take place on these branches and will be committed to master via pull requests with mandatory approval/review.</p>
+<p>Branching in each repository will follow a trunk-based model. This model involves one eternal “trunk” called <code>main</code> from which all other branches originate.</p>
+<p>All proposed changes or development work will take place on separate branches and will be merged into main via pull requests upon mandatory review/approval.</p>
 <p>The goal of this approach is to have a highly stable codebase that is releasable on demand at all times.</p>
 <p>The additional branches will be created for each feature, release, or hotfix. Each of these branches will have specific purposes and follow strict rules as to how they should be used. At a high level, the branching rules are described as follows:</p>
 <table class="table">
@@ -450,7 +450,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>The purpose and correct usage of each supporting branch is elaborated in the following sub-sections. The below graphic can be used as an example of a complete workflow involving all branch types.</p>
+<p>The purpose and correct usage of each supporting branch is elaborated in the following sub-sections. The graphic below can be used as an example of a complete workflow involving all branch types.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/devops-branch-strategy.svg" class="img-fluid figure-img"></p>
@@ -459,23 +459,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="feature-branches" class="level3" data-number="1.1.1">
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="feature-branches"><span class="header-section-number">1.1.1</span> Feature branches</h3>
-<p>For each new feature, or for updates to a given feature, a separate branch will be created. Feature branches must originate from the master branch. Since no development takes place on the master branch, feature branches are expected to be the most common type of branch.</p>
+<p>For each new feature, or for updates to a given feature, a separate branch will be created. Feature branches must originate from the main branch. Since no development takes place on the main branch, feature branches are expected to be the most common type of branch.</p>
 <p>However, these branches should be short-lived. They will exist only as long as the feature is under development and never longer than a sprint. Ideally, a feature branch should involve one developer over a few (1-3) days of work.</p>
 <p>Product backlog items (issues) should be defined with this in mind — if work on a feature is taking too long, then the item needs to be scoped differently (see the section on Delivery).</p>
-<p>Once a feature branch is merged to master via pull request, it should be deleted. Any future work, even if it is related, will require a new branch.</p>
-<p>Whenever a feature branch is created, it should be related to an existing issue. Whereas issues will be tagged with the classification (bug, enhancement, etc), the naming of the feature branches is more free.</p>
+<p>Once a feature branch is merged into main via pull request, it should be deleted. Any future work, even if it is related, will require a new branch.</p>
+<p>Whenever a feature branch is created, where possible, it should be related to an existing issue. Whereas issues will be tagged with the classification (bug, enhancement, etc), the naming of the feature branches is more free.</p>
 </section>
 <section id="release-branches" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="release-branches"><span class="header-section-number">1.1.2</span> Release branches</h3>
-<p>Release branches will be created for each version of the source that is destined for production release. This enables all preparation work for an upcoming release to take place even while development work for future releases is committed to the master.</p>
-<p>The creation of a release branch will always correspond to an upcoming deployment. Since the master branch has a high standard of stability, it should be rare that further development work is needed to refine a release for production. If such a need arises, it will follow the hotfix strategy defined below.</p>
+<p>Release branches will be created for each version of the source that is destined for production release. This enables all preparation work for an upcoming release to take place even while development work for future releases is committed to the main.</p>
+<p>The creation of a release branch will always correspond to an upcoming deployment. Since the main branch has a high standard of stability, it should be rare that further development work is needed to refine a release for production. If such a need arises, it will follow the hotfix strategy defined below.</p>
 <p>Release branches never merge back into the trunk. A release branch should be representative of a release at a given point in time. There is no mandatory end of life for a release branch. These branches can exist indefinitely, as marker in release history and for potential rollback should the need arise.</p>
 <p>Release branches follow the <a href="https://semver.org/">semantic version naming convention</a> (i.e 1.0.0, 1.1.0). When a release branch is created it is also tagged with the same name.</p>
 </section>
 <section id="hotfix-branches" class="level3" data-number="1.1.3">
 <h3 data-number="1.1.3" class="anchored" data-anchor-id="hotfix-branches"><span class="header-section-number">1.1.3</span> Hotfix branches</h3>
-<p>Hotfixes are small changes that need to be released to production more quickly (e.g.&nbsp;due to the severity of the issue). As with release and feature branches, they should always originate from master.</p>
-<p>Upon completion of the work, a hotfix branch will be merged into master. If the hotfix is also required in a release branch to be brought to production immediately, the change can be cherry-picked upon being merged into master. If no current release branch exists, one should be created for this purpose.</p>
+<p>Hotfixes are small changes that need to be released to production more quickly (e.g.&nbsp;due to the severity of the issue). As with release and feature branches, they should always originate from main.</p>
+<p>Upon completion of the work, a hotfix branch will be merged into main. If the hotfix is also required in a release branch to be brought to production immediately, the change can be cherry-picked upon being merged into main. If no current release branch exists, one should be created for this purpose.</p>
 <p>Once the corresponding pull requests complete, the temporary hotfix branch should be removed.</p>
 <p>Whenever there is a hotfix merged into a release branch, the commit that includes the fix shall be tagged updating the PATCH number, for instance, changing from 1.0.0 to 1.0.1.</p>
 <p>This approach allows to provide long term support to a particular version.</p>
@@ -483,7 +483,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="pull-requests-and-commits-pr" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="pull-requests-and-commits-pr"><span class="header-section-number">1.2</span> Pull requests and commits (PR)</h2>
-<p>The merging of supporting branches (feature and hotfix) into the master branch will always require a pull request.</p>
+<p>The merging of supporting branches (feature and hotfix) into the main branch will always require a pull request.</p>
 <p>Pull requests should include a reference to the issue numbers either in the commit or in the description of the PR. in the commit comment, using the following convention (where <code>0000</code> is the issue number and <code>&lt;comments&gt;</code> is placeholder for any optional comments).</p>
 <pre><code>&lt;comments&gt; #0000 &lt;comments&gt; </code></pre>
 <p>Using comments like this will ensure that the pull request is automatically linked to all related issues.</p>
@@ -491,12 +491,12 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><p><strong>Well-formatted code</strong>*: Ensure that the committed code adheres to established coding standards and is well-formatted. Consistent indentation, proper naming conventions, and clean formatting improve code readability and maintainability.</p></li>
 <li><p><strong>No debugging or temporary code</strong>: Avoid including debugging statements, temporary code, or commented-out blocks. These can clutter the codebase and make it harder for others to understand and maintain the code.</p></li>
-<li><p><strong>Avoid unrelated changes</strong>: The PR should focus on a specificfeature. Avoid including unrelated changes in a single commit. If you have multiple unrelated changes, consider creating separate PR for each change.</p></li>
-<li><p><strong>No Sensitive information</strong>: Ensure that commits do not include any sensitive information like passwords, API keys, or personal data. Such information should be securely managed outside of the code repository.</p></li>
+<li><p><strong>Avoid unrelated changes</strong>: The PR should focus on a specific feature. Avoid including unrelated changes in a single commit. If you have multiple unrelated changes, consider creating separate PR for each change.</p></li>
+<li><p><strong>No Sensitive information</strong>: Ensure that commits do not include any sensitive information like passwords, secrets, API keys, or personal data. Such information should be securely managed outside of the code repository.</p></li>
 <li><p><strong>Consistency</strong>: Maintain a consistent style and structure throughout the project. Consistency helps establish good coding practices and makes it easier for the team to understand and collaborate on the codebase.</p></li>
 <li><p><strong>Documentation update</strong>: Ensure that the code, scripts, documentation and README files are up to date.</p></li>
 </ol>
-<p>Commit messages shall help the reviewer to understand what are the changes that have been introduced and the should tell the reviewer what changes have been introduced. These are properties that commits shall have:</p>
+<p>Commit messages shall help the reviewer to understand what changes have been introduced. These are properties that commits shall have:</p>
 <ol type="1">
 <li><p><strong>Atomicity</strong>: Commits should be atomic, meaning they should represent a single logical change. It’s best to keep each commit focused on a specific task within the PR. This allows for easier code review, debugging, and reverting if necessary.</p></li>
 <li><p><strong>Clarity and descriptive messages</strong>: Commit messages should be clear, descriptive, and concise. They should summarize the purpose and content of the commit. A good commit message helps others understand the changes at a glance and provides context for future reference.</p>
@@ -506,8 +506,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <section id="approvals" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="approvals"><span class="header-section-number">1.2.1</span> Approvals</h3>
-<p>Completion of pull requests on main be generally restricted to designated approvers. The job of the approvers is to diligently review all code being merged to master to ensure the utmost stability of that branch.</p>
-<p>Reviewers shall ensure the quality of the code, style and documentation. They shall ensure that it follows the practices of the commits and pull requests exposed on this document.</p>
+<p>Completion of pull requests on main is generally restricted to designated approvers. The job of the approvers is to diligently review all code being merged to main to ensure the utmost stability of that branch.</p>
+<p>Reviewers shall ensure the quality of the code, style and documentation. They shall ensure that it follows the best practices of the commits and pull requests exposed in this section.</p>
 <p>Their aim should be to maintain a release-ready main branch at all times.</p>
 
 
