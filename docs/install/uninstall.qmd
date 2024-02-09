@@ -12,19 +12,19 @@ A simple way of getting rid of an instance of magasin within a kubernetes cluste
 
 First, **verify `kubectl` is pointing to the target cluster** by running the command `kubectl cluster-info`. Take a look at this link if [it is not pointing to the right cluster](troubleshooting.qmd#how-can-i-set-the-kubernetes-correct-cluster-in-kubectl). Then, proceed to run the uninstaller:
 
-* **Uninstall script for GNU/Linux**:
+* **Uninstall script using a computer with Debian like GNU/Linux**:
 
     ```bash
     curl -X https://unicef.github.io/magasin/uninstall-magasin.sh | bash
     ```
 
-* **Uninstall script for Mac OS:**
+* **Uninstall script using a Mac OS computer:**
 
     ```bash
     curl -X https://unicef.github.io/magasin/uninstall-magasin.sh | zsh
     ```
 
-* **Uninstall script for Windows:**
+* **Uninstall script using a  Windows computer:**
 
   Use the [manual uninstall](#manual-uninstallation).
 
