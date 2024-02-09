@@ -41,6 +41,7 @@ jobs:
           pwd
           cd helm-scripts
           ./local-helm-repo.sh &
+          # Give some time to create the .tgz files
           sleep 10
           cd ..
     
