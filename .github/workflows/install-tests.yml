@@ -45,29 +45,6 @@ jobs:
           sleep 10
           cd ..
     
-      # TODO remove
-      - name: TEST install only dagster
-        run: |
-          helm version
-          
-          #cd helm-scripts
-          #./update-helm-charts.sh
-          # Run repo again
-          #./local-helm-repo.sh &
-          #cd ..
-          
-          # is it in the package action?
-          helm install dagster ./helm/dagster --namespace dagter-file --create-namespace 
-          
-          # Test reindexing without existing index?
-          #helm repo index /home/runner/work/magasin/magasin/_helm-repo --url http://localhost:8000
-          
-          helm repo add mgs http://localhost:8000
-          
-          helm install dagster mgs/dagster -n dag --create-namespace
-
-
-             
       - name: Remove kubectl and helm
         run: |
           whereis kubectl
