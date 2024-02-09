@@ -40,8 +40,7 @@ jobs:
         run: |
           pwd
           cd helm-scripts
-          # TODO remove -n
-          ./local-helm-repo.sh -n 
+          ./local-helm-repo.sh
           sleep 10
           cd ..
     
@@ -49,11 +48,12 @@ jobs:
       - name: TEST install only dagster
         run: |
           helm version
-          cd helm-scripts
-          ./update-helm-charts.sh
+          
+          #cd helm-scripts
+          #./update-helm-charts.sh
           # Run repo again
-          ./local-helm-repo.sh &
-          cd ..
+          #./local-helm-repo.sh &
+          #cd ..
           
           # is it in the package action?
           helm install dagster ./helm/dagster --namespace dagter-file --create-namespace 
