@@ -120,7 +120,7 @@ sed -i.bak '/storageClassName/s/^/#/' $temp_charts/tenant/values.yaml && rm $tem
 helm_pull https://apache.github.io/superset \
         superset \
         superset \
-        0.12.1   \
+        0.12.3   \
         $temp_charts          
 
 # Location where the new files are copied:
