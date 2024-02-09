@@ -2,138 +2,138 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://unicef.github.io/magasin/admin-guides/daskhub.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/admin-guides/kubernetes.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/admin-guides/drill.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/admin-guides/mag-cli.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/get-started/automate-data-ingestion.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/get-started/tutorial-overview.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/security.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/index.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/privacy.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/why-magasin.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/contributing/repositories.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/contributing/helm-repo-dev.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/contributing/repository-workflows.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/end-user-guides.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/install/manual-installation.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/install/uninstall.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/install/index.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/install/advanced.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/install/setup-kubernetes.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/install/troubleshooting.html</loc>
-    <lastmod>2024-02-09T06:23:33.222Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.258Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/architecture.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/contributing/vulnerability-disclosure.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/contributing/documentation.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/contributing/index.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/contributing/installer-dev.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/deployment.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/docs-home.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/about.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/get-started/exploratory-analysis.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/get-started/index.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/get-started/create-a-dashboard.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/admin-guides/minio.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/admin-guides/superset.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
   <url>
     <loc>https://unicef.github.io/magasin/admin-guides/dagster.html</loc>
-    <lastmod>2024-02-09T06:23:33.170Z</lastmod>
+    <lastmod>2024-02-09T09:57:18.206Z</lastmod>
   </url>
 </urlset>
