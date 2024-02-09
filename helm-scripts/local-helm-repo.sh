@@ -11,6 +11,10 @@
 # The repo is created in ../_helm-repo/
 # It uses the folder ../helm/ to extract the charts
 # 
+# Options:
+#  -p to select the port (default 8000)
+#  -n to avoid launching the http server
+#
 # This script is useful for testing the setup of not-yet-released versions of the magasin helm charts
 # 
 # /scripts/install/install-magasin.sh -u http://localhost:8000
@@ -32,17 +36,27 @@ DEFAULT_REPO_DIR=$(realpath ../)/_helm-repo
 # Path for the folder that holds the helm charts (../helm)
 HELM_DIR=$(realpath "../helm")
 
+# Default port for the HTTP server
+DEFAULT_PORT=8000
 
 # Actual path of the repo dir
 REPO_DIR=$DEFAULT_REPO_DIR
 
+# Default behavior to launch the server
 LAUNCH_SERVER=true
 
-while getopts ":n" opt; do
+# Default port for the HTTP server
+PORT=$DEFAULT_PORT
+
+# Parse command-line options
+while getopts ":n:p:" opt; do
   case $opt in
     n)
       echo "** Do not launch server"
       LAUNCH_SERVER=false
+      ;;
+    p)
+      PORT=$OPTARG
       ;;
     h)
       usage $script_name
@@ -56,8 +70,10 @@ while getopts ":n" opt; do
       ;;
   esac
 done
+
 echo "** Helm repository will be created in: $REPO_DIR"
 echo "** The following folder should contain the charts: $HELM_DIR"
+echo "** HTTP server will be launched on port: $PORT"
 
 # Create the local repo dir if does not exist
 if [ ! -d "$REPO_DIR" ]; then
@@ -88,12 +104,12 @@ for directory in */; do
 cd -
 echo "Returned to `pwd`"
 
-echo "helm repo index "$REPO_DIR" --merge "$REPO_DIR/index.yaml" --url "http://localhost:8000""
-helm repo index "$REPO_DIR" --merge "$REPO_DIR/index.yaml" --url "http://localhost:8000"
+echo "helm repo index "$REPO_DIR" --merge "$REPO_DIR/index.yaml" --url "http://localhost:$PORT""
+helm repo index "$REPO_DIR" --merge "$REPO_DIR/index.yaml" --url "http://localhost:$PORT"
 
 if [[ "$LAUNCH_SERVER" == true ]]; then
   cd $REPO_DIR
-  echo "Starting a local helm repo in http://localhost:8000"
-  python3 -m http.server
+  echo "Starting a local helm repo in http://localhost:$PORT"
+  python3 -m http.server $PORT
   cd -
 fi
