@@ -24,7 +24,7 @@ It is highly recommended to [take a look at the install script](https://unicef.g
 You should run curl-bashing (curl piped with bash/zsh) only on providers that you trust. If you're not confortable with this approach, proceed with the [manual installation](manual-installation.qmd).
 :::
 
-* **Deploying magasin on Debian/Like GNU/Linux computer**
+* **Deploying magasin using a Debian/Like GNU/Linux computer**
 
     ```bash
     curl -X https://unicef.github.io/magasin/install-magasin.sh | bash
@@ -32,7 +32,7 @@ You should run curl-bashing (curl piped with bash/zsh) only on providers that yo
 
   Debian like distributions are Ubuntu, Raspbian, Kali Linux, etc. They use `apt-get` as package manager.  
 
-* **Deploying magasin on a Mac OS computer**
+* **Deploying magasin using a Mac OS computer**
 
   ```bash
   curl -X https://unicef.github.io/magasin/install-magasin.sh | zsh
