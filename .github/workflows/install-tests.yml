@@ -40,22 +40,26 @@ jobs:
         run: |
           pwd
           cd helm-scripts
-          ./local-helm-repo.sh &
+          # TODO remove -n
+          ./local-helm-repo.sh -n 
           sleep 10
           cd ..
     
-      # To be removed
+      # TODO remove
       - name: TEST install only dagster
         run: |
           helm version
           cd helm-scripts
           ./update-helm-charts.sh
+          # Run repo again
+          ./local-helm-repo.sh &
           cd ..
           
           # is it in the package action?
           helm install dagster ./helm/dagster --namespace dagter-file --create-namespace 
+          
           # Test reindexing without existing index?
-          helm repo index /home/runner/work/magasin/magasin/_helm-repo --url http://localhost:8000
+          #helm repo index /home/runner/work/magasin/magasin/_helm-repo --url http://localhost:8000
           
           helm repo add mgs http://localhost:8000
           
