@@ -6,7 +6,7 @@ format: html
 
 Magasin components are designed for installation within Kubernetes clusters. Major cloud providers offer the ability to set up these clusters, but for exploration and testing, you can create one on your desktop.
 
-If you already have a Kubernetes cluster, you may proceed without this step.
+If you already have a Kubernetes cluster, you may skip this step.
 
 For setting up a Magasin instance in a local cluster on a desktop, it is advisable to have a minimum of 32 GB of RAM.
 
@@ -57,7 +57,7 @@ More information:
 
 ## Option 2: Local cluster using Minikube
 
-If you don't have a kubernetes cluster, for testing purposes, you can easily install [minikube](https://minikube.sigs.k8s.io/) in your desktop. Minikube is a kubernetes cluster created for practicing and learning purposes.
+If you don't have a kubernetes cluster, for testing purposes, you can easily install [minikube](https://minikube.sigs.k8s.io/) on your desktop. Minikube is a local Kubernetes cluster created for practicing and learning purposes.
 
 The full installation details are described in [https://minikube.sigs.k8s.io/docs/start/](https://minikube.sigs.k8s.io/docs/start/).
 
@@ -86,7 +86,7 @@ Note that both of the two options above are just recommended for playing around 
 
 Kubernetes enjoys broad support from major cloud providers, allowing you to choose based on your organization's preferences and compliance requirements. Here are links to their respective pages.
 
-Setting up a Kubernetes cluster on the cloud is currently out of the scope of this documentation, however you can find more information in:
+Setting up a Kubernetes cluster on the cloud is currently out of the scope of this documentation, however you can find more information below:
 
 * [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli)
 * [Kubernetes in Amazon Web Services](https://aws.amazon.com/kubernetes/) 
