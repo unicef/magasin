@@ -48,6 +48,8 @@ This presents significant challenges for entities with decentralized structures 
 
 # Magasin was needed
 
+![Core enabling capabilities](./images/enabling-capabilities.svg)
+
 Our solution is a game-changer in the data landscape. We offer a democratized approach to data anaylsis, empowering organizations of all sizes and structures to harness the power of data without compromising on cost, flexibility and proprietary vendor lock-in. 
 
 Magasin offers an open-source, cloud-native end-to-end solution covering data ingestion, storage, analysis, and visualization. Our [architecture](./architecture.qmd) is composed of loosely coupled, mature open-source solutions.
