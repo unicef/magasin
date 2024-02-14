@@ -59,7 +59,12 @@ For instance, instead of MinIO, you can directly utilize a vendor-specific objec
 
 For the purposes of this tutorial we will be using MinIO. And the first step is to setup a bucket. A bucket is somewhat similar to a folder.
 
-So, let's start. 
+So, let's start creating our pipeline.
+
+:::{.callout-note}
+You have available the source code of the complete project in magasin's source code repository within the folder[examples/dpga-pipeline](https://github.com/unicef/magasin/tree/main/examples/dpga-pipeline)
+:::
+
 
 ## Create a bucket in MinIO
 
@@ -237,6 +242,11 @@ This launches a local instance of dagster server in port 3000 on localhost. So j
 You should see something like:
 
 ![Dagster user interface](../images/get-started/dagster-ui-unmaterialized.png)
+
+:::{.callout-note}
+You have available the source code of the pipeline in magasin's source code repository within the folder [examples/dpga-pipeline/dpga-pipeline-store-local](https://github.com/unicef/magasin/tree/main/examples/dpga-pipeline/dpga-pipeline-store-local)
+:::
+
 
 #### Save the assets in MinIO.
 
@@ -607,9 +617,11 @@ To open the Dagster user interface of the instance running in our Kubernetes clu
 mag dagster ui
 ```
 
-To check 
+Now, this will open the dagster instance in your Kubernetes cluster.
 
-
+:::{.callout-note}
+You have available the source code of the pipeline, `Dockerfile`, `dagster-helm-values.yml` in magasin's source code repository within the folder [examples/dpga-pipeline/dpga-pipeline-store-minio](https://github.com/unicef/magasin/tree/main/examples/dpga-pipeline/dpga-pipeline-store-minio)
+:::
 
 ### Troubleshooting the deployment
 
