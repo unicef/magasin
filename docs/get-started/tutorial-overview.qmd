@@ -15,6 +15,10 @@ flowchart LR
   B --> C(3.Create a Dashboard with\n Superset)
 ```
 
+As a result you will have the following dashboard that collects data from an external datasource, and is automatically updated through an schedule:
+
+![Resulting Superset dashboard](../images/get-started/superset-final-dashboard.png)
+
 
 ## Step 1: Exploratory data analysis in a Jupyter Notebook
 
