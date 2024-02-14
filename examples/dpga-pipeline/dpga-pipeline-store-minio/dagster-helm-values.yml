@@ -1,0 +1,18 @@
+dagster-user-deployments:
+  enabled: true
+  deployments:
+      # In each deployment you need to use a relevant name
+    - name: "dpga-pipeline-k8s"
+      image:
+        # Change the image below with your image name and repo.
+        repository: "merlos/dpga-pipeline"
+        tag: latest
+        pullPolicy: Always
+      dagsterApiGrpcArgs:
+        - "--package-name"
+        - "dpga_pipeline"
+      port: 3030
+      envSecrets:
+        - name: dpga-pipeline-secret    
+      includeConfigInLaunchedRuns:
+        enabled: true

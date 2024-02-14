@@ -59,42 +59,69 @@ For instance, instead of MinIO, you can directly utilize a vendor-specific objec
 
 For the purposes of this tutorial we will be using MinIO. And the first step is to setup a bucket. A bucket is somewhat similar to a folder.
 
-So, let's start. 
+So, let's start creating our pipeline.
+
+:::{.callout-note}
+You have available the source code of the complete project in magasin's source code repository within the folder[examples/dpga-pipeline](https://github.com/unicef/magasin/tree/main/examples/dpga-pipeline)
+:::
+
 
 ## Create a bucket in MinIO
 
-The first thing we need to do is to setup where we are going to store our data. Till now, we've been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets.
+The first thing we need to do is to setup where we are going to store our data. Till now, we've been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets and access them through a standard API that is widely supported by other tools and libraries.
 
-In one command line shell launch the minio API
+First, we are going to launch the MinIO API. This will forward the connection from our localhost:9000 to the MinIO API server in our cluster. This API allows us to interact with the MinIO storage. In our case, we will use the command line with the [MinIO client `mc`](https://min.io/docs/minio/linux/reference/minio-mc.html). `mc` is a command line tool similar to `mag`, but specific for MinIO. It is installed during the magasin installation.
 
 ```sh
 mag minio api
 ```
 
-Set the [minio client](https://min.io/docs/minio/linux/reference/minio-mc.html) alias. 
+Keep this running and in another terminal run this:
 
 ```sh
-mc alias set myminio http://localhost:9000 minio minio123
+ mc alias set myminio http://localhost:9000 minio minio123
 # mc alias set <alias-name> <endpoint> <access-key> <secret-key>
 ```
+```sh
+Added `myminio` successfully.
+```
 
-Where `mc` is a tool similar to `mag`, but specific for minio. It is installed during the magasin installation.
+Now you can stop using `Control + c` the `mag minio api` command.
+
 
 Once we have configured the alias, we just need to create the bucket:
 ```sh
  mag minio add bucket --bucket-name magasin 
 ```
 
-Note that the default alias that `mag` asumes is `myminio`. If you used another alias you can use `--alias` option: `mag minio add bucket --bucket-name magasin --alias myalias`.
+Note that the default alias that `mag` asumes is `myminio`. If you used another alias you can use `--alias` option. For example:
+```sh
+mag minio add bucket --bucket-name magasin --alias myalias
+```
+
+Now, we have a bucket in MinIO which allows us to store files and access them through standard APIs.
+
 
 ::: {.callout-tip}
 ## Tip: mag shortcuts
 `mag` allows you to shorten the commands using the alias. For example:
-`mag minio add bucket --bucket-name magasin --alias myalias` can be written as `mag m a b -b magasin -a myalias`. Using the shorten version is a way of speeding up your interaction with the command, but it is less readable. 
 
-When you type `mag --help` or `mag <command> --help` you can see the shortcut versions in parenthesis
+```sh
+mag minio add bucket --bucket-name magasin --alias myalias`
+``` 
 
-For example for `mag --help`, you can see that daskhub shortcut is `dh` and minio is `m`
+can be written as 
+```sh 
+mag m a b -b magasin -a myalias
+```
+
+Using the shorten version is a way of speeding up your interaction with the command, but it is less readable, so in this tutorial we will stick to the long version. 
+
+To get to know what are the available alias type `mag --help` or `mag <command> --help` you can see the shortcut versions in parenthesis.
+
+```sh
+mag --help
+```
 ```sh
 Usage: mag [OPTIONS] COMMAND [ARGS]...
 ...
@@ -105,18 +132,20 @@ Commands:
   minio (m)      MinIO commands
   superset (ss)  Apache Superset commands
 ```
+
+Here you can see that `daskhub` shortcut is `dh` and `minio` is `m`
+
 :::
 
-Now, we have a bucket in MinIO that allows us to store files.
 
-## Create a dagster pipeline 
+## Create a Dagster pipeline 
 
-So, the next step is to create a pipeline. A pipeline is just a piece of code that moves data from place to another and that can introduce some changes before saving it in the destination place. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.
+The next step is to create a pipeline using Dagster. A pipeline is just a piece of code that moves data from place to another and that can introduce some changes before saving it in the destination place. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.
 
 The first thing we need to do is to install Dagster.
 
 ```sh
-pip install dagster==1.6.0 dagster-webserver==1.6.0
+pip install dagster==1.6.4 dagster-webserver==1.6.4
 ```
 
 :::{.callout-note}
@@ -208,11 +237,16 @@ Then, we will launch the Dagster user interface:
 dagster dev
 ```
 
-This launches a server in port 3000 on localhost. So just open `http://localhost:3000`
+This launches a local instance of dagster server in port 3000 on localhost. So just open `http://localhost:3000`. Note, instance of dagster is similar to what you are running on the cluster but directly on your computer. In this case you are not using the one installed in the cluster.
 
 You should see something like:
 
 ![Dagster user interface](../images/get-started/dagster-ui-unmaterialized.png)
+
+:::{.callout-note}
+You have available the source code of the pipeline in magasin's source code repository within the folder [examples/dpga-pipeline/dpga-pipeline-store-local](https://github.com/unicef/magasin/tree/main/examples/dpga-pipeline/dpga-pipeline-store-local)
+:::
+
 
 #### Save the assets in MinIO.
 
@@ -223,7 +257,7 @@ To access the MinIO bucket we will use [fsspec](https://filesystem-spec.readthed
 MinIO provides an S3 compatible bucket file system, so we will use it.
 First we will add the dependencies `fsspec` and `s3fs`. 
 
-```{.python filename="dagster-pipeline/setup.py"}
+```{.python filename="dpga-pipeline/setup.py"}
 setup(
    #...
     install_requires=[
@@ -288,9 +322,9 @@ As you can see we are indicating in the `.env` file that the endpoint of our min
 mag minio api
 ```
 
-While this command is running it will forward any connection to the port 9000 to the our minio instance in the kubernetes cluster. You shoud keep running during this till you are instructed to do close it.
+As earlier, while this command is running it will forward any connection in our localhost:9000 to the our MinIO instance in the Kubernetes cluster. You shoud keep running during this till you are instructed to do close it.
 
-In another window, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run Dagster:
+In another terminal, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run Dagster:
 
 ```sh
 
@@ -300,11 +334,12 @@ dagster dev
 
 Note that after you launch `dagster dev` you should see something like:
 
-```
-dagster - INFO - Loaded environment variables from .env file: FSSPEC_S3_ENDPOINT_URL,FSSPEC_S3_KEY,FSSPEC_S3_SECRET
+```sh
+dagster - INFO - Loaded environment variables from .env file: 
+FSSPEC_S3_ENDPOINT_URL,FSSPEC_S3_KEY,FSSPEC_S3_SECRET
 ```
 
-This is because Dagster loads all the .env file automatically and exposes the variables to the code.
+This is because Dagster loads all the `.env` file automatically and exposes the variables to the code.
 
 Open again the browser pointing to `http://localhost:3000` and in the dagster UI and run `Materialize all`. 
 
@@ -395,19 +430,185 @@ If you launch again `dagster dev` and you go to Overview -> Jobs, you can enable
 
 ### Deploy the pipeline in the cluster
 
-Till now we have been working on a development environment on our own computer. However, we should launch our pipeline within our kubernetes cluster.
+Until now we have been running dagster on our own computer by enabling the access to the MinIO installed in our kubernetes cluster through `mag minio api`. But we want our pipeline to run entirely within our Kubernetes cluster. To do that we will deploy a container (pod) in our cluster that Dagster will use to run our pipeline.
 
-To do that we will deploy a container (pod) in our cluster that Dagster will use to run our pipeline.
+We will follow this steps:
+
+1. [Prepare the Docker image](#prepare-the-docker-image). Our pipeline will reside in a container that will be called by Dagster to run the pipeline. So we need to create a Docker image that will hold all our code and is ready to be called by Dagster.
+
+2. [Add the environment variables as secrets](#add-the-environment-variables-as-secrets). We need to provide to our image the environmental variables. In Kubernetes this is done through secrets. Secrets are a special type of resource for holding sensitive information that exists in Kubernetes.
+
+3. [Re-Deploy Dagster](#re-deploy-dagster). After we have prepared our image with the pipeline, we need to tell our Dagster instance to deploy it, and use it. The simplest way is to re-deploy magasin's dagster helm chart.
 
 
+#### Prepare the Docker image
+
+Edit the `setup.py` file of your project and add a new dependency `dagster-postgres`:
+
+```{.python filename="dpga-pipeline/setup.py"}
+from setuptools import find_packages, setup
+
+setup(
+    name="dpga_pipeline",
+    packages=find_packages(exclude=["dpga_pipeline_tests"]),
+    install_requires=[
+        "dagster",
+        "dagster-cloud",
+        "dagster-postgres", #<------------- Add this line
+        "pandas",
+        "requests",
+        "fsspec",
+        "s3fs"
+    ],
+    extras_require={"dev": ["dagster-webserver", "pytest"]},
+)
+
+This is because now Dagster is going to use now the PosgreSQL database that is used in the cluster for keeping the logs data. Earlier, when we were using the local Dagster setup.
+
+In the same folder as the `setup.py` file of your dagster project create a new file called [`Dockerfile`](https://docs.docker.com/engine/reference/builder/) and add the following.
+
+```{.sh filename="dagster-pipeline/Dockerfile"}
+# Select the base image 
+FROM python:3.10-slim
+
+# Copy all our code into the container
+COPY . /
+
+# Install the module within the container
+# This will install all the dependencies
+RUN pip install .
 ```
 
+Now we are going to build the image. To prevent issues while running it, we are going to build a [multi-architecture image](https://docs.docker.com/build/building/multi-platform/). Currently, there are two major architectures we have to deal with ARM64 (RaspberryPi's and Apple M1/M2...) and AMD64 (regular Intel and AMD computers). By building a multi-architecture image it will run regardless of the architecture. 
+
+
+If you're use to create Docker images, something that you may have noticed is that in our `Dockerfile` we did not define an [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) or launched command [CMD](https://docs.docker.com/engine/reference/builder/#cmd), in our `Dockerfile` basically we just installed our pipeline code. Whereas in Docker it is common to end the Dockerfile with one of these two commands, in our case the command that launches dagster will be injected during the deployment of the image. We will set it up later. 
+
+
+```sh
+# first we create a builder. This just allows us to build for architectures different that our owns.
+# This only needs to be run once per computer.
+docker buildx create --driver=docker-container --name=magasin-builder 
+
+# In the command below replace <registry> by your registry.
+# If you are using docker hub, it is your user name (you need to login first.
+# In other registries such as Azure Container Registry (my-registry.azurecr.io)or Amazon ECR, please check the documentation of the provider.
+
+docker buildx build --builder=magasin-builder --platform linux/amd64,linux/arm64 -t <registry>/dpga-pipeline:latest --push  .
 ```
 
-Now we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in Dagster terminology)
+Now in our registry we have a new image `dpga-pipeline` with the tag `latest`. Note that this image will be publicly available.
 
+For the rest of the tutorial we will use this image: [merlos/dpga-pipeline:latest](https://hub.docker.com/layers/merlos/dpga-pipeline/latest/images/sha256-0594d35069c7cbb8a831658442d9d0e1f866912ec638bfb54c40cd90cf645122?context=explore), you can replace it with yours.
+
+::: {.callout-tip}
+If you want to check what other architectures are supported run:
+ 
+ ```sh
+  docker buildx ls
+  ```
+```sh
+NAME/NODE          DRIVER/ENDPOINT  STATUS  BUILDKIT             PLATFORMS
+magasin-builder    docker-container                              
+  magasin-builder0 desktop-linux    running v0.12.3              linux/arm64, linux/amd64, linux/amd64/v2, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/mips64le, linux/mips64, linux/arm/v7, linux/arm/v6
+  ```
+:::
+
+#### Add the environment variables as secrets
+
+Previously, we set some environment variables with our credentials to access MinIO. When deploying an image to Kubernetes, the typical way to set sensitive information is through [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/). Secrets is a simple way for us to set variables that are somewhat sensitive. For production deployments you should follow these [good practices for Kubernetes secrets](https://kubernetes.io/docs/concepts/security/secrets-good-practices/). 
+
+```sh
+kubectl create secret generic dpga-pipeline-secret \
+  --namespace magasin-dagster \
+  --from-literal=FSSPEC_S3_ENDPOINT_URL=http://myminio-ml.magasin-tenant.svc.cluster.local \
+  --from-literal=FSSPEC_S3_KEY='minio' \
+  --from-literal=FSSPEC_S3_SECRET='minio123'
 ```
-helm upgrade dagster --namespace magasin-dagster -f code-dagster.yaml
+
+This command will create a secret called `dpga-pipeline-secret` in the namespace `magasin-dagster`. Remember that a namespace in Kubernetes is something that can be compared to a folder. 
+
+Note that the `FSSPEC_S3_ENDPOINT_URL` is no longer localhost, but the URL of the minio server on the cluster. Internal names follow this pattern `<service-name>.<namespace>.svc.cluster.local`.
+
+To check the secret was created you can run this command:
+
+```sh
+kubectl get secrets --namespace magasin-dagster
+```
+And check there is a line with `dpga-pipeline-secret` with 3 in the data column:
+```sh
+NAME                            TYPE                 DATA   AGE
+dagster-postgresql              Opaque               1      3d22h
+dagster-postgresql-secret       Opaque               1      3d22h
+dpga-pipeline-secret            Opaque               3      3m16s
+sh.helm.release.v1.dagster.v1   helm.sh/release.v1   1      3d22h
+```
+To see the contents of each data point:
+
+```sh
+kubectl get secret dpga-pipeline-secret -n magasin-dagster -o jsonpath='{.data.FSSPEC_S3_ENDPOINT_URL}' | base64 --decode
+```
+Notice the `| base64 --decode`, this is because the screts are encoded in [base64](https://en.wikipedia.org/wiki/Base64). For example `minio` is encoded as `bWluaW8=`. 
+
+If you need to update the secret, one simple way is to delete and then add it back. To delete run the command:
+```sh
+# kubectl delete secret <secretname> --namespace <namespace-name>
+kubectl delete secret dpga-pipeline-secret --namespace magasin-dagster
+```
+
+
+#### Re-Deploy Dagster
+
+The last thing we have to do is to re-deploy Dagster so that it includes our new pipeline.
+
+Create a new file called `dagster-helm-values.yml` with the following contents:
+
+```yaml
+dagster-user-deployments:
+  enabled: true
+  deployments:
+    - name: "dpga-pipeline-k8s"
+      image:
+        repository: "merlos/dpga-pipeline"
+        tag: latest
+        pullPolicy: Always
+      dagsterApiGrpcArgs:
+        - "--package-name"
+        - "dpga_pipeline"
+      port: 3030
+      envSecrets:
+        - name: dpga-pipeline-secret
+      includeConfigInLaunchedRuns:
+        enabled: true
+```
+This file can also hold ConfigMaps or labels. You have more details about the [dagster user deployment options](https://docs.dagster.io/deployment/guides/kubernetes/deploying-with-helm#step-5-add-the-dagster-helm-chart-repository)
+
+This file telling to include in the deployment our pipeline image (merlos/dpga-pipeline) as well as the environment secret `envSecret` called `dpga-pipeline-secret`. 
+
+Also we have defined in the file `dagsterApiGrpcArgs`. This includes the arguments for `dagster api grpc`, which you can get by running `dagster api grpc --help`. As we said earlier, it is on the deployment where we set launch command for the image. This is the command. Dagster uses Remote Procedure Calls, which for the purposes of this tutorial you can understand as an regular API to communicate the main dagster daemon and our deployments. The daemon is the long-lasting process that keeps track of the sensor,shedules, etc. And this daemon communicates with theIn our case we tell the command that Dagster uses remote procedure calls between the dagster main process and our image.
+
+Now we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in Dagster terminology).
+
+Go to the folder where the `dagster-helm-values.yaml` is located, and then run:
+```sh
+helm upgrade dagster magasin/dagster --namespace magasin-dagster -f ./dagster-helm-values.yml
+```
+
+This will update the deployment of the dagster instance of magasin. You should see something like:
+```sh
+Release "dagster" has been upgraded. Happy Helming!
+NAME: dagster
+LAST DEPLOYED: Tue Feb 13 09:28:32 2024
+NAMESPACE: magasin-dagster
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+NOTES:
+Launched. You can access the Dagster webserver/UI by running the following commands:
+
+export DAGSTER_WEBSERVER_POD_NAME=$(kubectl get pods --namespace magasin-dagster -l "app.kubernetes.io/name=dagster,app.kubernetes.io/instance=dagster,component=dagster-webserver" -o jsonpath="{.items[0].metadata.name}")
+echo "Visit http://127.0.0.1:8080 to open the Dagster UI"
+kubectl --namespace magasin-dagster port-forward $DAGSTER_WEBSERVER_POD_NAME 8080:80
 ```
 
 To open the Dagster user interface of the instance running in our Kubernetes cluster we need to run
@@ -416,10 +617,75 @@ To open the Dagster user interface of the instance running in our Kubernetes clu
 mag dagster ui
 ```
 
-To check 
+Now, this will open the dagster instance in your Kubernetes cluster.
+
+:::{.callout-note}
+You have available the source code of the pipeline, `Dockerfile`, `dagster-helm-values.yml` in magasin's source code repository within the folder [examples/dpga-pipeline/dpga-pipeline-store-minio](https://github.com/unicef/magasin/tree/main/examples/dpga-pipeline/dpga-pipeline-store-minio)
+:::
+
+### Troubleshooting the deployment
+
+In case you face any issue here you have some ways of trying to find out what's going on. This and seeking some help on a search engine or large language model, typically helps: 
+
+### Commands to inspect status
+Check if everything is running fine. You can check the status of the pods in the `magasin-dagster` namespace
+
+```sh
+kubectl get pods --namespace magasin-dagster
+```
+```sh
+NAME                                                              READY   STATUS    RESTARTS        AGE
+dagster-daemon-7c6474cbfd-7rgtr                                   1/1     Running   0               3h41m
+dagster-dagster-user-deployments-dpga-pipeline-k8s-5kqtc          1/1     Running   0               64m
+dagster-dagster-webserver-76ff9c7689-zv89b                        1/1     Running   0               3h41m
+dagster-postgresql-0                                              1/1     Running   6 (5h53m ago)   4d2h
+dagster-run-745684fc-80c5-45e5-a238-ce5fdc0c0dbe-nzh8x            0/1     Error     0               124m
+```
+Here you can see the run had an error.
+
+Describe the dagster-run pod:
+
+```sh
+kubectl describe pod dagster-run-745684fc-80c5-45e5-a238-ce5fdc0c0dbe-nzh8x -n magasin-dagster
+```
+
+Get the logs of the run pod:
+```sh
+kubectl logs dagster-run-745684fc-80c5-45e5-a238-ce5fdc0c0dbe-nzh8x -n magasin-dagster
+```
+
+```sh
+kubectl describe job dagster-run-745684fc-80c5-45e5-a238-ce5fdc0c0dbe-nzh8x -n 
+magasin-dagster
+```
+
+Inspect the logs of the deployed main pod:
+
+```sh
+kubectl logs dagster-dagster-user-deployments-dpga-pipeline-k8s-5kqtc --namespace magasin-dagster
+```
+```sh
+2024-02-13 10:26:42 +0000 - dagster.code_server - INFO - Starting Dagster code server for package dpga_pipeline on port 3030 in process 1
+2024-02-13 10:26:42 +0000 - dagster.code_server - INFO - Started Dagster code server for package dpga_pipeline on port 3030 in process 1
+```
+
+Lastly, on the Dagster user interface (launched with `mag dagster ui`), in the _Runs_ tab, within your failed run click on _View run_ button. 
 
 
 ## Summary
+
+We have done a big deal of tasks. This is, probably, the most challenging step as it requires working with many different tools and technologies (MinIO, Dagster, Helm, Kubectl, python...). However, using this setup, it offers us a lot of flexibility and allows us to scale.
+
+
+1) Created a pipeline that loads from an API and saves the processed data as a `.parquet` file, a format that is Big Data friendly.
+
+2) We created a MinIO bucket where we can save the output data in a storage that is widely supported by many systems and libraries (S3 bucket).
+
+3) We scheduled our pipeline to be run automatically from time to time.
+
+4) Lastly, we deployed this new pipeline within our Kubernetes cluster. 
+
+
 
 ## What's next
 
