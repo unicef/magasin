@@ -1,0 +1,10 @@
+# UNICEF security contacts and policy
+
+# Our security contact channels
+Contact: mailto: d _ c _ o _ e _ @ _ u _ n _ i _ c _ e _ f _ . _ o _ r _ g (remove the _ and the spaces)
+
+# Link to our vulnerability disclosure policy
+Policy: https://unicef.github.com/magasin/contributing/vulnerability-disclosure.html
+
+# Languages that our team speaks and understands
+Preferred-Languages: en-US
