@@ -16,6 +16,10 @@ A fundamental contrast between magasin and other helm-based Kubernetes applicati
 
 The core components of magasin are independent mature open source projects that support.
 
+
+![Magasin Architecture](./images/architecture-simplified.svg)
+
+
 # Underlying technologies
 
 ## Kubernetes containerization 
@@ -31,6 +35,7 @@ A fundamental contrast between magasin and other helm-based Kubernetes applicati
 
 
 # Core components 
+
 
 ## Ingestion: Dagster
 The [Dagster](http://dagster.io) framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster.
