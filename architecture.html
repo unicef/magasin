@@ -395,6 +395,12 @@ ul.task-list li input[type="checkbox"] {
 <p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called a <strong>chart</strong>.</p>
 <p>A fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and modular approach, fostering flexibility in component selection and integration.</p>
 <p>The core components of magasin are independent mature open source projects that support.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/architecture-simplified.svg" class="img-fluid figure-img"></p>
+<figcaption>Magasin Architecture</figcaption>
+</figure>
+</div>
 <section id="underlying-technologies" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Underlying technologies</h1>
 <section id="kubernetes-containerization" class="level2" data-number="1.1">
