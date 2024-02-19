@@ -173,7 +173,7 @@ Success! Created dpga-pipeline at /home/magasin/dpga-pipeline.
 ```
 
 By scaffolding our project, Dagster creates a basic structure of a python package that could be installed using `pip` as any other package as well as some additional metadata files that will 
-be used by Dagster to run the pipeline. You ahve some more info in the [Dagster documentation](https://docs.dagster.io/guides/understanding-dagster-project-files).
+be used by Dagster to run the pipeline. You have some more info in the [Dagster documentation](https://docs.dagster.io/guides/understanding-dagster-project-files).
 
 Now, lets add our code. Open the file `dpga-pipeline/dpga_pipeline/assets.py`
 
