@@ -68,15 +68,15 @@ You have available the source code of the complete project in magasin's source c
 
 ## Create a bucket in MinIO
 
-The first thing we need to do is to setup where we are going to store our data. Till now, we've been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets and access them through a standard API that is widely supported by other tools and libraries.
+The first thing we need to do is to setup where we are going to store our data. Till now, we've been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets and access them through a standard API that is widely supported by other tools and libraries. MinIO is the component that will give us those capabilities.
 
-First, we are going to launch the MinIO API. This will forward the connection from our localhost:9000 to the MinIO API server in our cluster. This API allows us to interact with the MinIO storage. In our case, we will use the command line with the [MinIO client `mc`](https://min.io/docs/minio/linux/reference/minio-mc.html). `mc` is a command line tool similar to `mag`, but specific for MinIO. It is installed during the magasin installation.
+First, we are going to launch the MinIO API. This will forward a connection to our `localhost:9000` from the MinIO API server in our cluster. This API allows us to interact with the MinIO storage accounts. In our case, we will use the [MinIO client `mc`](https://min.io/docs/minio/linux/reference/minio-mc.html) command line . `mc` is a tool similar to `mag`, but specific for MinIO. It is installed during the magasin installation.
 
 ```sh
 mag minio api
 ```
 
-Keep this running and in another terminal run this:
+Keep this running. In another terminal run this command:
 
 ```sh
  mc alias set myminio http://localhost:9000 minio minio123
@@ -86,7 +86,7 @@ Keep this running and in another terminal run this:
 Added `myminio` successfully.
 ```
 
-Now you can stop using `Control + c` the `mag minio api` command.
+Now, stop `mag minio api` command using `Control + C`.
 
 
 Once we have configured the alias, we just need to create the bucket:
@@ -94,12 +94,13 @@ Once we have configured the alias, we just need to create the bucket:
  mag minio add bucket --bucket-name magasin 
 ```
 
-Note that the default alias that `mag` asumes is `myminio`. If you used another alias you can use `--alias` option. For example:
+Note that the default alias that `mag` asumes will be `myminio`. If you used another alias you can use `--alias` option. For example:
+
 ```sh
 mag minio add bucket --bucket-name magasin --alias myalias
 ```
 
-Now, we have a bucket in MinIO which allows us to store files and access them through standard APIs.
+At this point, we have a bucket in MinIO which allows us to store files and access them through standard APIs.
 
 
 ::: {.callout-tip}
