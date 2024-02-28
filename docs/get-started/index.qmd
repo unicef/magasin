@@ -73,7 +73,7 @@ For **GNU/Linux Debian like**
 For **MacOS devices**
 
  ```sh
-  curl -X https://unicef.github.io/magasin/install-magasin.sh | zsh
+  curl -X GET https://unicef.github.io/magasin/install-magasin.sh | zsh
   ```
 
 For **Windows** check the documentation for [manual installation](../install/manual-installation.qmd)
