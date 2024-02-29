@@ -15,13 +15,13 @@ First, **verify `kubectl` is pointing to the target cluster** by running the com
 * **Uninstall script using a computer with Debian like GNU/Linux**:
 
     ```bash
-    curl -X https://unicef.github.io/magasin/uninstall-magasin.sh | bash
+    curl -sSL https://unicef.github.io/magasin/uninstall-magasin.sh | bash
     ```
 
 * **Uninstall script using a Mac OS computer:**
 
     ```bash
-    curl -X https://unicef.github.io/magasin/uninstall-magasin.sh | zsh
+    curl -sSL https://unicef.github.io/magasin/uninstall-magasin.sh | zsh
     ```
 
 * **Uninstall script using a  Windows computer:**

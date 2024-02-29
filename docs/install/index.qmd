@@ -27,7 +27,7 @@ You should run curl-bashing (curl piped with bash/zsh) only on providers that yo
 * **Deploying magasin using a Debian/Like GNU/Linux computer**
 
     ```bash
-    curl -X https://unicef.github.io/magasin/install-magasin.sh | bash
+    curl -sSL https://unicef.github.io/magasin/install-magasin.sh | bash
     ```
 
   Debian like distributions are Ubuntu, Raspbian, Kali Linux, etc. They use `apt-get` as package manager.  
@@ -35,7 +35,7 @@ You should run curl-bashing (curl piped with bash/zsh) only on providers that yo
 * **Deploying magasin using a Mac OS computer**
 
   ```bash
-  curl -X https://unicef.github.io/magasin/install-magasin.sh | zsh
+  curl -sSL https://unicef.github.io/magasin/install-magasin.sh | zsh
   ```
 
 In both cases, you need a user that can run sudo.
