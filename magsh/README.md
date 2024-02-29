@@ -2,9 +2,9 @@
 
 `magsh` is a docker image based on debian that includes all the commands required to install and admin magasin (kubectl, helm, mc (MinIO client) and mag-cli). 
 
-To install magasin, you need to have some pre-requisites. Though the installer, sets them up on your behalf, you may prefer not to install them on your computer. Instead of installing all these dependencies, you can just use this prebuilt Docker image and when you run it it will open a bash shell that has all the common commands used to manage a magasin instance.
+To install _magasin_, certain prerequisites are required. While the magasin installer can automatically set them up for you, you may opt not to install them directly on your computer. Alternatively, you can utilize `magsh`, a prebuilt Docker image that contains all the necessary dependencies and commands to install and manage _magasin_. 
 
-The image is run as `root` user.
+Simply running this Docker image will launch a bash shell equipped with all the common commands needed to manage a _magasin_ instance. This approach offers a convenient way to set up your environment and manage your _magasin_ instance without the need of installing the dependencies in you own computer.
 
 ## Running the pre-built Docker image
 
@@ -27,6 +27,9 @@ The image configuration sets the `kubectl` configuration file is in `/kube/confi
 The command syncs the via the option `-v ~/.mc:/root/.mc`, the local computer [MinIO client config](https://min.io/docs/minio/linux/reference/minio-mc.html?ref=docs-redirect#id5), with the image one. So, if update any o them, it will be synced.
 
 In the command above, also the folder `/shared` is used as a shared folder between your computer and the image. In your computer it will point to the `~/magsh` folder.
+
+Note that the shell is run as the `root` user.
+
  
 To ease create the following alias.
 
