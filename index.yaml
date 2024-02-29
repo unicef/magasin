@@ -1,0 +1,314 @@
+apiVersion: v1
+entries:
+  dagster:
+  - apiVersion: v2
+    appVersion: 1.6.4
+    created: "2024-02-09T09:47:54.033054788Z"
+    dependencies:
+    - condition: dagster-user-deployments.enableSubchart
+      name: dagster-user-deployments
+      repository: ""
+      version: 1.6.4
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 8.1.0
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 6.16.3
+    - condition: redis.internal
+      name: redis
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 12.7.4
+    description: The data orchestration platform built for productivity.
+    digest: e8622db2a1bd9590024108a3f1f674dac38212147691a93fa280dec6c9eb740e
+    icon: https://dagster.io/images/brand/logos/dagster-primary-mark.png
+    keywords:
+    - analytics
+    - data-orchestrator
+    - data-pipelines
+    - etl
+    - workflow
+    kubeVersion: '>= 1.18.0-0'
+    maintainers:
+    - email: support@dagsterlabs.com
+      name: Dagster Labs
+      url: https://dagster.io/about
+    name: dagster
+    sources:
+    - https://github.com/dagster-io/dagster/tree/master/helm/dagster
+    type: application
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/dagster-1.6.4.tgz
+    version: 1.6.4
+  - apiVersion: v2
+    appVersion: 1.6.0
+    created: "2024-02-02T15:14:32.240273332Z"
+    dependencies:
+    - condition: dagster-user-deployments.enableSubchart
+      name: dagster-user-deployments
+      repository: ""
+      version: 1.6.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 8.1.0
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 6.16.3
+    - condition: redis.internal
+      name: redis
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 12.7.4
+    description: The data orchestration platform built for productivity.
+    digest: 94b7b3fdd8ab14fc7bfde84afcf0324fcb151a44b8867ce29c6d0d03b6415469
+    icon: https://dagster.io/images/brand/logos/dagster-primary-mark.png
+    keywords:
+    - analytics
+    - data-orchestrator
+    - data-pipelines
+    - etl
+    - workflow
+    kubeVersion: '>= 1.18.0-0'
+    maintainers:
+    - email: support@dagsterlabs.com
+      name: Dagster Labs
+      url: https://dagster.io/about
+    name: dagster
+    sources:
+    - https://github.com/dagster-io/dagster/tree/master/helm/dagster
+    type: application
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.1.0-charts/dagster-1.6.0.tgz
+    version: 1.6.0
+  - apiVersion: v2
+    appVersion: 1.5.9
+    created: "2023-11-29T10:16:06.344653394Z"
+    dependencies:
+    - condition: dagster-user-deployments.enableSubchart
+      name: dagster-user-deployments
+      repository: ""
+      version: 1.5.9
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 8.1.0
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 6.16.3
+    - condition: redis.internal
+      name: redis
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 12.7.4
+    description: The data orchestration platform built for productivity.
+    digest: 1fa81a21539df12b8b0443387a453e367721c157aa20227f3421ab6d1d20cbf3
+    icon: https://dagster.io/images/brand/logos/dagster-primary-mark.png
+    keywords:
+    - analytics
+    - data-orchestrator
+    - data-pipelines
+    - etl
+    - workflow
+    kubeVersion: '>= 1.18.0-0'
+    maintainers:
+    - email: support@dagsterlabs.com
+      name: Dagster Labs
+      url: https://dagster.io/about
+    name: dagster
+    sources:
+    - https://github.com/dagster-io/dagster/tree/master/helm/dagster
+    type: application
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.0.1-charts/dagster-1.5.9.tgz
+    version: 1.5.9
+  daskhub:
+  - apiVersion: v2
+    appVersion: jh3.2.1-dg2023.9.0
+    created: "2024-02-09T09:47:54.038334167Z"
+    dependencies:
+    - import-values:
+      - child: rbac
+        parent: rbac
+      name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 3.2.1
+    - name: dask-gateway
+      repository: https://helm.dask.org/
+      version: 2023.9.0
+    description: Multi-user JupyterHub and Dask deployment.
+    digest: 366ab1e6884532740afb95a49e114cb4070e2ddfaf709eb2357b2d6e075679cd
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    maintainers:
+    - email: jtomlinson@nvidia.com
+      name: Jacob Tomlinson (Nvidia)
+    - email: jhamman@ucar.edu
+      name: Joe Hamman (NCAR)
+    - email: erik@sundellopensource.se
+      name: Erik Sundell
+    - email: tom.w.augspurger@gmail.com
+      name: Tom Augspurger
+    name: daskhub
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/daskhub-2024.1.0.tgz
+    version: 2024.1.0
+  - apiVersion: v2
+    appVersion: jh2.0.0-dg2023.1.1
+    created: "2023-11-29T10:16:06.351722903Z"
+    dependencies:
+    - import-values:
+      - child: rbac
+        parent: rbac
+      name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 2.0.0
+    - name: dask-gateway
+      repository: https://helm.dask.org/
+      version: 2023.1.1
+    description: Multi-user JupyterHub and Dask deployment.
+    digest: 0419f358edea2e5a1e9005f1fbe6e1b60dcf964b6fd9f3745e06d54c4fb33e00
+    icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
+    maintainers:
+    - email: jtomlinson@nvidia.com
+      name: Jacob Tomlinson (Nvidia)
+    - email: jhamman@ucar.edu
+      name: Joe Hamman (NCAR)
+    - email: erik@sundellopensource.se
+      name: Erik Sundell
+    - email: tom.w.augspurger@gmail.com
+      name: Tom Augspurger
+    name: daskhub
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.0.1-charts/daskhub-2023.1.0.tgz
+    version: 2023.1.0
+  drill:
+  - apiVersion: v2
+    appVersion: 1.21.1-3.9.1
+    created: "2024-02-09T09:47:54.038852893Z"
+    description: Helm charts for deploying Apache Drill on a Kubernetes cluster
+    digest: d9a2f30cfa6e38dbd63fd7a79854b3e08ae9a097867b7cf2bf6d71ea8bf25b56
+    home: http://drill.apache.org/
+    keywords:
+    - apache
+    - drill
+    - zookeeper
+    - magasin
+    - unicef
+    maintainers:
+    - email: merlos@users.noreply.github.com
+      name: merlos
+    name: drill
+    sources:
+    - https://github.com/unicef/magasin-drill
+    type: application
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/drill-0.6.1.tgz
+    version: 0.6.1
+  operator:
+  - apiVersion: v2
+    appVersion: v5.0.11
+    created: "2024-02-09T09:47:54.039854619Z"
+    description: A Helm chart for MinIO Operator
+    digest: e8f79cba2d56fdfc40a645bd97d8e9618558f1b918e3c49dd9979aac27926a3c
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: operator
+    sources:
+    - https://github.com/minio/operator
+    type: application
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/operator-5.0.11.tgz
+    version: 5.0.11
+  superset:
+  - apiVersion: v2
+    appVersion: 3.1.0
+    created: "2024-02-09T09:47:54.048858841Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.6
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.9.4
+    description: Apache Superset is a modern, enterprise-ready business intelligence
+      web application
+    digest: 3b09b5aa9eff983f1f9ef76c08d1a43671b2bb8b839c7c509dc4233c5eb67e7c
+    home: https://superset.apache.org/
+    icon: https://artifacthub.io/image/68c1d717-0e97-491f-b046-754e46f46922@2x
+    keywords:
+    - business intelligence
+    - data science
+    maintainers:
+    - email: craig@craigrueda.com
+      name: craig-rueda
+      url: https://github.com/craig-rueda
+    name: superset
+    sources:
+    - https://github.com/apache/superset
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/superset-0.12.1.tgz
+    version: 0.12.1
+  - apiVersion: v2
+    appVersion: 3.0.1
+    created: "2023-11-29T10:16:06.36911367Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.6
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.9.4
+    description: Apache Superset is a modern, enterprise-ready business intelligence
+      web application
+    digest: afb72faf3e0748348bd8dccfd70c99294d12d58ccec1271eb20bcbd276491c93
+    home: https://superset.apache.org/
+    icon: https://artifacthub.io/image/68c1d717-0e97-491f-b046-754e46f46922@2x
+    keywords:
+    - business intelligence
+    - data science
+    maintainers:
+    - email: craig@craigrueda.com
+      name: craig-rueda
+      url: https://github.com/craig-rueda
+    name: superset
+    sources:
+    - https://github.com/apache/superset
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.0.1-charts/superset-0.10.15.tgz
+    version: 0.10.15
+  tenant:
+  - apiVersion: v2
+    appVersion: v5.0.11
+    created: "2024-02-09T09:47:54.049719567Z"
+    description: A Helm chart for MinIO Operator
+    digest: d0b1363d8227e0cc081e37eef667f7f20bdefecd5794c44066267bcf7c06a045
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: tenant
+    sources:
+    - https://github.com/minio/operator
+    type: application
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/tenant-5.0.11.tgz
+    version: 5.0.11
+generated: "2024-02-09T09:47:54.024813733Z"
