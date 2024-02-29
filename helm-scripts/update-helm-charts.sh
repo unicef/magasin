@@ -78,7 +78,7 @@ helm_pull https://helm.dask.org/ \
 helm_pull https://unicef.github.io/magasin-drill \
         drill \
         drill \
-        0.6.1 \
+        0.7.1 \
         $temp_charts          
 
 
@@ -120,7 +120,7 @@ sed -i.bak '/storageClassName/s/^/#/' $temp_charts/tenant/values.yaml && rm $tem
 helm_pull https://apache.github.io/superset \
         superset \
         superset \
-        0.12.3   \
+        0.12.6   \
         $temp_charts          
 
 # Location where the new files are copied:
