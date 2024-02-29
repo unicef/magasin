@@ -9,9 +9,9 @@ keywords:
 - magasin
 maintainers:
 - email: merlos@users.noreply.github.com
-  name: Merlos
+  name: merlos
 name: zookeeper
 sources:
 - https://github.com/unicef/magasin-drill
 type: application
-version: 0.5.1
+version: 0.7.1
