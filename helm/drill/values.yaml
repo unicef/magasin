@@ -19,7 +19,7 @@ drill:
   # Total CPU for each Drill pod
   cpu: 4000m
   # Drill image with tag
-  image: merlos/drill:1.21.1-deb
+  image: merlos/drill:1.21.1-multi-arch
   # Drill's HTTP port
   httpPort: 8047
   # User Server port. The Bit Server Port and Data Server ports are +1 and +2
@@ -131,4 +131,4 @@ zookeeper:
   # Total CPU for each ZooKeeper pod
   cpu: 500m
   # ZooKeeper image with tag
-  image: merlos/zookeeper:3.9.1-deb
+  image: merlos/zookeeper:3.9.1-multi-arch

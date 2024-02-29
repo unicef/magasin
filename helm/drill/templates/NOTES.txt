@@ -1,0 +1,7 @@
+To open the Drill UI
+
+    kubectl port-forward --namespace <namespace> service/drill-service 8047:8047
+
+Launch a browser at http://localhost:8047
+
+More details at: https://github.com/unicef/magasin-drill
