@@ -54,15 +54,25 @@ More information:
   * [https://birthday.play-with-docker.com/kubernetes-docker-desktop/](https://birthday.play-with-docker.com/kubernetes-docker-desktop/)
 
 
+### Docker-Desktop resource settings
+
+Given that magasin deploys several components, it requires more memory than a regular containerized web application. Because of this, you may need to update the dhe default Docker resources setup.
+
+Go to **Settings / Resources** section. Then give Docker as much memory and CPU and memory as you can (see the image below). The minimum recommended is 14GB.
+
+The minimum system to run magasin should have 16GB of RAM, though 32GB is recommended.
+
+![Resource settings in Docker](../images/install/install-docker-resources-settings.png)
+
 
 ## Option 2: Local cluster using Minikube
 
-If you don't have a kubernetes cluster, for testing purposes, you can easily install [minikube](https://minikube.sigs.k8s.io/) on your desktop. Minikube is a local Kubernetes cluster created for practicing and learning purposes.
+If you don't have a kubernetes cluster, for testing purposes, you can easily install [minikube](https://minikube.sigs.k8s.io/) on your desktop. Minikube is a local Kubernetes cluster created for practicing and learning purposes. 
 
 The full installation details are described in [https://minikube.sigs.k8s.io/docs/start/](https://minikube.sigs.k8s.io/docs/start/).
 
 ```bash
-# GNU/Linux Debian like
+# GNU/Linux Debian like amd64 / x86 platform
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 sudo dpkg -i minikube_latest_amd64.deb
 ```
@@ -76,6 +86,8 @@ Once minikube is installed, please make sure to run:
 minikube start
 ```
 If your system does not have the command `kubectl` already installed, it is also recommended to add the [`kubeclt` alias](https://minikube.sigs.k8s.io/docs/handbook/kubectl/)
+
+Minikube is installed on top of Docker. So you still need to tweak the [resource settings of docker desktop](#docker-desktop-resource-settings).
 
 ::: {.callout-note}
 Note that both of the two options above are just recommended for playing around without needing to deploy any infrastructure, but not for setting up an actual "shared" instance of magasin.

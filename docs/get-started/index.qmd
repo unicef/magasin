@@ -27,6 +27,10 @@ Once installed. Go to **Settings / Kubernetes **, and enable Kubernetes. It will
 
 ![Screenshot of Docker Desktop Kubernetes Settings that allows to enable Kubernetes ](../images/install/install-enable-kubernetes-docker-desktop.png)
 
+In addition go to ** Settings / Resources ** and give it as much as CPU and Memory with a minimum of 14GB. 
+
+![Screenshot of Docker Desktop Resource Settings](../images/install/install-docker-resources-settings.png)
+
 Lastly, on a command line, create the new cluster and use it:
 
 ```sh
@@ -80,7 +84,7 @@ For **Windows** check the documentation for [manual installation](../install/man
 
 For **other systems** please check the documentation for [manual installation](../install/manual-installation.qmd)
 
-Note that the installation may take some minutes depending on the internet connection speed of the machines running the cluster (mainly because of the container images).
+Note that the installation may take some minutes depending on the Internet connection speed of the machines running the cluster (mainly because of the container images).
 
 ## Verify everything is working
 
