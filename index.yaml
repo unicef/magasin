@@ -3,7 +3,7 @@ entries:
   dagster:
   - apiVersion: v2
     appVersion: 1.6.4
-    created: "2024-02-09T09:47:54.033054788Z"
+    created: "2024-02-29T11:05:36.515187666Z"
     dependencies:
     - condition: dagster-user-deployments.enableSubchart
       name: dagster-user-deployments
@@ -22,7 +22,7 @@ entries:
       repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
       version: 12.7.4
     description: The data orchestration platform built for productivity.
-    digest: e8622db2a1bd9590024108a3f1f674dac38212147691a93fa280dec6c9eb740e
+    digest: 570c9c5ee42e9fad01af15a966c959ccefe7f4e1c627a5f31186e6226a77effe
     icon: https://dagster.io/images/brand/logos/dagster-primary-mark.png
     keywords:
     - analytics
@@ -40,7 +40,7 @@ entries:
     - https://github.com/dagster-io/dagster/tree/master/helm/dagster
     type: application
     urls:
-    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/dagster-1.6.4.tgz
+    - https://github.com/unicef/magasin/releases/download/v0.3.0-charts/dagster-1.6.4.tgz
     version: 1.6.4
   - apiVersion: v2
     appVersion: 1.6.0
@@ -127,7 +127,7 @@ entries:
   daskhub:
   - apiVersion: v2
     appVersion: jh3.2.1-dg2023.9.0
-    created: "2024-02-09T09:47:54.038334167Z"
+    created: "2024-02-29T11:05:36.520388245Z"
     dependencies:
     - import-values:
       - child: rbac
@@ -139,7 +139,7 @@ entries:
       repository: https://helm.dask.org/
       version: 2023.9.0
     description: Multi-user JupyterHub and Dask deployment.
-    digest: 366ab1e6884532740afb95a49e114cb4070e2ddfaf709eb2357b2d6e075679cd
+    digest: 8867e788af67c3c4df28ac328afb36780bddfcd6295d8ceeb391e9c56b62c292
     icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
     maintainers:
     - email: jtomlinson@nvidia.com
@@ -152,7 +152,7 @@ entries:
       name: Tom Augspurger
     name: daskhub
     urls:
-    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/daskhub-2024.1.0.tgz
+    - https://github.com/unicef/magasin/releases/download/v0.3.0-charts/daskhub-2024.1.0.tgz
     version: 2024.1.0
   - apiVersion: v2
     appVersion: jh2.0.0-dg2023.1.1
@@ -186,6 +186,28 @@ entries:
   drill:
   - apiVersion: v2
     appVersion: 1.21.1-3.9.1
+    created: "2024-02-29T11:05:36.52112017Z"
+    description: Helm charts for deploying Apache Drill on a Kubernetes cluster
+    digest: 8b55b9de4530c7187a4255f35414d331e8a3b704f89c67a71cbfd319b3b568be
+    home: http://drill.apache.org/
+    keywords:
+    - apache
+    - drill
+    - zookeeper
+    - magasin
+    - unicef
+    maintainers:
+    - email: merlos@users.noreply.github.com
+      name: merlos
+    name: drill
+    sources:
+    - https://github.com/unicef/magasin-drill
+    type: application
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.3.0-charts/drill-0.7.1.tgz
+    version: 0.7.1
+  - apiVersion: v2
+    appVersion: 1.21.1-3.9.1
     created: "2024-02-09T09:47:54.038852893Z"
     description: Helm charts for deploying Apache Drill on a Kubernetes cluster
     digest: d9a2f30cfa6e38dbd63fd7a79854b3e08ae9a097867b7cf2bf6d71ea8bf25b56
@@ -209,9 +231,9 @@ entries:
   operator:
   - apiVersion: v2
     appVersion: v5.0.11
-    created: "2024-02-09T09:47:54.039854619Z"
+    created: "2024-02-29T11:05:36.522148177Z"
     description: A Helm chart for MinIO Operator
-    digest: e8f79cba2d56fdfc40a645bd97d8e9618558f1b918e3c49dd9979aac27926a3c
+    digest: fa8c0c70966291cee728c044046a012103e8fe9c4804b8dba6a2f983c5b254b4
     home: https://min.io
     icon: https://min.io/resources/img/logo/MINIO_wordmark.png
     keywords:
@@ -226,9 +248,39 @@ entries:
     - https://github.com/minio/operator
     type: application
     urls:
-    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/operator-5.0.11.tgz
+    - https://github.com/unicef/magasin/releases/download/v0.3.0-charts/operator-5.0.11.tgz
     version: 5.0.11
   superset:
+  - apiVersion: v2
+    appVersion: 3.1.0
+    created: "2024-02-29T11:05:36.531490735Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.6
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.9.4
+    description: Apache Superset is a modern, enterprise-ready business intelligence
+      web application
+    digest: eb77730e65fdd74fd661ddc1f3f9d9f1b19ab3cc5f15c8a2be0f5d7c3eb496f8
+    home: https://superset.apache.org/
+    icon: https://artifacthub.io/image/68c1d717-0e97-491f-b046-754e46f46922@2x
+    keywords:
+    - business intelligence
+    - data science
+    maintainers:
+    - email: craig@craigrueda.com
+      name: craig-rueda
+      url: https://github.com/craig-rueda
+    name: superset
+    sources:
+    - https://github.com/apache/superset
+    urls:
+    - https://github.com/unicef/magasin/releases/download/v0.3.0-charts/superset-0.12.6.tgz
+    version: 0.12.6
   - apiVersion: v2
     appVersion: 3.1.0
     created: "2024-02-09T09:47:54.048858841Z"
@@ -292,9 +344,9 @@ entries:
   tenant:
   - apiVersion: v2
     appVersion: v5.0.11
-    created: "2024-02-09T09:47:54.049719567Z"
+    created: "2024-02-29T11:05:36.532325242Z"
     description: A Helm chart for MinIO Operator
-    digest: d0b1363d8227e0cc081e37eef667f7f20bdefecd5794c44066267bcf7c06a045
+    digest: c453a5a6081fd5e87768f843aa06d5a67c859cc00b7a7338d07c46d62cd83ad1
     home: https://min.io
     icon: https://min.io/resources/img/logo/MINIO_wordmark.png
     keywords:
@@ -309,6 +361,6 @@ entries:
     - https://github.com/minio/operator
     type: application
     urls:
-    - https://github.com/unicef/magasin/releases/download/v0.2.0-charts/tenant-5.0.11.tgz
+    - https://github.com/unicef/magasin/releases/download/v0.3.0-charts/tenant-5.0.11.tgz
     version: 5.0.11
-generated: "2024-02-09T09:47:54.024813733Z"
+generated: "2024-02-29T11:05:36.506937064Z"
