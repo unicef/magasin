@@ -45,6 +45,23 @@ helm install tenant magasin/tenant --namespace magasin-tenant --create-namespace
 
 Verify all the pods in the `magasin-*` namespaces are in status `Running` or `Completed`. Note that, it may take a few minutes before all the items change to that status. 
 
+### Customize the setup
+If you have the need to customize your setup through modifying the default [`values.yaml`](https://helm.sh/docs/chart_template_guide/values_files/) you can use the `-f` option. 
+
+For example, you can create a `drill.yaml` file with these contents:
+
+```yaml
+# drill.yaml, which will launch drill with only one drillbit (instead of two the default)
+drill:
+  count: 1
+```
+And, then proceed installing the chart:
+
+```sh
+helm install drill magasin/drill --namespace magasin-drill --create-namespace -f drill.yaml
+```
+
+
 
 ```sh
 kubectl get pods --all-namespaces | grep magasin
