@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -377,7 +377,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#install-tools-on-your-computer" id="toc-install-tools-on-your-computer" class="nav-link active" data-scroll-target="#install-tools-on-your-computer"><span class="header-section-number">1</span> Install tools on your computer</a></li>
-  <li><a href="#deploy-magasin-to-your-cluster" id="toc-deploy-magasin-to-your-cluster" class="nav-link" data-scroll-target="#deploy-magasin-to-your-cluster"><span class="header-section-number">2</span> Deploy magasin to your cluster</a></li>
+  <li><a href="#deploy-magasin-to-your-cluster" id="toc-deploy-magasin-to-your-cluster" class="nav-link" data-scroll-target="#deploy-magasin-to-your-cluster"><span class="header-section-number">2</span> Deploy magasin to your cluster</a>
+  <ul class="collapse">
+  <li><a href="#customize-the-setup" id="toc-customize-the-setup" class="nav-link" data-scroll-target="#customize-the-setup"><span class="header-section-number">2.1</span> Customize the setup</a></li>
+  </ul></li>
   <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">3</span> What’s next?</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/install/manual-installation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -431,8 +434,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install operator magasin/operator <span class="at">--namespace</span> magasin-operator <span class="at">--create-namespace</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install tenant magasin/tenant <span class="at">--namespace</span> magasin-tenant <span class="at">--create-namespace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Verify all the pods in the <code>magasin-*</code> namespaces are in status <code>Running</code> or <code>Completed</code>. Note that, it may take a few minutes before all the items change to that status.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--all-namespaces</span> <span class="kw">|</span> <span class="fu">grep</span> magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="customize-the-setup" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="customize-the-setup"><span class="header-section-number">2.1</span> Customize the setup</h3>
+<p>If you have the need to customize your setup through modifying the default <a href="https://helm.sh/docs/chart_template_guide/values_files/"><code>values.yaml</code></a> you can use the <code>-f</code> option.</p>
+<p>For example, you can create a <code>drill.yaml</code> file with these contents:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drill.yaml, which will launch drill with only one drillbit (instead of two the default)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drill</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">count</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And, then proceed installing the chart:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install drill magasin/drill <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span> <span class="at">-f</span> drill.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--all-namespaces</span> <span class="kw">|</span> <span class="fu">grep</span> magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If there is any issue, please check the <a href="../install/troubleshooting.html">troubleshooting page</a>.</p>
+</section>
 </section>
 <section id="whats-next" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">3</span> What’s next?</h2>
@@ -864,7 +877,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../install/advanced.html" class="pagination-link  aria-label=" advanced="" installation"="">
+      <a href="../install/advanced.html" class="pagination-link" aria-label="Advanced installation">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced installation</span>
       </a>          
   </div>

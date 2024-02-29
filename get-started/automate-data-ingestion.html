@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -477,19 +477,19 @@ Note
 </section>
 <section id="create-a-bucket-in-minio" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="create-a-bucket-in-minio"><span class="header-section-number">2</span> Create a bucket in MinIO</h2>
-<p>The first thing we need to do is to setup where we are going to store our data. Till now, we’ve been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets and access them through a standard API that is widely supported by other tools and libraries.</p>
-<p>First, we are going to launch the MinIO API. This will forward the connection from our localhost:9000 to the MinIO API server in our cluster. This API allows us to interact with the MinIO storage. In our case, we will use the command line with the <a href="https://min.io/docs/minio/linux/reference/minio-mc.html">MinIO client <code>mc</code></a>. <code>mc</code> is a command line tool similar to <code>mag</code>, but specific for MinIO. It is installed during the magasin installation.</p>
+<p>The first thing we need to do is to setup where we are going to store our data. Till now, we’ve been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets and access them through a standard API that is widely supported by other tools and libraries. MinIO is the component that will give us those capabilities.</p>
+<p>First, we are going to launch the MinIO API. This will forward a connection to our <code>localhost:9000</code> from the MinIO API server in our cluster. This API allows us to interact with the MinIO storage accounts. In our case, we will use the <a href="https://min.io/docs/minio/linux/reference/minio-mc.html">MinIO client <code>mc</code></a> command line . <code>mc</code> is a tool similar to <code>mag</code>, but specific for MinIO. It is installed during the magasin installation.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> minio api</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Keep this running and in another terminal run this:</p>
+<p>Keep this running. In another terminal run this command:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">mc</span> alias set myminio http://localhost:9000 minio minio123</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mc alias set &lt;alias-name&gt; &lt;endpoint&gt; &lt;access-key&gt; &lt;secret-key&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Added</span> <span class="kw">`</span><span class="ex">myminio</span><span class="kw">`</span> successfully.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now you can stop using <code>Control + c</code> the <code>mag minio api</code> command.</p>
+<p>Now, stop <code>mag minio api</code> command using <code>Control + C</code>.</p>
 <p>Once we have configured the alias, we just need to create the bucket:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">mag</span> minio add bucket <span class="at">--bucket-name</span> magasin </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that the default alias that <code>mag</code> asumes is <code>myminio</code>. If you used another alias you can use <code>--alias</code> option. For example:</p>
+<p>Note that the default alias that <code>mag</code> asumes will be <code>myminio</code>. If you used another alias you can use <code>--alias</code> option. For example:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> minio add bucket <span class="at">--bucket-name</span> magasin <span class="at">--alias</span> myalias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now, we have a bucket in MinIO which allows us to store files and access them through standard APIs.</p>
+<p>At this point, we have a bucket in MinIO which allows us to store files and access them through standard APIs.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -548,7 +548,7 @@ Note
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Generated</span> files for Dagster code location in /home/magasin/dpga-pipeline.</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Generated</span> files for Dagster project in /home/magasin/dpga-pipeline.</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Success!</span> Created dpga-pipeline at /home/magasin/dpga-pipeline.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>By scaffolding our project, Dagster creates a basic structure of a python package that could be installed using <code>pip</code> as any other package as well as some additional metadata files that will be used by Dagster to run the pipeline. You ahve some more info in the <a href="https://docs.dagster.io/guides/understanding-dagster-project-files">Dagster documentation</a>.</p>
+<p>By scaffolding our project, Dagster creates a basic structure of a python package that could be installed using <code>pip</code> as any other package as well as some additional metadata files that will be used by Dagster to run the pipeline. You have some more info in the <a href="https://docs.dagster.io/guides/understanding-dagster-project-files">Dagster documentation</a>.</p>
 <p>Now, lets add our code. Open the file <code>dpga-pipeline/dpga_pipeline/assets.py</code></p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -1448,7 +1448,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../get-started/exploratory-analysis.html" class="pagination-link  aria-label=" step="" 1:="" exploratory="" analysis"="">
+      <a href="../get-started/exploratory-analysis.html" class="pagination-link" aria-label="Step 1: Exploratory analysis">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Step 1: Exploratory analysis</span>
       </a>          
   </div>
