@@ -67,13 +67,13 @@ You should run curl-bashing (curl piped with bash/zsh) only on providers that yo
 For **GNU/Linux Debian like**
 
   ```sh
-  curl -X https://unicef.github.io/magasin/install-magasin.sh | bash
+  curl -sSL https://unicef.github.io/magasin/install-magasin.sh | bash
   ```
 
 For **MacOS devices**
 
  ```sh
-  curl -X GET https://unicef.github.io/magasin/install-magasin.sh | zsh
+  curl -sSL https://unicef.github.io/magasin/install-magasin.sh | zsh
   ```
 
 For **Windows** check the documentation for [manual installation](../install/manual-installation.qmd)
