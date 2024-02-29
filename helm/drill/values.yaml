@@ -13,9 +13,9 @@ drill:
   # What kind of service [LoadBalancer|NodePort]
   webServiceType: LoadBalancer
   # Number of Drill Pods which are launched in parallel and join to form a Drill Cluster
-  count: 2
+  count: 1
   # Total memory for each Drill pod
-  memory: 5Gi
+  memory: 4Gi
   # Total CPU for each Drill pod
   cpu: 4000m
   # Drill image with tag
