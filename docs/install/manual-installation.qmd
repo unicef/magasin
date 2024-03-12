@@ -21,6 +21,7 @@ kubectl cluster-info
 ```
 
 If you are using docker kubernetes cluster, it may display something like:
+
 ```sh
 Kubernetes control plane is running at https://kubernetes.docker.internal:6443
 CoreDNS is running at https://kubernetes.docker.internal:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
@@ -29,6 +30,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
 An Azure Kubernetes Service (AKS) cluster, it may display something like:
+
 ```sh
  kubectl cluster-info
 Kubernetes control plane is running at https://aks-asdfasdf.hcp.westeurope.azmk8s.io:443
@@ -41,19 +43,20 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 ## Deploy magasin to your cluster
 
-Add the magasin helm repo
+First, sdd the magasin helm repo:
 ```sh
 helm repo add magasin https://unicef.github.io/magasin/
 ```
-```
+```sh
 "magasin" has been added to your repositories
 ```
 
-Update the magasin helm repo
+And update it:
+
 ```sh
 helm repo update magasin
 ```
-```
+```sh
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "magasin" chart repository
 Update Complete. ⎈Happy Helming!⎈
@@ -76,6 +79,7 @@ Verify all the pods in the `magasin-*` namespaces are in status `Running` or `Co
 ```sh
 kubectl get pods --all-namespaces
 ```
+
 ```sh
 NAMESPACE          NAME                                                              READY   STATUS      RESTARTS       AGE
 default            net-utils                                                         0/1     Completed   0              55d
@@ -119,11 +123,12 @@ If you have the need to customize your setup through modifying the default [`val
 
 For example, you can create a `drill.yaml` file with these contents:
 
-```yaml
+```{.yaml filename="drill.yaml"}
 # drill.yaml, which will launch drill with only 2 drillbit (instead of one, the default)
 drill:
   count: 2
 ```
+
 And, then proceed installing the chart:
 
 ```sh
@@ -137,6 +142,7 @@ helm upgrade drill magasin/drill --namespace magasin-drill --create-namespace -f
 ```
 
 If it suceeds, it will update the `REVISION` number below. 
+
 ```sh
 Release "drill" has been upgraded. Happy Helming!
 NAME: drill
