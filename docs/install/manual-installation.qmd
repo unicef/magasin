@@ -20,18 +20,46 @@ Verify `kubectl` is pointing to the right Kubernetes cluster
 kubectl cluster-info
 ```
 
+If you are using docker kubernetes cluster, it may display something like:
+```sh
+Kubernetes control plane is running at https://kubernetes.docker.internal:6443
+CoreDNS is running at https://kubernetes.docker.internal:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
+
+An Azure Kubernetes Service (AKS) cluster, it may display something like:
+```sh
+ kubectl cluster-info
+Kubernetes control plane is running at https://aks-asdfasdf.hcp.westeurope.azmk8s.io:443
+CoreDNS is running at https://aks-asdfasdf.hcp.westeurope.azmk8s.io:443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+Metrics-server is running at https://aks-asdfasdf.hcp.westeurope.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
+
+
 ## Deploy magasin to your cluster
 
 Add the magasin helm repo
 ```sh
 helm repo add magasin https://unicef.github.io/magasin/
 ```
+```
+"magasin" has been added to your repositories
+```
+
 Update the magasin helm repo
 ```sh
 helm repo update magasin
 ```
+```
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "magasin" chart repository
+Update Complete. ⎈Happy Helming!⎈
+```
 
-Install the different helm charts (dagster, drill, superset, daskhub ...)
+Now, install the different helm charts (dagster, drill, superset, daskhub ...). Run each of the following lines one at a time: 
 
 ```sh
 # helm install <component> magasin/<component> --namespace magasin-<component> --create-namespace
@@ -45,15 +73,56 @@ helm install tenant magasin/tenant --namespace magasin-tenant --create-namespace
 
 Verify all the pods in the `magasin-*` namespaces are in status `Running` or `Completed`. Note that, it may take a few minutes before all the items change to that status. 
 
+```sh
+kubectl get pods --all-namespaces
+```
+```sh
+NAMESPACE          NAME                                                              READY   STATUS      RESTARTS       AGE
+default            net-utils                                                         0/1     Completed   0              55d
+kube-system        coredns-5dd5756b68-fj7bj                                          1/1     Running     16 (12d ago)   90d
+kube-system        coredns-5dd5756b68-qbjf4                                          1/1     Running     16 (12d ago)   90d
+kube-system        etcd-docker-desktop                                               1/1     Running     16 (12d ago)   90d
+kube-system        kube-apiserver-docker-desktop                                     1/1     Running     18 (12d ago)   90d
+kube-system        kube-controller-manager-docker-desktop                            1/1     Running     17 (12d ago)   90d
+kube-system        kube-proxy-n8wwq                                                  1/1     Running     16 (12d ago)   90d
+kube-system        kube-scheduler-docker-desktop                                     1/1     Running     36 (12d ago)   90d
+kube-system        storage-provisioner                                               1/1     Running     49 (12d ago)   90d
+kube-system        vpnkit-controller                                                 1/1     Running     16 (12d ago)   90d
+magasin-dagster    dagster-daemon-6c99ff9787-xxr8q                                   1/1     Running     0              2m57s
+magasin-dagster    dagster-dagster-user-deployments-k8s-example-user-code-1-dzw689   1/1     Running     0              2m57s
+magasin-dagster    dagster-dagster-webserver-79db886f74-vkxvc                        1/1     Running     0              2m57s
+magasin-dagster    dagster-postgresql-0                                              1/1     Running     0              2m57s
+magasin-daskhub    api-daskhub-dask-gateway-6b7bf7ff6b-58trn                         1/1     Running     0              53s
+magasin-daskhub    continuous-image-puller-hn98t                                     1/1     Running     0              53s
+magasin-daskhub    controller-daskhub-dask-gateway-7f4d8b9475-wsmvl                  1/1     Running     0              53s
+magasin-daskhub    hub-6bbfd8798d-tbmz9                                              1/1     Running     0              52s
+magasin-daskhub    proxy-84bdc7766d-89wwd                                            1/1     Running     0              53s
+magasin-daskhub    traefik-daskhub-dask-gateway-6555db458-rfhpw                      1/1     Running     0              53s
+magasin-daskhub    user-scheduler-5d8967fc5f-t54p5                                   1/1     Running     0              53s
+magasin-daskhub    user-scheduler-5d8967fc5f-z9grl                                   1/1     Running     0              52s
+magasin-drill      drillbit-0                                                        1/1     Running     0              117s
+magasin-drill      zk-0                                                              1/1     Running     0              117s
+magasin-operator   console-654bf548c-lfx9p                                           1/1     Running     0              31s
+magasin-operator   minio-operator-7496fbc5d9-8f56c                                   1/1     Running     0              31s
+magasin-operator   minio-operator-7496fbc5d9-btk6f                                   1/1     Running     0              31s
+magasin-superset   superset-7c4f9cb48-zghx2                                          1/1     Running     0              96s
+magasin-superset   superset-init-db-smj5c                                            0/1     Completed   0              95s
+magasin-superset   superset-postgresql-0                                             1/1     Running     0              96s
+magasin-superset   superset-redis-master-0                                           1/1     Running     0              96s
+magasin-superset   superset-worker-84994b76c4-9gbft                                  1/1     Running     0              96s
+magasin-tenant     myminio-pool-0-0                                                  2/2     Running     0              19s
+magasin-tenant     myminio-pool-0-1                                                  2/2     Running     0              19s
+```
+
 ### Customize the setup
 If you have the need to customize your setup through modifying the default [`values.yaml`](https://helm.sh/docs/chart_template_guide/values_files/) you can use the `-f` option. 
 
 For example, you can create a `drill.yaml` file with these contents:
 
 ```yaml
-# drill.yaml, which will launch drill with only one drillbit (instead of two the default)
+# drill.yaml, which will launch drill with only 2 drillbit (instead of one, the default)
 drill:
-  count: 1
+  count: 2
 ```
 And, then proceed installing the chart:
 
@@ -61,10 +130,29 @@ And, then proceed installing the chart:
 helm install drill magasin/drill --namespace magasin-drill --create-namespace -f drill.yaml
 ```
 
-
+If you already installed the chart, you can use `helm upgrade` instead of `helm install`:
 
 ```sh
-kubectl get pods --all-namespaces | grep magasin
+helm upgrade drill magasin/drill --namespace magasin-drill --create-namespace -f drill.yaml
+```
+
+If it suceeds, it will update the `REVISION` number below. 
+```sh
+Release "drill" has been upgraded. Happy Helming!
+NAME: drill
+LAST DEPLOYED: Tue Mar 12 14:24:17 2024
+NAMESPACE: magasin-drill
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+NOTES:
+To open the Drill UI
+
+    kubectl port-forward --namespace <namespace> service/drill-service 8047:8047
+
+Launch a browser at http://localhost:8047
+
+More details at: https://github.com/unicef/magasin-drill
 ```
 
 If there is any issue, please check the [troubleshooting page](troubleshooting.qmd).
