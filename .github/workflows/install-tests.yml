@@ -175,3 +175,17 @@ jobs:
           cd installer
           zsh ./install-magasin.sh -c
           zsh ./uninstall-magasin.sh -c
+
+      # Test uninstall 
+      - name: Prepare next test, uninstall helm dependency 
+        run: |
+            brew uninstall helm
+          
+      # Test install with curl 
+      - name: Test install using curl piping
+        run: |
+          cd installer
+          python -m http.server 8080 &
+          curl -sSL http://localhost:8080/install-magasin.sh | zsh -s - -i 
+
+
