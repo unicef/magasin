@@ -253,6 +253,15 @@ echo "-----------"
 # Initialize report variables
 declare -A install_status
 
+
+if [[ $- == *i* ]]; then
+    echo_info "Interactive shell"
+else
+    echo_warning "Non-Interactive shell detected. Setting automatic install of dependencies..."
+    AUTO_INSTALL=true
+fi
+
+
 # if a command does not exist this variable is set to true
 command_missing=false
 
@@ -306,7 +315,6 @@ if [[ $PLATFORM == $LINUX ]]; then
   check_linux_requirements_status
   
   # Only debian / apt-get systems supported
-  
   if [ "${install_status["apt-get"]}" = "not installed" ]; then
     echo ""
     echo_error "apt-get is not installed. Are you in a Debian like system?"
