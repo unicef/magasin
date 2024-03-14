@@ -19,6 +19,7 @@ In case you run `kubectl cluster-info` and it is not pointing to the kubernetes 
     ```
 
     Which may output something like: 
+
     ```sh
     CURRENT   NAME                        CLUSTER                   AUTHINFO                                              NAMESPACE
 
@@ -45,7 +46,7 @@ and then when you see the status of the pods:
 kubectl get pods --namespace magasin-superset
 ```
 
-```
+```sh
 NAME                               READY   STATUS                  RESTARTS   AGE
 superset-68865d55bc-rvxq5          0/1     Init:ImagePullBackOff   0          68m
 superset-init-db-c9vcr             0/1     Init:ImagePullBackOff   0          68m
@@ -59,20 +60,17 @@ Then, your operating system may be using an ARM64 architecture.  There is an iss
 
 To fix this issue, create a file called `superset.yaml` and paste the following contents below
 
-```yaml
+```{.yaml filename="superset.yaml"}
 image:
   repository: apache/superset 
   tag: dfc614bdc3c8daaf21eb8a0d1259901399af7dd8-lean310-linux-arm64-3.9-slim-bookworm
   pullPolicy: IfNotPresent
-
 
 initImage:
   repository: apache/superset
   # ARM64 (M1, M2...)
   tag: dfc614bdc3c8daaf21eb8a0d1259901399af7dd8-dockerize-linux-arm64-3.9-slim-bookworm
   pullPolicy: IfNotPresent
-      
-
 ```
 
 Then, manually install superset by running the command: 
@@ -91,7 +89,7 @@ helm list --all-namespaces
 ```
 
 It may output something like
-```
+```sh
 NAME    	NAMESPACE       	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION       
 dagster 	magasin-dagster 	1       	2024-01-26 08:00:11.343903 +0300 EAT	deployed	dagster-1.6.0   	1.6.0             
 daskhub 	magasin-daskhub 	1       	2024-01-26 07:56:59.908074 +0300 EAT	deployed	daskhub-2024.1.0	jh3.2.1-dg2023.9.0
@@ -108,8 +106,7 @@ We can gather more information by getting the list of pods (containers) of super
 ```sh
 kubectl get pods --namespace magasin-superset
 ```
-
-```
+```sh
 NAME                               READY   STATUS                  RESTARTS   AGE
 superset-68865d55bc-rvxq5          0/1     Init:ImagePullBackOff   0          68m
 superset-init-db-c9vcr             0/1     Init:ImagePullBackOff   0          68m
@@ -123,7 +120,7 @@ Lastly, we can get details of one of the pods that did not successfully launch u
 ```sh
 kubectl describe pod superset-68865d55bc-rvxq5 --namespace magasin-superset
 ```
-```
+```sh
 Events:
   Type    Reason   Age                    From     Message
   ----    ------   ----                   ----     -------
@@ -159,7 +156,7 @@ After a few minutes the installation of all the containers (pods) in the `magasi
 
 You can check the status by running
 
-```
+```sh
 kubectl get pods --all-namespaces
 ```
 
