@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -418,32 +418,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Verify <code>kubectl</code> is pointing to the right Kubernetes cluster</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cluster-info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you are using docker kubernetes cluster, it may display something like:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Kubernetes</span> control plane is running at https://kubernetes.docker.internal:6443</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">CoreDNS</span> is running at https://kubernetes.docker.internal:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> further debug and diagnose cluster problems, use <span class="st">'kubectl cluster-info dump'</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>An Azure Kubernetes Service (AKS) cluster, it may display something like:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">kubectl</span> cluster-info</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Kubernetes</span> control plane is running at https://aks-asdfasdf.hcp.westeurope.azmk8s.io:443</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">CoreDNS</span> is running at https://aks-asdfasdf.hcp.westeurope.azmk8s.io:443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Metrics-server</span> is running at https://aks-asdfasdf.hcp.westeurope.azmk8s.io:443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> further debug and diagnose cluster problems, use <span class="st">'kubectl cluster-info dump'</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="deploy-magasin-to-your-cluster" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="deploy-magasin-to-your-cluster"><span class="header-section-number">2</span> Deploy magasin to your cluster</h2>
-<p>Add the magasin helm repo</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> repo add magasin https://unicef.github.io/magasin/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Update the magasin helm repo</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> repo update magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Install the different helm charts (dagster, drill, superset, daskhub …)</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># helm install &lt;component&gt; magasin/&lt;component&gt; --namespace magasin-&lt;component&gt; --create-namespace</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install dagster magasin/dagster <span class="at">--namespace</span> magasin-dagster <span class="at">--create-namespace</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install drill magasin/drill <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install superset magasin/superset <span class="at">--namespace</span> magasin-superset <span class="at">--create-namespace</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install daskhub magasin/daskhub <span class="at">--namespace</span> magasin-daskhub <span class="at">--create-namespace</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install operator magasin/operator <span class="at">--namespace</span> magasin-operator <span class="at">--create-namespace</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install tenant magasin/tenant <span class="at">--namespace</span> magasin-tenant <span class="at">--create-namespace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>First, sdd the magasin helm repo:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> repo add magasin https://unicef.github.io/magasin/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">"magasin"</span> has been added to your repositories</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And update it:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> repo update magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Hang</span> tight while we grab the latest from your chart repositories...</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">...Successfully</span> got an update from the <span class="st">"magasin"</span> chart repository</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Update</span> Complete. ⎈Happy Helming!⎈</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, install the different helm charts (dagster, drill, superset, daskhub …). Run each of the following lines one at a time:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># helm install &lt;component&gt; magasin/&lt;component&gt; --namespace magasin-&lt;component&gt; --create-namespace</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install dagster magasin/dagster <span class="at">--namespace</span> magasin-dagster <span class="at">--create-namespace</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install drill magasin/drill <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install superset magasin/superset <span class="at">--namespace</span> magasin-superset <span class="at">--create-namespace</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install daskhub magasin/daskhub <span class="at">--namespace</span> magasin-daskhub <span class="at">--create-namespace</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install operator magasin/operator <span class="at">--namespace</span> magasin-operator <span class="at">--create-namespace</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install tenant magasin/tenant <span class="at">--namespace</span> magasin-tenant <span class="at">--create-namespace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Verify all the pods in the <code>magasin-*</code> namespaces are in status <code>Running</code> or <code>Completed</code>. Note that, it may take a few minutes before all the items change to that status.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--all-namespaces</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NAMESPACE</span>          NAME                                                              READY   STATUS      RESTARTS       AGE</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">default</span>            net-utils                                                         0/1     Completed   0              55d</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        coredns-5dd5756b68-fj7bj                                          1/1     Running     16 <span class="er">(</span><span class="ex">12d</span> ago<span class="kw">)</span>   <span class="ex">90d</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        coredns-5dd5756b68-qbjf4                                          1/1     Running     16 <span class="er">(</span><span class="ex">12d</span> ago<span class="kw">)</span>   <span class="ex">90d</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        etcd-docker-desktop                                               1/1     Running     16 <span class="er">(</span><span class="ex">12d</span> ago<span class="kw">)</span>   <span class="ex">90d</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        kube-apiserver-docker-desktop                                     1/1     Running     18 <span class="er">(</span><span class="ex">12d</span> ago<span class="kw">)</span>   <span class="ex">90d</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        kube-controller-manager-docker-desktop                            1/1     Running     17 <span class="er">(</span><span class="ex">12d</span> ago<span class="kw">)</span>   <span class="ex">90d</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        kube-proxy-n8wwq                                                  1/1     Running     16 <span class="er">(</span><span class="ex">12d</span> ago<span class="kw">)</span>   <span class="ex">90d</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        kube-scheduler-docker-desktop                                     1/1     Running     36 <span class="er">(</span><span class="ex">12d</span> ago<span class="kw">)</span>   <span class="ex">90d</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        storage-provisioner                                               1/1     Running     49 <span class="er">(</span><span class="ex">12d</span> ago<span class="kw">)</span>   <span class="ex">90d</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="ex">kube-system</span>        vpnkit-controller                                                 1/1     Running     16 <span class="er">(</span><span class="ex">12d</span> ago<span class="kw">)</span>   <span class="ex">90d</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-dagster</span>    dagster-daemon-6c99ff9787-xxr8q                                   1/1     Running     0              2m57s</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-dagster</span>    dagster-dagster-user-deployments-k8s-example-user-code-1-dzw689   1/1     Running     0              2m57s</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-dagster</span>    dagster-dagster-webserver-79db886f74-vkxvc                        1/1     Running     0              2m57s</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-dagster</span>    dagster-postgresql-0                                              1/1     Running     0              2m57s</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    api-daskhub-dask-gateway-6b7bf7ff6b-58trn                         1/1     Running     0              53s</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    continuous-image-puller-hn98t                                     1/1     Running     0              53s</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    controller-daskhub-dask-gateway-7f4d8b9475-wsmvl                  1/1     Running     0              53s</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    hub-6bbfd8798d-tbmz9                                              1/1     Running     0              52s</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    proxy-84bdc7766d-89wwd                                            1/1     Running     0              53s</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    traefik-daskhub-dask-gateway-6555db458-rfhpw                      1/1     Running     0              53s</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    user-scheduler-5d8967fc5f-t54p5                                   1/1     Running     0              53s</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-daskhub</span>    user-scheduler-5d8967fc5f-z9grl                                   1/1     Running     0              52s</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-drill</span>      drillbit-0                                                        1/1     Running     0              117s</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-drill</span>      zk-0                                                              1/1     Running     0              117s</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-operator</span>   console-654bf548c-lfx9p                                           1/1     Running     0              31s</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-operator</span>   minio-operator-7496fbc5d9-8f56c                                   1/1     Running     0              31s</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-operator</span>   minio-operator-7496fbc5d9-btk6f                                   1/1     Running     0              31s</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-7c4f9cb48-zghx2                                          1/1     Running     0              96s</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-init-db-smj5c                                            0/1     Completed   0              95s</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-postgresql-0                                             1/1     Running     0              96s</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-redis-master-0                                           1/1     Running     0              96s</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-superset</span>   superset-worker-84994b76c4-9gbft                                  1/1     Running     0              96s</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-tenant</span>     myminio-pool-0-0                                                  2/2     Running     0              19s</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-tenant</span>     myminio-pool-0-1                                                  2/2     Running     0              19s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="customize-the-setup" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="customize-the-setup"><span class="header-section-number">2.1</span> Customize the setup</h3>
 <p>If you have the need to customize your setup through modifying the default <a href="https://helm.sh/docs/chart_template_guide/values_files/"><code>values.yaml</code></a> you can use the <code>-f</code> option.</p>
 <p>For example, you can create a <code>drill.yaml</code> file with these contents:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drill.yaml, which will launch drill with only one drillbit (instead of two the default)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drill</span><span class="kw">:</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">count</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>drill.yaml</strong></pre>
+</div>
+<div class="sourceCode" id="cb11" data-filename="drill.yaml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drill.yaml, which will launch drill with only 2 drillbit (instead of one, the default)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drill</span><span class="kw">:</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">count</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>And, then proceed installing the chart:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install drill magasin/drill <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span> <span class="at">-f</span> drill.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--all-namespaces</span> <span class="kw">|</span> <span class="fu">grep</span> magasin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install drill magasin/drill <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span> <span class="at">-f</span> drill.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you already installed the chart, you can use <code>helm upgrade</code> instead of <code>helm install</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> upgrade drill magasin/drill <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span> <span class="at">-f</span> drill.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If it suceeds, it will update the <code>REVISION</code> number below.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Release</span> <span class="st">"drill"</span> has been upgraded. Happy Helming!</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME:</span> drill</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">LAST</span> DEPLOYED: Tue Mar 12 14:24:17 2024</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">NAMESPACE:</span> magasin-drill</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">STATUS:</span> deployed</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ex">REVISION:</span> 2</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ex">TEST</span> SUITE: None</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="ex">NOTES:</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> open the Drill UI</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">kubectl</span> port-forward <span class="at">--namespace</span> <span class="op">&lt;</span>namespace<span class="op">&gt;</span> service/drill-service 8047:8047</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Launch</span> a browser at http://localhost:8047</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="ex">More</span> details at: https://github.com/unicef/magasin-drill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If there is any issue, please check the <a href="../install/troubleshooting.html">troubleshooting page</a>.</p>
 </section>
 </section>
@@ -567,6 +641,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/unicef\.github\.io\/magasin\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -601,7 +693,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
