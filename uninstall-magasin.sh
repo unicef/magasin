@@ -241,8 +241,9 @@ uninstall_chart drill
 uninstall_chart daskhub
 uninstall_chart superset
 uninstall_chart dagster
-uninstall_chart operator
 uninstall_chart tenant
+uninstall_chart operator
+
 
 # Remove the magasin realm namespace.
 namespace=$REALM_ARG
