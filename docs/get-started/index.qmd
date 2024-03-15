@@ -5,9 +5,11 @@ description-meta: "Steps to start using magasin, scalable end-to-end data platfo
 format: html
 ---
 
-Magasin is a scalable end-to-end data platform based on open-source components that is natively run in a [Kubernetes cluster](https://kubernetes.io).
+Magasin is a scalable end-to-end data platform based on [open-source components](../architecture.qmd#magasins-components) that is natively run in a [Kubernetes cluster](https://kubernetes.io).
 
 In this getting started you will install magasin on your local machine for testing purposes, then you will perform an [end-to-end data processing task](tutorial-overview.qmd) that involves: [exploratory analysis](exploratory-analysis.qmd) of a data source, [creating a pipeline](./automate-data-ingestion.qmd) to automate data ingestion and [authoring a dashboard](create-a-dashboard.qmd) to present your findings.
+ 
+You may want to learn more about [why magasin](../why-magasin.qmd) and its [technical architecture](../architecture.qmd)
 
 Let's start by getting the pre-requisites:
 
