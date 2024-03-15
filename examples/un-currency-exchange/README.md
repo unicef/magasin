@@ -1,6 +1,31 @@
 # United Nations exchange rates _paquet_
 
 This _paquet_ includes the official exchange rates of the United Nations.
+## Dataset
+
+The dataset is composed by files with the name `un_exchange_rate_yyyy-mm-dd.parquet`. Each file has the following fields:
+
+
+
+* CountryName
+* CountryCode
+* CurrencyCode
+* Currency
+* ExchangeRate
+* Date
+
+See example files:
+
+* [un_exchange_rate_2021-01-01.parquet](./un_exchange_rate_example_file.parquet)
+
+* [un_exchange_rate_2021-01-01.csv](./un_exchange_rate_example_file.csv)
+
+The UN updates the exchange rates around twice a month, day 1 and 1
+
+## Data Source
+https://treasury.un.org/operationalrates/OperationalRates.php
+
+
 
 
 ## Folder Contents
@@ -10,23 +35,6 @@ This _paquet_ includes the official exchange rates of the United Nations.
 
 * **dashboard/** folder contains the Superset dashboard that shows the data in a visual way.
 
-
-## Dataset
-
-The dataset is composed by files with the name `un_exchange_rate_yyyy-mm-dd.parquet`. Each file has the following fields:
-
-* CountryName
-* CountryCode
-* CurrencyCode
-* Currency
-* ExchangeRate
-* Date
-
-The UN updates the exchange rates around twice a month, day 1 and 15.
-
-
-# Data Source
-https://treasury.un.org/operationalrates/OperationalRates.php
 
 
 ## Usage with magasin
