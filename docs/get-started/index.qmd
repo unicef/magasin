@@ -5,15 +5,15 @@ description-meta: "Steps to start using magasin, scalable end-to-end data platfo
 format: html
 ---
 
-Magasin is a scalable end-to-end data platform based on [open-source components](../architecture.qmd#magasins-components) that is natively run in a [Kubernetes cluster](https://kubernetes.io).
+Magasin is a scalable end-to-end data platform based on [open-source components](../architecture.qmd#magasins-components) that is natively run in a [Kubernetes cluster](https://kubernetes.io). 
+
+Magasin offers a value-for-money end-to-end data solution implementing a [loosely-coupled architecture](../architecture.qmd#loosely-coupled-architecture) for organizations that need to setup a framework to scale the ingestion, storage, analysis and visualization of datasets. In addition, It also includes the capability of parallel computing for analyzing large datasets or AI model training. 
 
 In this getting started you will install magasin on your local machine for testing purposes, then you will perform an [end-to-end data processing task](tutorial-overview.qmd) that involves: [exploratory analysis](exploratory-analysis.qmd) of a data source, [creating a pipeline](./automate-data-ingestion.qmd) to automate data ingestion and [authoring a dashboard](create-a-dashboard.qmd) to present your findings.
  
-You may want to learn more about [why magasin](../why-magasin.qmd) and its [technical architecture](../architecture.qmd)
+Before you continue, you may want to learn more about **[why magasin](../why-magasin.qmd)** and its [technical architecture](../architecture.qmd), otherwise, let's start by knowing the pre-requisite for installing magasin.
 
-Let's start by getting the pre-requisites:
-
-## Pre-requisite: a Kubernetes cluster
+## Install pre-requisite: a Kubernetes cluster
 
 Prior to installing magasin,  you need to have a Kubernetes cluster. But don't worry, you can setup one on your local machine very easily. In layman terms, Kubernetes is just a technology that enables managing cloud ready applications, such as magasin. 
 
