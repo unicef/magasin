@@ -1,18 +1,17 @@
 # United Nations exchange rates _paquet_
 
 This _paquet_ includes the official exchange rates of the United Nations.
+
+
 ## Dataset
 
-The dataset is composed by files with the name `un_exchange_rate_yyyy-mm-dd.parquet`. Each file has the following fields:
+The extracted ready-to-use dataset is composed by files with the name `un_exchange_rate_yyyy-mm-dd.parquet`. Each file has the following fields:
 
-
-
-* CountryName
-* CountryCode
-* CurrencyCode
-* Currency
-* ExchangeRate
-* Date
+* CountryName (String, English name)
+* CurrencyCode (3 letter)
+* CurrencyName (String, English name)
+* ExchangeRate (Float)
+* Date (Date)
 
 See example files:
 
@@ -20,24 +19,21 @@ See example files:
 
 * [un_exchange_rate_2021-01-01.csv](./un_exchange_rate_example_file.csv)
 
-The UN updates the exchange rates around twice a month, day 1 and 1
-
+The UN updates the exchange rates around twice a month, day 1 and 15. 
 ## Data Source
 https://treasury.un.org/operationalrates/OperationalRates.php
 
-
-
-
 ## Folder Contents
-* **exploration/** folder contains the Jupyter notebook used to explore the dataset. It explains all the steps to clean and prepare the data. In the notebook it is also included some 
+* **exploration/** folder contains the Jupyter notebook used to explore the dataset. It explains all the steps to clean and prepare the data. 
 
-* **pipeline/** folder contains the pipeline that will get new data from the source and update the dataset.
+* **pipeline/** folder contains the Dagster pipeline that will get new data from the source and update the dataset.
 
 * **dashboard/** folder contains the Superset dashboard that shows the data in a visual way.
 
 
-
 ## Usage with magasin
+
+
 
 ## Step 1: Get the data
 First, clone the repo
@@ -48,11 +44,11 @@ git clone https://github.com/unicef/magasin
 
 Then go to `magasin/examples/un-currency-exchange`.
 
-If you want to get the historical data since 2014, then you need to run all the cells in the `un-currecy-exchange.ipynb` notebook within the `explorations` folder. It will download all the data within the data subfolder within explorations
+If you want to get the historical data since 2014, then you need to run all the cells in the `un-currecy-exchange.ipynb` notebook. Within the `explorations/data` folder. It will download extract all the data from the UN website. 
 
-### Step 2: Load the data into MinIO
-Then in one console terminal run 
+### Step 2: Load the data into a MinIO bucket
 
+In this step, you move the historical data into MinIO. 
 
 ```sh
 # Create the bucket un-exchange-rates in minio
@@ -128,6 +124,7 @@ Run the following query to see if the connection is working:
 USE `un-exchange-rates`;
 ```
 It should display `Default schema changed to [un-exchange-rates]`
+
 
 
 ### Step 4: Create the Superset Dashboard
