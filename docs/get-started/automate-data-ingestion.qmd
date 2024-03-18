@@ -40,7 +40,6 @@ The main reason to use files is:
 3. In addition, it allows also to easily store more types of data such as documents or images. Lastly, in terms of governance and sharing the datasets, the problem is simplified to setting up file sharing permissions.  
 
 
-
 ### Parquet format for structured data.
 
 Parquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data. 
@@ -227,7 +226,7 @@ setup(
 )
 ```
 
-Ok, So now let's test if this is working so far. To do that we will first install the pipeline package in [editable mode](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs) (`-e`). This allows you to edit the package without needing to install it again.
+Ok, so now let's test if this is working so far. To do that we will first install the pipeline package in [editable mode](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs) (`-e`). This allows you to edit the package without needing to install it again.
 
 ```sh
 pip install -e '.[dev]'

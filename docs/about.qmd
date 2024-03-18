@@ -7,7 +7,7 @@ format: html
 
 Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end collection of open-source tools that are stitched together to provide enterprise ready automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform data analysis, visualization of datasets and ML / AI.
 
-
+You can learn more about [why we created magasin](why-magasin.qmd) and its [architecture](architecture.qmd).
 
 ## Brief history 
 
@@ -18,6 +18,8 @@ Also informed by experiences of the [Magic Box](https://www.unicef.org/innovatio
 In 2021, ICTD engaged one of its long term agreement vendors to assist with evolving the proof-of-concept into a minimum viable product (MVP).
 
 In 2023, UNICEF started the journey to detach _magasin_ from its organizational and cloud infrastructure dependencies, and release it as an open-source platform with the goal of becoming a [Digital Public Good](https://digitalpublicgoods.net/digital-public-goods/).
+
+In [February 2nd](https://en.wikipedia.org/wiki/Groundhog_Day_(film)),2024, UNICEF released magasin as an [open source](https://github.com/unicef/magasin) solution. In this release, it was included an [easy to install process](install/), as well as [how to get started documentation](get-started/).
 
 
 

@@ -7,44 +7,33 @@ number-sections: false
 
 In today's data-informed world, governments and organizations face a monumental challenge: fragmented data spread across siloed systems. Departments, divisions, and units gather data independently, leading to inefficiencies and risks:
 
-### Fragmentation in tools and capacity
+ * **Fragmentation in data tools and capacity**. Organizations, particularly those lacking centralized structures, often grapple with **data tool fragmentation**. This fragmentation is characterized by the use of diverse technologies across different teams, which can **impede resource mobility** and lead to technology duplication.
+    
+    Moreover, capacity issues frequently arise as a result of siloed work. This lack of integration exacerbates **resource allocation challenges**, thereby limiting the organization’s overall potential. Addressing these issues is crucial for enhancing operational efficiency and unlocking the full potential of the organization.
 
-* **Tool Fragmentation:** Organizations, especially those without centralized structures, struggle with diverse technologies across teams, hindering resource mobility and causing technology duplication.
-
-* **Capacity Issues:** Siloed work exacerbates resource allocation challenges, limiting the organization's overall potential.
-
-### Risks of Data Breaches
-* **Security Concerns:** Without secure data storage and sharing mechanisms, organizations risk data breaches and unauthorized access to sensitive information.
-
-### Myopic Data Analysis
-* **Lack of Comprehensive Insights:** Siloed data prevents organizations from gaining a holistic understanding of their operations and stakeholders, leading to shortsighted decision-making.
+*  **Myopic data analysis and lack of comprehensive insights**. Siloed data prevents organizations from gaining a holistic understanding of their operations and stakeholders, leading to shortsighted decision-making.
 
 To overcome these challenges and unlock the full potential of modern data analysis, machine learning, and artificial intelligence, organizations need a comprehensive set of tools. 
 
+
 ## Marketplace gaps
-When we go to the global market we find gaps.
 
-### Overwhelming landscape
+When we go to the global market we find several gaps.
 
-![Big Data Landascape 2019 by Matt Turck. [Source](https://mattturck.com/wp-content/uploads/2019/07/2019_Matt_Turck_Big_Data_Landscape_Final_Fullsize.png
-)](images/why-of-fry/data-landscape.png)
+1. **Overwhelming landscape**. Entering the world of data can be daunting, with a myriad of products each requiring trade-offs. Just look at the picture below that displays which was the DATA & AI Landscape already in 2019 
 
+    ![Big Data Landascape 2019 by Matt Turck. [Source](https://mattturck.com/wp-content/uploads/2019/07/2019_Matt_Turck_Big_Data_Landscape_Final_Fullsize.png
+  )](images/why-of-fry/data-landscape.png)
 
-Entering the world of data can be daunting, with a myriad of products each requiring trade-offs. 
+2. **Data/AI Leaders are solving a specific problems set**. Most data systems are optimized for massive scale and low-latency, crucial for time-sensitive tasks like targeted advertising. However, not all organizations face such time-pressured scenarios. 
 
-### Leaders are solving a specific problems set
+3. **Systems that require a high cost entry**. These data systems are generally not designed for low-end hardware or low cost of entry, further complicating the landscape for organizations exploring data solutions without having a deep pocket.
 
-Most data systems are optimized for massive scale and low-latency, crucial for time-sensitive tasks like targeted advertising. However, not all organizations face such time-pressured scenarios. 
+4. **End-to-end solutions are proprietary** Traditional end-to-end data platforms often come with proprietary restrictions, limiting flexibility and tying organizations to specific cloud vendors or industry niches. 
 
-### With systems that require a high cost entry
+Therefore, find in the market that there is not an end-to-end, open source solution that has a low cost of entry, that sets a uniform but flexible approach for different teams and that can scale with the needs of the organizaitons.
 
-It is important to note that these data systems are not designed for low-end hardware or low cost of entry, further complicating the landscape for organizations exploring data solutions without having a deep pocket.
-
-### That are proprietary
-
-Traditional end-to-end data platforms often come with proprietary restrictions, limiting flexibility and tying organizations to specific cloud vendors or industry niches. 
-
-This presents significant challenges for entities with decentralized structures and external collaborations, in particularly, UNICEF's government partners who demand a cloud-agnostic, open-source solution that delivers maximum value for their investment.
+Hence, it is observed in the market that there lacks a comprehensive, open-source solution. Such a solution would ideally have a low entry cost, establish a uniform yet adaptable approach for various teams, and possess the capability to scale in accordance with the evolving needs of organizations. This gap presents a significant opportunity for innovation and development in the field.
 
 # Magasin was needed
 
@@ -62,3 +51,10 @@ For the private sector it fits any organization that wants to leverage data scie
 
 
 **Don't just keep up – lead the change with magasin and transform your organization's digital future today**.
+
+
+## What's next
+
+* **[Getting started with magasin](./get-started/)**. Learn how to install, and start using magasin with a simple example.
+
+* **[Magasin architecture](./architecture.qmd)**. Learn more about the different components that conform magasin.

@@ -8,63 +8,96 @@ Magasin is a scalable end-to-end data platform based on open-source components t
 
 By end-to-end this describes a data processing pipeline including from how to ingest raw data from multiple data sources, transform the data, run analyses on the processed data, storage in a cloud or local filesystem to enabling visualisation.
 
-Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of [containerized applications](https://kubernetes.io/docs/concepts/overview/#going-back-in-time). It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.
+Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of [containerized applications](https://kubernetes.io/docs/concepts/overview/#going-back-in-time). It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer. By using kubernetes, we ensure the scalability of the solution.
 
-Magasin uses Kubernetes in combination with [Helm](https://helm.sh/), a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called a **chart**.
+Magasin uses Kubernetes in combination with [Helm](https://helm.sh/), a package manager for Kubernetes applications that eases the initial setup of the different components of magasin. Helm is the equivalent to apt, pip, npm, pacman, snap, conda. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides.  
 
-A fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and modular approach, fostering flexibility in component selection and integration. 
+The main components of magasin architecture are independent mature open source projects. They are loosely coupled and glued through set of conventions and tools.
 
-The core components of magasin are independent mature open source projects that support.
+## magasin is a loosely-coupled architecture
 
+Magasin identifies the sets of needs for setting up an end-to-end data platform that can scale, and provides the set of open source components and an standard underlying technologies (helm, kubernetes) that can be used to solve the needs. 
 
-![Magasin Architecture](./images/architecture-simplified.svg)
+However, organizations may already have some of the elements in the architecture already in place. For example, an organization may already have a preferred data visualization platform such as Microsoft PowerBI or Tableau, and switching to another visualization tool may entail more costs than the licenses themselves. Magasin gets organizations covered on that. Each of the components of magasin is not strictly required for an implementation. 
 
-
-# Underlying technologies
-
-## Kubernetes containerization 
-Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of [containerized applications](https://kubernetes.io/docs/concepts/overview/#going-back-in-time). It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.
-
-## Helm charts 
-Magasin uses Kubernetes in combination with [Helm](https://helm.sh/), a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda, etc. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called **chart**.
+This is achieved using helm packaged system in a slightly different way. Generally, in one single helm package all the components are including, setting up an more opinionated way of deploying a particular application. In magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. It allows you to install each component independently. Therefore, rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.
 
 
-## Loosely-coupled architecture
+## Magasin's components 
 
-A fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.
+Magasin is built on top of a set of mature open source projects to conform an base architecture for deploying an end-to-end data platform. 
 
-
-# Core components 
-
-
-## Ingestion: Dagster
-The [Dagster](http://dagster.io) framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster.
-
-###  Dagit
-Dagster's Dagit UI provides visibility of pipelines' tasks, scheduling, run status, materialized assets, resources, and modes.
+![Magasin architecture](./images/architecture-simplified.svg)
 
 
-## Cloud storage: MinIO
+### Ingestion: Dagster
+The [Dagster](http://dagster.io) framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated on its own container, so different tasks may utilize different versions of a library. 
 
-MinIO is an open-source, high-performance object storage system designed for cloud-native and containerized applications. Founded in 2014, MinIO offers an S3-compatible API, enabling seamless integration with existing cloud storage ecosystems. It is known for its simplicity, scalability, and speed, making it a popular choice for organizations seeking efficient data storage solutions. MinIO's architecture is optimized for modern data workloads, leveraging erasure coding and distributed techniques to ensure data resilience and high availability. With its lightweight footprint and easy deployment on standard hardware, MinIO empowers developers to build scalable storage infrastructures tailored to their specific needs, whether for on-premises, hybrid, or multi-cloud environments.
+In addition to pipeline isolation, it provides some advantages:
 
-## Query engine: Apache Drill
+1. **A user interface** that provides visibility of pipelines' tasks, scheduling, run status, debugging messages, materialized assets, resources, and modes...
 
-[Apache Drill](https://drill.apache.org/) is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.
+2. **Dagster pipelines are written in python**, which is a very familiar language for data scientist and data engineer.
+
+3. **A framework for creating pipelines that scale.** Whereas early in the data ingestion processes, pipelines are simple and straightforward, with time, when mixing different sources, which requires more complex cleaning and the need of armonizing identifiiers, the pipelines become very prone to be built as spaguetty code. This lmiits the maintainability, discoverability of issues and efficiency of introducing new changes. With dagster, you get a way of building pipelines that will be more structured and easy to maintain. 
+
+## Store: A file based approach
+
+In the magasin architecture, as general approach, we stand to store data assets as files. In particular, we recommend the use of [Apache parquet file format](https://parquet.apache.org/). 
+
+The main reason to use a file based approach is:
+
+1. First, because it is an economic way to store data. Storage services in the cloud or in premises is relatively cheap. 
+
+2. Second, because it does provide more flexibility when changes on the underlying structure are introduced, at least compared with setting up a SQL database downstream. 
+
+3. In addition, it allows also to easily store more types of data such as documents or images. 
+
+4. Lastly, in terms of governance and sharing the datasets, the problem is simplified to setting up file sharing permissions.
+
+To support this file based approach, there are two components that are introduced in the architecture. The first one is **[MinIO](https://min.io)**, which provides magasin with a layer that introduces agnosticity against the cloud provider. The second one is [Apache Drill](https://drill.apache.org), which provides a SQL query engine that eases the extraction of insights from the files.
+
+#### MinIO: A cloud agnostic approach
+
+Magasin can be installed in any cloud provider on in premises. However, each cloud provider has a different service to store data.  In order to provide a consistent way of storing data we have included as part of the standard list of components [MinIO](https://min.io/), a high-performance object storage system designed for cloud-native and containerized applications has been included as part of the magasin.
+
+Founded in 2014, MinIO offers an S3-compatible API, enabling seamless integration with existing cloud storage ecosystems. It is known for its simplicity, scalability, and speed, making it a popular choice for organizations seeking efficient data storage solutions. MinIO's architecture is optimized for modern data workloads, leveraging erasure coding and distributed techniques to ensure data resilience and high availability. With its lightweight footprint and easy deployment on standard hardware, MinIO empowers developers to build scalable storage infrastructures tailored to their specific needs, whether for on-premises, hybrid, or multi-cloud environments.
+
+Whereas MinIO comes out of the box to provide uniform and cloud agnostic storage layer, there may be organizations that prefer to use a cloud native storage such as Azure Blob, S3 Buckets or Google Cloud Storage. 
+
+#### Query engine: Apache Drill
+
+The last piece of the file based approach is Apache Drill. [Apache Drill](https://drill.apache.org/) is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS & SAS formats, Parquet, and others.
 
 While [data marts](https://en.wikipedia.org/wiki/Data_mart) for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time. 
 
-Instead, a Dagster ingestion and transformation pipeline stores an 'analyst-ready' dataset that Apache Drill can query directly.
 
-## Dashboards: Apache Superset
+### Visualization: Apache Superset
+
 [Apache Superset](https://superset.apache.org/) is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.
 
-## Notebook environment: Daskhub
-[Daskhub](https://blog.dask.org/2020/08/31/helm_daskhub) is a [Helm chart](https://helm.dask.org/) to easily install JupyterHub and Dask Gateway for multiple users on a Kubernetes cluster.
+Apache Superset consumes SQL data sources, so Apache Drill is a nice companion for Superset to work with magasin's file based approach.
 
-### JupyterHub
-The multi-tenant JupyterHub component creates on-demand, isolated pods for authenticated users, each with persistent storage for their R and Python notebook workspace. 
+### Analysis: Notebook environment JupyterHub
 
-### Dask Gateway
-Dask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.
+A **Jupyter notebook** is an open-source allows you to create and share documents that contain live code, equations, visualizations, and narrative text. It is a powerful tool that combines code execution, rich text, mathematics, plots, and rich media into a single document. They are widely used in data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+
+The advantages of using Jupyter Notebooks are numerous. They provide an interactive computing environment that promotes exploratory analysis, making them ideal for data science projects. Notebooks can be easily shared, promoting reproducible research and facilitating collaboration. They also allow for inline plotting, providing immediate visual feedback on the data being analyzed. Typical uses of Jupyter Notebooks include data analysis and visualization, machine learning, statistical modeling, and educational purposes. For instance, a data scientist might use a Jupyter Notebook to clean a dataset, perform exploratory data analysis, build a machine learning model, and then visualize the results, all within a single, cohesive document.
+
+The multi-tenant JupyterHub component creates on-demand, isolated containers for authenticated users, each with persistent storage for their R and Python notebook workspace. 
+
+### Parallel computing: Dask Gateway
+
+A Dask cluster is a flexible tool for parallel computing in Python. It allows you to write python code that will be run in multiples machines taking advantage of all the compute resources of the kubernetes cluster in which magasin is installed. 
+
+It is composed of a central scheduler and multiple distributed workers. Dask works well at many scales, ranging from a single machine to clusters of many machines. It enables parallel processing and extends the size of convenient datasets from “fits in memory” to "fits on disk"1. However, it can also work across a cluster of multiple machines.
+
+Dask cluster Dask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.
+
+
+## Mag-cli
+
+[Mag-cli](https://github.com/unicef/magasin/tree/main/mag-cli) is the command line interface of magasin. Helps to manage the different modules of magasin and it makes easier to perform common administration tasks. 
+
+
 
