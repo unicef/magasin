@@ -343,27 +343,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#underlying-technologies" id="toc-underlying-technologies" class="nav-link active" data-scroll-target="#underlying-technologies"><span class="header-section-number">1</span> Underlying technologies</a>
+  <li><a href="#magasin-is-a-loosely-coupled-architecture" id="toc-magasin-is-a-loosely-coupled-architecture" class="nav-link active" data-scroll-target="#magasin-is-a-loosely-coupled-architecture"><span class="header-section-number">1</span> magasin is a loosely-coupled architecture</a></li>
+  <li><a href="#magasins-components" id="toc-magasins-components" class="nav-link" data-scroll-target="#magasins-components"><span class="header-section-number">2</span> Magasin’s components</a>
   <ul class="collapse">
-  <li><a href="#kubernetes-containerization" id="toc-kubernetes-containerization" class="nav-link" data-scroll-target="#kubernetes-containerization"><span class="header-section-number">1.1</span> Kubernetes containerization</a></li>
-  <li><a href="#helm-charts" id="toc-helm-charts" class="nav-link" data-scroll-target="#helm-charts"><span class="header-section-number">1.2</span> Helm charts</a></li>
-  <li><a href="#loosely-coupled-architecture" id="toc-loosely-coupled-architecture" class="nav-link" data-scroll-target="#loosely-coupled-architecture"><span class="header-section-number">1.3</span> Loosely-coupled architecture</a></li>
+  <li><a href="#ingestion-dagster" id="toc-ingestion-dagster" class="nav-link" data-scroll-target="#ingestion-dagster"><span class="header-section-number">2.1</span> Ingestion: Dagster</a></li>
   </ul></li>
-  <li><a href="#core-components" id="toc-core-components" class="nav-link" data-scroll-target="#core-components"><span class="header-section-number">2</span> Core components</a>
+  <li><a href="#store-a-file-based-approach" id="toc-store-a-file-based-approach" class="nav-link" data-scroll-target="#store-a-file-based-approach"><span class="header-section-number">3</span> Store: A file based approach</a>
   <ul class="collapse">
-  <li><a href="#ingestion-dagster" id="toc-ingestion-dagster" class="nav-link" data-scroll-target="#ingestion-dagster"><span class="header-section-number">2.1</span> Ingestion: Dagster</a>
-  <ul class="collapse">
-  <li><a href="#dagit" id="toc-dagit" class="nav-link" data-scroll-target="#dagit"><span class="header-section-number">2.1.1</span> Dagit</a></li>
+  <li><a href="#visualization-apache-superset" id="toc-visualization-apache-superset" class="nav-link" data-scroll-target="#visualization-apache-superset"><span class="header-section-number">3.1</span> Visualization: Apache Superset</a></li>
+  <li><a href="#analysis-notebook-environment-jupyterhub" id="toc-analysis-notebook-environment-jupyterhub" class="nav-link" data-scroll-target="#analysis-notebook-environment-jupyterhub"><span class="header-section-number">3.2</span> Analysis: Notebook environment JupyterHub</a></li>
+  <li><a href="#parallel-computing-dask-gateway" id="toc-parallel-computing-dask-gateway" class="nav-link" data-scroll-target="#parallel-computing-dask-gateway"><span class="header-section-number">3.3</span> Parallel computing: Dask Gateway</a></li>
   </ul></li>
-  <li><a href="#cloud-storage-minio" id="toc-cloud-storage-minio" class="nav-link" data-scroll-target="#cloud-storage-minio"><span class="header-section-number">2.2</span> Cloud storage: MinIO</a></li>
-  <li><a href="#query-engine-apache-drill" id="toc-query-engine-apache-drill" class="nav-link" data-scroll-target="#query-engine-apache-drill"><span class="header-section-number">2.3</span> Query engine: Apache Drill</a></li>
-  <li><a href="#dashboards-apache-superset" id="toc-dashboards-apache-superset" class="nav-link" data-scroll-target="#dashboards-apache-superset"><span class="header-section-number">2.4</span> Dashboards: Apache Superset</a></li>
-  <li><a href="#notebook-environment-daskhub" id="toc-notebook-environment-daskhub" class="nav-link" data-scroll-target="#notebook-environment-daskhub"><span class="header-section-number">2.5</span> Notebook environment: Daskhub</a>
-  <ul class="collapse">
-  <li><a href="#jupyterhub" id="toc-jupyterhub" class="nav-link" data-scroll-target="#jupyterhub"><span class="header-section-number">2.5.1</span> JupyterHub</a></li>
-  <li><a href="#dask-gateway" id="toc-dask-gateway" class="nav-link" data-scroll-target="#dask-gateway"><span class="header-section-number">2.5.2</span> Dask Gateway</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#mag-cli" id="toc-mag-cli" class="nav-link" data-scroll-target="#mag-cli"><span class="header-section-number">4</span> Mag-cli</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/architecture.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -391,69 +382,80 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Magasin is a scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">Kubernetes cluster</a>.</p>
 <p>By end-to-end this describes a data processing pipeline including from how to ingest raw data from multiple data sources, transform the data, run analyses on the processed data, storage in a cloud or local filesystem to enabling visualisation.</p>
-<p>Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of <a href="https://kubernetes.io/docs/concepts/overview/#going-back-in-time">containerized applications</a>. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.</p>
-<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called a <strong>chart</strong>.</p>
-<p>A fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and modular approach, fostering flexibility in component selection and integration.</p>
-<p>The core components of magasin are independent mature open source projects that support.</p>
+<p>Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of <a href="https://kubernetes.io/docs/concepts/overview/#going-back-in-time">containerized applications</a>. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer. By using kubernetes, we ensure the scalability of the solution.</p>
+<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications that eases the initial setup of the different components of magasin. Helm is the equivalent to apt, pip, npm, pacman, snap, conda. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides.</p>
+<p>The main components of magasin architecture are independent mature open source projects. They are loosely coupled and glued through set of conventions and tools.</p>
+<section id="magasin-is-a-loosely-coupled-architecture" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="magasin-is-a-loosely-coupled-architecture"><span class="header-section-number">1</span> magasin is a loosely-coupled architecture</h2>
+<p>Magasin identifies the sets of needs for setting up an end-to-end data platform that can scale, and provides the set of open source components and an standard underlying technologies (helm, kubernetes) that can be used to solve the needs.</p>
+<p>However, organizations may already have some of the elements in the architecture already in place. For example, an organization may already have a preferred data visualization platform such as Microsoft PowerBI or Tableau, and switching to another visualization tool may entail more costs than the licenses themselves. Magasin gets organizations covered on that. Each of the components of magasin is not strictly required for an implementation.</p>
+<p>This is achieved using helm packaged system in a slightly different way. Generally, in one single helm package all the components are including, setting up an more opinionated way of deploying a particular application. In magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. It allows you to install each component independently. Therefore, rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.</p>
+</section>
+<section id="magasins-components" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="magasins-components"><span class="header-section-number">2</span> Magasin’s components</h2>
+<p>Magasin is built on top of a set of mature open source projects to conform an base architecture for deploying an end-to-end data platform.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/architecture-simplified.svg" class="img-fluid figure-img"></p>
-<figcaption>Magasin Architecture</figcaption>
+<figcaption>Magasin architecture</figcaption>
 </figure>
 </div>
-<section id="underlying-technologies" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Underlying technologies</h1>
-<section id="kubernetes-containerization" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="kubernetes-containerization"><span class="header-section-number">1.1</span> Kubernetes containerization</h2>
-<p>Kubernetes is a container orchestration system designed to automate the deployment, scaling, and management of <a href="https://kubernetes.io/docs/concepts/overview/#going-back-in-time">containerized applications</a>. It is an integral part of services offered by major cloud providers. Kubernetes, being open source, can also be set up on-premises. For testing purposes, it is even possible to install it on a desktop computer.</p>
-</section>
-<section id="helm-charts" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="helm-charts"><span class="header-section-number">1.2</span> Helm charts</h2>
-<p>Magasin uses Kubernetes in combination with <a href="https://helm.sh/">Helm</a>, a package manager for Kubernetes applications. Helm is the equivalent to apt, pip, npm, pacman, snap, conda, etc. Using Helm, users specify the configuration of required Kubernetes resources to deploy magasin through a values file or command-line overrides. A package in helm is called <strong>chart</strong>.</p>
-</section>
-<section id="loosely-coupled-architecture" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="loosely-coupled-architecture"><span class="header-section-number">1.3</span> Loosely-coupled architecture</h2>
-<p>A fundamental contrast between magasin and other helm-based Kubernetes applications lies in their architectural approach. Typically, an application is characterized by a sole root helm chart governing all deployment rules. However, in magasin, each component operates as an autonomous helm chart. This design choice enables the establishment of a loosely-coupled architecture among its components. Rather than mandating a rigid structure for the entire architecture, magasin embraces a more open and adaptable approach, fostering flexibility in component selection and integration.</p>
+<section id="ingestion-dagster" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="ingestion-dagster"><span class="header-section-number">2.1</span> Ingestion: Dagster</h3>
+<p>The <a href="http://dagster.io">Dagster</a> framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated on its own container, so different tasks may utilize different versions of a library.</p>
+<p>In addition to pipeline isolation, it provides some advantages:</p>
+<ol type="1">
+<li><p><strong>A user interface</strong> that provides visibility of pipelines’ tasks, scheduling, run status, debugging messages, materialized assets, resources, and modes…</p></li>
+<li><p><strong>Dagster pipelines are written in python</strong>, which is a very familiar language for data scientist and data engineer.</p></li>
+<li><p><strong>A framework for creating pipelines that scale.</strong> Whereas early in the data ingestion processes, pipelines are simple and straightforward, with time, when mixing different sources, which requires more complex cleaning and the need of armonizing identifiiers, the pipelines become very prone to be built as spaguetty code. This lmiits the maintainability, discoverability of issues and efficiency of introducing new changes. With dagster, you get a way of building pipelines that will be more structured and easy to maintain.</p></li>
+</ol>
 </section>
 </section>
-<section id="core-components" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Core components</h1>
-<section id="ingestion-dagster" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="ingestion-dagster"><span class="header-section-number">2.1</span> Ingestion: Dagster</h2>
-<p>The <a href="http://dagster.io">Dagster</a> framework is the primary tool for orchestration of data pipelines for ingestion, transformation, analysis, and machine learning. Each pipeline is isolated and encapsulated, so different tasks may utilize different versions of the same library, for example, and each pipeline run is executed in a short-lived pod on a Kubernetes cluster.</p>
-<section id="dagit" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="dagit"><span class="header-section-number">2.1.1</span> Dagit</h3>
-<p>Dagster’s Dagit UI provides visibility of pipelines’ tasks, scheduling, run status, materialized assets, resources, and modes.</p>
+<section id="store-a-file-based-approach" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="store-a-file-based-approach"><span class="header-section-number">3</span> Store: A file based approach</h2>
+<p>In the magasin architecture, as general approach, we stand to store data assets as files. In particular, we recommend the use of <a href="https://parquet.apache.org/">Apache parquet file format</a>.</p>
+<p>The main reason to use a file based approach is:</p>
+<ol type="1">
+<li><p>First, because it is an economic way to store data. Storage services in the cloud or in premises is relatively cheap.</p></li>
+<li><p>Second, because it does provide more flexibility when changes on the underlying structure are introduced, at least compared with setting up a SQL database downstream.</p></li>
+<li><p>In addition, it allows also to easily store more types of data such as documents or images.</p></li>
+<li><p>Lastly, in terms of governance and sharing the datasets, the problem is simplified to setting up file sharing permissions.</p></li>
+</ol>
+<p>To support this file based approach, there are two components that are introduced in the architecture. The first one is <strong><a href="https://min.io">MinIO</a></strong>, which provides magasin with a layer that introduces agnosticity against the cloud provider. The second one is <a href="https://drill.apache.org">Apache Drill</a>, which provides a SQL query engine that eases the extraction of insights from the files.</p>
+<section id="minio-a-cloud-agnostic-approach" class="level4" data-number="3.0.1">
+<h4 data-number="3.0.1" class="anchored" data-anchor-id="minio-a-cloud-agnostic-approach"><span class="header-section-number">3.0.1</span> MinIO: A cloud agnostic approach</h4>
+<p>Magasin can be installed in any cloud provider on in premises. However, each cloud provider has a different service to store data. In order to provide a consistent way of storing data we have included as part of the standard list of components <a href="https://min.io/">MinIO</a>, a high-performance object storage system designed for cloud-native and containerized applications has been included as part of the magasin.</p>
+<p>Founded in 2014, MinIO offers an S3-compatible API, enabling seamless integration with existing cloud storage ecosystems. It is known for its simplicity, scalability, and speed, making it a popular choice for organizations seeking efficient data storage solutions. MinIO’s architecture is optimized for modern data workloads, leveraging erasure coding and distributed techniques to ensure data resilience and high availability. With its lightweight footprint and easy deployment on standard hardware, MinIO empowers developers to build scalable storage infrastructures tailored to their specific needs, whether for on-premises, hybrid, or multi-cloud environments.</p>
+<p>Whereas MinIO comes out of the box to provide uniform and cloud agnostic storage layer, there may be organizations that prefer to use a cloud native storage such as Azure Blob, S3 Buckets or Google Cloud Storage.</p>
 </section>
-</section>
-<section id="cloud-storage-minio" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="cloud-storage-minio"><span class="header-section-number">2.2</span> Cloud storage: MinIO</h2>
-<p>MinIO is an open-source, high-performance object storage system designed for cloud-native and containerized applications. Founded in 2014, MinIO offers an S3-compatible API, enabling seamless integration with existing cloud storage ecosystems. It is known for its simplicity, scalability, and speed, making it a popular choice for organizations seeking efficient data storage solutions. MinIO’s architecture is optimized for modern data workloads, leveraging erasure coding and distributed techniques to ensure data resilience and high availability. With its lightweight footprint and easy deployment on standard hardware, MinIO empowers developers to build scalable storage infrastructures tailored to their specific needs, whether for on-premises, hybrid, or multi-cloud environments.</p>
-</section>
-<section id="query-engine-apache-drill" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="query-engine-apache-drill"><span class="header-section-number">2.3</span> Query engine: Apache Drill</h2>
-<p><a href="https://drill.apache.org/">Apache Drill</a> is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS &amp; SAS formats, Parquet, and others.</p>
+<section id="query-engine-apache-drill" class="level4" data-number="3.0.2">
+<h4 data-number="3.0.2" class="anchored" data-anchor-id="query-engine-apache-drill"><span class="header-section-number">3.0.2</span> Query engine: Apache Drill</h4>
+<p>The last piece of the file based approach is Apache Drill. <a href="https://drill.apache.org/">Apache Drill</a> is an open-source, schema-free query engine that provides a SQL interface to a wide range of non-relational datastores, such as NoSQL databases and collections of files such as JSON, CSV, ESRI shapefiles, SPSS &amp; SAS formats, Parquet, and others.</p>
 <p>While <a href="https://en.wikipedia.org/wiki/Data_mart">data marts</a> for specific business functions or locations traditionally require hosting and maintenance of a relational database on a server or virtual machine, Apache Drill enables comparable functionality without need for running and hosting a database or maintaining schema changes from source systems over time.</p>
-<p>Instead, a Dagster ingestion and transformation pipeline stores an ‘analyst-ready’ dataset that Apache Drill can query directly.</p>
 </section>
-<section id="dashboards-apache-superset" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="dashboards-apache-superset"><span class="header-section-number">2.4</span> Dashboards: Apache Superset</h2>
+<section id="visualization-apache-superset" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="visualization-apache-superset"><span class="header-section-number">3.1</span> Visualization: Apache Superset</h3>
 <p><a href="https://superset.apache.org/">Apache Superset</a> is an open-source business intelligence product with comprehensive charting, dashboarding, and querying capabilities.</p>
+<p>Apache Superset consumes SQL data sources, so Apache Drill is a nice companion for Superset to work with magasin’s file based approach.</p>
 </section>
-<section id="notebook-environment-daskhub" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="notebook-environment-daskhub"><span class="header-section-number">2.5</span> Notebook environment: Daskhub</h2>
-<p><a href="https://blog.dask.org/2020/08/31/helm_daskhub">Daskhub</a> is a <a href="https://helm.dask.org/">Helm chart</a> to easily install JupyterHub and Dask Gateway for multiple users on a Kubernetes cluster.</p>
-<section id="jupyterhub" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="jupyterhub"><span class="header-section-number">2.5.1</span> JupyterHub</h3>
-<p>The multi-tenant JupyterHub component creates on-demand, isolated pods for authenticated users, each with persistent storage for their R and Python notebook workspace.</p>
+<section id="analysis-notebook-environment-jupyterhub" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="analysis-notebook-environment-jupyterhub"><span class="header-section-number">3.2</span> Analysis: Notebook environment JupyterHub</h3>
+<p>A <strong>Jupyter notebook</strong> is an open-source allows you to create and share documents that contain live code, equations, visualizations, and narrative text. It is a powerful tool that combines code execution, rich text, mathematics, plots, and rich media into a single document. They are widely used in data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.</p>
+<p>The advantages of using Jupyter Notebooks are numerous. They provide an interactive computing environment that promotes exploratory analysis, making them ideal for data science projects. Notebooks can be easily shared, promoting reproducible research and facilitating collaboration. They also allow for inline plotting, providing immediate visual feedback on the data being analyzed. Typical uses of Jupyter Notebooks include data analysis and visualization, machine learning, statistical modeling, and educational purposes. For instance, a data scientist might use a Jupyter Notebook to clean a dataset, perform exploratory data analysis, build a machine learning model, and then visualize the results, all within a single, cohesive document.</p>
+<p>The multi-tenant JupyterHub component creates on-demand, isolated containers for authenticated users, each with persistent storage for their R and Python notebook workspace.</p>
 </section>
-<section id="dask-gateway" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="dask-gateway"><span class="header-section-number">2.5.2</span> Dask Gateway</h3>
-<p>Dask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.</p>
+<section id="parallel-computing-dask-gateway" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="parallel-computing-dask-gateway"><span class="header-section-number">3.3</span> Parallel computing: Dask Gateway</h3>
+<p>A Dask cluster is a flexible tool for parallel computing in Python. It allows you to write python code that will be run in multiples machines taking advantage of all the compute resources of the kubernetes cluster in which magasin is installed.</p>
+<p>It is composed of a central scheduler and multiple distributed workers. Dask works well at many scales, ranging from a single machine to clusters of many machines. It enables parallel processing and extends the size of convenient datasets from “fits in memory” to “fits on disk”1. However, it can also work across a cluster of multiple machines.</p>
+<p>Dask cluster Dask Gateway allows easy utilization of a Dask cluster from notebook environments for distributed computation of massive datasets or parallelizable operations.</p>
+</section>
+</section>
+<section id="mag-cli" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="mag-cli"><span class="header-section-number">4</span> Mag-cli</h2>
+<p><a href="https://github.com/unicef/magasin/tree/main/mag-cli">Mag-cli</a> is the command line interface of magasin. Helps to manage the different modules of magasin and it makes easier to perform common administration tasks.</p>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

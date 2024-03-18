@@ -377,7 +377,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pre-requisite-a-kubernetes-cluster" id="toc-pre-requisite-a-kubernetes-cluster" class="nav-link active" data-scroll-target="#pre-requisite-a-kubernetes-cluster"><span class="header-section-number">1</span> Pre-requisite: a Kubernetes cluster</a></li>
+  <li><a href="#install-pre-requisite-a-kubernetes-cluster" id="toc-install-pre-requisite-a-kubernetes-cluster" class="nav-link active" data-scroll-target="#install-pre-requisite-a-kubernetes-cluster"><span class="header-section-number">1</span> Install pre-requisite: a Kubernetes cluster</a></li>
   <li><a href="#install-magasin" id="toc-install-magasin" class="nav-link" data-scroll-target="#install-magasin"><span class="header-section-number">2</span> Install magasin</a></li>
   <li><a href="#verify-everything-is-working" id="toc-verify-everything-is-working" class="nav-link" data-scroll-target="#verify-everything-is-working"><span class="header-section-number">3</span> Verify everything is working</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">4</span> Next steps</a></li>
@@ -406,11 +406,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Magasin is a scalable end-to-end data platform based on open-source components that is natively run in a <a href="https://kubernetes.io">Kubernetes cluster</a>.</p>
+<p>Magasin is a scalable end-to-end data platform based on <a href="../architecture.html#magasins-components">open-source components</a> that is natively run in a <a href="https://kubernetes.io">Kubernetes cluster</a>.</p>
+<p>Magasin offers a value-for-money end-to-end data solution implementing a <a href="../architecture.html#loosely-coupled-architecture">loosely-coupled architecture</a> for organizations that need to setup a framework to scale the ingestion, storage, analysis and visualization of datasets. In addition, It also includes the capability of parallel computing for analyzing large datasets or AI model training.</p>
 <p>In this getting started you will install magasin on your local machine for testing purposes, then you will perform an <a href="../get-started/tutorial-overview.html">end-to-end data processing task</a> that involves: <a href="../get-started/exploratory-analysis.html">exploratory analysis</a> of a data source, <a href="../get-started/automate-data-ingestion.html">creating a pipeline</a> to automate data ingestion and <a href="../get-started/create-a-dashboard.html">authoring a dashboard</a> to present your findings.</p>
-<p>Let’s start by getting the pre-requisites:</p>
-<section id="pre-requisite-a-kubernetes-cluster" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="pre-requisite-a-kubernetes-cluster"><span class="header-section-number">1</span> Pre-requisite: a Kubernetes cluster</h2>
+<p>Before you continue, you may want to learn more about <strong><a href="../why-magasin.html">why magasin</a></strong> and its <a href="../architecture.html">technical architecture</a>, otherwise, let’s start by knowing the pre-requisite for installing magasin.</p>
+<section id="install-pre-requisite-a-kubernetes-cluster" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="install-pre-requisite-a-kubernetes-cluster"><span class="header-section-number">1</span> Install pre-requisite: a Kubernetes cluster</h2>
 <p>Prior to installing magasin, you need to have a Kubernetes cluster. But don’t worry, you can setup one on your local machine very easily. In layman terms, Kubernetes is just a technology that enables managing cloud ready applications, such as magasin.</p>
 <p>In this getting started tutorial, we are going to setup a Kubernetes cluster through <a href="https://docs.docker.com/desktop/">Docker Desktop</a>, an application that can be installed on most computers. However, if you already have a cluster you can go directly to the <a href="#install-magasin">install magasin section</a>.</p>
 <p>First, install Docker Desktop. It is available for:</p>
