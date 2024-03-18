@@ -19,7 +19,7 @@ toc: false
 
 ::: {.hero-buttons}
 [Get started](get-started/index.qmd){.btn-action-primary .btn-action .btn .btn-primary .btn-lg role="button"} 
-[Why magasin](get-started/index.qmd){.btn-action-primary .btn .btn-outline-primary .btn-lg role="button"}
+[Why magasin](why-magasin.qmd){.btn-action-primary .btn .btn-outline-primary .btn-lg role="button"}
 ::: 
 
 :::
