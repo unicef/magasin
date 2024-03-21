@@ -10,6 +10,7 @@ Simply running this Docker image will launch a bash shell equipped with all the 
 
 We have built an image that you can directly run. You can use the following command:
 
+**MacOS and GNU/Linux**
 ```sh
 docker run -ti -P \
   -v ~/.kube/config:/kube/config \
@@ -18,11 +19,18 @@ docker run -ti -P \
   merlos/magsh:latest
 ```
 
+***Windows**
+```sh
+docker run -ti -P -v "$env:USERPROFILE\.kube\config:/kube/config" -v "$env:USERPROFILE/.mc:/root/.mc" -v "$env:USERPROFILE/magsh:/shared" merlos/magsh:latest
+```
+
 The image exposes the default ports of the different UIs of the components of magasin (Dagster, Apache Superset, Apache Drill,...) these are enabled if the `-P` option is passed to `docker run`. The complete list of ports can be found in the `Dockerfile`.
 
 In addition to the common component port, it exposes the port `11000`, `11001` and `11002`. These can be used, to expose other services of the kubernetes cluster such as the port of a database service. 
 
 The image configuration sets the `kubectl` configuration file is in `/kube/config` within its file system. You can map your computer kubernetes config file by adding `-v ~/.kube/config:/kube/config` when running `docker run`.
+
+In the case of Windows, the `$env:USERPROFILE` is replaced by the home directory of the user (i.e, `C:\Users\currentUserName`).
 
 The command syncs the via the option `-v ~/.mc:/root/.mc`, the local computer [MinIO client config](https://min.io/docs/minio/linux/reference/minio-mc.html?ref=docs-redirect#id5), with the image one. So, if update any o them, it will be synced.
 
