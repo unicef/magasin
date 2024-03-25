@@ -77,7 +77,7 @@ mag drill ui
 
 This will open a new tab in your browser. Go to the **storage** tab and click on the **Create** button to add a new storage plugin.
 
-Set the name as un-exchange-rates, and the configuration with the following information
+Set the name as `unexchangerates` (avoid symbols in the name), and the configuration with the following information
 
 
 ```json
@@ -121,16 +121,23 @@ To test the connection, click on the **Save** button and then go to the **Query*
 Run the following query to see if the connection is working:
 
 ```sql
-USE `un-exchange-rates`;
+USE `unexchangerates`;
 ```
-It should display `Default schema changed to [un-exchange-rates]`
+It should display `Default schema changed to [unexchangerates]`
 
 
 
 ### Step 4: Create the Superset Dashboard
 
-TODO
+Create the database connection with the name "unexchangerates".
+
+The type shall be "Apache Drill", and the connection string shall be this: 
+
+```
+drill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/unexchangerates?use_ssl=False
+```
+
 
 ### Step 5: Add the pipeline to dagster
 
-TODO
+TODO 
