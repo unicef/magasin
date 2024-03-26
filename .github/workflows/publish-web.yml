@@ -31,7 +31,7 @@ jobs:
           ref: 'gh-pages'
           path: 'gh-pages'
       
-      - name: Backup index.yaml
+      - name: Backup index and installers
         run: |
             ls gh-pages
             ls docs/*
@@ -39,7 +39,9 @@ jobs:
             cp gh-pages/install-magasin.sh .
             cp gh-pages/uninstall-magasin.sh .
             
-            
+      - name: Enable stats
+            # change the line var enabled=false to true.
+            sed -i 's/var enabled=false;/var enabled=true;/g' docs/js.html     
           
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
