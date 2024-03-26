@@ -40,6 +40,7 @@ jobs:
             cp gh-pages/uninstall-magasin.sh .
             
       - name: Enable stats
+        run: |
             # change the line var enabled=false to true.
             sed -i 's/var enabled=false;/var enabled=true;/g' docs/js.html     
           
