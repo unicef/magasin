@@ -132,7 +132,9 @@ Below you have the default values files and the corresponding custom file name:
 * [Dagster default values](https://github.com/unicef/magasin/blob/main/helm/dagster/values.yaml). To overwrite them create `dagster.yaml`
 * [Apache Drill default values](https://github.com/unicef/magasin/blob/main/helm/drill/values.yaml). To overwrite them create `drill.yaml`
 * [Daskhub default values](https://github.com/unicef/magasin/blob/main/helm/daskhub/values.yaml). To overwrite them create `daskhub.yaml`
-* 9Superset default values](https://github.com/unicef/magasin/blob/main/helm/superset/values.yaml). To overwrite them create `superset.yaml`
+* [Superset default values](https://github.com/unicef/magasin/blob/main/helm/superset/values.yaml). To overwrite them create `superset.yaml`
+* [MinIO Operator default values](https://github.com/unicef/magasin/blob/main/helm/operator/values.yaml). To overwrite them create `operator.yaml`
+* [MinIO Tenant default values](https://github.com/unicef/magasin/blob/main/helm/tenant/values.yaml). To overwrite them create `tenant.yaml`
 
 ### Setting up different values for different environments
 
