@@ -686,7 +686,6 @@ We have done a big deal of tasks. This is, probably, the most challenging step a
 4) Lastly, we deployed this new pipeline within our Kubernetes cluster. 
 
 
-
 ## What's next
 
 [Go to next step, create a dashboard in Superset](./create-a-dashboard.qmd)
@@ -696,4 +695,4 @@ Dagster has a learning curve, and it requires some work in order to get used to 
 Here you have a few links to get started with dagster:
 
 1. [Get started with dagster](https://docs.dagster.io/getting-started)
-2.. [Dagster Essentials](https://courses.dagster.io/courses/dagster-essentials)
+2. [Dagster Essentials](https://courses.dagster.io/courses/dagster-essentials)
