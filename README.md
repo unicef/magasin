@@ -25,5 +25,9 @@ Magasin follows an open approach towards accepting contributions.
 
 ### [🇺🇳 Learn about contributing](https://unicef.github.io/magasin/contributing/)
 
-## License
-Apache License Version 2.0 [UNICEF](https://unicef.org)
+## Licenses
+Software is distributed under:
+[Apache License Version 2.0](https://github.com/unicef/magasin/blob/main/LICENSE) [UNICEF](https://unicef.org)
+
+Contents / documentation is distributed under:
+[Creative commons 4.0 Attribution](https://creativecommons.org/licenses/by/4.0/deed.en) (CC-BY 4.0) UNICEF.org
