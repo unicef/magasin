@@ -1,8 +1,15 @@
 import importlib
 import pkgutil
 
+##
+## TODO - Not yet functional.
+##
+## The idea behind this is to allow to dynamically import a list of modules that are specified in a configuration file.
+## This would allow third parties to create their own modules and add them to the CLI without having to modify the main code.
+## For example let's say airflow gets integrated with magasin, then the airflow team could create a module that would be
+## developed
 
-## TODO
+
 
 def import_mag_modules():
     """
