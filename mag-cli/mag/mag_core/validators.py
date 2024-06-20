@@ -1,6 +1,7 @@
+"""This module contains functions for validating different inputs in a magasin application."""
+
 import re
 
-""" Validate if a value is within the allowed conditions"""
 
 def validate_realm(realm: str) -> bool:
     """
@@ -44,7 +45,7 @@ def validate_pod_name(name: str) -> bool:
     - name (str): The pod name to validate.
 
     Returns:
-    bool: True if the pod name is valid, False otherwise.
+    - bool: True if the pod name is valid, False otherwise.
     """
     if not name:
         return False
