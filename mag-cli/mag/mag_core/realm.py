@@ -1,6 +1,16 @@
 
 
 
+"""
+This module contains functions related to magasin realms.
+
+Magasin realms are used to generate namespaces based on component names and realms.
+The functions in this module allow splitting a realm into prefix and suffix based on the last occurrence of "-",
+and generating a namespace based on the component name and realm.
+
+For more information about magasin realms, please see the [magasin realms documentation](https://unicef.github.io/magasin/install/advanced.html#magasin-realms).
+"""
+
 def split_realm(realm: str) -> tuple:
     """
     Split the realm into prefix and suffix based on the last occurrence of "-".
