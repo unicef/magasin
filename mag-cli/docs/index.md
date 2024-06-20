@@ -1,0 +1,2 @@
+# mag-CLI reference documentation
+

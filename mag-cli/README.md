@@ -52,3 +52,31 @@ pip install -e '.[dev]'
 Start coding!
 
 
+# Generate reference documentation
+
+The application uses [mkdocs]() for generating the technical documentation.
+
+To generate the documentation you need first to install `mkdocs`, `mkdocstrings` and `mkdocs-material`:
+
+Serve the docs
+```sh
+cd mac-cli
+mkdocs serve
+```
+
+Build the docs
+
+```sh
+cd mac-cli
+mkdocs build
+```
+
+
+This will create the folder `./site`. You can browse the documentation by opening the file `./site/index.html` in your browser.
+
+
+## License
+
+Copyright 2024 United Nations Children's Fund (UNICEF)
+
+Distributed under the [Apache 2.0 License](./LICENSE)

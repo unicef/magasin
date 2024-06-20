@@ -27,6 +27,10 @@ setup(
         'dev': [
             'pytest',
             'coverage',
+            'mkdocs,
+            'mkdocs-material'
+            'mkdocstrings[python]"
+'
         ],
     },
     entry_points={
