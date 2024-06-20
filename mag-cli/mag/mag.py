@@ -1,10 +1,35 @@
+
+"""
+This module serves as the main entrance for the magasin CLI.
+
+It defines the CLI commands and options using the Click library. The CLI provides a way to interact with various magasin components and perform common tasks.
+
+To execute the CLI, run this module as the main script.
+
+Example:
+    python mag.py [command] [options]
+
+"""
+
 import click
 from click_aliases import ClickAliasedGroup
 import mag.version as version
 
 
-
 def print_version(ctx, param, value):
+    """
+    Print the version of the magasin CLI.
+
+    This function is a callback for a Click command option. It prints the version of the magasin CLI using the `version.get_version()` function and exits the program.
+
+    Args:
+        ctx (click.Context): The Click context object.
+        param (click.Parameter): The Click parameter object.
+        value (Any): the version value.
+
+    Returns:
+        None
+    """
     if not value or ctx.resilient_parsing:
         return
     click.echo(f'magasin CLI v{version.get_version()}')
