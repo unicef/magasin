@@ -17,6 +17,8 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          path: 'src'
 
 
       - name: Set up Quarto
@@ -33,7 +35,7 @@ jobs:
       - name: Enable matomo stats
         run: |
             # change the line var enabled=false to true.
-            sed -i 's/var enabled=false;/var enabled=true;/g' docs/js.html     
+            sed -i 's/var enabled=false;/var enabled=true;/g' src/docs/js.html     
 
       - name: Backup files generated in other workflows
         run: |
@@ -48,8 +50,9 @@ jobs:
 
       - name: Render quarto in gh-pages
         run: |
+          cd src
           # output dir is relative to the root folder of quarto project (ie. docs/)
-          quarto render docs --output-dir ../gh-pages/
+          quarto render src/docs --output-dir ../../gh-pages/
           cd ..
 
 
@@ -79,6 +82,6 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
             cwd: './gh-pages/'
-            message: "Update main webiste and mag-cli docs"
+            message: "Update main webiste"
             committer_name: GitHub Actions
             committer_email: actions@github.com
