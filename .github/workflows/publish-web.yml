@@ -43,7 +43,7 @@ jobs:
           cp ./gh-pages/install-magasin.sh ./backup/
           cp ./gh-pages/uninstall-magasin.sh ./backup/
           cp -r ./gh-pages/mag-cli ./backup/
-          echo "------""
+          echo "------"
           ls -la ./backup
 
       - name: Render quarto in gh-pages
