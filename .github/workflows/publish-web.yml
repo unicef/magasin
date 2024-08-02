@@ -58,10 +58,10 @@ jobs:
       - name: Add security.txt to gh-pages-new
         run: |
           # Create the ./well-known folder
-          mkdir ./gh-pages-new/.well-known
+          mkdir -p ./gh-pages-new/.well-known
           
           # copy security
-          cp docs/security.txt ./gh-pages-new/.well-known
+          cp -f docs/security.txt ./gh-pages-new/.well-known
           
 
       - name: "Push the gh-pages-new to the gh-pages branch"
