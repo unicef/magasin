@@ -51,7 +51,8 @@ jobs:
           path: docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        
+      
+
       - name: Checkout updated gh-pages
         uses: actions/checkout@v4
         with:
@@ -72,7 +73,14 @@ jobs:
           # copy security
           cp docs/security.txt ./gh-pages/.well-known
           
-          
+      - name: Build and copy mag-cli documentation
+        run: |
+          # Create
+          cd mag-cli/
+          mkdocs build
+          cp -r site/ ../gh-pages/mag-cli/
+          cd ..
+
       - name: "Push the new index"
         uses: EndBug/add-and-commit@v9
         with:
