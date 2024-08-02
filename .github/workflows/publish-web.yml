@@ -52,7 +52,7 @@ jobs:
         run: |
           cd src
           # output dir is relative to the root folder of quarto project (ie. docs/)
-          quarto render src/docs --output-dir ../../gh-pages/
+          quarto render docs --output-dir ../../gh-pages/
           cd ..
 
 
