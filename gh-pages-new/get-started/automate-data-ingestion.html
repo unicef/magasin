@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Step 2: Automate data ingestion</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../get-started/create-a-dashboard.html" rel="next">
+<link href="../get-started/exploratory-analysis.html" rel="prev">
+<link href="..//images/magasin-star.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="Step 2: Automate data ingestion">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/magasin-logo.svg" alt="magasin" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../get-started/index.html" aria-current="page"> 
+<span class="menu-text">Get started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../docs-home.html"> 
+<span class="menu-text">Docs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/unicef/magasin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../get-started/index.html">Get started</a></li><li class="breadcrumb-item"><a href="../get-started/automate-data-ingestion.html">Step 2: Automate data ingestion</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Welcome</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs-home.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../why-magasin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why magasin?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Architecture</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Get started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../get-started/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../get-started/tutorial-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../get-started/exploratory-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Step 1: Exploratory analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../get-started/automate-data-ingestion.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Step 2: Automate data ingestion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../get-started/create-a-dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Step 3: Create a dashboard</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Install</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/advanced.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/manual-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manual installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/setup-kubernetes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup kubernetes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../install/uninstall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uninstall magasin</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../end-user-guides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">End user guides</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Deployment</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deploying to production</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../security.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Security</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Contributing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contributing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contributing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contributing/repository-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repository workflows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contributing/documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Documenting magasin</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contributing/helm-repo-dev.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Helm repo development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contributing/installer-dev.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installer (Dev)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contributing/repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Source Code Repositories</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../mag-cli/" class="sidebar-item-text sidebar-link" target="_blank">
+ <span class="menu-text">mag CLI Reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contributing/vulnerability-disclosure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vulnerability disclosure policy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">1</span> Background</a>
+  <ul class="collapse">
+  <li><a href="#advantages-of-using-dagster" id="toc-advantages-of-using-dagster" class="nav-link" data-scroll-target="#advantages-of-using-dagster"><span class="header-section-number">1.1</span> Advantages of using Dagster</a></li>
+  <li><a href="#storing-data-as-parquet-files" id="toc-storing-data-as-parquet-files" class="nav-link" data-scroll-target="#storing-data-as-parquet-files"><span class="header-section-number">1.2</span> Storing data as parquet files</a></li>
+  <li><a href="#parquet-format-for-structured-data." id="toc-parquet-format-for-structured-data." class="nav-link" data-scroll-target="#parquet-format-for-structured-data."><span class="header-section-number">1.3</span> Parquet format for structured data.</a></li>
+  <li><a href="#minio-magasins-storage-layer-optional" id="toc-minio-magasins-storage-layer-optional" class="nav-link" data-scroll-target="#minio-magasins-storage-layer-optional"><span class="header-section-number">1.4</span> MinIO, magasin’s storage layer (optional)</a></li>
+  </ul></li>
+  <li><a href="#create-a-bucket-in-minio" id="toc-create-a-bucket-in-minio" class="nav-link" data-scroll-target="#create-a-bucket-in-minio"><span class="header-section-number">2</span> Create a bucket in MinIO</a></li>
+  <li><a href="#create-a-dagster-pipeline" id="toc-create-a-dagster-pipeline" class="nav-link" data-scroll-target="#create-a-dagster-pipeline"><span class="header-section-number">3</span> Create a Dagster pipeline</a>
+  <ul class="collapse">
+  <li><a href="#add-the-pipeline-code" id="toc-add-the-pipeline-code" class="nav-link" data-scroll-target="#add-the-pipeline-code"><span class="header-section-number">3.1</span> Add the pipeline code</a></li>
+  <li><a href="#adding-a-job-scheduler" id="toc-adding-a-job-scheduler" class="nav-link" data-scroll-target="#adding-a-job-scheduler"><span class="header-section-number">3.2</span> Adding a job scheduler</a></li>
+  <li><a href="#deploy-the-pipeline-in-the-cluster" id="toc-deploy-the-pipeline-in-the-cluster" class="nav-link" data-scroll-target="#deploy-the-pipeline-in-the-cluster"><span class="header-section-number">3.3</span> Deploy the pipeline in the cluster</a></li>
+  <li><a href="#troubleshooting-the-deployment" id="toc-troubleshooting-the-deployment" class="nav-link" data-scroll-target="#troubleshooting-the-deployment"><span class="header-section-number">3.4</span> Troubleshooting the deployment</a></li>
+  <li><a href="#commands-to-inspect-status" id="toc-commands-to-inspect-status" class="nav-link" data-scroll-target="#commands-to-inspect-status"><span class="header-section-number">3.5</span> Commands to inspect status</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4</span> Summary</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">5</span> What’s next</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/automate-data-ingestion.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../get-started/index.html">Get started</a></li><li class="breadcrumb-item"><a href="../get-started/automate-data-ingestion.html">Step 2: Automate data ingestion</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Step 2: Automate data ingestion</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This is the second step of the <a href="../get-started/tutorial-overview.html">magasin getting started tutorial</a>. In this step we will see how to automate the data ingestion.</p>
+<p>In the <a href="../get-started/exploratory-analysis.html">previous step</a>, we delved into the DPG Alliance API data, generating graphs and uncovering insights along the way.</p>
+<section id="background" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="background"><span class="header-section-number">1</span> Background</h2>
+<p>Typically, after identifying intriguing insights, it’s common as next step to periodically update the data to monitor the evolution of the data.</p>
+<p>Automating this process is highly advantageous as it eliminates the need for repetitive tasks. In our scenario, the workflow involves fetching data from the DPG API, followed by cleaning and processing it for seamless integration with a business intelligence dashboard creation tool, Superset, that will be used in the <a href="../get-started/create-a-dashboard.html">next step</a>.</p>
+<p>The good news is that we have already completed the heavy lifting using the Jupyter Notebook. This is advantageous because the code we will be writing is essentially the same; we just need to make some tweaks to adapt it into a <a href="https://dagster.io">Dagster pipeline</a>.</p>
+<section id="advantages-of-using-dagster" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="advantages-of-using-dagster"><span class="header-section-number">1.1</span> Advantages of using Dagster</h3>
+<p><a href="https://dagster.io">Dagster</a> is what is known as a pipeline orchestrator, which essentially helps us manage the ingestion of data from multiple sources.</p>
+<p>The benefits of using a framework like Dagster are manifold. It allows us to approach tasks in a structured manner, facilitating scalability and monitoring. Anyone who has dealt with gathering data from multiple sources will attest that it can quickly turn into a nightmare if not managed properly. Dagster provides an excellent starting point for tackling such challenges.</p>
+<p>What usually happends when you start automating gathering data, processing and mixing data from multiple data sources is that:</p>
+<ol type="1">
+<li><p>It begins simple but with time it becomes more complex. You add more and more data sources, more logic to clean the data, stablish more dependencies between the data sources, etc. If this is not done properly you end up with a mess. Dagster provides us a framework that helps to write our code in a more structured way, as well as tools to debug and monitor the ingestion of the data.</p></li>
+<li><p>It eventually may break. Data sources may change with time and with that your pipelines break. For instance, DPGA may change the API unexpectedly, and with that our automation will fail too. Dagster allows you to monitor failures as well as to debug where it failed.</p></li>
+</ol>
+<p>Another advantage of Dagster, it that it uses Python as programming language, so, as we said earlier, most of the work we did for the Jupyter Notebook can be reused.</p>
+</section>
+<section id="storing-data-as-parquet-files" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="storing-data-as-parquet-files"><span class="header-section-number">1.2</span> Storing data as parquet files</h3>
+<p>In the magasin architecture, as general approach, we stand to store data assets as files. In particular, we recommend the use of <a href="https://parquet.apache.org/">Apache parquet file format</a>.</p>
+<p>The main reason to use files is:</p>
+<ol type="1">
+<li><p>First, because it is an economic way to store data. Storage services in the cloud or in premises is relatively cheap.</p></li>
+<li><p>Second, because it does provide more flexibility when changes on the underlying structure are introduced, at least compared with setting up a SQL database downstream.</p></li>
+<li><p>In addition, it allows also to easily store more types of data such as documents or images. Lastly, in terms of governance and sharing the datasets, the problem is simplified to setting up file sharing permissions.</p></li>
+</ol>
+</section>
+<section id="parquet-format-for-structured-data." class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="parquet-format-for-structured-data."><span class="header-section-number">1.3</span> Parquet format for structured data.</h3>
+<p>Parquet is a columnar storage file format that is commonly used in the Big Data ecosystem. It is designed to efficiently store and process large amounts of data.</p>
+<p>Using Parquet to store processed datasets is beneficial because it optimizes storage, improves query performance, and enhances the overall efficiency of data processing. Its compatibility with popular Big Data processing frameworks and support for schema evolution make it a versatile choice for storing large-scale, evolving datasets in data lakes and data warehouses.</p>
+</section>
+<section id="minio-magasins-storage-layer-optional" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="minio-magasins-storage-layer-optional"><span class="header-section-number">1.4</span> MinIO, magasin’s storage layer (optional)</h3>
+<p>For keeping a consistent approach across the different cloud providers, magasin includes a component called <a href="http://min.io">MinIO</a>. It gives an <a href="https://en.wikipedia.org/wiki/Amazon_S3">Amazon S3</a> compatible file (object) store.</p>
+<p>Thanks to MinIO, regardless of what infrastructure you’re using, your pipelines will work the same, you do not need to adapt how you store the data if you move to another provider.</p>
+<p>Whereas to maintain a vendor-agnostic architecture we leverage MinIO. You have the flexibility to bypass this component if you find alternative methods more suitable for storing your ingested data. This decision may be based on better alignment with your existing processes or specific use case requirements.</p>
+<p>For instance, instead of MinIO, you can directly utilize a vendor-specific object store like Azure Blobs, Amazon S3, or Google Cloud Storage. Alternatively, in contrast to the file-storage approach of the datasets you may choose to write your data directly into a database, such as DuckDB or PostgreSQL.</p>
+<p>For the purposes of this tutorial we will be using MinIO. And the first step is to setup a bucket. A bucket is somewhat similar to a folder.</p>
+<p>So, let’s start creating our pipeline.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have available the source code of the complete project in magasin’s source code repository within the folder<a href="https://github.com/unicef/magasin/tree/main/examples/dpga-pipeline">examples/dpga-pipeline</a></p>
+</div>
+</div>
+</section>
+</section>
+<section id="create-a-bucket-in-minio" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="create-a-bucket-in-minio"><span class="header-section-number">2</span> Create a bucket in MinIO</h2>
+<p>The first thing we need to do is to setup where we are going to store our data. Till now, we’ve been storing the data in our Jupyter lab space, but we need a place where we can securely save our datasets and access them through a standard API that is widely supported by other tools and libraries. MinIO is the component that will give us those capabilities.</p>
+<p>First, we are going to launch the MinIO API. This will forward a connection to our <code>localhost:9000</code> from the MinIO API server in our cluster. This API allows us to interact with the MinIO storage accounts. In our case, we will use the <a href="https://min.io/docs/minio/linux/reference/minio-mc.html">MinIO client <code>mc</code></a> command line . <code>mc</code> is a tool similar to <code>mag</code>, but specific for MinIO. It is installed during the magasin installation.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> minio api</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Keep this running. In another terminal run this command:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">mc</span> alias set myminio http://localhost:9000 minio minio123</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mc alias set &lt;alias-name&gt; &lt;endpoint&gt; &lt;access-key&gt; &lt;secret-key&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Added</span> <span class="kw">`</span><span class="ex">myminio</span><span class="kw">`</span> successfully.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, stop <code>mag minio api</code> command using <code>Control + C</code>.</p>
+<p>Once we have configured the alias, we just need to create the bucket:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">mag</span> minio add bucket <span class="at">--bucket-name</span> magasin </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the default alias that <code>mag</code> asumes will be <code>myminio</code>. If you used another alias you can use <code>--alias</code> option. For example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> minio add bucket <span class="at">--bucket-name</span> magasin <span class="at">--alias</span> myalias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At this point, we have a bucket in MinIO which allows us to store files and access them through standard APIs.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip: mag shortcuts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>mag</code> allows you to shorten the commands using the alias. For example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> minio add bucket <span class="at">--bucket-name</span> magasin <span class="at">--alias</span> myalias<span class="kw">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>can be written as</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> m a b <span class="at">-b</span> magasin <span class="at">-a</span> myalias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Using the shorten version is a way of speeding up your interaction with the command, but it is less readable, so in this tutorial we will stick to the long version.</p>
+<p>To get to know what are the available alias type <code>mag --help</code> or <code>mag &lt;command&gt; --help</code> you can see the shortcut versions in parenthesis.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> mag <span class="pp">[</span><span class="ss">OPTIONS</span><span class="pp">]</span> COMMAND <span class="pp">[</span><span class="ss">ARGS</span><span class="pp">]</span>...</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Commands:</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">dagster</span> <span class="er">(</span><span class="ex">d</span><span class="kw">)</span>    <span class="ex">Dagster</span> commands</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">daskhub</span> <span class="er">(</span><span class="ex">dh</span><span class="kw">)</span>   <span class="ex">Daskhub/Jupyterhub</span> commands</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">drill</span> <span class="er">(</span><span class="ex">dr</span><span class="kw">)</span>     <span class="ex">Apache</span> Drill commands</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">minio</span> <span class="er">(</span><span class="ex">m</span><span class="kw">)</span>      <span class="ex">MinIO</span> commands</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">superset</span> <span class="er">(</span><span class="ex">ss</span><span class="kw">)</span>  <span class="ex">Apache</span> Superset commands</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here you can see that <code>daskhub</code> shortcut is <code>dh</code> and <code>minio</code> is <code>m</code></p>
+</div>
+</div>
+</section>
+<section id="create-a-dagster-pipeline" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="create-a-dagster-pipeline"><span class="header-section-number">3</span> Create a Dagster pipeline</h2>
+<p>The next step is to create a pipeline using Dagster. A pipeline is just a piece of code that moves data from place to another and that can introduce some changes before saving it in the destination place. In our case the pipeline will take the data from the DPGA API and store it in a MinIO bucket.</p>
+<p>The first thing we need to do is to install Dagster.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install dagster==1.6.4 dagster-webserver==1.6.4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dagster is a very agile product that is continuously evolving, this means that you have to be cognizant of the version you’re running.</p>
+<p>You can check the version installed in your cluster by running <code>helm list --all-namespaces</code> and looking at the <code>APP VERSION</code> column.</p>
+<p>Then run pip install <code>pip install dagster==&lt;version&gt;</code></p>
+</div>
+</div>
+<section id="add-the-pipeline-code" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="add-the-pipeline-code"><span class="header-section-number">3.1</span> Add the pipeline code</h3>
+<p>Once Dagster is installed, we’re going to create a new project using the default structure prodivded by Dagster. This should be the default procedure for creating any new pipeline.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster</span> project scaffold <span class="at">--name</span> dpga-pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Creating</span> a Dagster project at /home/magasin/dpga-pipeline.</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Creating</span> a Dagster code location at /home/magasin/dpga-pipeline.</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Generated</span> files for Dagster code location in /home/magasin/dpga-pipeline.</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Generated</span> files for Dagster project in /home/magasin/dpga-pipeline.</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Success!</span> Created dpga-pipeline at /home/magasin/dpga-pipeline.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By scaffolding our project, Dagster creates a basic structure of a python package that could be installed using <code>pip</code> as any other package as well as some additional metadata files that will be used by Dagster to run the pipeline. You have some more info in the <a href="https://docs.dagster.io/guides/understanding-dagster-project-files">Dagster documentation</a>.</p>
+<p>Now, lets add our code. Open the file <code>dpga-pipeline/dpga_pipeline/assets.py</code></p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>dpga-pipeline/dpga_pipeline/assets.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb13" data-filename="dpga-pipeline/dpga_pipeline/assets.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas <span class="im">import</span> DataFrame</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dagster <span class="im">import</span> asset</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">@asset</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> raw_dpgs() <span class="op">-&gt;</span> DataFrame:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">""" DPGs data from the API"""</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  dpgs_json_dict <span class="op">=</span> requests.get(<span class="st">"https://api.digitalpublicgoods.net/dpgs"</span>).json()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  df <span class="op">=</span> pd.DataFrame.from_dict(dpgs_json_dict)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> df</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="at">@asset</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deployment_countries(raw_dpgs: DataFrame) <span class="op">-&gt;</span> DataFrame:</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  df <span class="op">=</span> raw_dpgs</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  df_loc <span class="op">=</span> pd.merge(df, pd.json_normalize(df[<span class="st">"locations"</span>]), left_index<span class="op">=</span><span class="va">True</span>, right_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  df_deployment_countries <span class="op">=</span> df_loc.explode(<span class="st">"deploymentCountries"</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  df_deployment_countries[[<span class="st">"name"</span>,<span class="st">"deploymentCountries"</span>]]</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> df_deployment_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As you can see the code seems pretty similar to what we wrote in our <a href="../get-started/exploratory-analysis.html">exploratory analysis</a>.</p>
+<p>The in the code we have defined two <code>@assets</code>. An asset according to the Dagster definition is:</p>
+<blockquote class="blockquote">
+<p>An asset is an object in persistent storage, such as a table, file, or persisted machine learning model. A Software-defined Asset is a Dagster object that couples an asset to the function and upstream assets used to produce its contents.</p>
+</blockquote>
+<p>In our case, <code>raw_dpgs</code>, stores the dpgs as they come from the API as a DataFrame, and <code>deployment_countries</code> that extracts the one row per country in which the DPG has been deplayed.</p>
+<p>Another thing that you can notice in the code is that in the definition of the deployment_countries asset, we are passing <code>raw_dpgs: DataFrame</code>. That will tell Dagster that deployment_countries depends on the <code>raw_dpgs</code> and it will be used as input.</p>
+<p>As you noticed, we are using a couple of packages that need to be installed <code>pandas</code> and <code>requests</code>. To install them, in <code>dpga-pipeline/setup.py</code> we add them in the <code>install_requires</code> array.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>dagster-pipeline/setup.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb14" data-filename="dagster-pipeline/setup.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>setup(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  install_requires<span class="op">=</span>[</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"dagster"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"dagster-cloud"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"pandas"</span>,       <span class="co"># &lt;--- Add this line </span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"requests"</span>      <span class="co"># &lt;---- Add this line too</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#...</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ok, so now let’s test if this is working so far. To do that we will first install the pipeline package in <a href="https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs">editable mode</a> (<code>-e</code>). This allows you to edit the package without needing to install it again.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> <span class="st">'.[dev]'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, we will launch the Dagster user interface:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster</span> dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This launches a local instance of dagster server in port 3000 on localhost. So just open <code>http://localhost:3000</code>. Note, instance of dagster is similar to what you are running on the cluster but directly on your computer. In this case you are not using the one installed in the cluster.</p>
+<p>You should see something like:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/get-started/dagster-ui-unmaterialized.png" class="img-fluid figure-img"></p>
+<figcaption>Dagster user interface</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have available the source code of the pipeline in magasin’s source code repository within the folder <a href="https://github.com/unicef/magasin/tree/main/examples/dpga-pipeline/dpga-pipeline-store-local">examples/dpga-pipeline/dpga-pipeline-store-local</a></p>
+</div>
+</div>
+<section id="save-the-assets-in-minio." class="level4" data-number="3.1.1">
+<h4 data-number="3.1.1" class="anchored" data-anchor-id="save-the-assets-in-minio."><span class="header-section-number">3.1.1</span> Save the assets in MinIO.</h4>
+<p>Till now, we’ve been working on the development machine file system. The next step is to save the information we want to keep in MinIO.</p>
+<p>To access the MinIO bucket we will use <a href="https://filesystem-spec.readthedocs.io/en/latest/">fsspec</a>. This python library provides an standard interface regardless of the underlying filesystem. So, if you chose to use other file system to run this example, you can just change the environment variables and the address.</p>
+<p>MinIO provides an S3 compatible bucket file system, so we will use it. First we will add the dependencies <code>fsspec</code> and <code>s3fs</code>.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>dpga-pipeline/setup.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb17" data-filename="dpga-pipeline/setup.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>setup(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>   <span class="co">#...</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    install_requires<span class="op">=</span>[</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"dagster"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"dagster-cloud"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"pandas"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"requests"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"fsspec"</span>,   <span class="co"># &lt;---- New dependency</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"s3fs"</span>      <span class="co"># &lt;---- New dependency</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#...</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we’re going to modify our assets to use the minio filesystem.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>dpga-pipeline/dpga_pipeline/assets.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb18" data-filename="dpga-pipeline/dpga_pipeline/assets.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fsspec</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas <span class="im">import</span> DataFrame</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dagster <span class="im">import</span> asset</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="at">@asset</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> raw_dpgs() <span class="op">-&gt;</span> DataFrame:</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">""" DPGs data from the API"""</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Load from API</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  dpgs_json_dict <span class="op">=</span> requests.get(<span class="st">"https://api.digitalpublicgoods.net/dpgs"</span>).json()  </span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert to pandas dataframe</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  df <span class="op">=</span> pd.DataFrame.from_dict(dpgs_json_dict)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> df</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="at">@asset</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deployment_countries(raw_dpgs: DataFrame) <span class="op">-&gt;</span> DataFrame:</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  df <span class="op">=</span> raw_dpgs</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  df_loc <span class="op">=</span> pd.merge(df, pd.json_normalize(df[<span class="st">"locations"</span>]), left_index<span class="op">=</span><span class="va">True</span>, right_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  df_deployment_countries <span class="op">=</span> df_loc.explode(<span class="st">"deploymentCountries"</span>)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  df_deployment_countries <span class="op">=</span> df_deployment_countries[[<span class="st">"id"</span>, <span class="st">"name"</span>,<span class="st">"deploymentCountries"</span>]]</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Save to MinIO</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  fs<span class="op">=</span> fsspec.filesystem(<span class="st">'s3'</span>)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">with</span> fs.<span class="bu">open</span>(<span class="st">'/magasin/data/deployment_countries.parquet'</span>,<span class="st">'wb'</span>) <span class="im">as</span> f:</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    df_deployment_countries.to_parquet(f)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> df_deployment_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we will setup some environment variables that will setup the Minio S3 bucket credentials. Add the <code>.env</code> file in the root of your project (same folder as <code>setup.py</code>).</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="va">FSSPEC_S3_ENDPOINT_URL</span><span class="op">=</span><span class="st">'http://localhost:9000'</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="va">FSSPEC_S3_KEY</span><span class="op">=</span><span class="st">'minio'</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="va">FSSPEC_S3_SECRET</span><span class="op">=</span><span class="st">'minio123'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As you can see we are indicating in the <code>.env</code> file that the endpoint of our minio is in localhost port 9000. To enable this service we need to run the following command</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> minio api</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As earlier, while this command is running it will forward any connection in our localhost:9000 to the our MinIO instance in the Kubernetes cluster. You shoud keep running during this till you are instructed to do close it.</p>
+<p>In another terminal, we need to reinstall the pipeline so the new dependencies are loaded, and, then, we can run Dagster:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> <span class="st">'.[dev]'</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster</span> dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that after you launch <code>dagster dev</code> you should see something like:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster</span> <span class="at">-</span> INFO <span class="at">-</span> Loaded environment variables from .env file: </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">FSSPEC_S3_ENDPOINT_URL,FSSPEC_S3_KEY,FSSPEC_S3_SECRET</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is because Dagster loads all the <code>.env</code> file automatically and exposes the variables to the code.</p>
+<p>Open again the browser pointing to <code>http://localhost:3000</code> and in the dagster UI and run <code>Materialize all</code>.</p>
+<p>This time, all files should have been materialized in the <code>magasin</code> bucket.</p>
+<p>To test if the files are there. In a terminal run:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mc</span> ls myminio/magasin/data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="adding-a-job-scheduler" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="adding-a-job-scheduler"><span class="header-section-number">3.2</span> Adding a job scheduler</h3>
+<p>Until now, we have been materializing manually our assets. However, automating this task is indeed the ultimate goal of setting up a pipeline.</p>
+<p>In Dagster, you have available <a href="https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules">schedulers</a> which basically run your pipeline, or pieces of it, in a fixed interval. Dagster schedulers follow a <a href="https://en.wikipedia.org/wiki/Cron">cron style format</a>.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>dpga-pipeline/dpga_pipeline/assets.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb24" data-filename="dpga-pipeline/dpga_pipeline/assets.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#__init__.py</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dagster <span class="im">import</span> Definitions, load_assets_from_modules, define_asset_job, ScheduleDefinition</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> . <span class="im">import</span> assets</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>all_assets <span class="op">=</span> load_assets_from_modules([assets])</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an asset job that materializes all assets of the pipeline</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>all_assets_job <span class="op">=</span> define_asset_job(name<span class="op">=</span><span class="st">"all_assets_job"</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>                                  selection<span class="op">=</span>all_assets,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>                                  description<span class="op">=</span><span class="st">"Gets all the DPG assets"</span>)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scheduler</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>main_schedule <span class="op">=</span> ScheduleDefinition(job<span class="op">=</span>all_assets_job,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>                                   cron_schedule<span class="op">=</span><span class="st">"* * * * *"</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>                                   )</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>defs <span class="op">=</span> Definitions(</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    assets<span class="op">=</span>all_assets,</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    jobs<span class="op">=</span>[all_assets_job],</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    schedules<span class="op">=</span>[main_schedule]</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What we did in the code above is to:</p>
+<ol type="1">
+<li><p>Add a <code>job</code>. A job, is basically a selection of assets that will be materialized together in the same run.</p></li>
+<li><p>Define a schedule. The schedule will launch the job at specified time intervals. In our case every minute (<code>* * * * *</code>).</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip: Understanding cron jobs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The job cron format is used to specify the schedule for recurring tasks or jobs in Unix-like operating systems and cron job scheduling systems. It consists of <strong>five fields separated by spaces</strong>, representing different aspects of the schedule:</p>
+<pre><code>&lt;minute&gt; &lt;hour&gt; &lt;day-of-month&gt; &lt;month&gt; &lt;day-of-week&gt;</code></pre>
+<ul>
+<li><p>Minute (0-59): Specifies the minute of the hour when the job should run. Valid values range from 0 to 59.</p></li>
+<li><p>Hour (0-23): Specifies the hour of the day when the job should run. Valid values range from 0 to 23, where 0 represents midnight and 23 represents 11 PM.</p></li>
+<li><p>Day of Month (1-31): Specifies the day of the month when the job should run. Valid values range from 1 to 31, depending on the month.</p></li>
+<li><p>Month (1-12): Specifies the month of the year when the job should run. Valid values range from 1 to 12, where 1 represents January and 12 represents December.</p></li>
+<li><p>Day of Week (0-7): Specifies the day of the week when the job should run. Both 0 and 7 represent Sunday, while 1 represents Monday, and so on, up to 6 representing Saturday.</p></li>
+</ul>
+<p>Each field can contain a single value, a list of values separated by commas, a range of values specified with a hyphen, or an asterisk (*) to indicate all possible values. Additionally, you can use special characters such as slashes (/) for specifying intervals and question marks (?) for leaving a field unspecified (e.g., for day of month or day of week when the other field should match).</p>
+<p>Here you have some <a href="https://crontab.guru/examples.html">examples of cron intervals</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cron Expression</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0 0 * * *</code></td>
+<td>Run a task every day at midnight (00:00).</td>
+</tr>
+<tr class="even">
+<td><code>15 2 * * *</code></td>
+<td>Run a task at 2:15 AM every day.</td>
+</tr>
+<tr class="odd">
+<td><code>0 0 * * 1</code></td>
+<td>Run a task every Monday at midnight (00:00).</td>
+</tr>
+<tr class="even">
+<td><code>0 12 * * 1-5</code></td>
+<td>Run a task every weekday (Monday to Friday) at 12 PM (noon).</td>
+</tr>
+<tr class="odd">
+<td><code>*/15 * * * *</code></td>
+<td>Run a task every 15 minutes.</td>
+</tr>
+<tr class="even">
+<td><code>0 */2 * * *</code></td>
+<td>Run a task every 2 hours, starting from midnight.</td>
+</tr>
+<tr class="odd">
+<td><code>30 3 * * 6</code></td>
+<td>Run a task every Saturday at 3:30 AM.</td>
+</tr>
+<tr class="even">
+<td><code>0 0 1 * *</code></td>
+<td>Run a task at midnight on the first day of every month.</td>
+</tr>
+<tr class="odd">
+<td><code>0 0 1 1 *</code></td>
+<td>Run a task at midnight on January 1st every year.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>If you launch again <code>dagster dev</code> and you go to Overview -&gt; Jobs, you can enable the job.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/get-started/dagster-jobs.png" class="img-fluid figure-img"></p>
+<figcaption>Scheduled job</figcaption>
+</figure>
+</div>
+</section>
+<section id="deploy-the-pipeline-in-the-cluster" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="deploy-the-pipeline-in-the-cluster"><span class="header-section-number">3.3</span> Deploy the pipeline in the cluster</h3>
+<p>Until now we have been running dagster on our own computer by enabling the access to the MinIO installed in our kubernetes cluster through <code>mag minio api</code>. But we want our pipeline to run entirely within our Kubernetes cluster. To do that we will deploy a container (pod) in our cluster that Dagster will use to run our pipeline.</p>
+<p>We will follow this steps:</p>
+<ol type="1">
+<li><p><a href="#prepare-the-docker-image">Prepare the Docker image</a>. Our pipeline will reside in a container that will be called by Dagster to run the pipeline. So we need to create a Docker image that will hold all our code and is ready to be called by Dagster.</p></li>
+<li><p><a href="#add-the-environment-variables-as-secrets">Add the environment variables as secrets</a>. We need to provide to our image the environmental variables. In Kubernetes this is done through secrets. Secrets are a special type of resource for holding sensitive information that exists in Kubernetes.</p></li>
+<li><p><a href="#re-deploy-dagster">Re-Deploy Dagster</a>. After we have prepared our image with the pipeline, we need to tell our Dagster instance to deploy it, and use it. The simplest way is to re-deploy magasin’s dagster helm chart.</p></li>
+</ol>
+<section id="prepare-the-docker-image" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="prepare-the-docker-image"><span class="header-section-number">3.3.1</span> Prepare the Docker image</h4>
+<p>Edit the <code>setup.py</code> file of your project and add a new dependency <code>dagster-postgres</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>dpga-pipeline/setup.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb26" data-filename="dpga-pipeline/setup.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> setuptools <span class="im">import</span> find_packages, setup</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>setup(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"dpga_pipeline"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    packages<span class="op">=</span>find_packages(exclude<span class="op">=</span>[<span class="st">"dpga_pipeline_tests"</span>]),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    install_requires<span class="op">=</span>[</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"dagster"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"dagster-cloud"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"dagster-postgres"</span>, <span class="co">#&lt;------------- Add this line</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"pandas"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"requests"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"fsspec"</span>,</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"s3fs"</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    extras_require<span class="op">=</span>{<span class="st">"dev"</span>: [<span class="st">"dagster-webserver"</span>, <span class="st">"pytest"</span>]},</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>This <span class="kw">is</span> because now Dagster <span class="kw">is</span> going to use now the PosgreSQL database that <span class="kw">is</span> used <span class="kw">in</span> the cluster <span class="cf">for</span> keeping the logs data. Earlier, when we were using the local Dagster setup.</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>In the same folder <span class="im">as</span> the `setup.py` <span class="bu">file</span> of your dagster project create a new <span class="bu">file</span> called [`Dockerfile`](https:<span class="op">//</span>docs.docker.com<span class="op">/</span>engine<span class="op">/</span>reference<span class="op">/</span>builder<span class="op">/</span>) <span class="kw">and</span> add the following.</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>```{.sh filename<span class="op">=</span><span class="st">"dagster-pipeline/Dockerfile"</span>}</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the base image </span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>FROM python:<span class="fl">3.10</span><span class="op">-</span>slim</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy all our code into the container</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>COPY . <span class="op">/</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the module within the container</span></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a><span class="co"># This will install all the dependencies</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>RUN pip install .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we are going to build the image. To prevent issues while running it, we are going to build a <a href="https://docs.docker.com/build/building/multi-platform/">multi-architecture image</a>. Currently, there are two major architectures we have to deal with ARM64 (RaspberryPi’s and Apple M1/M2…) and AMD64 (regular Intel and AMD computers). By building a multi-architecture image it will run regardless of the architecture.</p>
+<p>If you’re use to create Docker images, something that you may have noticed is that in our <code>Dockerfile</code> we did not define an <a href="https://docs.docker.com/engine/reference/builder/#entrypoint">ENTRYPOINT</a> or launched command <a href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a>, in our <code>Dockerfile</code> basically we just installed our pipeline code. Whereas in Docker it is common to end the Dockerfile with one of these two commands, in our case the command that launches dagster will be injected during the deployment of the image. We will set it up later.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first we create a builder. This just allows us to build for architectures different that our owns.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This only needs to be run once per computer.</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> buildx create <span class="at">--driver</span><span class="op">=</span>docker-container <span class="at">--name</span><span class="op">=</span>magasin-builder </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># In the command below replace &lt;registry&gt; by your registry.</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If you are using docker hub, it is your user name (you need to login first.</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># In other registries such as Azure Container Registry (my-registry.azurecr.io)or Amazon ECR, please check the documentation of the provider.</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> buildx build <span class="at">--builder</span><span class="op">=</span>magasin-builder <span class="at">--platform</span> linux/amd64,linux/arm64 <span class="at">-t</span> <span class="op">&lt;</span>registry<span class="op">&gt;</span>/dpga-pipeline:latest <span class="at">--push</span>  .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now in our registry we have a new image <code>dpga-pipeline</code> with the tag <code>latest</code>. Note that this image will be publicly available.</p>
+<p>For the rest of the tutorial we will use this image: <a href="https://hub.docker.com/layers/merlos/dpga-pipeline/latest/images/sha256-0594d35069c7cbb8a831658442d9d0e1f866912ec638bfb54c40cd90cf645122?context=explore">merlos/dpga-pipeline:latest</a>, you can replace it with yours.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you want to check what other architectures are supported run:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">docker</span> buildx ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME/NODE</span>          DRIVER/ENDPOINT  STATUS  BUILDKIT             PLATFORMS</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-builder</span>    docker-container                              </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">magasin-builder0</span> desktop-linux    running v0.12.3              linux/arm64, linux/amd64, linux/amd64/v2, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/mips64le, linux/mips64, linux/arm/v7, linux/arm/v6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="add-the-environment-variables-as-secrets" class="level4" data-number="3.3.2">
+<h4 data-number="3.3.2" class="anchored" data-anchor-id="add-the-environment-variables-as-secrets"><span class="header-section-number">3.3.2</span> Add the environment variables as secrets</h4>
+<p>Previously, we set some environment variables with our credentials to access MinIO. When deploying an image to Kubernetes, the typical way to set sensitive information is through <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secrets</a>. Secrets is a simple way for us to set variables that are somewhat sensitive. For production deployments you should follow these <a href="https://kubernetes.io/docs/concepts/security/secrets-good-practices/">good practices for Kubernetes secrets</a>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> create secret generic dpga-pipeline-secret <span class="dt">\</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--namespace</span> magasin-dagster <span class="dt">\</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--from-literal</span><span class="op">=</span>FSSPEC_S3_ENDPOINT_URL=http://myminio-ml.magasin-tenant.svc.cluster.local <span class="dt">\</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--from-literal</span><span class="op">=</span>FSSPEC_S3_KEY=<span class="st">'minio'</span> <span class="dt">\</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--from-literal</span><span class="op">=</span>FSSPEC_S3_SECRET=<span class="st">'minio123'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This command will create a secret called <code>dpga-pipeline-secret</code> in the namespace <code>magasin-dagster</code>. Remember that a namespace in Kubernetes is something that can be compared to a folder.</p>
+<p>Note that the <code>FSSPEC_S3_ENDPOINT_URL</code> is no longer localhost, but the URL of the minio server on the cluster. Internal names follow this pattern <code>&lt;service-name&gt;.&lt;namespace&gt;.svc.cluster.local</code>.</p>
+<p>To check the secret was created you can run this command:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get secrets <span class="at">--namespace</span> magasin-dagster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And check there is a line with <code>dpga-pipeline-secret</code> with 3 in the data column:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>                            TYPE                 DATA   AGE</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster-postgresql</span>              Opaque               1      3d22h</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster-postgresql-secret</span>       Opaque               1      3d22h</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dpga-pipeline-secret</span>            Opaque               3      3m16s</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sh.helm.release.v1.dagster.v1</span>   helm.sh/release.v1   1      3d22h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To see the contents of each data point:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get secret dpga-pipeline-secret <span class="at">-n</span> magasin-dagster <span class="at">-o</span> jsonpath=<span class="st">'{.data.FSSPEC_S3_ENDPOINT_URL}'</span> <span class="kw">|</span> <span class="fu">base64</span> <span class="at">--decode</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice the <code>| base64 --decode</code>, this is because the screts are encoded in <a href="https://en.wikipedia.org/wiki/Base64">base64</a>. For example <code>minio</code> is encoded as <code>bWluaW8=</code>.</p>
+<p>If you need to update the secret, one simple way is to delete and then add it back. To delete run the command:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># kubectl delete secret &lt;secretname&gt; --namespace &lt;namespace-name&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> delete secret dpga-pipeline-secret <span class="at">--namespace</span> magasin-dagster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="re-deploy-dagster" class="level4" data-number="3.3.3">
+<h4 data-number="3.3.3" class="anchored" data-anchor-id="re-deploy-dagster"><span class="header-section-number">3.3.3</span> Re-Deploy Dagster</h4>
+<p>The last thing we have to do is to re-deploy Dagster so that it includes our new pipeline.</p>
+<p>Create a new file called <code>dagster-helm-values.yml</code> with the following contents:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagster-user-deployments</span><span class="kw">:</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">deployments</span><span class="kw">:</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"dpga-pipeline-k8s"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">repository</span><span class="kw">:</span><span class="at"> </span><span class="st">"merlos/dpga-pipeline"</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">tag</span><span class="kw">:</span><span class="at"> latest</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">pullPolicy</span><span class="kw">:</span><span class="at"> Always</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">dagsterApiGrpcArgs</span><span class="kw">:</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">"--package-name"</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">"dpga_pipeline"</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">port</span><span class="kw">:</span><span class="at"> </span><span class="dv">3030</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">envSecrets</span><span class="kw">:</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> dpga-pipeline-secret</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">includeConfigInLaunchedRuns</span><span class="kw">:</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This file can also hold ConfigMaps or labels. You have more details about the <a href="https://docs.dagster.io/deployment/guides/kubernetes/deploying-with-helm#step-5-add-the-dagster-helm-chart-repository">dagster user deployment options</a></p>
+<p>This file telling to include in the deployment our pipeline image (merlos/dpga-pipeline) as well as the environment secret <code>envSecret</code> called <code>dpga-pipeline-secret</code>.</p>
+<p>Also we have defined in the file <code>dagsterApiGrpcArgs</code>. This includes the arguments for <code>dagster api grpc</code>, which you can get by running <code>dagster api grpc --help</code>. As we said earlier, it is on the deployment where we set launch command for the image. This is the command. Dagster uses Remote Procedure Calls, which for the purposes of this tutorial you can understand as an regular API to communicate the main dagster daemon and our deployments. The daemon is the long-lasting process that keeps track of the sensor,shedules, etc. And this daemon communicates with theIn our case we tell the command that Dagster uses remote procedure calls between the dagster main process and our image.</p>
+<p>Now we have to update our kubernetes deployment to include this new pipeline (a.k.a. code location in Dagster terminology).</p>
+<p>Go to the folder where the <code>dagster-helm-values.yaml</code> is located, and then run:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> upgrade dagster magasin/dagster <span class="at">--namespace</span> magasin-dagster <span class="at">-f</span> ./dagster-helm-values.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will update the deployment of the dagster instance of magasin. You should see something like:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Release</span> <span class="st">"dagster"</span> has been upgraded. Happy Helming!</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME:</span> dagster</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ex">LAST</span> DEPLOYED: Tue Feb 13 09:28:32 2024</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="ex">NAMESPACE:</span> magasin-dagster</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="ex">STATUS:</span> deployed</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="ex">REVISION:</span> 2</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="ex">TEST</span> SUITE: None</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="ex">NOTES:</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Launched.</span> You can access the Dagster webserver/UI by running the following commands:</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">DAGSTER_WEBSERVER_POD_NAME</span><span class="op">=</span><span class="va">$(</span><span class="ex">kubectl</span> get pods <span class="at">--namespace</span> magasin-dagster <span class="at">-l</span> <span class="st">"app.kubernetes.io/name=dagster,app.kubernetes.io/instance=dagster,component=dagster-webserver"</span> <span class="at">-o</span> jsonpath=<span class="st">"{.items[0].metadata.name}"</span><span class="va">)</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Visit http://127.0.0.1:8080 to open the Dagster UI"</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> <span class="at">--namespace</span> magasin-dagster port-forward <span class="va">$DAGSTER_WEBSERVER_POD_NAME</span> 8080:80</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To open the Dagster user interface of the instance running in our Kubernetes cluster we need to run</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> dagster ui</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, this will open the dagster instance in your Kubernetes cluster.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have available the source code of the pipeline, <code>Dockerfile</code>, <code>dagster-helm-values.yml</code> in magasin’s source code repository within the folder <a href="https://github.com/unicef/magasin/tree/main/examples/dpga-pipeline/dpga-pipeline-store-minio">examples/dpga-pipeline/dpga-pipeline-store-minio</a></p>
+</div>
+</div>
+</section>
+</section>
+<section id="troubleshooting-the-deployment" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="troubleshooting-the-deployment"><span class="header-section-number">3.4</span> Troubleshooting the deployment</h3>
+<p>In case you face any issue here you have some ways of trying to find out what’s going on. This and seeking some help on a search engine or large language model, typically helps:</p>
+</section>
+<section id="commands-to-inspect-status" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="commands-to-inspect-status"><span class="header-section-number">3.5</span> Commands to inspect status</h3>
+<p>Check if everything is running fine. You can check the status of the pods in the <code>magasin-dagster</code> namespace</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--namespace</span> magasin-dagster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>                                                              READY   STATUS    RESTARTS        AGE</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster-daemon-7c6474cbfd-7rgtr</span>                                   1/1     Running   0               3h41m</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster-dagster-user-deployments-dpga-pipeline-k8s-5kqtc</span>          1/1     Running   0               64m</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster-dagster-webserver-76ff9c7689-zv89b</span>                        1/1     Running   0               3h41m</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster-postgresql-0</span>                                              1/1     Running   6 <span class="er">(</span><span class="ex">5h53m</span> ago<span class="kw">)</span>   <span class="ex">4d2h</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="ex">dagster-run-745684fc-80c5-45e5-a238-ce5fdc0c0dbe-nzh8x</span>            0/1     Error     0               124m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here you can see the run had an error.</p>
+<p>Describe the dagster-run pod:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> describe pod dagster-run-745684fc-80c5-45e5-a238-ce5fdc0c0dbe-nzh8x <span class="at">-n</span> magasin-dagster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Get the logs of the run pod:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> logs dagster-run-745684fc-80c5-45e5-a238-ce5fdc0c0dbe-nzh8x <span class="at">-n</span> magasin-dagster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> describe job dagster-run-745684fc-80c5-45e5-a238-ce5fdc0c0dbe-nzh8x <span class="at">-n</span> </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="ex">magasin-dagster</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Inspect the logs of the deployed main pod:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> logs dagster-dagster-user-deployments-dpga-pipeline-k8s-5kqtc <span class="at">--namespace</span> magasin-dagster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">2024-02-13</span> 10:26:42 +0000 <span class="at">-</span> dagster.code_server <span class="at">-</span> INFO <span class="at">-</span> Starting Dagster code server for package dpga_pipeline on port 3030 in process 1</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">2024-02-13</span> 10:26:42 +0000 <span class="at">-</span> dagster.code_server <span class="at">-</span> INFO <span class="at">-</span> Started Dagster code server for package dpga_pipeline on port 3030 in process 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lastly, on the Dagster user interface (launched with <code>mag dagster ui</code>), in the <em>Runs</em> tab, within your failed run click on <em>View run</em> button.</p>
+</section>
+</section>
+<section id="summary" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="summary"><span class="header-section-number">4</span> Summary</h2>
+<p>We have done a big deal of tasks. This is, probably, the most challenging step as it requires working with many different tools and technologies (MinIO, Dagster, Helm, Kubectl, python…). However, using this setup, it offers us a lot of flexibility and allows us to scale.</p>
+<ol type="1">
+<li><p>Created a pipeline that loads from an API and saves the processed data as a <code>.parquet</code> file, a format that is Big Data friendly.</p></li>
+<li><p>We created a MinIO bucket where we can save the output data in a storage that is widely supported by many systems and libraries (S3 bucket).</p></li>
+<li><p>We scheduled our pipeline to be run automatically from time to time.</p></li>
+<li><p>Lastly, we deployed this new pipeline within our Kubernetes cluster.</p></li>
+</ol>
+</section>
+<section id="whats-next" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">5</span> What’s next</h2>
+<p><a href="../get-started/create-a-dashboard.html">Go to next step, create a dashboard in Superset</a></p>
+<p>Dagster has a learning curve, and it requires some work in order to get used to it, but the documentation is fairly good.</p>
+<p>Here you have a few links to get started with dagster:</p>
+<ol type="1">
+<li><a href="https://docs.dagster.io/getting-started">Get started with dagster</a></li>
+<li><a href="https://courses.dagster.io/courses/dagster-essentials">Dagster Essentials</a></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<!-- js.html included after <body> javascript -->
+
+<!-- Matomo -->
+<script>
+  var SITE_ID='114';
+  var enabled=true;
+
+  if (enabled) { 
+    console.log("magasin site stats ON")
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://unisitetracker.unicef.io/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', SITE_ID]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+} else {
+   console.log("magasin site stats OFF")
+}
+</script>
+<!-- End Matomo Code -->
+ 
+
+<!-- end js.html  -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../get-started/exploratory-analysis.html" class="pagination-link" aria-label="Step 1: Exploratory analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Step 1: Exploratory analysis</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../get-started/create-a-dashboard.html" class="pagination-link" aria-label="Step 3: Create a dashboard">
+        <span class="nav-page-text">Step 3: Create a dashboard</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="../privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="../images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/automate-data-ingestion.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
