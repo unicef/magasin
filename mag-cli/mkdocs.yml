@@ -28,3 +28,9 @@ plugins:
   - search
   - mkdocstrings:
       default_handler: python
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
