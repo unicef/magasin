@@ -103,6 +103,9 @@ website:
           - file: contributing/helm-repo-dev.qmd
           - file: contributing/installer-dev.qmd
           - file: contributing/repositories.qmd
+          - text: mag CLI Reference 
+            href: '/mag-cli/'
+            target: "_blank"
           - file: contributing/vulnerability-disclosure.qmd
   page-footer: |
     [magasin](https://unicef.github.io/magasin) © 2024 by [UNICEF](https://www.unicef.org) | Docs are licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1) | [Privacy policy](/privacy.qmd) 

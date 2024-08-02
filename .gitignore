@@ -1,7 +1,11 @@
 .DS_Store
 # Custom added folders
 .base_repos
+# quarto docs
 docs/_site
+# mag-cli docs site
+mag-cli/site 
+
 _helm-repo
 
 # Byte-compiled / optimized / DLL files

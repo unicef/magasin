@@ -9,6 +9,7 @@ COMPONENT='superset'
 @options.realm
 def superset(realm):
   """Apache Superset commands"""
+  
   namespace = get_namespace(component_name=COMPONENT, realm=realm)
   click.echo("namespace: " + namespace)
 

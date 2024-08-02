@@ -1,0 +1,36 @@
+site_name: mag CLI
+site_url: https://unicef.github.io/magasin/mac-cli/
+site_description: Reference documentation of magasin Command Line Interface (mag-cli)
+repo_url: https://github.com/unicef/magasin/
+site_author: merlos 
+copyright: Distributed under Creative Commons (CC-BY) License. Copyright UNICEF.org
+
+theme:
+  name: "material"
+  palette:
+    primary: "blue"
+    accent: "light-blue"
+  features:
+    - navigation.expand
+nav:
+  - "Home": index.md
+  - Core:
+    - "mag_core": mag_core.md
+  - Components:
+    - "mag_dagster": mag_dagster.md
+    - "mag_daskhub": mag_daskhub.md
+    - "mag_drill": mag_drill.md
+    - "mag_minio": mag_minio.md
+    - "mag_superset": mag_superset.md
+
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
