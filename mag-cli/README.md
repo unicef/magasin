@@ -30,8 +30,9 @@ Commands:
   superset (ss)  Apache Superset commands
 ```
 
+You have an example on how this client is used in real life in the [get started with magasin](https://unicef.github.io/magasin/)
 
-# Development 
+## Development 
 
 Clone the repo
 ```sh
@@ -52,31 +53,38 @@ pip install -e '.[dev]'
 Start coding!
 
 
-# Generate reference documentation
+## Reference documentation
 
+You have available the [reference documentation online](https://unicef.github.io/mag-cli/).
+
+### Generate the reference documentation
 The application uses [mkdocs]() for generating the technical documentation.
 
-To generate the documentation you need first to install `mkdocs`, `mkdocstrings` and `mkdocs-material`:
+If you want to generate the documentation localy you need first to install `mkdocs`, `mkdocstrings` and `mkdocs-material`:
 
-Serve the docs
+```sh
+pip install mkdocs mkdocstrings mkdocs-material
+```
+
+Then you can serve the docs.
 ```sh
 cd mac-cli
 mkdocs serve
 ```
 
-Build the docs
+This will launch a server in http://localhost:8000.
+
+### Build the docs
 
 ```sh
 cd mac-cli
 mkdocs build
 ```
-
-
-This will create the folder `./site`. You can browse the documentation by opening the file `./site/index.html` in your browser.
-
+This will create the folder `<local_repo_path>/mac-cli/site`. You can browse the documentation by opening the file `index.html` in your browser.
 
 ## License
 
 Copyright 2024 United Nations Children's Fund (UNICEF)
 
-Distributed under the [Apache 2.0 License](./LICENSE)
+Source code distributed under the [Apache 2.0 License](./LICENSE)
+Documentation distributed under [Creative Commons CC-BY](https://creativecommons.org/licenses/by/4.0/)
