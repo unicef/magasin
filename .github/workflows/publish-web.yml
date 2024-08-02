@@ -39,7 +39,6 @@ jobs:
             cp gh-pages/index.yaml .
             cp gh-pages/install-magasin.sh .
             cp gh-pages/uninstall-magasin.sh .
-            
       - name: Enable stats
         run: |
             # change the line var enabled=false to true.
@@ -79,13 +78,7 @@ jobs:
           # copy security
           cp docs/security.txt ./gh-pages-new/.well-known
           
-      - name: Build mag-cli documentation
-        run: |
-          # Install required 
-          pip install mkdocs mkdocstrings mkdocs-material
-          cd mag-cli/
-          mkdocs build --site-dir ../gh-pages-new/mag-cli/
-          cd ..
+
 
       - name: "Push the new index"
         uses: EndBug/add-and-commit@v9
