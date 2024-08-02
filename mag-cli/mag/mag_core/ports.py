@@ -1,9 +1,8 @@
-from .validators import validate_ports
-
 """
 This module contains functions to handle ports arguments.
 """
 
+from .validators import validate_ports
 
 def split_ports(ports: str) -> tuple:
     """

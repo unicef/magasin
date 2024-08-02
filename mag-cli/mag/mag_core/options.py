@@ -24,7 +24,9 @@ from .validators import validate_realm, validate_ports
 
 def validate_realm_callback(ctx, param, value):
     """Validates if the realm has a correct value
-        See: https://click.palletsprojects.com/en/8.1.x/options/#callbacks-for-validation
+    
+    See: https://click.palletsprojects.com/en/8.1.x/options/#callbacks-for-validation
+    
     Raises:
         click.BadParameter: If name is not valid
     """
@@ -33,10 +35,9 @@ def validate_realm_callback(ctx, param, value):
     return value
 
 
-
 def validate_port_callback(ctx, param, value):
     """Click callback to validate the port format
-    It validates the ports using mag_core.validators.validate_ports
+    It validates the ports using `mag_core.validators.validate_ports`
         
     Raises:
         click.BadParameter: If port format is not valid

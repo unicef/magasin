@@ -1,2 +1,2 @@
-## mag_daskhub module
-::: mag_daskhub
+## mag_drill
+::: mag_drill

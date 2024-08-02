@@ -1,6 +1,3 @@
-
-
-
 """
 This module contains functions related to magasin realms.
 
@@ -22,10 +19,10 @@ def split_realm(realm: str) -> tuple:
         tuple: A tuple containing prefix and suffix.
 
     Example:
-        split_realm("magasin") -> ("magasin", "")
-        split_realm("magasin-post") -> ("magasin", "post")
-        split_realm("magasin-1-post") -> ("magasin-1", "post")
-        split_realm("dev-magasin-1") -> ("dev-magasin", "1")
+        * split_realm("magasin") -> ("magasin", "")
+        * split_realm("magasin-post") -> ("magasin", "post")
+        * split_realm("magasin-1-post") -> ("magasin-1", "post")
+        * split_realm("dev-magasin-1") -> ("dev-magasin", "1")
 
     Reference:
         For more information about magasin realms, please see the [magasin realms documentation](https://unicef.github.io/magasin/install/advanced.html#magasin-realms).
@@ -49,12 +46,12 @@ def get_namespace(component_name: str, realm='magasin') -> str:
 
 
     Args:
-    - component_name (str): The magasin component name (superset, daskhub, drill, ...)
-    - realm (str, optional): The realm. Defaults to 'magasin'.
+        component_name (str): The magasin component name (superset, daskhub, drill, ...)
+        realm (str, optional): The realm. Defaults to 'magasin'.
 
     Example:
-        get_namespace("superset", "magasin") -> "magasin-superset"
-        get_namespace("superset", "magasin-postfix") -> "magasin-superset-postfix"
+        * `get_namespace("superset", "magasin")` -> "magasin-superset"
+        * `get_namespace("superset", "magasin-postfix")` -> "magasin-superset-postfix"
 
     Reference:
         For more information about magasin realms, please see the [magasin realms documentation](https://unicef.github.io/magasin/install/advanced.html#magasin-realms).

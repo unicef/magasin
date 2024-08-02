@@ -1,3 +1,28 @@
+
+"""
+This module provides functions for launching and managing services in a 
+Kubernetes cluster.
+
+It includes functions for generating port forwarding commands, checking 
+if a TCP port is open, forwarding ports, launching user interfaces, and 
+executing commands in Kubernetes pods.
+"""
+
+import subprocess
+import signal
+import socket
+import time
+import os
+import time
+import atexit
+from typing import List
+
+import click
+
+from .realm import get_namespace
+from .ports import split_ports
+
+# Rest of the code...
 import subprocess
 import signal
 import socket
@@ -84,14 +109,17 @@ def terminate_process(process):
 
 
 def is_port_open(host, port, timeout=15):
-    """Check if a TCP port is open and responding.
-    Parameters:
-    - host: A string representing the host to check. Example: localhost
-    - port: An integer representing the port to check. Example: 8080
-    - timeout: An integer representing the timeout in seconds. Default is 15 seconds.
+    """
+    Check if a TCP port is open and responding.
+
+    Args:
+        host (str): A string representing the host to check. Example: localhost
+        port (int): An integer representing the port to check. Example: 8080
+        timeout (int): An integer representing the timeout in seconds. Default is 15 seconds.
+
     Returns:
-    - A boolean indicating whether the port is open and responding.
-    
+        bool: Indicates whether the port is open and responding.
+
     """
     start_time = time.time()
     while time.time() - start_time < timeout:
@@ -109,17 +137,18 @@ def forward_port(realm: str, component: str, service_name: str, ports: str, verb
     """
     Forward ports for the specified realm, component, and service name.
 
-    Parameters:
-    - realm: A string representing the realm.
-    - component: A string representing the component.
-    - service_name: A string representing the service name. The service name can be obtained using kubectl get services --namespace magasin-superset).
-    - ports: A string representing the ports to be forwarded (exampel: "8000:8000").
-    - verbose (optional): A boolean indicating whether to enable verbose mode (default is False).
+    Args:
+        realm (str): A string representing the realm.
+        component (str): A string representing the component.
+        service_name: (str) A string representing the service name. The service name can be obtained using kubectl get services --namespace magasin-superset).
+        ports (str): A string representing the ports to be forwarded (example: "8000:8000").
+        verbose (bool): A boolean indicating whether to enable verbose mode (default is False).
 
     Returns:
     None
 
     Usage:
+
     forward_port(realm, component, service_name, ports, verbose)
 
     Example:
@@ -135,6 +164,7 @@ def forward_port(realm: str, component: str, service_name: str, ports: str, verb
     ```
 
     Notes:
+    
     - Assumes the port_forward_command function is defined elsewhere in the code.
     - Uses subprocess.Popen to launch the port forwarding command in a subprocess.
     - Registers the terminate_process function using atexit.register, ensuring that the port forwarding process
@@ -168,7 +198,7 @@ def launch_ui(realm: str, component: str, service_name: str, ports: str, protoco
         verbose (bool, optional): Whether to display verbose output (default is False).
 
     Returns:
-        None
+        None: Nothing
     """    
     forward_port(realm=realm, component=component,
                  service_name=service_name, ports=ports, verbose=verbose)
@@ -194,7 +224,7 @@ def launch_command(realm: str, component: str, pod_name: str, command: str = '/b
     Launches a command in a Kubernetes pod.
 
     Args:
-        realm (str): The magasin realm (f.i magasin).
+        realm (str): The magasin realm (e.g., magasin).
         component (str): The name of the magasin component.
         pod_name (str): The name of the pod.
         command (str, optional): The command to be executed in the pod. Defaults to '/bin/bash'.
@@ -204,6 +234,15 @@ def launch_command(realm: str, component: str, pod_name: str, command: str = '/b
 
     Raises:
         None
+
+    Example:
+        >>> launch_command('magasin', 'component_name', 'pod-1', 'ls -l')
+        Running: kubectl exec pod-1 --namespace magasin -ti -- ls -l
+        <output of the command>
+
+    Note:
+        This function uses the `kubectl` command-line tool to execute a command in a Kubernetes pod.
+        Make sure you have `kubectl` installed and configured properly before using this function.
     """
     namespace = get_namespace(component_name=component, realm=realm)
     user_root = ''

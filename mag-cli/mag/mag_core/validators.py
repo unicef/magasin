@@ -1,4 +1,9 @@
-"""This module contains functions for validating different inputs in a magasin application."""
+"""
+This module contains functions for validating different inputs 
+in a magasin application.
+"""
+
+
 
 import re
 
