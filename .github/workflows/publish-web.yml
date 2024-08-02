@@ -57,7 +57,7 @@ jobs:
         run: |
      
           # Added by publish-helm-charts.yml
-          cp ./bakcup/index.yaml ./gh-pages/
+          cp ./backup/index.yaml ./gh-pages/
           
           # Added by publish installer
           cp ./backup/install-magasin.sh ./gh-pages/
