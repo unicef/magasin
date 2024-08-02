@@ -1,0 +1,38 @@
+on:
+  workflow_dispatch:
+  #push:
+  #  branches: main
+
+name: Publish web docs
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+         
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: 'gh-pages'
+          path: 'gh-pages'
+          
+      - name: Build mag-cli documentation
+        run: |
+          # Install required 
+          pip install mkdocs mkdocstrings mkdocs-material
+          cd mag-cli/
+          # build the site and replace the current 
+          mkdocs build --site-dir ../gh-pages/mag-cli/
+          cd ..
+
+      - name: "Push the new index"
+        uses: EndBug/add-and-commit@v9
+        with:
+            cwd: './gh-pages/'
+            message: "Update main webiste with mag-cli"
+            committer_name: GitHub Actions
+            committer_email: actions@github.com
