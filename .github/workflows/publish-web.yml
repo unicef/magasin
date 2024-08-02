@@ -75,7 +75,8 @@ jobs:
           
       - name: Build and copy mag-cli documentation
         run: |
-          # Create
+          # Install required 
+          pip install mkdocs mkdocstrings mkdocs-material
           cd mag-cli/
           mkdocs build
           cp -r site/ ../gh-pages/mag-cli/
