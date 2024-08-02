@@ -50,6 +50,7 @@ jobs:
         run: |
           # output dir is relative to the root folder of quarto project (ie. docs/)
           quarto render docs --output-dir ../gh-pages/
+          cd ..
 
 
       - name: Add the files managed by other GitHub actions 
