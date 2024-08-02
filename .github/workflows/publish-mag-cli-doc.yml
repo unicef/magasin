@@ -3,7 +3,7 @@ on:
   #push:
   #  branches: main
 
-name: Publish web docs
+name: Publish mac-cli docs in web
 
 jobs:
   build-deploy:
@@ -24,6 +24,7 @@ jobs:
         run: |
           # Install required 
           pip install mkdocs mkdocstrings mkdocs-material
+          pip install "mkdocstrings[python]"
           cd mag-cli/
           # build the site and replace the current 
           mkdocs build --site-dir ../gh-pages/mag-cli/
