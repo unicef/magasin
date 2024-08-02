@@ -75,7 +75,7 @@ jobs:
           mkdir -p ./gh-pages/.well-known
           
           # copy security
-          cp -f docs/security.txt ./gh-pages/.well-known
+          cp -f src/docs/security.txt ./gh-pages/.well-known
           
 
       - name: "Push the gh-pages folder to the gh-pages branch"
