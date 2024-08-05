@@ -5,3 +5,64 @@ description: How to use magasin for analyzing being data responsible and followi
 meta-description: How to use magasin for analyzing folloing responsible data management and data privacy principles.
 ---
 
+In today's digital age, the importance of **data privacy, responsible data management, and cybersecurity cannot be overstated**. With the increasing reliance on technology and the vast amount of data being generated and collected, it is crucial to be conscious and proactive in safeguarding sensitive information.
+
+**The underlying components of magasin allow you to apply principles of responsible data management, personal data protection and cyber-security**. Magasin can be compliant with any personal data protection law, including the most stringent such as the [General Data protection Regulation (GDPR)](https://gdpr.eu/). However, it is up to the organization and teams that [implement magasin](../install/) achieve this goal.
+
+**Establishing [privacy by design](https://en.wikipedia.org/wiki/Privacy_by_design) and [people-first data practices](https://digitalprinciples.org/principles/establish-people-first-data-practices/)** such as requesting consent, informing the user about the purpose of collecting the data, that is, what you’re going to do with the data (including what you’re going to do within magasin), who are you going to share the data with, ensure that you involve all the stakeholders, specially that people that is affected by the data collected, etc., **happens even before you start using magasin**,  Magasin is a data analysis product rather than a data collecting tool such as [Primero](https://www.primero.org/), RapidPro(https://www.rapidpro.io/), or [ODK](https://odk.org/) etc. 
+
+
+> Magasin is an enabler of maximum potential data usage.
+
+Magasin helps to achieve one of the principles of responsible data management, that is avoid not using the data at it maximum potential. Organizations, Governments and NGOs may be sitting in loads of data that could be used for a better good, however this data is not being used to its maximum potential. That’s irresponsible. Magasin is a platform that provides organizations the [enabling tools](../architecture.qmd) to analyze and extract valuable insights from the data.
+ 
+## General data privacy and responsible data practices in magasin
+
+The following are recommended practices data privacy, responsible data management and cybersecurity practices to be considered by organizations that implement magasin: 
+
+* **Include magasin use in the consent**. Ensure that you include in your consent form the use of the data that you are going to perform in magasin.
+
+* **Limit PII in magasin**. Whenever possible keep only pseudonimized and anonymized data within magasin storage. 
+
+* **Strong passwords** Ensure you set a strong password policy to prevent data breaches within magasin components.
+
+* **Use always encrypted channels**. For example, when consuming from an API or downloading files use _https_ or _sftp_ protocols. Also, you should consider enabling data encryption between the different components of magasin, especially if it is installed within a cluster that manages more services. 
+
+* **Keep data at rest encrypted** If you have to store personal data in magasin, use the encryption of your data store. MinIO provides support to [server side encryption](https://min.io/docs/minio/linux/operations/server-side-encryption.html). Also other storages such as Azure Blobs or S3 buckets AWS. Parquet also supports [granular encryption](https://github.com/apache/parquet-format/blob/master/Encryption.md) of its contents. In python you can use [pyarrow encryption](https://arrow.apache.org/docs/python/parquet.html#parquet-modular-encryption-columnar-encryption).
+
+* **Apply the least privilege principle and seapration of duties** In general, use the [least privilege principle](https://en.wikipedia.org//wiki/Principle_of_least_privilege) and [separation of duties](https://en.wikipedia.org/wiki/Separation_of_duties) when assigning access to your data.
+
+* **Set access management processess**. Set up processes to regularly review who has access to what data in magasin.
+
+* **Secure backups** Create backups of the datasets stored in magasin, keep them secure and encrypted.
+
+* **Consider magasin in your data breach protocol**.If you keep sensitive information in magasin. Include it as part of your data breach protocol and incident response.
+
+* **Enable data protection and cybersecurity awareness training**. It is well known that the [human factor](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9123525/) enables many of data breaches. Ensure the members of your organization that use magasin and manage sensitive data, receive training in personal data protection and cybersecurity awareness.
+
+* **Audit and monitor use** Enable for each of the components of magasin, log audit and monitoring tools. 
+
+* ** Apply data minimization within magasin to the strictly necessary **. Don't keep PII data in magasin if it is not necessary. In Dagster, whenever you materialize temporary assets and operations that hold PII, do it [to memory](https://docs.dagster.io/_apidocs/execution#dagster.materialize_to_memory).
+
+
+## Applying Data Minimization with magasin
+
+In the data collection tools you may have collected personal data, but the first question that you have to ask yourself is that if for performing the analysis within magasin you need to use personal identifiable data (PII) or not? In many cases the answer is no, and there are easy to implement tactics to minimize the personal data you hold within magasin.
+
+ For example, imagine you are analyzing the vaccination rate for the children in a certain area. In the original collected data you have personal identifiable data such as name of the child, address, city/village, parents names, contact numbers, weight, age, gender in addition to vaccines that has received
+
+If you plan to just evaluate indicators such as vaccines by gender or age, you do not need to ingest in magasin  PII such as name, address or parents names. 
+
+The best approach when ingesting the data into magasin, for example through an API, is to do it already anonymized. That is anonymized. if the API allows to get the data without the PII is the ideal situation as that data never leaves the original system.
+
+Alternatively, you can ingest all the data, and perform the anonymization, that is removing all personal data within magasin. Although you download all the data, what you actually store within magasin is an anonymized version of the same. The problem with this option is that you have to be careful in not keeping any logs with personal information specially in dagster.
+
+Another type of analysis that you may want perform is to identify the children that are at more risk. Let’s assume that there is an outbreak of cholera in certain region. So, you want to know which children need to be vaccinated.
+Pseudonimization is a process of replacing personal identifiers with artificial ones, such as a hash or a code. This way, the data can be linked to a specific individual, but only with access to the original identifier or the key that was used to generate the artificial one.
+
+For example, in the system in which you performed the collection of the data, you may have a record ID. You can download the record Id, the information related to your analysis, such as the village and the vaccines of the child. 
+
+## Additional references:
+
+* [Establish people-first data practices – Principles for Digital Development (digitalprinciples.org)](https://digitalprinciples.org/principles/establish-people-first-data-practices/)
+* [Responsible data for children](https://www.rd4c.org/)

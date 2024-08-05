@@ -1,21 +1,31 @@
 ---
 title: "End user guides"
-format: html
+meta-description: Guides for people that are using any 
+format: 
+  html:
+     number-sections: false
 ---
 
+## Component Guides
 Each of the open source components included in magasin has its on end user documentation. 
 
-## Dagster
-* [Getting started](https://docs.dagster.io/getting-started)
-* [Dagster University](https://courses.dagster.io/courses/dagster-essentials)
+**Dagster**
 
-## Jupyter Hub
-* [Project Jupyter Documentation](https://docs.jupyter.org/en/latest/start/index.html)
+  * [Getting started (dagster.io)](https://docs.dagster.io/getting-started)
+  * [Dagster University (dagster.io)](https://courses.dagster.io/courses/dagster-essentials)
 
-## Apache Superset
-* [Creating your first dashboard](https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard)
+**Jupyter Hub**
 
-* [Exploring data in Superset](https://superset.apache.org/docs/creating-charts-dashboards/exploring-data)
+* [Project Jupyter Documentation (jupyter.org)](https://docs.jupyter.org/en/latest/start/index.html)
+
+**Apache Superset**
+
+* [Creating your first dashboard (superset.apache.org)](https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard)
+* [Exploring data in Superset (superset.apache.org)](https://superset.apache.org/docs/creating-charts-dashboards/exploring-data)
+
+## Best practices
+
+* **[Data privacy guide](./data-privacy.qmd)**. How to use magasin in following responsible data management practices.
 
  
 
