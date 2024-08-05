@@ -14,7 +14,7 @@ format:
     toc: true
     code-copy: true
     #code-overflow: wrap
-#    css: styles.css
+    css: /styles.css
     include-after-body: js.html
 
 website:
