@@ -4,7 +4,7 @@ Welcome to the reference documentation for the command line interface (CLI) of [
 
 **mac-cli** is a very useful tool for system administrators that are managing a magasin instance. It provides shortcuts for common sys admin functions.
 
-**Mag-cli** is written in python and uses [click](https://click.palletsprojects.com/en/8.1.x/) as core framework for building the interface.
+**Mag-cli** is written in python and uses [click](https://click.palletsprojects.com/) as core framework for building the interface.
 
 
 !!! note
@@ -22,7 +22,7 @@ You have examples on how to use the command line in [magasin's overall getting s
 Learn more about magasin:
 
 * [What is magasin](../why-magasin.html)
-* [Magasin Docs](/docs-home.html)
+* [Magasin Docs](../docs-home.html)
 * [Contributing](../contributing)
 
 ## Intro to code structure

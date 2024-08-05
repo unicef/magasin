@@ -3,7 +3,7 @@ on:
   #push:
   #  branches: main
 
-name: Publish web docs
+name: Publish mac-cli docs in web
 
 jobs:
   build-deploy:
@@ -20,16 +20,21 @@ jobs:
           ref: 'gh-pages'
           path: 'gh-pages'
           
-      - name: Build mag-cli documentation
+      - name: Install mkdocs and dependencies
         run: |
           # Install required 
           pip install mkdocs mkdocstrings mkdocs-material
+          pip install "mkdocstrings[python]"
+          
+
+      - name: Build the site
+        run: |
           cd mag-cli/
           # build the site and replace the current 
           mkdocs build --site-dir ../gh-pages/mag-cli/
           cd ..
 
-      - name: "Push the new index"
+      - name: "Push the new docs to gh-pages branch"
         uses: EndBug/add-and-commit@v9
         with:
             cwd: './gh-pages/'
