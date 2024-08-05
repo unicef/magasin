@@ -14,7 +14,7 @@ format:
     toc: true
     code-copy: true
     #code-overflow: wrap
-#    css: styles.css
+    css: /styles.css
     include-after-body: js.html
 
 website:
@@ -74,8 +74,11 @@ website:
           - file: install/troubleshooting.qmd
           - file: install/uninstall.qmd
       
-      - text: "End user guides"
-        file: end-user-guides.qmd
+      - section: "End user guides"
+        contents:
+          - file: user-guides/index.qmd 
+          - file: user-guides/data-privacy.qmd
+   
 
       # TODO
       #- section: "Admin Guides"
