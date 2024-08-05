@@ -74,6 +74,9 @@ website:
           - file: install/troubleshooting.qmd
           - file: install/uninstall.qmd
       
+      - section: "End user guides"
+        contents:
+          - file: user-guides/index.qmd 
       - text: "End user guides"
         file: end-user-guides.qmd
 
