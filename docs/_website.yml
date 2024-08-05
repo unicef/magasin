@@ -77,8 +77,8 @@ website:
       - section: "End user guides"
         contents:
           - file: user-guides/index.qmd 
-      - text: "End user guides"
-        file: end-user-guides.qmd
+          - file: user-guides/data-privacy.qmd
+   
 
       # TODO
       #- section: "Admin Guides"

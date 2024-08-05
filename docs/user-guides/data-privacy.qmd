@@ -1,0 +1,7 @@
+---
+title: "Data Privacy"
+format: html
+description: How to use magasin for analyzing being data responsible and following data privacy principles.
+meta-description: How to use magasin for analyzing folloing responsible data management and data privacy principles.
+---
+
