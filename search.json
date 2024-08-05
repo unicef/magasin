@@ -702,46 +702,86 @@
     ]
   },
   {
-    "objectID": "end-user-guides.html",
-    "href": "end-user-guides.html",
+    "objectID": "user-guides/data-privacy.html",
+    "href": "user-guides/data-privacy.html",
+    "title": "Data Privacy",
+    "section": "",
+    "text": "In today’s digital age, the importance of data privacy, responsible data management, and cybersecurity cannot be overstated. With the increasing reliance on technology and the vast amount of data being generated and collected, it is crucial to be conscious and proactive in safeguarding sensitive information.\nThe underlying components of magasin allow you to apply principles of responsible data management, personal data protection and cyber-security. Magasin can be compliant with any personal data protection law, including the most stringent such as the General Data protection Regulation (GDPR). However, it is up to the organization and teams that implement magasin achieve this goal.\nEstablishing privacy by design and people-first data practices such as requesting consent, informing the user about the purpose of collecting the data, that is, what you’re going to do with the data (including what you’re going to do within magasin), who are you going to share the data with, ensure that you involve all the stakeholders, specially that people that is affected by the data collected, etc., happens even before you start using magasin, Magasin is a data analysis product rather than a data collecting tool such as Primero, RapidPro(https://www.rapidpro.io/), or ODK etc.\nMagasin helps to achieve one of the principles of responsible data management, that is avoid not using the data at it maximum potential. Organizations, Governments and NGOs may be sitting in loads of data that could be used for a better good, however this data is not being used to its maximum potential. That’s irresponsible. Magasin is a platform that provides organizations the enabling tools to analyze and extract valuable insights from the data.",
+    "crumbs": [
+      "Home",
+      "End user guides",
+      "Data Privacy"
+    ]
+  },
+  {
+    "objectID": "user-guides/data-privacy.html#general-data-privacy-and-responsible-data-practices-in-magasin",
+    "href": "user-guides/data-privacy.html#general-data-privacy-and-responsible-data-practices-in-magasin",
+    "title": "Data Privacy",
+    "section": "1 General data privacy and responsible data practices in magasin",
+    "text": "1 General data privacy and responsible data practices in magasin\nThe following are recommended practices data privacy, responsible data management and cybersecurity practices to be considered by organizations that implement magasin:\n\nInclude magasin use in the consent. Ensure that you include in your consent form the use of the data that you are going to perform in magasin.\nLimit PII in magasin. Whenever possible keep only pseudonimized and anonymized data within magasin storage.\nStrong passwords Ensure you set a strong password policy to prevent data breaches within magasin components.\nUse always encrypted channels. For example, when consuming from an API or downloading files use https or sftp protocols. Also, you should consider enabling data encryption between the different components of magasin, especially if it is installed within a cluster that manages more services.\nKeep data at rest encrypted If you have to store personal data in magasin, use the encryption of your data store. MinIO provides support to server side encryption. Also other storages such as Azure Blobs or S3 buckets AWS. Parquet also supports granular encryption of its contents. In python you can use pyarrow encryption.\nApply the least privilege principle and seapration of duties In general, use the least privilege principle and separation of duties when assigning access to your data.\nSet access management processess. Set up processes to regularly review who has access to what data in magasin.\nSecure backups Create backups of the datasets stored in magasin, keep them secure and encrypted.\nConsider magasin in your data breach protocol.If you keep sensitive information in magasin. Include it as part of your data breach protocol and incident response.\nEnable data protection and cybersecurity awareness training. It is well known that the human factor enables many of data breaches. Ensure the members of your organization that use magasin and manage sensitive data, receive training in personal data protection and cybersecurity awareness.\nAudit and monitor use Enable for each of the components of magasin, log audit and monitoring tools.\n** Apply data minimization within magasin to the strictly necessary **. Don’t keep PII data in magasin if it is not necessary. In Dagster, whenever you materialize temporary assets and operations that hold PII, do it to memory.",
+    "crumbs": [
+      "Home",
+      "End user guides",
+      "Data Privacy"
+    ]
+  },
+  {
+    "objectID": "user-guides/data-privacy.html#applying-data-minimization-with-magasin",
+    "href": "user-guides/data-privacy.html#applying-data-minimization-with-magasin",
+    "title": "Data Privacy",
+    "section": "2 Applying Data Minimization with magasin",
+    "text": "2 Applying Data Minimization with magasin\nIn the data collection tools you may have collected personal data, but the first question that you have to ask yourself is that if for performing the analysis within magasin you need to use personal identifiable data (PII) or not? In many cases the answer is no, and there are easy to implement tactics to minimize the personal data you hold within magasin.\nFor example, imagine you are analyzing the vaccination rate for the children in a certain area. In the original collected data you have personal identifiable data such as name of the child, address, city/village, parents names, contact numbers, weight, age, gender in addition to vaccines that has received\nIf you plan to just evaluate indicators such as vaccines by gender or age, you do not need to ingest in magasin PII such as name, address or parents names.\nThe best approach when ingesting the data into magasin, for example through an API, is to do it already anonymized. That is anonymized. if the API allows to get the data without the PII is the ideal situation as that data never leaves the original system.\nAlternatively, you can ingest all the data, and perform the anonymization, that is removing all personal data within magasin. Although you download all the data, what you actually store within magasin is an anonymized version of the same. The problem with this option is that you have to be careful in not keeping any logs with personal information specially in dagster.\nAnother type of analysis that you may want perform is to identify the children that are at more risk. Let’s assume that there is an outbreak of cholera in certain region. So, you want to know which children need to be vaccinated. Pseudonimization is a process of replacing personal identifiers with artificial ones, such as a hash or a code. This way, the data can be linked to a specific individual, but only with access to the original identifier or the key that was used to generate the artificial one.\nFor example, in the system in which you performed the collection of the data, you may have a record ID. You can download the record Id, the information related to your analysis, such as the village and the vaccines of the child.",
+    "crumbs": [
+      "Home",
+      "End user guides",
+      "Data Privacy"
+    ]
+  },
+  {
+    "objectID": "user-guides/data-privacy.html#additional-references",
+    "href": "user-guides/data-privacy.html#additional-references",
+    "title": "Data Privacy",
+    "section": "3 Additional references:",
+    "text": "3 Additional references:\n\nEstablish people-first data practices – Principles for Digital Development (digitalprinciples.org)\nResponsible data for children",
+    "crumbs": [
+      "Home",
+      "End user guides",
+      "Data Privacy"
+    ]
+  },
+  {
+    "objectID": "user-guides/index.html",
+    "href": "user-guides/index.html",
     "title": "End user guides",
     "section": "",
-    "text": "Each of the open source components included in magasin has its on end user documentation.",
+    "text": "Each of the open source components included in magasin has its on end user documentation.\nDagster\n\nGetting started (dagster.io)\nDagster University (dagster.io)\n\nJupyter Hub\n\nProject Jupyter Documentation (jupyter.org)\n\nApache Superset\n\nCreating your first dashboard (superset.apache.org)\nExploring data in Superset (superset.apache.org)",
     "crumbs": [
       "Home",
+      "End user guides",
       "End user guides"
     ]
   },
   {
-    "objectID": "end-user-guides.html#dagster",
-    "href": "end-user-guides.html#dagster",
+    "objectID": "user-guides/index.html#component-guides",
+    "href": "user-guides/index.html#component-guides",
     "title": "End user guides",
-    "section": "1 Dagster",
-    "text": "1 Dagster\n\nGetting started\nDagster University",
+    "section": "",
+    "text": "Each of the open source components included in magasin has its on end user documentation.\nDagster\n\nGetting started (dagster.io)\nDagster University (dagster.io)\n\nJupyter Hub\n\nProject Jupyter Documentation (jupyter.org)\n\nApache Superset\n\nCreating your first dashboard (superset.apache.org)\nExploring data in Superset (superset.apache.org)",
     "crumbs": [
       "Home",
+      "End user guides",
       "End user guides"
     ]
   },
   {
-    "objectID": "end-user-guides.html#jupyter-hub",
-    "href": "end-user-guides.html#jupyter-hub",
+    "objectID": "user-guides/index.html#best-practices",
+    "href": "user-guides/index.html#best-practices",
     "title": "End user guides",
-    "section": "2 Jupyter Hub",
-    "text": "2 Jupyter Hub\n\nProject Jupyter Documentation",
+    "section": "Best practices",
+    "text": "Best practices\n\nData privacy guide. How to use magasin in following responsible data management practices.",
     "crumbs": [
       "Home",
-      "End user guides"
-    ]
-  },
-  {
-    "objectID": "end-user-guides.html#apache-superset",
-    "href": "end-user-guides.html#apache-superset",
-    "title": "End user guides",
-    "section": "3 Apache Superset",
-    "text": "3 Apache Superset\n\nCreating your first dashboard\nExploring data in Superset",
-    "crumbs": [
-      "Home",
+      "End user guides",
       "End user guides"
     ]
   },
