@@ -5,7 +5,7 @@ format: html
 
 ## About Magasin
 
-Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end suite of open-source tools stitched together to provide production grade automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform data analysis, visualization of datasets and ML / AI.
+Magasin (pronounced /ma.ɡa.zɛ̃/) is an end-to-end suite of open-source tools stitched together to provide enterprise ready automated ingestion, transformation, and storage as well as the enabling infrastructure and tools to perform data analysis, visualization of datasets and ML / AI.
 
 You can learn more about [why we created magasin](why-magasin.qmd) and its [architecture](architecture.qmd).
 
