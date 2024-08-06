@@ -44,7 +44,7 @@ In this basic analysis we are going to:
 2. Transform the data to get the number of deployments per country.
 3. Display a chart with the top 20 ountries that have more deployments.
 
-You can download the [resulting jupyter notebook](https://github.com/unicef/magasin/blob/main/examples/dpga-explorations/dpg-basic.ipynb).
+You can download the [resulting jupyter notebook](https://github.com/unicef/magasin/blob/main/examples/dpga-explorations/dpga-basic.ipynb).
 
 
 First, let's see some buttons of your newly created notebook you have the following buttons that will be required:
@@ -130,7 +130,7 @@ You should see something like this:
 ![Graph displayed after running the cell above](../images/get-started/jupyterhub-graph-deployment-countries.png)
 
 
-You can download the [resulting jupyter notebook](https://github.com/unicef/magasin/blob/main/examples/dpga-explorations/dpg-basic.ipynb). The [data](https://github.com/unicef/magasin/tree/main/examples/dpga-explorations/data) used for the notebook is also available to [download](https://github.com/unicef/magasin/tree/main/examples/dpga-explorations/data).
+You can download the [resulting jupyter notebook](https://github.com/unicef/magasin/blob/main/examples/dpga-explorations/dpga-basic.ipynb). The [data](https://github.com/unicef/magasin/tree/main/examples/dpga-explorations/data) used for the notebook is also available to [download](https://github.com/unicef/magasin/tree/main/examples/dpga-explorations/data).
 
 
 ## Additional explorations (optional)
