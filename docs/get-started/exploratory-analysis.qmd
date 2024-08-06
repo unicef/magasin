@@ -137,7 +137,7 @@ You can download the [resulting jupyter notebook](https://github.com/unicef/maga
 
 In addition to this basic analysis, you can optionally see some additional exploratory analysis and details in the following notebook.
 
-[Download dpg-explorations.ipynb example](https://github.com/unicef/magasin/blob/main/examples/dpga-explorations/dpg-insights.ipynb){.btn-action-primary .btn-action .btn .btn-outline-primary  role="button"}.
+[Download dpg-explorations.ipynb example](https://github.com/unicef/magasin/blob/main/examples/dpga-explorations/dpg-explorations.ipynb){.btn-action-primary .btn-action .btn .btn-outline-primary  role="button"}.
 
 Once you download it, drag and drop the fil to your jupyter notebook environment within the left column where the list of files appear.
 
