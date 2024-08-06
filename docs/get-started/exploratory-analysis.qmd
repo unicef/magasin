@@ -44,7 +44,7 @@ In this basic analysis we are going to:
 2. Transform the data to get the number of deployments per country.
 3. Display a chart with the top 20 ountries that have more deployments.
 
-You can download the resulting file with the [jupyer notebook](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-basic.ipynb).
+You can download the [resulting jupyter notebook](https://github.com/unicef/magasin/blob/main/examples/dpga-explorations/dpg-basic.ipynb).
 
 
 First, let's see some buttons of your newly created notebook you have the following buttons that will be required:
@@ -130,18 +130,21 @@ You should see something like this:
 ![Graph displayed after running the cell above](../images/get-started/jupyterhub-graph-deployment-countries.png)
 
 
+You can download the [resulting jupyter notebook](https://github.com/unicef/magasin/blob/main/examples/dpga-explorations/dpg-basic.ipynb). The [data](https://github.com/unicef/magasin/tree/main/examples/dpga-explorations/data) used for the notebook is also available to [download](https://github.com/unicef/magasin/tree/main/examples/dpga-explorations/data).
+
+
 ## Additional explorations (optional)
 
 In addition to this basic analysis, you can optionally see some additional exploratory analysis and details in the following notebook.
 
-[Download dpg-explorations.ipynb example](https://github.com/unicef/magasin/blob/main/examples/dpg-insights/dpg-insights.ipynb){.btn-action-primary .btn-action .btn .btn-outline-primary  role="button"}.
+[Download dpg-explorations.ipynb example](https://github.com/unicef/magasin/blob/main/examples/dpga-explorations/dpg-insights.ipynb){.btn-action-primary .btn-action .btn .btn-outline-primary  role="button"}.
 
-Once you download it, drag and drop the fil to your Jupyter notebook environment within the left column where the list of files appear.
+Once you download it, drag and drop the fil to your jupyter notebook environment within the left column where the list of files appear.
 
 
 ## Summary
 
-In this step we have explored one of the components of Magasin, Jupyterhub, which provides us with an interactive user interface that allows us to explore our data one step (cell) at a time. 
+In this step we have explored one of the components of magasin, Jupyterhub, which provides us with an interactive user interface that allows us to explore our data one step (cell) at a time. 
 
 This component is specially oriented for data scientists and/or data engineers that are exploring how to convert the data into something that can be used to get insights for the business.
 
