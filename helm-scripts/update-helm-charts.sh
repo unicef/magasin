@@ -55,7 +55,7 @@ helm_pull() {
 helm_pull https://dagster-io.github.io/helm \
         dagster \
         dagster \
-        1.6.4   \
+        1.7.16   \
         $temp_charts          
 
 
@@ -78,7 +78,7 @@ helm_pull https://helm.dask.org/ \
 helm_pull https://unicef.github.io/magasin-drill \
         drill \
         drill \
-        0.7.1 \
+        0.7.2 \
         $temp_charts          
 
 
@@ -91,14 +91,14 @@ helm_pull https://unicef.github.io/magasin-drill \
 helm_pull https://operator.min.io/ \
         minio \
         operator \
-        5.0.11   \
+        6.0.1   \
         $temp_charts          
 
 # Same but with "name: tenant"
 helm_pull https://operator.min.io/ \
         minio \
         tenant \
-        5.0.11   \
+        6.0.1   \
         $temp_charts          
 
 # Helm cahrt hack 
