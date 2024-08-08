@@ -7,19 +7,30 @@ This repository contains a collection of files that can be used to deploy [Apach
 
 This is an extended version of the originally chart created in [github.com/Agirish/drill-helm-charts](https://github.com/Agirish/drill-helm-charts). This extension has been created to fit the needs of [UNICEF's magasin](https://github.com/unicef/magasin).
 
+**Versions**
+
+| Chart Version | Drill Version | Zookeeper Version | Release Date      |
+|---------------|---------------|-------------------|--------------------|
+| 0.7.2         | 1.21.2        | 3.9.2             | 2024-08-07
+| 0.7.1         | 1.21.1        | 3.9.1             | 2024-02-05
+---
+
+
+
 ## Pre-requisites
 - A Kubernetes Cluster.
 - [Helm](https://github.com/helm/helm#install) version 3.0 or greater.
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) version 1.16.0 or greater.
 
+
 ## Install
 
-1.- Add the helm repo
+1. Add the helm repo
     ```sh
     helm repo add magasin-drill https://unicef.github.io/magasin-drill/
     ```
 
-2. Intall the chart
+2. Intall the chart 
     ```sh
     helm install drill magasin-drill/drill --namespace magasin-drill --create-namespace
     ```
@@ -37,33 +48,45 @@ drillbit-1   1/1     Running   0          5m3s
 zk-0         1/1     Running   0          5m3s 
 ```
 
-Once all the pods  have the READY value as `1/1` and the `STATUS` is `Running`, you can launch the Drill Web UI using the `launch_ui.sh` script:
+Once all the pods  have the READY value as `1/1` and the `STATUS` is `Running`, you can launch the Drill Web UI using: 
+
+```sh
+kubectl port-forward --namespace magasin-drill service/drill-service 8047:8047
+```
+Then open the browser in `http://localhost:8047` to access the Drill Web UI.
+
+Or you can download the [launch_ui.sh script from this repo](https://github.com/unicef/magasin-drill/blob/main/scripts/launch_ui.sh) and run it::
+
 
 ```shell
 # ./scripts/launch_ui [-n <namespace>]
 #  where namespace defaults to "magasin-drill"
 ./scripts/launch_ui.sh 
-
-Open a browser at http://localhost:8087
-
+```
+It will output
+```
 Forwarding from 127.0.0.1:8047 -> 8047
 Forwarding from [::1]:8047 -> 8047
 ```
-
 Then open `http://localhost:8047` in a browser.
 
-## Chart version
-
-The chart appVersion displays the drill and zookeeper versions, respectively.
+The chart `appVersion` displays the drill and zookeeper versions, respectively.
 For example:
 
 ```shell
 helm list -n magasin-drill
 NAME 	NAMESPACE    	REVISION	UPDATED                            	STATUS  	CHART      	APP VERSION 
-drill	magasin-drill	1       	2023-11-20 09:12:48.88172 +0300 EAT	deployed	drill-0.6.0	1.21.1-3.9.1
+drill	magasin-drill	1       	2023-11-20 09:12:48.88172 +0300 EAT	deployed	drill-0.7.2	1.21.2-3.9.2
 ```
 
-The helm chart version 0.6.0 comes with Apache Drill 1.21 and Zookeper 3.9.1.
+### Install cloning repo
+Alternatively, you can clone this repo and install the chart from the local directory:
+
+```sh
+git clone https://github.com/unicef/magasin-drill
+cd magasin-drill
+helm install drill ./charts/drill --namespace magasin-drill --create-namespace
+```
 
 
 ### Customizing the setup
