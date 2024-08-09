@@ -14,7 +14,7 @@ Magasin enables organizations to perform automatic data ingestion, storage, anal
 ## Start using magasin
 * **[Get Started](get-started/)**. Quick setup
 * **[Installation](install/)**. Detailed explanation of the base installation.
-* **[End user guides](end-user-guides.qmd)**. References on how to use the components
+* **[End user guides](user-guides/)**. References on how to use the components
 * **[Deployment](deployment.qmd)**. Learn more about the configuration of the different components.
 
 ## Develop magasin
