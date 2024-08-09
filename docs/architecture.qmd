@@ -100,4 +100,10 @@ Dask cluster Dask Gateway allows easy utilization of a Dask cluster from noteboo
 [Mag-cli](https://github.com/unicef/magasin/tree/main/mag-cli) is the command line interface of magasin. Helps to manage the different modules of magasin and it makes easier to perform common administration tasks. 
 
 
+## What's next
 
+* **[Getting started with magasin](./get-started/)**. Learn how to install, and start using magasin with a simple example.
+
+* **[Why magasin?](./why-magasin.qmd)**. Why magasin was created and what is the gap it is fulfilling.
+
+* **[How magasin supports the implementation of the SDGs](./sdgs.qmd)** Learn about the magasin magasin plays in implementing the Sustainable Development Goals.

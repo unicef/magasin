@@ -15,7 +15,6 @@ In today's data-informed world, governments and organizations face a monumental 
 
 To overcome these challenges and unlock the full potential of modern data analysis, machine learning, and artificial intelligence, organizations need a comprehensive set of tools. 
 
-
 ## Marketplace gaps
 
 When we go to the global market we find several gaps.
@@ -58,3 +57,5 @@ For the private sector it fits any organization that wants to leverage data scie
 * **[Getting started with magasin](./get-started/)**. Learn how to install, and start using magasin with a simple example.
 
 * **[Magasin architecture](./architecture.qmd)**. Learn more about the different components that conform magasin.
+
+* **[How magasin supports the implementation of the SDGs](./sdgs.qmd)** Learn about the magasin magasin plays in implementing the Sustainable Development Goals.
