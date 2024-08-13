@@ -8,6 +8,10 @@ mag-cli/site
 
 _helm-repo
 
+# Dev config for testing helm scripts
+helm-scripts/dev.config
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
