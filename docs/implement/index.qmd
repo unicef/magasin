@@ -6,10 +6,17 @@ description: A successfull implementation of magasin within an organization
 
 In this section we will share some considerations that an organization may want to think about when implementing magasin.
 
-## Considerations beyond technology
- * [Preparing your organization for success](./planning-for-success.qmd). Considerations an organization needs to think about from the team and processes setup perspectives.
+When dealing with technology for development (ICT4D) system strengthening initiatives giving some thoughts on these considerations will help to a more successful deployment.
 
-## Production deployment technical considerations
+## Considerations beyond technology
+
+Implementing an end-to-end cloud-native data solution like magasin effectively requires not just setting up the technology, which is a mere enabler, but also implementing adjustments in people and processes. Without these it is harder to enhance the organization’s ability to make data-informed decisions.
+
+
+ * [Setting up a magasin team](./magasin-team.qmd). What are the roles, skills and capabilities that are recommended to have within an organization to get the maximum from magasin.
+ * [Organizational processes](./planning-for-success.qmd). Magasin will 
+
+## Depoying a magasin instance. Technical considerations
 
  * [Deploying into production](./deployment.qmd). Recommened tasks when setting up a production environment. 
  * [Security](./security.qmd). Hardening a setup for enhancing cyber-security

@@ -1,55 +1,49 @@
 ---
-title: Planning for success
-description: Preparing your organization for a successful deployment.
-metadata-description: What roles and skills are recommended to have in an organization when implement magasin and what processes should be setup
+title: Setting a magasin team
+description: Setting up the rigth team for implementing magasin
+meta-description: What are the skills and capabilities of a successfull magasin team. Setting up the rigth team for implementing magasin.
 ---
-
-Implementing an end-to-end cloud-native data solution like magasin effectively requires not just setting up the technology, which is a mere enabler, but also implementing adjustments in people and processes. Without these it is harder to enhance the organization’s ability to make data-informed decisions.
-
-Here are some considerations to ensure your organization successfully deploys magasin. While **not every consideration needs to be fully implemented from the start**, they will become more effective as your organization becomes more adept at utilizing data. 
-
-When dealing with technology for development (ICT4D) system strengthening initiatives giving some thoughts on these considerations will help to a more successful deployment.
-
-## The team (People dimension)
 
 From a personnel standpoint, an organisation must ensure that it has, or will acquire or recruit, the appropriate skills not only for implementing and maintaining the tool but also for processing and extracting insights from the data. Below are the common roles along with the technical skills and capabilities that an organisation should assess to operationalise magasin:
 
-### **System administrator** 
+## Common roles and skillsets of a magasin team
+
+### System administrator
 Establishes and manages a magasin instance. While magasin can be operated on a laptop, for a production environment that serves various teams across an organisation, centralised management is more effective. The skills and capabilities required for this role include:
 
-* Kubernetes Administration (Core)
+* **Kubernetes Administration** (Core)
      - Experience setting up, managing, and maintaining Kubernetes clusters.
      - Knowledge of Kubernetes architecture, including nodes, pods, deployments, and services.
      - Experience with Kubernetes networking, storage, and security configurations.
-* Helm (Core)
+* **Helm** (Core)
      - Experience using Helm for managing Kubernetes deployments.
      - Ability to customize the values of Helm chart.
      - Understanding of Helm repositories and version control.
 
-* Cloud Platforms (Strongly recommended)
+* **Cloud Platforms** (Strongly recommended)
      - When the deployment is on the cloud, experience with the cloud provider(s) that the organization may be using such as AWS, Azure, or Google Cloud Platform.
      - Knowledge of managed Kubernetes services such as EKS, AKS, or GKE.
 
-* Containerization (Strongly recommended)
+* **Containerization** (Strongly recommended)
      - Understanding of containerization technologies, particularly Docker.
      - If specific needs need to be implemented, experience in building, managing, and deploying container images.
 
-* Scripting and Automation (Strongly recommended)
+* **Scripting and Automation** (Strongly recommended)
      - Understanding scripting languages such as Bash or Python.
 
-* Monitoring and Logging (Strongly recommended)
+* **Monitoring and Logging** (Strongly recommended)
      - When workloads increase and availability is a must, understanding of monitoring tools like Prometheus, Grafana, and ELK stack.
      - Ability to set up and manage logging and monitoring for Kubernetes clusters.
 
-* Kubernetes Security (Strongly recommended)
+* **Kubernetes Security** (Strongly recommended)
      - If sensitive data is managed by magasin and exposed to Internet and or different vendors, knowledge of Kubernetes security best practices is recommended.
      - Experience with role-based access control (RBAC) and network policies can help to secure the system
 
-* DevOps Practices (Strongly recommended)
+* **DevOps Practices** (Strongly recommended)
      - Understanding of DevOps principles and practices.
      - Experience with CI/CD pipelines and integrating Kubernetes with CI/CD tools.
 
-* What magasin tools does he use?
+* ***What magasin tools does he use?**
      - Apache Superset (Configuration/system operations level)
      - Dagster (Configuration/system operations level)
      - Apache Drill (Configuration/system operations level)
@@ -60,90 +54,62 @@ Establishes and manages a magasin instance. While magasin can be operated on a l
 ### Data Analyst / Scientist
 Needs to understand the business itself and collaborate very closely with the businesspeople, based on these conversations so he can “ask” research questions to the existing data, or research on what datasets may be able to answer these questions. This profile identifies data sources (internal and external) and performs explorations to analyze the data to extract insights, generally through visualizations and tracking indicators. Also, during the automation process he works with the data engineer to automate the process of getting real time insights.
 
-* Data Analysis and Exploration (Core):
+* **Data Analysis and Exploration** (Core):
     - Data analysis techniques and methodologies.
      - Experience with data cleaning, transformation, and visualization.
      - Ability to explore and analyze both internal and external datasets.
 
-*	Programming (Core):
+* **Programming** (Core):
      - Strong skills in Python for data manipulation and analysis.
      - Familiarity with libraries such as pandas, NumPy, and matplotlib.
-* Statistical Analysis (Core):
+
+* **Statistical Analysis** (Core):
      - Knowledge of statistical methods and their application in data analysis.
      - Ability to perform hypothesis testing, regression analysis, and other statistical techniques.
-*	Data Visualization (Core):
+
+* **Data Visualization** (Core):
      - Expertise in creating visualizations to communicate insights effectively.
      - Experience with tools like Jupyter Notebooks and self-service BI tools (e.g., Superset, PowerBI, Tableau).
-*	Domain Knowledge (Recommended):
+
+* **Domain Knowledge** (Recommended):
      - Familiarity with the industry and business context to derive meaningful insights.
      - Ability to translate business requirements into data-driven solutions.
-* Machine Learning (Recommended):
+
+* **Machine Learning** (Recommended):
      - Understanding of machine learning algorithms and their applications.
      - Experience with libraries such as scikit-learn, TensorFlow, or PyTorch as well as large language models.
-* What magasin tools uses?
+* **What magasin tools does he use?**
      - Jupyter notebooks (User level)
      - Apache Superset (User level)
      - Dask (User level, for advanced applications)
      - Use of Dagster (User level)
 
 ### Data Engineer
-His role is to ingest data from different data sources in a recurrent way to enable  generate . system and merges them into dataset that can be used for creating a dashboard.
+His role is to ingest data from different data sources in a recurrent and automated way.
 
-* Data Engineering and ETL (Extract, Transform and Load):
+* **Data Engineering and ETL (Extract, Transform and Load)** (Core):
      - Proficiency in designing, building, and maintaining data pipelines.
      - Experience with ETL processes and tools for data ingestion and transformation.
-* Programming:
+* **Sofware development** (Core):
      - Strong skills in Python for developing data engineering solutions.
-     - Familiarity with libraries such as pandas, NumPy, 
-* Big Data Technologies:
+     - Familiarity with libraries such as pandas, NumPy, etc.
+* **Big Data Technologies** (Recommended):
      - Experience with data warehousing solutions and data lakes.
-     - Understanding of parquet, csv, delta lake formats.
-* Cloud Platforms:
+     - Understanding of parquet, csv, delta lake file formats.
+* **Cloud Platforms** (Recommended):
      - Experience with cloud services for data storage and processing.
-     - Familiarity with cloud providers like AWS, Azure, or Google Cloud Platform.
-* Data Quality and Governance:
+     - Familiarity with cloud storages on major systems AWS, Azure, or Google Cloud Platform.
+* **Data Quality and Governance** (Recommended):
      - Understanding of data quality principles and best practices.
      - Ability to implement data governance and security measures.
-* Monitoring and Debugging:
+* **Monitoring and Debugging** (Recommended):
      - Skills in monitoring data pipelines and troubleshooting issues.
      - Experience with logging and monitoring tools to ensure data reliability.
-* Collaboration and Documentation:
+* **Collaboration and Documentation** (Recommended):
      - Strong collaboration skills to work with data scientists and system administrators.
      - Ability to document data workflows, processes, and best practices.
-* What magasin tools uses?
+* **What magasin tools uses?**
      - Dagster (User level)
      - MinIO (User level)
-
-
-## Processes dimension
-
-Another aspect of implementing magasin is related with the processes that will be needed to be setup by the organization:
-
-1. **Data Quality Management**
-   The effectiveness of data-informed decision-making largely depends on the quality of the data used. This fundamental principle implies that without high-quality data, any investment in a data platform is futile. Often encapsulated by the phrase "garbage in, garbage out," it means that poor input data results in flawed insights and decisions.
-
-   As your organization manages more datasets, ensuring data quality is crucial throughout the entire data lifecycle, beginning prior to ingestion processes, and emphasizing aspects such as accuracy, reliability, consistency, completeness, implement data cleansing to remove duplicates, correct errors, and update outdated information…
-
-     Resources: 
-
-     * [UNICEF Data quality framework](https://data.unicef.org/resources/data-quality-framework/)
-
-
-2. **Data governance**
-     Implementing a solid data governance process involves determining who can access, share, and delete data. When you define this you have to lever to maximize data utility and to be concious of personal data privacy as well as to minimize the potential data breaches.  Data governance is especially critical when handing sensitive/confidential and personal data. Also, you may need to define a data governance to comply with local and international regulations (f.i. GDPR).
-     
-     Resources: 
-
-     * [Data Privacy in magasin](./user-guides/data-privacy.qmd)
-
-3. **Data documentation and metadata management** 
-     Maintain comprehensive documentation and metadata management to track data lineage and support data stewardship.
- 
-4. **Implement master data management**
-     Centralize and standardize key data entities to ensure consistency and accuracy across the organizational data. Elements such as office identifiers, employees’ identifiers, product names, supplier codes, department/division names and unique identifiers, country names and identifiers, etc.
-
-5. **Data lifecycle management** 
-     Establishing rules and processes for not only in terms of capturing data, but also archival and deletion. 
-
-
+     - Drill (User level)
 

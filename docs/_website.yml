@@ -97,7 +97,9 @@ website:
       - section: "Implement"      
         contents:
           - file: implement/index.qmd
-          - file: implement/planning-for-success.qmd
+          - file: implement/magasin-team.qmd
+          - file: implement/organizational-processes.qmd
+          - file: implement/development.qmd
           - text: "Deploying to production"
             file: implement/deployment.qmd 
           - text: "Security"
