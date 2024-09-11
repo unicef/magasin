@@ -58,6 +58,8 @@ website:
           file: docs-home.qmd
         - file: why-magasin.qmd
         - file: architecture.qmd
+        - file: planning-for-success.qmd
+
       - section: "Get started"
         contents:
           - file: get-started/index.qmd 
