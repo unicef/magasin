@@ -1,0 +1,15 @@
+---
+title: Implement
+meta-description: What you need to do in order to implement magasin
+description: A successfull implementation of magasin within an organization
+---
+
+In this section we will share some considerations that an organization may want to think about when implementing magasin.
+
+## Considerations beyond technology
+ * [Preparing your organization for success](./planning-for-success.qmd). Considerations an organization needs to think about from the team and processes setup perspectives.
+
+## Production deployment technical considerations
+
+ * [Deploying into production](./deployment.qmd). Recommened tasks when setting up a production environment. 
+ * [Security](./security.qmd). Hardening a setup for enhancing cyber-security

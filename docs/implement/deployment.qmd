@@ -1,6 +1,10 @@
 ---
-title: "Production deployment"
+title: "Deploying to production"
+description: Tips and tasks when deploying an instance of magasin into production
+meta-decription: Tips and tasks when deploying an instance of magasin into production
 format: html
+aliases:
+  - deployment.qmd
 ---
 
 Whereas the default installation of magasin is very convenient for testing, it is not ready for production.

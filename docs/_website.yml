@@ -59,7 +59,7 @@ website:
         - file: why-magasin.qmd
         - file: architecture.qmd
         - file: sdgs.qmd
-        - file: planning-for-success.qmd
+        
 
       - section: "Get started"
         contents:
@@ -94,12 +94,14 @@ website:
       #      - file: admin-guides/drill.qmd
       #      - file: admin-guides/superset.qmd  
       
-      - section: "Deployment"      
+      - section: "Implement"      
         contents:
+          - file: implement/index.qmd
+          - file: implement/planning-for-success.qmd
           - text: "Deploying to production"
-            file: deployment.qmd 
+            file: implement/deployment.qmd 
           - text: "Security"
-            file: security.qmd
+            file: implement/security.qmd
 
       - section: "Contributing"
         contents:

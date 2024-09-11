@@ -1,6 +1,8 @@
 ---
 title: "Security"
 format: html
+aliases: 
+    - security.qmd
 ---
 
 Ensuring robust security measures within a Kubernetes cluster hosting diverse open-source applications is paramount in safeguarding sensitive data and maintaining operational integrity. 
