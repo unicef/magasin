@@ -1,5 +1,5 @@
 ---
-title: How magasin supports the achievement of the SDGs
+title: Implementing SDGs through magasin
 description: Accelerating the implementation through data-informed decision making
 description-meta: How can magasin support the achievement of the SDGs
 format: 

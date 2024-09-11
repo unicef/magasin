@@ -10,7 +10,7 @@ Magasin enables organizations to perform automatic data ingestion, storage, anal
 ## Learn more about magasin
 * **[Why magasin?](why-magasin.qmd)**
 * **[Architecture](architecture.qmd)**
-* **[How does magasin support the implementation of the SDGs?](sdgs.qmd)**
+* **[Implementing SDGs through magasin](sdgs.qmd)**
 
 ## Start using magasin
 * **[Get Started](get-started/)**. Quick setup

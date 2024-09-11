@@ -58,4 +58,4 @@ For the private sector it fits any organization that wants to leverage data scie
 
 * **[Magasin architecture](./architecture.qmd)**. Learn more about the different components that conform magasin.
 
-* **[How magasin supports the implementation of the SDGs](./sdgs.qmd)** Learn about the magasin magasin plays in implementing the Sustainable Development Goals.
+* **[Implementing the SDGs through magasin](./sdgs.qmd)** Learn about the magasin magasin plays in implementing the Sustainable Development Goals (SDGs).
