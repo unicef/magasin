@@ -14,8 +14,10 @@ Implementing an end-to-end cloud-native data solution like magasin effectively r
 
 
  * [Setting up a magasin team](./magasin-team.qmd). What are the roles, skills and capabilities that are recommended to have within an organization to get the maximum from magasin.
- * [Organizational processes](./planning-for-success.qmd). Magasin will 
+ * [Organizational processes](./organizational-processes.qmd). Whata organizational processes may need to be setup? 
+ * [Data privacy guide](./data-privacy.qmd). How you can use magasin to be data privacy oriented, for instance applying data minimization.
 
+ 
 ## Depoying a magasin instance. Technical considerations
 
  * [Deploying into production](./deployment.qmd). Recommened tasks when setting up a production environment. 

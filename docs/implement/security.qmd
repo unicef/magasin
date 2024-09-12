@@ -7,7 +7,7 @@ aliases:
 
 Ensuring robust security measures within a Kubernetes cluster hosting diverse open-source applications is paramount in safeguarding sensitive data and maintaining operational integrity. 
 
-If you want to disclose a potential vulnerability, please read our [vulnerability disclosure policy](./contributing/vulnerability-disclosure.qmd).
+If you want to disclose a potential vulnerability, please read our [vulnerability disclosure policy](../contributing/vulnerability-disclosure.qmd).
 
 ## Reference documentation  
 Each component of magasin has its own level of security

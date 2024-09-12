@@ -7,13 +7,6 @@ metadata-description: Processes an organization should think about to get the ma
 
 Here are some considerations from the processes dimesion to ensure your organization successfully deploys magasin. While **not every process needs to be fully implemented from the start**, they will become more effective as your organization becomes more adept at utilizing data. 
 
-
-
-
-## Processes dimension
-
-Another aspect of implementing magasin is related with the processes that will be needed to be setup by the organization:
-
 1. **Data Quality Management**
    The effectiveness of data-informed decision-making largely depends on the quality of the data used. This fundamental principle implies that without high-quality data, any investment in a data platform is futile. Often encapsulated by the phrase "garbage in, garbage out," it means that poor input data results in flawed insights and decisions.
 
@@ -29,10 +22,14 @@ Another aspect of implementing magasin is related with the processes that will b
      
      Resources: 
 
-     * [Data Privacy in magasin](./user-guides/data-privacy.qmd)
+     * [Data Privacy in magasin](./data-privacy.qmd)
 
 3. **Data documentation and metadata management** 
      Maintain comprehensive documentation and metadata management to track data lineage and support data stewardship.
+
+     Resources:
+
+     * [Dagster metadata](https://docs.dagster.io/concepts/metadata-tags)
  
 4. **Implement master data management**
      Centralize and standardize key data entities to ensure consistency and accuracy across the organizational data. Elements such as office identifiers, employees’ identifiers, product names, supplier codes, department/division names and unique identifiers, country names and identifiers, etc.
