@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Superset step">
+<meta name="description" content="How to use magasin for analyzing being data responsible and following data privacy principles.">
 
-<title>Step 3: Create a dashboard</title>
+<title>Data Privacy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +31,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../install/index.html" rel="next">
-<link href="../get-started/automate-data-ingestion.html" rel="prev">
+<link href="../implement/deployment.html" rel="next">
+<link href="../implement/organizational-processes.html" rel="prev">
 <link href="..//images/magasin-star.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -107,8 +73,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Step 3: Create a dashboard">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="Data Privacy">
+<meta name="twitter:description" content="How to use magasin for analyzing being data responsible and following data privacy principles.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -157,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../get-started/index.html">Get started</a></li><li class="breadcrumb-item"><a href="../get-started/create-a-dashboard.html">Step 3: Create a dashboard</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../implement/index.html">Implement</a></li><li class="breadcrumb-item"><a href="../implement/data-privacy.html">Data Privacy</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -239,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../get-started/create-a-dashboard.html" class="sidebar-item-text sidebar-link active">
+  <a href="../get-started/create-a-dashboard.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Step 3: Create a dashboard</span></a>
   </div>
 </li>
@@ -338,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../implement/data-privacy.html" class="sidebar-item-text sidebar-link">
+  <a href="../implement/data-privacy.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Data Privacy</span></a>
   </div>
 </li>
@@ -425,22 +391,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup-apache-drill-to-connect-to-minio" id="toc-setup-apache-drill-to-connect-to-minio" class="nav-link active" data-scroll-target="#setup-apache-drill-to-connect-to-minio"><span class="header-section-number">1</span> Setup Apache Drill to connect to MinIO</a></li>
-  <li><a href="#setting-up-the-drill-superset-database-connection" id="toc-setting-up-the-drill-superset-database-connection" class="nav-link" data-scroll-target="#setting-up-the-drill-superset-database-connection"><span class="header-section-number">2</span> Setting up the Drill-Superset database connection</a></li>
-  <li><a href="#creating-the-superset-dashboard" id="toc-creating-the-superset-dashboard" class="nav-link" data-scroll-target="#creating-the-superset-dashboard"><span class="header-section-number">3</span> Creating the Superset Dashboard</a></li>
-  <li><a href="#awesome" id="toc-awesome" class="nav-link" data-scroll-target="#awesome"><span class="header-section-number">4</span> Awesome!</a></li>
-  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">5</span> What’s next</a></li>
+  <li><a href="#general-data-privacy-and-responsible-data-practices-in-magasin" id="toc-general-data-privacy-and-responsible-data-practices-in-magasin" class="nav-link active" data-scroll-target="#general-data-privacy-and-responsible-data-practices-in-magasin"><span class="header-section-number">1</span> General data privacy and responsible data practices in magasin</a></li>
+  <li><a href="#applying-data-minimization-with-magasin" id="toc-applying-data-minimization-with-magasin" class="nav-link" data-scroll-target="#applying-data-minimization-with-magasin"><span class="header-section-number">2</span> Applying Data Minimization with magasin</a></li>
+  <li><a href="#additional-references" id="toc-additional-references" class="nav-link" data-scroll-target="#additional-references"><span class="header-section-number">3</span> Additional references:</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/create-a-dashboard.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/implement/data-privacy.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../get-started/index.html">Get started</a></li><li class="breadcrumb-item"><a href="../get-started/create-a-dashboard.html">Step 3: Create a dashboard</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../implement/index.html">Implement</a></li><li class="breadcrumb-item"><a href="../implement/data-privacy.html">Data Privacy</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Step 3: Create a dashboard</h1>
+<h1 class="title">Data Privacy</h1>
 </div>
 
+<div>
+  <div class="description">
+    How to use magasin for analyzing being data responsible and following data privacy principles.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -455,186 +424,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In the previous steps we did an <a href="../get-started/exploratory-analysis.html">exploratory analysis</a> that gave us the opportunity to learn about the data and what we could extract from it. After that we learnt to <a href="../get-started/automate-data-ingestion.html">automate the data ingestion</a>, that is the process of gathering and processing the data though in a scheduled way.</p>
-<p>So now, we have our ready to use dataset which is automatically updated. The last step on the process is to create a beautiful dashboard that we can share with the decission makers to help them to take the organization to the next level thanks to the use of data informed decissions.</p>
-<p>In magasin’s open source architecture, <a href="https://superset.apache.org/">Apache Superset</a> is the business intelligence dashboarding tool that comes out of the box, but similarly to what we mentioned about MinIO, the loosely coupled architecture of magasin allows organizations to choose to leverage other tools that the organization may be already using such as PowerBI or Tableau.</p>
-<p>Apache Superset can consume any SQL based database engine. However, we stored our data as <code>.parquet</code> files. To allow us to use file based datasets in the architecture we have <a href="https://drill.apache.org/">Apache Drill</a>, which basically allows us to consume these datasets using a SQL interface. Indeed, you can also query other formats such as CSV or JSON and Apache Drill will provide a SQL interface to query them.</p>
-<section id="setup-apache-drill-to-connect-to-minio" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="setup-apache-drill-to-connect-to-minio"><span class="header-section-number">1</span> Setup Apache Drill to connect to MinIO</h2>
-<ol type="1">
-<li><p>Launch Apache Drill User interface</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> drill ui</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/get-started/drill-ui-home.png" class="img-fluid figure-img"></p>
-<figcaption>Drill user interface home</figcaption>
-</figure>
-</div></li>
-</ol>
-<p>Then in the “Storage” page within the “Disabled Storage Plugins” click on the Update button of S3.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/get-started/drill-ui-storage.png" class="img-fluid figure-img"></p>
-<figcaption>Drill Update the S3 storage plugin</figcaption>
-</figure>
-</div>
-<p>Modify the beggining of the JSON so it looks like:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"file"</span><span class="fu">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"connection"</span><span class="fu">:</span> <span class="st">"s3a://magasin"</span><span class="fu">,</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"config"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"fs.s3a.connection.ssl.enabled"</span><span class="fu">:</span> <span class="st">"false"</span><span class="fu">,</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"fs.s3a.path.style.access"</span><span class="fu">:</span> <span class="st">"true"</span><span class="fu">,</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"fs.s3a.endpoint"</span><span class="fu">:</span> <span class="st">"myminio-hl.magasin-tenant.svc.cluster.local:9000"</span><span class="fu">,</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"fs.s3a.access.key"</span><span class="fu">:</span> <span class="st">"minio"</span><span class="fu">,</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"fs.s3a.secret.key"</span><span class="fu">:</span> <span class="st">"minio123"</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"workspaces"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"data"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"location"</span><span class="fu">:</span> <span class="st">"/data"</span><span class="fu">,</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"writable"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"defaultInputFormat"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"allowAccessOutsideWorkspace"</span><span class="fu">:</span> <span class="kw">false</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"root"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"location"</span><span class="fu">:</span> <span class="st">"/"</span><span class="fu">,</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"writable"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"defaultInputFormat"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"allowAccessOutsideWorkspace"</span><span class="fu">:</span> <span class="kw">false</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"formats"</span><span class="fu">:</span> <span class="fu">{</span> </span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="er">#</span> <span class="er">...</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="er">#</span> <span class="er">KEEP</span> <span class="er">THE</span> <span class="er">REST</span> <span class="er">OF</span> <span class="er">THE</span> <span class="er">FILE</span> <span class="er">SAME</span> <span class="er">AS</span> <span class="er">THE</span> <span class="er">ORIGINAL.</span> </span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="er">#</span> <span class="er">...</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Press <strong>Update</strong> button, and then the click on the <strong>Enable</strong> button.</p>
-<p>Now, click on <strong>Query</strong> at the top navigation bar corner and submit this test query:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> `s3`.`data`;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/get-started/drill-ui-query.png" class="img-fluid figure-img"></p>
-<figcaption>Drill query UI</figcaption>
-</figure>
-</div>
-<p>If every thing goes right, you should see something like:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/get-started/drill-ui-success-query.png" class="img-fluid figure-img"></p>
-<figcaption>Success query result</figcaption>
-</figure>
-</div>
-</section>
-<section id="setting-up-the-drill-superset-database-connection" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="setting-up-the-drill-superset-database-connection"><span class="header-section-number">2</span> Setting up the Drill-Superset database connection</h2>
-<ol type="1">
-<li><p>Lauch the Apache Superset user interface</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mag</span> superset ui</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>As credentials, enter <strong><code>admin</code> / <code>admin</code></strong></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/get-started/superset-login.png" class="img-fluid figure-img"></p>
-<figcaption>Superset login page:</figcaption>
-</figure>
-</div>
-<p>.</p></li>
-<li><p>Go to top right corner and go to <strong>Settings &gt; Database connections</strong></p>
-<p><img src="../images/get-started/superset-settings-database.png" class="img-fluid" alt="Settings > Database connections"> .</p></li>
-<li><p>Click on the + Database &gt; Select Apache Drill as database</p>
-<p><img src="../images/get-started/superset-connect-to-database.png" class="img-fluid" alt="Database > Select apache drill"> .</p></li>
-<li><p>Add the below SQLAlechemy URI and, then, click on <strong>Test the connection</strong>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/dfs?use_ssl=False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/get-started/superset-test-connection.png" class="img-fluid figure-img"></p>
-<figcaption>Test connection</figcaption>
-</figure>
-</div>
-<p>This is a connection that comes out of the box with Apache Drill. If this works, it means that superset has access to Apache Drill. Now, we will use the storage we created earlier, the <code>s3</code> connection.</p></li>
-<li><p>If the connection suceeds, replace the string with the following and click on Test the connection</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drill+sadrill://drill-service.magasin-drill.svc.cluster.local:8047/s3?use_ssl=False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ol>
-</section>
-<section id="creating-the-superset-dashboard" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="creating-the-superset-dashboard"><span class="header-section-number">3</span> Creating the Superset Dashboard</h2>
-<p>Ok, so we are in the final sprint to achieve our goal, but before we start, let’s do a quick introduction on some basic concepts of superset.</p>
+<p>In today’s digital age, the importance of <strong>data privacy, responsible data management, and cybersecurity cannot be overstated</strong>. With the increasing reliance on technology and the vast amount of data being generated and collected, it is crucial to be conscious and proactive in safeguarding sensitive information.</p>
+<p><strong>The underlying components of magasin allow you to apply principles of responsible data management, personal data protection and cyber-security</strong>. Magasin can be compliant with any personal data protection law, including the most stringent such as the <a href="https://gdpr.eu/">General Data protection Regulation (GDPR)</a>. However, it is up to the organization and teams that <a href="../install/">implement magasin</a> achieve this goal.</p>
+<p><strong>Establishing <a href="https://en.wikipedia.org/wiki/Privacy_by_design">privacy by design</a> and <a href="https://digitalprinciples.org/principles/establish-people-first-data-practices/">people-first data practices</a></strong> such as requesting consent, informing the user about the purpose of collecting the data, that is, what you’re going to do with the data (including what you’re going to do within magasin), who are you going to share the data with, ensure that you involve all the stakeholders, specially that people that is affected by the data collected, etc., <strong>happens even before you start using magasin</strong>, Magasin is a data analysis product rather than a data collecting tool such as <a href="https://www.primero.org/">Primero</a>, RapidPro(https://www.rapidpro.io/), or <a href="https://odk.org/">ODK</a> etc.</p>
+<blockquote class="blockquote">
+<p>Magasin is an enabler of maximum potential data usage.</p>
+</blockquote>
+<p>Magasin helps to achieve one of the principles of responsible data management, that is avoid not using the data at it maximum potential. Organizations, Governments and NGOs may be sitting in loads of data that could be used for a better good, however this data is not being used to its maximum potential. That’s irresponsible. Magasin is a platform that provides organizations the <a href="../architecture.html">enabling tools</a> to analyze and extract valuable insights from the data.</p>
+<section id="general-data-privacy-and-responsible-data-practices-in-magasin" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="general-data-privacy-and-responsible-data-practices-in-magasin"><span class="header-section-number">1</span> General data privacy and responsible data practices in magasin</h2>
+<p>The following are recommended practices data privacy, responsible data management and cybersecurity practices to be considered by organizations that implement magasin:</p>
 <ul>
-<li>Superset is a tool for creating dashboards. Dashboards are composed by <em>Charts</em>.</li>
-<li>A chart is a graph that displays a some data that comes from a dataset.</li>
-<li>A dataset is a subset of the data that can be found in a database such as a table or, in our case a parquet file.</li>
-<li>A database is just a collection of tables, or in our case, a folder of parquet files.</li>
+<li><p><strong>Include magasin use in the consent</strong>. Ensure that you include in your consent form the use of the data that you are going to perform in magasin.</p></li>
+<li><p><strong>Limit PII in magasin</strong>. Whenever possible keep only pseudonimized and anonymized data within magasin storage.</p></li>
+<li><p><strong>Strong passwords</strong> Ensure you set a strong password policy to prevent data breaches within magasin components.</p></li>
+<li><p><strong>Use always encrypted channels</strong>. For example, when consuming from an API or downloading files use <em>https</em> or <em>sftp</em> protocols. Also, you should consider enabling data encryption between the different components of magasin, especially if it is installed within a cluster that manages more services.</p></li>
+<li><p><strong>Keep data at rest encrypted</strong> If you have to store personal data in magasin, use the encryption of your data store. MinIO provides support to <a href="https://min.io/docs/minio/linux/operations/server-side-encryption.html">server side encryption</a>. Also other storages such as Azure Blobs or S3 buckets AWS. Parquet also supports <a href="https://github.com/apache/parquet-format/blob/master/Encryption.md">granular encryption</a> of its contents. In python you can use <a href="https://arrow.apache.org/docs/python/parquet.html#parquet-modular-encryption-columnar-encryption">pyarrow encryption</a>.</p></li>
+<li><p><strong>Apply the least privilege principle and seapration of duties</strong> In general, use the <a href="https://en.wikipedia.org//wiki/Principle_of_least_privilege">least privilege principle</a> and <a href="https://en.wikipedia.org/wiki/Separation_of_duties">separation of duties</a> when assigning access to your data.</p></li>
+<li><p><strong>Set access management processess</strong>. Set up processes to regularly review who has access to what data in magasin.</p></li>
+<li><p><strong>Secure backups</strong> Create backups of the datasets stored in magasin, keep them secure and encrypted.</p></li>
+<li><p><strong>Consider magasin in your data breach protocol</strong>.If you keep sensitive information in magasin. Include it as part of your data breach protocol and incident response.</p></li>
+<li><p><strong>Enable data protection and cybersecurity awareness training</strong>. It is well known that the <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9123525/">human factor</a> enables many of data breaches. Ensure the members of your organization that use magasin and manage sensitive data, receive training in personal data protection and cybersecurity awareness.</p></li>
+<li><p><strong>Audit and monitor use</strong> Enable for each of the components of magasin, log audit and monitoring tools.</p></li>
+<li><p>** Apply data minimization within magasin to the strictly necessary **. Don’t keep PII data in magasin if it is not necessary. In Dagster, whenever you materialize temporary assets and operations that hold PII, do it <a href="https://docs.dagster.io/_apidocs/execution#dagster.materialize_to_memory">to memory</a>.</p></li>
 </ul>
-<p>If you take a look at the top navigation bar of superset, you will see precisely those items: Dashboards, Charts and Datasets.</p>
-<p>Now that we have some basics, let’s create our dashboard:</p>
-<ol type="1">
-<li><p>Click on <strong>Dashboards</strong> at the top navigation bar, and then click on the ** + Dashboard** button</p>
-<p><img src="../images/get-started/superset-new-dashboard.png" class="img-fluid" alt="Dahsboards, new dashboard screenshot"> .</p></li>
-<li><p>Click on the <strong>+ Create new chart</strong></p></li>
-<li><p>In the new screen, click on <strong>add dataset</strong></p>
-<p><img src="../images/get-started/superset-create-chart.png" class="img-fluid" alt="Create chart page screenshot"> .</p></li>
-<li><p>Using the drop-downs, fill the data as in the image below:</p>
-<ul>
-<li>Database: <code>Apache Drill</code> (the one we just created earlier)</li>
-<li>Schema: <code>s3.data</code></li>
-<li>Table: <code>deployment_countries.parquet</code></li>
-</ul>
-<p><img src="../images/get-started/superset-add-dataset.png" class="img-fluid" alt="create the dataset screenshot"> .</p></li>
-<li><p>Click on <strong>Create dataset and create chart</strong> button</p></li>
-<li><p>In the list of chart types, select the <strong>Bar chart</strong>, and then <strong>Create new chart</strong></p>
-<p><img src="../images/get-started/superset-create-chart-select-chart.png" class="img-fluid" alt="Select the bar cahrt"> .</p></li>
-<li><p>Fill the data as in the image below:</p>
-<ul>
-<li>X-Axis: deploymentCountries: The main column in the X axis</li>
-<li>X-Axis sort by: COUNT_DISTINCT(name) - We’re goint to sort them by counting the DPGs deployed for each country</li>
-<li>Uncheck the X-Axis sort ascending – So we see first on the left the country with more DPGs deployed.</li>
-<li>Row limit: 10 – this will limit the number fo countries displayed to 10 (top ten)</li>
-</ul></li>
-<li><p>Click on <strong>Update chart</strong> button.</p></li>
-<li><p>Click on <strong>Save</strong> at the top right corner</p>
-<p><img src="../images/get-started/superset-chart-edition.png" class="img-fluid" alt="Filling the chart data"> .</p></li>
-<li><p>In the dialog box, give it a name and click on <strong>Save &amp; go to dashboard</strong></p>
-<p><img src="../images/get-started/superset-save-chart-dialog-box.png" class="img-fluid" alt="Save chart"> .</p></li>
-</ol>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 8%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Congratulations!</strong> You have added your first chart to your dataset.</td>
-</tr>
-</tbody>
-</table>
-<p>As an exercise you can complete the dashboard and add some more charts so it looks like this image:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/get-started/superset-final-dashboard.png" class="img-fluid figure-img"></p>
-<figcaption>Superset Dashboard</figcaption>
-</figure>
-</div>
-<p>Alternatively, you can import it:</p>
-<ol type="1">
-<li><p>Download the file <a href="https://github.com/unicef/magasin/tree/main/examples/dpga-superset-dashboard/dpga-superset-dashboard.zip">dpga-superset-dashboard.zip</a>.</p></li>
-<li><p>In Dashboard, import the dashboard:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/get-started/superset-import-dashboard.png" class="img-fluid figure-img"></p>
-<figcaption>steps to import the dashboard</figcaption>
-</figure>
-</div></li>
-</ol>
 </section>
-<section id="awesome" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="awesome"><span class="header-section-number">4</span> Awesome!</h2>
-<p>Excellent, you have completed this getting started, in the course of it, you were able to explore a dataset, create a pipeline and present your insights in a nice dashboard.</p>
+<section id="applying-data-minimization-with-magasin" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="applying-data-minimization-with-magasin"><span class="header-section-number">2</span> Applying Data Minimization with magasin</h2>
+<p>In the data collection tools you may have collected personal data, but the first question that you have to ask yourself is that if for performing the analysis within magasin you need to use personal identifiable data (PII) or not? In many cases the answer is no, and there are easy to implement tactics to minimize the personal data you hold within magasin.</p>
+<p>For example, imagine you are analyzing the vaccination rate for the children in a certain area. In the original collected data you have personal identifiable data such as name of the child, address, city/village, parents names, contact numbers, weight, age, gender in addition to vaccines that has received</p>
+<p>If you plan to just evaluate indicators such as vaccines by gender or age, you do not need to ingest in magasin PII such as name, address or parents names.</p>
+<p>The best approach when ingesting the data into magasin, for example through an API, is to do it already anonymized. That is anonymized. if the API allows to get the data without the PII is the ideal situation as that data never leaves the original system.</p>
+<p>Alternatively, you can ingest all the data, and perform the anonymization, that is removing all personal data within magasin. Although you download all the data, what you actually store within magasin is an anonymized version of the same. The problem with this option is that you have to be careful in not keeping any logs with personal information specially in dagster.</p>
+<p>Another type of analysis that you may want perform is to identify the children that are at more risk. Let’s assume that there is an outbreak of cholera in certain region. So, you want to know which children need to be vaccinated. Pseudonimization is a process of replacing personal identifiers with artificial ones, such as a hash or a code. This way, the data can be linked to a specific individual, but only with access to the original identifier or the key that was used to generate the artificial one.</p>
+<p>For example, in the system in which you performed the collection of the data, you may have a record ID. You can download the record Id, the information related to your analysis, such as the village and the vaccines of the child.</p>
 </section>
-<section id="whats-next" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">5</span> What’s next</h2>
-<p>Magasin is composed by several mature open source components, mastering and setting them up to fulfill your organization requirements may require some time and practice.</p>
+<section id="additional-references" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="additional-references"><span class="header-section-number">3</span> Additional references:</h2>
 <ul>
-<li><p><a href="../end-user-guides.qmd">End user guides</a>. If you want to learn more about from an end user perspective on how to use some of the components of magasin.</p></li>
-<li><p><a href="../deployment.qmd">Custom deployment and setup</a>. This documents has useful references if you need to learn more on how to deploy magasin within your organization.</p></li>
+<li><a href="https://digitalprinciples.org/principles/establish-people-first-data-practices/">Establish people-first data practices – Principles for Digital Development (digitalprinciples.org)</a></li>
+<li><a href="https://www.rd4c.org/">Responsible data for children</a></li>
 </ul>
 
 
@@ -1091,13 +920,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../get-started/automate-data-ingestion.html" class="pagination-link" aria-label="Step 2: Automate data ingestion">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Step 2: Automate data ingestion</span>
+      <a href="../implement/organizational-processes.html" class="pagination-link" aria-label="Organizational processes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Organizational processes</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../install/index.html" class="pagination-link" aria-label="Installation">
-        <span class="nav-page-text">Installation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../implement/deployment.html" class="pagination-link" aria-label="Deploying to production">
+        <span class="nav-page-text">Deploying to production</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1109,7 +938,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><a href="https://unicef.github.io/magasin">magasin</a> © 2024 by <a href="https://www.unicef.org">UNICEF</a> | Docs are licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1">CC BY-SA 4.0</a> | <a href="../privacy.html">Privacy policy</a> <a href="https://www.unicef.org"><img src="../images/unicef-logo.png" class="img-fluid" alt="UNICEF, for every child"></a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/get-started/create-a-dashboard.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/implement/data-privacy.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -160,6 +160,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Architecture</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sdgs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Implementing SDGs through magasin</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -265,18 +271,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">End user guides</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./user-guides/data-privacy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Privacy</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Deployment</span></a>
+ <span class="menu-text">Implement</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -284,13 +284,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment.html" class="sidebar-item-text sidebar-link">
+  <a href="./implement/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./implement/magasin-team.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setting a magasin team</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./implement/organizational-processes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Organizational processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./implement/data-privacy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Privacy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./implement/deployment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying to production</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./security.html" class="sidebar-item-text sidebar-link">
+  <a href="./implement/security.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Security</span></a>
   </div>
 </li>
@@ -365,9 +389,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learn-more-about-magasin" id="toc-learn-more-about-magasin" class="nav-link active" data-scroll-target="#learn-more-about-magasin"><span class="header-section-number">1</span> Learn more about magasin</a></li>
-  <li><a href="#start-using-magasin" id="toc-start-using-magasin" class="nav-link" data-scroll-target="#start-using-magasin"><span class="header-section-number">2</span> Start using magasin</a></li>
-  <li><a href="#develop-magasin" id="toc-develop-magasin" class="nav-link" data-scroll-target="#develop-magasin"><span class="header-section-number">3</span> Develop magasin</a></li>
+  <li><a href="#learn-more-about-magasin" id="toc-learn-more-about-magasin" class="nav-link active" data-scroll-target="#learn-more-about-magasin">Learn more about magasin</a></li>
+  <li><a href="#start-using-magasin" id="toc-start-using-magasin" class="nav-link" data-scroll-target="#start-using-magasin">Start using magasin</a></li>
+  <li><a href="#implement-magasin-in-an-organization" id="toc-implement-magasin-in-an-organization" class="nav-link" data-scroll-target="#implement-magasin-in-an-organization">Implement magasin in an organization</a></li>
+  <li><a href="#develop-magasin" id="toc-develop-magasin" class="nav-link" data-scroll-target="#develop-magasin">Develop magasin</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/docs-home.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -394,25 +419,34 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Magasin is a cloud native open-source end-to-end data platform. Magasin enables organizations to perform automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale.</p>
-<section id="learn-more-about-magasin" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="learn-more-about-magasin"><span class="header-section-number">1</span> Learn more about magasin</h2>
+<section id="learn-more-about-magasin" class="level2">
+<h2 class="anchored" data-anchor-id="learn-more-about-magasin">Learn more about magasin</h2>
 <ul>
 <li><strong><a href="./why-magasin.html">Why magasin?</a></strong></li>
 <li><strong><a href="./architecture.html">Architecture</a></strong></li>
-<li><strong><a href="./sdgs.html">How does magasin support the implementation of the SDGs?</a></strong></li>
+<li><strong><a href="./sdgs.html">Implementing SDGs through magasin</a></strong></li>
 </ul>
 </section>
-<section id="start-using-magasin" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="start-using-magasin"><span class="header-section-number">2</span> Start using magasin</h2>
+<section id="start-using-magasin" class="level2">
+<h2 class="anchored" data-anchor-id="start-using-magasin">Start using magasin</h2>
 <ul>
 <li><strong><a href="get-started/">Get Started</a></strong>. Quick setup</li>
 <li><strong><a href="install/">Installation</a></strong>. Detailed explanation of the base installation.</li>
-<li><strong><a href="end-user-guides.qmd">End user guides</a></strong>. References on how to use the components</li>
-<li><strong><a href="./deployment.html">Deployment</a></strong>. Learn more about the configuration of the different components.</li>
+<li><strong><a href="./user-guides/index.html">End user guides</a></strong>. References on how to use the components</li>
 </ul>
 </section>
-<section id="develop-magasin" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="develop-magasin"><span class="header-section-number">3</span> Develop magasin</h2>
+<section id="implement-magasin-in-an-organization" class="level2">
+<h2 class="anchored" data-anchor-id="implement-magasin-in-an-organization">Implement magasin in an organization</h2>
+<ul>
+<li><strong><a href="./implement/index.html">Overview</a></strong>.</li>
+<li><strong><a href="./implement/magasin-team.html">Setting a magasin team</a></strong>. Typical roles, skills and capabilities that an organization should have to get the maximum from magasin.</li>
+<li><strong><a href="./implement/organizational-processes.html">Organizational processes</a></strong>. What processes will help you to achieve informed decision making with magasin.</li>
+<li><strong><a href="./implement/deployment.html">Deployment into production</a></strong>. Learn more about the configuration of the different components.</li>
+<li><strong><a href="./implement/security.html">Security</a></strong>. Hardening the components of magasin for a production environment.</li>
+</ul>
+</section>
+<section id="develop-magasin" class="level2">
+<h2 class="anchored" data-anchor-id="develop-magasin">Develop magasin</h2>
 <ul>
 <li><strong><a href="contributing/">Contributing</a></strong>. For developers and contributors.</li>
 </ul>
