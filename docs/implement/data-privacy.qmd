@@ -3,6 +3,8 @@ title: "Data Privacy"
 format: html
 description: How to use magasin for analyzing being data responsible and following data privacy principles.
 meta-description: How to use magasin for analyzing folloing responsible data management and data privacy principles.
+aliases: 
+  - user-guides/data-privacy.qmd
 ---
 
 In today's digital age, the importance of **data privacy, responsible data management, and cybersecurity cannot be overstated**. With the increasing reliance on technology and the vast amount of data being generated and collected, it is crucial to be conscious and proactive in safeguarding sensitive information.

@@ -80,7 +80,6 @@ website:
       - section: "End user guides"
         contents:
           - file: user-guides/index.qmd 
-          - file: user-guides/data-privacy.qmd
    
 
       # TODO
@@ -96,9 +95,11 @@ website:
       
       - section: "Implement"      
         contents:
-          - file: implement/index.qmd
+          - text: "Overview"
+            file: implement/index.qmd
           - file: implement/magasin-team.qmd
           - file: implement/organizational-processes.qmd
+          - file: implement/data-privacy.qmd
           - file: implement/development.qmd
           - text: "Deploying to production"
             file: implement/deployment.qmd 
