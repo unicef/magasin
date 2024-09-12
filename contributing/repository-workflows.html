@@ -548,8 +548,11 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><p><strong>Atomicity</strong>: Commits should be atomic, meaning they should represent a single logical change. It’s best to keep each commit focused on a specific task within the PR. This allows for easier code review, debugging, and reverting if necessary.</p></li>
 <li><p><strong>Clarity and descriptive messages</strong>: Commit messages should be clear, descriptive, and concise. They should summarize the purpose and content of the commit. A good commit message helps others understand the changes at a glance and provides context for future reference.</p>
-<p>Example. Too generic not descriptive message ``` ❌ Avoid Updates Readme</p>
-<p>✅ Better Add CONTRIBUTING link to Readme ```</p></li>
+<p>Example. Too generic not descriptive message</p>
+<pre><code>❌ Avoid
+ Updates Readme   </code></pre>
+<pre><code>✅ Better
+ Add CONTRIBUTING link to Readme</code></pre></li>
 <li><p><strong>Logical progression:</strong> Commits should follow a logical progression, building upon previous commits. Each commit should leave the codebase in a stable and working state, ensuring that others can pull changes without introducing errors.</p></li>
 </ol>
 <section id="approvals" class="level3" data-number="1.2.1">
