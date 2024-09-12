@@ -58,6 +58,9 @@ website:
           file: docs-home.qmd
         - file: why-magasin.qmd
         - file: architecture.qmd
+        - file: sdgs.qmd
+        
+
       - section: "Get started"
         contents:
           - file: get-started/index.qmd 
@@ -77,7 +80,6 @@ website:
       - section: "End user guides"
         contents:
           - file: user-guides/index.qmd 
-          - file: user-guides/data-privacy.qmd
    
 
       # TODO
@@ -91,12 +93,17 @@ website:
       #      - file: admin-guides/drill.qmd
       #      - file: admin-guides/superset.qmd  
       
-      - section: "Deployment"      
+      - section: "Implement"      
         contents:
+          - text: "Overview"
+            file: implement/index.qmd
+          - file: implement/magasin-team.qmd
+          - file: implement/organizational-processes.qmd
+          - file: implement/data-privacy.qmd
           - text: "Deploying to production"
-            file: deployment.qmd 
+            file: implement/deployment.qmd 
           - text: "Security"
-            file: security.qmd
+            file: implement/security.qmd
 
       - section: "Contributing"
         contents:

@@ -1,6 +1,8 @@
 ---
 title: "Magasin documentation"
-format: html
+format:
+  html:
+     number-sections: false
 ---
 
 Magasin is a cloud native open-source end-to-end data platform.
@@ -10,13 +12,20 @@ Magasin enables organizations to perform automatic data ingestion, storage, anal
 ## Learn more about magasin
 * **[Why magasin?](why-magasin.qmd)**
 * **[Architecture](architecture.qmd)**
-* **[How does magasin support the implementation of the SDGs?](sdgs.qmd)**
+* **[Implementing SDGs through magasin](sdgs.qmd)**
 
 ## Start using magasin
 * **[Get Started](get-started/)**. Quick setup
 * **[Installation](install/)**. Detailed explanation of the base installation.
-* **[End user guides](end-user-guides.qmd)**. References on how to use the components
-* **[Deployment](deployment.qmd)**. Learn more about the configuration of the different components.
+* **[End user guides](./user-guides/index.qmd)**. References on how to use the components
+
+## Implement magasin in an organization
+
+* **[Overview](implement/index.qmd)**. 
+* **[Setting a magasin team](./implement/magasin-team.qmd)**. Typical roles, skills and capabilities that an organization should have to get the maximum from magasin.
+* **[Organizational processes](./implement/organizational-processes.qmd)**. What processes will help you to achieve informed decision making with magasin.
+* **[Deployment into production](./implement/deployment.qmd)**. Learn more about the configuration of the different components.
+* **[Security](./implement/security.qmd)**. Hardening the components of magasin for a production environment.
 
 ## Develop magasin
 

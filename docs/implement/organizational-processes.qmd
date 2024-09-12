@@ -1,0 +1,41 @@
+---
+title: Organizational processes
+description: Processes to be consider to get the maximum of magasin.
+metadata-description: Processes an organization should think about to get the maximum of magasin.
+---
+
+
+Here are some considerations from the processes dimesion to ensure your organization successfully deploys magasin. While **not every process needs to be fully implemented from the start**, they will become more effective as your organization becomes more adept at utilizing data. 
+
+1. **Data Quality Management**
+   The effectiveness of data-informed decision-making largely depends on the quality of the data used. This fundamental principle implies that without high-quality data, any investment in a data platform is futile. Often encapsulated by the phrase "garbage in, garbage out," it means that poor input data results in flawed insights and decisions.
+
+   As your organization manages more datasets, ensuring data quality is crucial throughout the entire data lifecycle, beginning prior to ingestion processes, and emphasizing aspects such as accuracy, reliability, consistency, completeness, implement data cleansing to remove duplicates, correct errors, and update outdated information…
+
+     Resources: 
+
+     * [UNICEF Data quality framework](https://data.unicef.org/resources/data-quality-framework/)
+
+
+2. **Data governance**
+     Implementing a solid data governance process involves determining who can access, share, and delete data. When you define this you have to lever to maximize data utility and to be concious of personal data privacy as well as to minimize the potential data breaches.  Data governance is especially critical when handing sensitive/confidential and personal data. Also, you may need to define a data governance to comply with local and international regulations (f.i. GDPR).
+     
+     Resources: 
+
+     * [Data Privacy in magasin](./data-privacy.qmd)
+
+3. **Data documentation and metadata management** 
+     Maintain comprehensive documentation and metadata management to track data lineage and support data stewardship.
+
+     Resources:
+
+     * [Dagster metadata](https://docs.dagster.io/concepts/metadata-tags)
+ 
+4. **Implement master data management**
+     Centralize and standardize key data entities to ensure consistency and accuracy across the organizational data. Elements such as office identifiers, employees’ identifiers, product names, supplier codes, department/division names and unique identifiers, country names and identifiers, etc.
+
+5. **Data lifecycle management** 
+     Establishing rules and processes for not only in terms of capturing data, but also archival and deletion. 
+
+
+

@@ -106,4 +106,4 @@ Dask cluster Dask Gateway allows easy utilization of a Dask cluster from noteboo
 
 * **[Why magasin?](./why-magasin.qmd)**. Why magasin was created and what is the gap it is fulfilling.
 
-* **[How magasin supports the implementation of the SDGs](./sdgs.qmd)** Learn about the magasin magasin plays in implementing the Sustainable Development Goals.
+* **[Implementing SDGs through magasin](./sdgs.qmd)** Learn about the magasin magasin plays in implementing the Sustainable Development Goals (SDGs).
