@@ -6,9 +6,9 @@ Learn more about [why _magasin_](https://unicef.github.io/magasin/why-magasin.ht
 
 ## Get started
 
-### **[🚀 Go to get started](https://unicef.github.io/get-started/)**
+### **[🚀 Go to get started](https://unicef.github.io/magasin/get-started/)**
 
-In the [get started](https://unicef.github.io/get-started/) you will install magasin within your local machine or in a kubernetes cluster, then you will perform an end-to-end data analysis that includes: 
+In the [get started](https://unicef.github.io/magasin/get-started/) you will install magasin within your local machine or in a kubernetes cluster, then you will perform an end-to-end data analysis that includes: 
 
   * exploratory analysis of a data source,
   * create a pipeline to automate data ingestion, and
