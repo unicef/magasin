@@ -138,7 +138,7 @@ Whereas finding someone in the market that is proficient already in the three ro
 
 ## Online trainings
 
-There are thousands of resources online both free and paid below you have a non extensive list that cover many of the core capabilities:
+There are thousands of resources online both free and paid below you have a non extensive list that covers some of the core capabilities:
 
 **System administrators**:
      * [Linux Foundation: Introduction to Kubernetes](https://training.linuxfoundation.org/training/introduction-to-kubernetes/) - free
