@@ -397,6 +397,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data-analyst-scientist" id="toc-data-analyst-scientist" class="nav-link" data-scroll-target="#data-analyst-scientist"><span class="header-section-number">1.2</span> Data Analyst / Scientist</a></li>
   <li><a href="#data-engineer" id="toc-data-engineer" class="nav-link" data-scroll-target="#data-engineer"><span class="header-section-number">1.3</span> Data Engineer</a></li>
   </ul></li>
+  <li><a href="#frequently-asked-questions" id="toc-frequently-asked-questions" class="nav-link" data-scroll-target="#frequently-asked-questions"><span class="header-section-number">2</span> Frequently asked questions?</a>
+  <ul class="collapse">
+  <li><a href="#do-i-need-all-the-capabilities-since-the-get-go" id="toc-do-i-need-all-the-capabilities-since-the-get-go" class="nav-link" data-scroll-target="#do-i-need-all-the-capabilities-since-the-get-go"><span class="header-section-number">2.1</span> Do I need all the capabilities since the get go?</a></li>
+  </ul></li>
+  <li><a href="#do-i-actually-need-to-hire-new-people-to-manage-magasin" id="toc-do-i-actually-need-to-hire-new-people-to-manage-magasin" class="nav-link" data-scroll-target="#do-i-actually-need-to-hire-new-people-to-manage-magasin"><span class="header-section-number">3</span> Do I actually need to hire new people to manage magasin?</a></li>
+  <li><a href="#introductory-online-trainings" id="toc-introductory-online-trainings" class="nav-link" data-scroll-target="#introductory-online-trainings"><span class="header-section-number">4</span> Introductory Online Trainings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/unicef/magasin/edit/main/docs/implement/magasin-team.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/unicef/magasin/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -440,42 +446,42 @@ ul.task-list li input[type="checkbox"] {
 <li>Knowledge of Kubernetes architecture, including nodes, pods, deployments, and services.</li>
 <li>Experience with Kubernetes networking, storage, and security configurations.</li>
 </ul></li>
-<li><strong>Helm</strong> (Core)
+<li><strong>Helm Usage</strong> (Core)
 <ul>
 <li>Experience using Helm for managing Kubernetes deployments.</li>
 <li>Ability to customize the values of Helm chart.</li>
 <li>Understanding of Helm repositories and version control.</li>
 </ul></li>
-<li><strong>Cloud Platforms</strong> (Strongly recommended)
+<li><strong>Containerization</strong> (Core)
+<ul>
+<li>Understanding of containerization technologies, particularly Docker.</li>
+<li>Experience in building, managing, and deploying container images.</li>
+</ul></li>
+<li><strong>Cloud Platforms</strong> (Recommended)
 <ul>
 <li>When the deployment is on the cloud, experience with the cloud provider(s) that the organization may be using such as AWS, Azure, or Google Cloud Platform.</li>
 <li>Knowledge of managed Kubernetes services such as EKS, AKS, or GKE.</li>
 </ul></li>
-<li><strong>Containerization</strong> (Strongly recommended)
-<ul>
-<li>Understanding of containerization technologies, particularly Docker.</li>
-<li>If specific needs need to be implemented, experience in building, managing, and deploying container images.</li>
-</ul></li>
-<li><strong>Scripting and Automation</strong> (Strongly recommended)
+<li><strong>Scripting and Automation</strong> (Recommended)
 <ul>
 <li>Understanding scripting languages such as Bash or Python.</li>
 </ul></li>
-<li><strong>Monitoring and Logging</strong> (Strongly recommended)
+<li><strong>Monitoring and Logging</strong> (Recommended)
 <ul>
 <li>When workloads increase and availability is a must, understanding of monitoring tools like Prometheus, Grafana, and ELK stack.</li>
 <li>Ability to set up and manage logging and monitoring for Kubernetes clusters.</li>
 </ul></li>
-<li><strong>Kubernetes Security</strong> (Strongly recommended)
+<li><strong>Kubernetes Security</strong> (Recommended)
 <ul>
 <li>If sensitive data is managed by magasin and exposed to Internet and or different vendors, knowledge of Kubernetes security best practices is recommended.</li>
 <li>Experience with role-based access control (RBAC) and network policies can help to secure the system</li>
 </ul></li>
-<li><strong>DevOps Practices</strong> (Strongly recommended)
+<li><strong>DevOps Practices</strong> (Recommended)
 <ul>
 <li>Understanding of DevOps principles and practices.</li>
 <li>Experience with CI/CD pipelines and integrating Kubernetes with CI/CD tools.</li>
 </ul></li>
-<li>*<strong>What magasin tools does he use?</strong>
+<li><strong>What magasin tools does he use?</strong>
 <ul>
 <li>Apache Superset (Configuration/system operations level)</li>
 <li>Dagster (Configuration/system operations level)</li>
@@ -532,7 +538,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="data-engineer" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="data-engineer"><span class="header-section-number">1.3</span> Data Engineer</h3>
-<p>His role is to ingest data from different data sources in a recurrent and automated way.</p>
+<p>With strong background in software engineering, his role is to develop data pipelines to ingest data from different data sources in a recurrent and automated way that can be extended and maintained in the long run.</p>
 <ul>
 <li><strong>Data Engineering and ETL (Extract, Transform and Load)</strong> (Core):
 <ul>
@@ -574,11 +580,45 @@ ul.task-list li input[type="checkbox"] {
 <li>Dagster (User level)</li>
 <li>MinIO (User level)</li>
 <li>Drill (User level)</li>
+<li>Mag-Cli (User level)</li>
 </ul></li>
+</ul>
+</section>
+</section>
+<section id="frequently-asked-questions" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="frequently-asked-questions"><span class="header-section-number">2</span> Frequently asked questions?</h2>
+<section id="do-i-need-all-the-capabilities-since-the-get-go" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="do-i-need-all-the-capabilities-since-the-get-go"><span class="header-section-number">2.1</span> Do I need all the capabilities since the get go?</h3>
+<p>No, your team can learn with time. If you don’t have all the capabilities it may take your organization more time to get the full potential of the analysis of your data as you’ll be learning at the same time.</p>
+</section>
+</section>
+<section id="do-i-actually-need-to-hire-new-people-to-manage-magasin" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="do-i-actually-need-to-hire-new-people-to-manage-magasin"><span class="header-section-number">3</span> Do I actually need to hire new people to manage magasin?</h2>
+<p>Not really, you can leverage your existing personnel and train them in the areas where there is a gap in their skill set.</p>
+<p>Whereas finding someone in the market that is proficient already in the three roles may be difficult, your organization still can enable one resource to play more than one magasin-team role. For example,</p>
+<ul>
+<li><p>IT System administrators who already are managing the enterprise applications are the natural adopters of magasin system administrator role. Software engineers can leverage their software development skills to play the role of data engineers.</p></li>
+<li><p>Data engineers can extend their skillsets to maintain the instance of kubernetes.</p></li>
+<li><p>A data scientist /analyst can extend his functions to also play the role of a data engineer by strengthening the software engineer best practices. Indeed it is common to have data scientist playing both roles in small teams. In magasin it’s been separated just because a data engineer needs stronger background in software engineering.</p></li>
+</ul>
+</section>
+<section id="introductory-online-trainings" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="introductory-online-trainings"><span class="header-section-number">4</span> Introductory Online Trainings</h2>
+<p>There are thousands of resources online both free and paid below you have a non extensive list that covers some of the core capabilities:</p>
+<p><strong>System administrators</strong>:</p>
+<ul>
+<li><a href="https://training.linuxfoundation.org/training/introduction-to-kubernetes/">Linux Foundation: Introduction to Kubernetes</a> - free</li>
+<li><a href="https://training.linuxfoundation.org/full-catalog/?_sft_technology=kubernetes">Linux Foundation: Kubernetes Courses catalog</a></li>
+<li><a href="https://training.linuxfoundation.org/full-catalog/?_sft_technology=helm">Linux Foundation: Helm Courses catalog</a></li>
+</ul>
+<p><strong>Data Engineering &amp;&amp; Data scientist</strong></p>
+<ul>
+<li><a href="[https://www.kaggle.com/learn">Kaggle Learn</a> - basic intro to data science and data engineering topics - free</li>
+<li><a href="https://www.freecodecamp.org/learn/data-analysis-with-python/">FreeCodeCamp - Data Analysis with Python</a> - free</li>
+<li><a href="https://courses.dagster.io/">Dagster University</a> - Learn dagster - free</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
