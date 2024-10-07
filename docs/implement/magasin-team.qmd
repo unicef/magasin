@@ -86,7 +86,7 @@ Needs to understand the business itself and collaborate very closely with the bu
      - Use of Dagster (User level)
 
 ### Data Engineer
-His role is to ingest data from different data sources in a recurrent and automated way.
+With strong background in software engineering, his role is to develop data pipelines to ingest data from different data sources in a recurrent and automated way that can be extended and maintained in the long run.
 
 * **Data Engineering and ETL (Extract, Transform and Load)** (Core):
      - Proficiency in designing, building, and maintaining data pipelines.
@@ -127,8 +127,28 @@ No, your team can learn with time.  If you don't have all the capabilities it ma
 
 Not really, you can leverage your existing personnel and train them in the areas where there is a gap in their skill set.
 
-Whereas finding someone in the market that is proficient already in the three roles may be difficult, your organization still can enable one resource to play more than one magasin-team role. For example, your system administrators who already are managing the enterprise applications are the natural adopters of magasin system administrator role. Software engineers can leverage their software development skills to play the role of data engineers. A data scientist /analyst can extend his functions to also play the role of a data engineer. Data engineers can extend their skillsets to maintain the instance of kubernetes.
+Whereas finding someone in the market that is proficient already in the three roles may be difficult, your organization still can enable one resource to play more than one magasin-team role. For example, 
 
+* IT System administrators who already are managing the enterprise applications are the natural adopters of magasin system administrator role. Software engineers can leverage their software development skills to play the role of data engineers. 
+
+*  Data engineers can extend their skillsets to maintain the instance of kubernetes.
+
+* A data scientist /analyst can extend his functions to also play the role of a data engineer by strengthening the software engineer best practices. Indeed it is common to have data scientist playing both roles in small teams. In magasin it's been separated just because a data engineer needs stronger background in software engineering.
+
+
+## Online trainings
+
+There are thousands of resources online both free and paid below you have a non extensive list that cover many of the core capabilities:
+
+**System administrators**:
+     * [Linux Foundation: Introduction to Kubernetes](https://training.linuxfoundation.org/training/introduction-to-kubernetes/) - free
+     * [Linux Foundation: Kubernetes Courses catalog](https://training.linuxfoundation.org/full-catalog/?_sft_technology=kubernetes)
+     * [Linux Foundation: Helm Courses catalog](https://training.linuxfoundation.org/full-catalog/?_sft_technology=helm)
+
+**Data Engineering && Data scientist**
+     * [Kaggle Learn]([https://www.kaggle.com/learn) - basic intro to data science and data engineering topics - free 
+     * [FreeCodeCamp - Data Analysis with Python](https://www.freecodecamp.org/learn/data-analysis-with-python/) - free
+     * [Dagster University](https://courses.dagster.io/) - Learn dagster - free
 
 
 
