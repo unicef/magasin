@@ -15,35 +15,36 @@ Establishes and manages a magasin instance. While magasin can be operated on a l
      - Experience setting up, managing, and maintaining Kubernetes clusters.
      - Knowledge of Kubernetes architecture, including nodes, pods, deployments, and services.
      - Experience with Kubernetes networking, storage, and security configurations.
-* **Helm** (Core)
+
+* **Helm Usage** (Core)
      - Experience using Helm for managing Kubernetes deployments.
      - Ability to customize the values of Helm chart.
      - Understanding of Helm repositories and version control.
 
-* **Cloud Platforms** (Strongly recommended)
+* **Containerization** (Core)
+     - Understanding of containerization technologies, particularly Docker.
+     - Experience in building, managing, and deploying container images.
+
+* **Cloud Platforms** (Recommended)
      - When the deployment is on the cloud, experience with the cloud provider(s) that the organization may be using such as AWS, Azure, or Google Cloud Platform.
      - Knowledge of managed Kubernetes services such as EKS, AKS, or GKE.
 
-* **Containerization** (Strongly recommended)
-     - Understanding of containerization technologies, particularly Docker.
-     - If specific needs need to be implemented, experience in building, managing, and deploying container images.
-
-* **Scripting and Automation** (Strongly recommended)
+* **Scripting and Automation** (Recommended)
      - Understanding scripting languages such as Bash or Python.
 
-* **Monitoring and Logging** (Strongly recommended)
+* **Monitoring and Logging** (Recommended)
      - When workloads increase and availability is a must, understanding of monitoring tools like Prometheus, Grafana, and ELK stack.
      - Ability to set up and manage logging and monitoring for Kubernetes clusters.
 
-* **Kubernetes Security** (Strongly recommended)
+* **Kubernetes Security** (Recommended)
      - If sensitive data is managed by magasin and exposed to Internet and or different vendors, knowledge of Kubernetes security best practices is recommended.
      - Experience with role-based access control (RBAC) and network policies can help to secure the system
 
-* **DevOps Practices** (Strongly recommended)
+* **DevOps Practices** (Recommended)
      - Understanding of DevOps principles and practices.
      - Experience with CI/CD pipelines and integrating Kubernetes with CI/CD tools.
 
-* ***What magasin tools does he use?**
+* **What magasin tools does he use?**
      - Apache Superset (Configuration/system operations level)
      - Dagster (Configuration/system operations level)
      - Apache Drill (Configuration/system operations level)
@@ -112,4 +113,22 @@ His role is to ingest data from different data sources in a recurrent and automa
      - Dagster (User level)
      - MinIO (User level)
      - Drill (User level)
+     - Mag-Cli (User level)
+
+
+## Frequently asked questions? 
+
+### Do I need all the capabilities since the get go? 
+
+No, your team can learn with time.  If you don't have all the capabilities it may take your organization more time to get the full potential of the analysis of your data as you'll be learning at the same time. 
+ 
+
+## Do I actually need to hire new people to manage magasin?
+
+Not really, you can leverage your existing personnel and train them in the areas where there is a gap in their skill set.
+
+Whereas finding someone in the market that is proficient already in the three roles may be difficult, your organization still can enable one resource to play more than one magasin-team role. For example, your system administrators who already are managing the enterprise applications are the natural adopters of magasin system administrator role. Software engineers can leverage their software development skills to play the role of data engineers. A data scientist /analyst can extend his functions to also play the role of a data engineer. Data engineers can extend their skillsets to maintain the instance of kubernetes.
+
+
+
 
