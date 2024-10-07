@@ -136,19 +136,21 @@ Whereas finding someone in the market that is proficient already in the three ro
 * A data scientist /analyst can extend his functions to also play the role of a data engineer by strengthening the software engineer best practices. Indeed it is common to have data scientist playing both roles in small teams. In magasin it's been separated just because a data engineer needs stronger background in software engineering.
 
 
-## Online trainings
+## Introductory Online Trainings
 
 There are thousands of resources online both free and paid below you have a non extensive list that covers some of the core capabilities:
 
 **System administrators**:
-     * [Linux Foundation: Introduction to Kubernetes](https://training.linuxfoundation.org/training/introduction-to-kubernetes/) - free
-     * [Linux Foundation: Kubernetes Courses catalog](https://training.linuxfoundation.org/full-catalog/?_sft_technology=kubernetes)
-     * [Linux Foundation: Helm Courses catalog](https://training.linuxfoundation.org/full-catalog/?_sft_technology=helm)
+
+* [Linux Foundation: Introduction to Kubernetes](https://training.linuxfoundation.org/training/introduction-to-kubernetes/) - free
+* [Linux Foundation: Kubernetes Courses catalog](https://training.linuxfoundation.org/full-catalog/?_sft_technology=kubernetes)
+* [Linux Foundation: Helm Courses catalog](https://training.linuxfoundation.org/full-catalog/?_sft_technology=helm)
 
 **Data Engineering && Data scientist**
-     * [Kaggle Learn]([https://www.kaggle.com/learn) - basic intro to data science and data engineering topics - free 
-     * [FreeCodeCamp - Data Analysis with Python](https://www.freecodecamp.org/learn/data-analysis-with-python/) - free
-     * [Dagster University](https://courses.dagster.io/) - Learn dagster - free
+
+* [Kaggle Learn]([https://www.kaggle.com/learn) - basic intro to data science and data engineering topics - free 
+* [FreeCodeCamp - Data Analysis with Python](https://www.freecodecamp.org/learn/data-analysis-with-python/) - free
+* [Dagster University](https://courses.dagster.io/) - Learn dagster - free
 
 
 
