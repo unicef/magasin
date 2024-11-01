@@ -85,7 +85,7 @@ You have two options to run the installer
 1) Download the script locally
 
     ```sh 
-    curl https://magasin.unicef.io/install-magasin.sh 
+    curl -O https://magasin.unicef.io/install-magasin.sh 
     chmod +x ./install-magasin.sh 
     ./install-magasin.sh -h
     ```
