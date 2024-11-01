@@ -142,6 +142,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="https://github.com/unicef/magasin/discussions/categories/announcements" target="_blank"> 
+<span class="menu-text">Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/unicef/magasin/discussions" target="_blank"> 
+<span class="menu-text">Support</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -426,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#understanding-the-installer-script" id="toc-understanding-the-installer-script" class="nav-link active" data-scroll-target="#understanding-the-installer-script"><span class="header-section-number">1</span> Understanding the installer script</a></li>
-  <li><a href="#magasin-realms" id="toc-magasin-realms" class="nav-link" data-scroll-target="#magasin-realms"><span class="header-section-number">2</span> Magasin realms</a></li>
+  <li><a href="#magasin-realms-concept" id="toc-magasin-realms-concept" class="nav-link" data-scroll-target="#magasin-realms-concept"><span class="header-section-number">2</span> Magasin realms concept</a></li>
   <li><a href="#advanced-use-of-the-magasin-installer" id="toc-advanced-use-of-the-magasin-installer" class="nav-link" data-scroll-target="#advanced-use-of-the-magasin-installer"><span class="header-section-number">3</span> Advanced use of the magasin-installer</a></li>
   <li><a href="#customizing-the-setup-of-each-component" id="toc-customizing-the-setup-of-each-component" class="nav-link" data-scroll-target="#customizing-the-setup-of-each-component"><span class="header-section-number">4</span> Customizing the setup of each component</a>
   <ul class="collapse">
@@ -464,17 +472,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1" class="anchored" data-anchor-id="understanding-the-installer-script"><span class="header-section-number">1</span> Understanding the installer script</h2>
 <p>To install magasin, the most straight forward way is to use the installer. This <a href="https://github.com/unicef/magasin/tree/main/scripts/install/install-magasin.sh">install-magasin.sh</a> script is used for both Mac OS and <a href="https://debian.org">Debian</a> like GNU/Linux and performs two tasks:</p>
 <ol type="1">
-<li>The first one is to install all the pre-requisites required on your computer in order to be able to deploy magasin to a Kubernetes cluster</li>
+<li>The first one is to install all the pre-requisites required on your computer in order to be able to deploy magasin to a Kubernetes cluster (namely kubectl, helm, mc and mag-cli)</li>
 <li>The second one is to deploy magasin in the preselected kubernetes cluster.</li>
 </ol>
 <p>These are the steps the script takes:</p>
 <ol type="1">
-<li>Check if all the dependencies are already installed (namely kubectl, helm and python) and if any is missing it will prompt you to install it. It uses the recommended setup describe on the package for the <a href="https://www.debian.org/">Debian GNU/Linux</a> like system. or in MacOS)</li>
+<li>Check if all the dependencies are already installed (namely kubectl, helm and python) and if any is missing it will prompt you to install it. It uses the recommended setup describe on the package for the <a href="https://www.debian.org/">Debian GNU/Linux</a> like system or in MacOS)</li>
 <li>Run the <code>helm</code> command install the different components of magasin in the kubernetes cluster. Note that each component will be installed in a different namespace within the cluster.</li>
 </ol>
 </section>
-<section id="magasin-realms" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="magasin-realms"><span class="header-section-number">2</span> Magasin realms</h2>
+<section id="magasin-realms-concept" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="magasin-realms-concept"><span class="header-section-number">2</span> Magasin realms concept</h2>
 <p>Compared with most of applications that are distributed using helm charts, instead of defining one unique chart that includes all the dependencies, magasin defines an independent chart for each component. This results in a loosely-coupled architecture which allows you to only setup and use the components that fit your organizational needs.</p>
 <p>When deploying a containerized application in Kubernetes using Helm charts, typically, a singular chart is defined. This chart can actually be composed of multiple sub-charts, which uses a hierarchical structure within the deployment. This setup often leads to a well-defined architecture, beneficial for many scenarios, as it simplifies management and deployment.</p>
 <p>Given that magasin setup uses independent charts, there is a need to setup at least one connection between these independent charts. This is done through a consistent naming convention which defines the concept of magasin realms.</p>
@@ -529,7 +537,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="advanced-use-of-the-magasin-installer" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="advanced-use-of-the-magasin-installer"><span class="header-section-number">3</span> Advanced use of the magasin-installer</h2>
-<p>You can check the options.</p>
+<p>You can check the installer options adding the <code>-h</code> option.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">./install-magasin.sh</span> <span class="at">-h</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> install-magasin.sh <span class="pp">[-</span><span class="ss">y</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">c</span><span class="pp">]</span> [-r realm_prefix-realm_postfix <span class="er">(</span><span class="ex">magasin</span><span class="kw">)</span><span class="ex">]</span> [-f values_folder <span class="er">(</span><span class="ex">./</span><span class="kw">)</span><span class="ex">]</span> <span class="pp">[-</span><span class="ss">d</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">h</span><span class="pp">]</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -551,31 +559,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">  -d  Enable debug mode (displays all commands run).</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st">  -h  Display this help message and exit.</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="st"> </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have two options to run the installer</p>
+<ol type="1">
+<li><p>Download the script locally</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://magasin.unicef.io/install-magasin.sh </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x ./install-magasin.sh </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./install-magasin.sh</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Curl-piping adding <code>bash|zsh -s -- -arg1 -arg2 ...</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Debian/Unbuntu like GNU/Linux | Windows WSL</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sSL</span> https://magasin.unicef.io/install-magasin.sh <span class="kw">|</span> <span class="fu">bash</span> <span class="at">-s</span> <span class="at">--</span> <span class="at">-h</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># MacOS</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sSL</span> https://magasin.unicef.io/install-magasin.sh <span class="kw">|</span> <span class="fu">zsh</span> <span class="at">-s</span> <span class="at">--</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</div>
+</div>
 <p>Examples of usage:</p>
 <ol type="1">
-<li><p>Allows you to check if all the required components are installed</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">install-magasin.sh</span> <span class="at">-c</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Install all pre-requisites required and manage magasin within the current machine but without installing magasin. Installs all the missing components highlighted by the <code>-c</code> option <code>install-magasin.sh -i</code> This may be useful if you already have an instance of magasin and you want to seamlessly setup all the tools to manage that instance.</p></li>
-<li><p>Setup the realm <code>test</code>. Will use <code>test-&lt;component&gt;</code> as namespace.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">install-magasin.sh</span> <span class="at">-r</span> test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>The <code>-c</code> option Allows you to check if all the required tools to manage manage a managain instance are installed in the local computer (f.i kubectl, mag-cli, helm, mc…)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">install-magasin.sh</span> <span class="at">-c</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> i <span class="bu">]</span> <span class="ex">magasin</span> installer for a MacOS system <span class="er">(</span><span class="ex">Darwin</span><span class="kw">)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> ✓ <span class="bu">]</span> <span class="ex">kubectl</span> installed <span class="er">(</span><span class="ex">/opt/homebrew/bin/kubectl</span><span class="kw">)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> ✓ <span class="bu">]</span> <span class="ex">helm</span> installed <span class="er">(</span><span class="ex">/opt/homebrew/bin/helm</span><span class="kw">)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> ✓ <span class="bu">]</span> <span class="ex">pip3</span> installed <span class="er">(</span><span class="ex">/Users/jmerlostevar/.pyenv/shims/pip3</span><span class="kw">)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> ✓ <span class="bu">]</span> <span class="ex">mc</span> installed <span class="er">(</span><span class="ex">/opt/homebrew/bin/mc</span><span class="kw">)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> ✓ <span class="bu">]</span> <span class="ex">mag</span> installed <span class="er">(</span><span class="ex">/opt/homebrew/bin/mag</span><span class="kw">)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> ✓ <span class="bu">]</span> <span class="ex">All</span> dependencies are installed.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Install all the required tools within the local machine. Installs all the missing tools highlighted by the <code>-c</code> option</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">install-magasin.sh</span> <span class="at">-i</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This may be useful to setup all the tools required to use and manage magasin from a computer different from the one originally used to install magasin.</p></li>
+<li><p>Install an instance of magasin in the realm <code>test</code>. Will use <code>test-&lt;component&gt;</code> as namespace.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">install-magasin.sh</span> <span class="at">-r</span> test </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Install magasin without prompting any question. This is useful for automated setups.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">install-magasin.sh</span> <span class="at">-y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
 <section id="customizing-the-setup-of-each-component" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="customizing-the-setup-of-each-component"><span class="header-section-number">4</span> Customizing the setup of each component</h2>
 <p>Helm charts allow you to customize some parameters such as the number of replicas, image version to load, startup script parameters, authentication schemas, etc. In order to do that you can create what is called a values file.</p>
-<p>The installer allows you use custom values file for each component. By default it searches in the current working directory (<code>./</code>) for files that have the name <code>&lt;component&gt;.yaml</code>. That is <code>dagster.yaml</code>, <code>drill.yaml</code>, <code>superset.yaml</code>, <code>daskhub.yaml</code>.</p>
+<p>The installer allows you use custom values file for each component. By default it searches in the current working directory (<code>./</code>) for files that have the name <code>&lt;component&gt;.yaml</code>. That is <code>dagster.yaml</code>, <code>drill.yaml</code>, <code>superset.yaml</code>, <code>daskhub.yaml</code>, <code>operator.yaml</code> and <code>tenant.yaml</code>.</p>
 <p>For example, by default the Apache Drill helm chart launches two replicas of its main server. You can change the number of replicas by changing the <code>drill.count</code> value. You can create the file <code>drill.yaml</code> with the following contents:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drill.yaml</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drill</span><span class="kw">:</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">count</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drill.yaml</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drill</span><span class="kw">:</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">count</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, if you run the installer in the same folder where you stored the <code>drill.yaml</code> file:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">install-magasin.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">install-magasin.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You’ll see in the logs something like:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">i</span> Installing magasin/drill in the namespace magasin-drill.</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">✓</span> Custom values file for drill exists <span class="er">(</span><span class="ex">./drill.yaml</span><span class="kw">)</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">i</span> helm install drill magasin/drill <span class="at">-f</span> ./drill.yaml <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">i</span> Installing magasin/drill in the namespace magasin-drill.</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">✓</span> Custom values file for drill exists <span class="er">(</span><span class="ex">./drill.yaml</span><span class="kw">)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">i</span> helm install drill magasin/drill <span class="at">-f</span> ./drill.yaml <span class="at">--namespace</span> magasin-drill <span class="at">--create-namespace</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Below you have the default values files and the corresponding custom file name:</p>
 <ul>
 <li><a href="https://github.com/unicef/magasin/blob/main/helm/dagster/values.yaml">Dagster default values</a>. To overwrite them create <code>dagster.yaml</code></li>
@@ -597,10 +643,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
      |- drill.yaml
      |- dagster.yaml
      |- superset.yaml</code></pre>
-<p>Now, you can deploy magasin for development by running:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">install-magasin.sh</span> <span class="at">-r</span> magasin-dev <span class="at">-f</span> ./dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>And the production environment by running:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">install-magasin.sh</span> <span class="at">-r</span> magasin-prd <span class="at">-f</span> ./prd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, you can deploy in the same cluster more than one instance of magasin.</p>
+<p>For example, magasin for the dev team in the <code>magasin-dev</code> realm by running:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">install-magasin.sh</span> <span class="at">-r</span> magasin-dev <span class="at">-f</span> ./dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And then the production environment can be set using <code>magasin-prd</code> by running:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">install-magasin.sh</span> <span class="at">-r</span> magasin-prd <span class="at">-f</span> ./prd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Thanks to the concept of realms, you can have both instances even in the same cluster.</p>
 </section>
 </section>
