@@ -13,16 +13,16 @@ Magasin includes an installer script that sets up all the necessary dependencies
 
 To install magasin, the most straight forward way is to use the installer. This [install-magasin.sh](https://github.com/unicef/magasin/tree/main/scripts/install/install-magasin.sh) script is used for both Mac OS and [Debian](https://debian.org) like GNU/Linux and performs two tasks:
 
-1. The first one is to install all the pre-requisites required on your computer in order to be able to deploy magasin to a Kubernetes cluster
+1. The first one is to install all the pre-requisites required on your computer in order to be able to deploy magasin to a Kubernetes cluster (namely kubectl, helm, mc and mag-cli)
 2. The second one is to deploy magasin in the preselected kubernetes cluster.
 
 
 These are the steps the script takes: 
 
-1) Check if all the dependencies are already installed (namely kubectl, helm and python) and if any is missing it will prompt you to install it. It uses the recommended setup describe on the package for the [Debian GNU/Linux](https://www.debian.org/) like system. or in MacOS)
+1) Check if all the dependencies are already installed (namely kubectl, helm and python) and if any is missing it will prompt you to install it. It uses the recommended setup describe on the package for the [Debian GNU/Linux](https://www.debian.org/) like system or in MacOS)
 2) Run the `helm` command install the different components of magasin in the kubernetes cluster. Note that each component will be installed in a different namespace within the cluster.
 
-## Magasin realms
+## Magasin realms concept
 
 Compared with most of applications that are distributed using helm charts, instead of defining one unique chart that includes all the dependencies, magasin defines an independent chart for each component. This results in a loosely-coupled architecture which allows you to only setup and use the components that fit your organizational needs.
 
@@ -52,7 +52,9 @@ The concept of realms allows us setup supporting tools that can make use of two 
 
 ## Advanced use of the magasin-installer
 
-You can check the options.
+
+
+You can check the installer options adding the `-h` option.
 ```bash
  ./install-magasin.sh -h
 Usage: install-magasin.sh [-y] [-c] [-r realm_prefix-realm_postfix (magasin)] [-f values_folder (./)] [-d] [-h]
@@ -77,31 +79,77 @@ Options:
  
 ```
 
+:::{.callout-note}
+You have two options to run the installer
+
+1) Download the script locally
+
+    ```sh 
+    curl https://magasin.unicef.io/install-magasin.sh 
+    chmod +x ./install-magasin.sh 
+    ./install-magasin.sh -h
+    ```
+
+2) Curl-piping adding `bash|zsh -s -- -arg1 -arg2 ...`
+  
+   ```sh
+   # Debian/Unbuntu like GNU/Linux | Windows WSL
+   curl -sSL https://magasin.unicef.io/install-magasin.sh | bash -s -- -h
+
+   # MacOS
+   curl -sSL https://magasin.unicef.io/install-magasin.sh | zsh -s -- -h
+
+   ```
+:::
+
+
 Examples of usage:
 
-1.  Allows you to check if all the required components are installed
+1.  The `-c` option Allows you to check if all the required tools to manage manage a managain instance are installed in the local computer (f.i kubectl, mag-cli, helm, mc...)
 
       ```sh
         install-magasin.sh -c 
       ```
-2. Install all pre-requisites required and manage magasin within the current machine but without installing magasin. Installs all the missing components highlighted by the `-c` option
-      ```
-        install-magasin.sh -i
-      ```
-    This may be useful if you already have an instance of magasin and you want to seamlessly setup all the tools to manage that instance. 
-
-3.  Setup the realm `test`. Will use `test-<component>` as namespace.
 
       ```sh
-        install-magasin.sh -r test
+    ...
+    [ i ] magasin installer for a MacOS system (Darwin)
+    [ ✓ ] kubectl installed (/opt/homebrew/bin/kubectl)
+    [ ✓ ] helm installed (/opt/homebrew/bin/helm)
+    [ ✓ ] pip3 installed (/Users/jmerlostevar/.pyenv/shims/pip3)
+    [ ✓ ] mc installed (/opt/homebrew/bin/mc)
+    [ ✓ ] mag installed (/opt/homebrew/bin/mag)
+
+    [ ✓ ] All dependencies are installed.
+
       ```
+2. Install all the required tools within the local machine. Installs all the missing tools highlighted by the `-c` option
+
+      ```sh
+        install-magasin.sh -i
+      ```
+
+    This may be useful to setup all the tools required to use and manage magasin from a computer different from the one originally used to install magasin.
+
+3.  Install an instance of magasin in the realm `test`. Will use `test-<component>` as namespace.
+
+      ```sh
+        install-magasin.sh -r test 
+      ```
+
+4.  Install magasin without prompting any question. This is useful for automated setups.
+
+      ```sh
+      install-magasin.sh -y
+      ```
+
 
 
 ## Customizing the setup of each component
 
 Helm charts allow you to customize some parameters such as the number of replicas, image version to load, startup script parameters,  authentication schemas, etc. In order to do that you can create what is called a values file.
 
-The installer allows you use custom values file for each component. By default it searches in the current working directory (`./`) for files that have the name `<component>.yaml`. That is `dagster.yaml`, `drill.yaml`, `superset.yaml`, `daskhub.yaml`. 
+The installer allows you use custom values file for each component. By default it searches in the current working directory (`./`) for files that have the name `<component>.yaml`. That is `dagster.yaml`, `drill.yaml`, `superset.yaml`, `daskhub.yaml`, `operator.yaml` and `tenant.yaml`. 
 
 For example, by default the Apache Drill helm chart launches two replicas of its main server. You can change the number of replicas by changing the `drill.count` value. You can create the file `drill.yaml` with the following contents: 
 
@@ -152,12 +200,14 @@ Given the structure below:
      |- superset.yaml
 ```
 
-Now, you can deploy magasin for development by running:
+Now, you can deploy in the same cluster more than one instance of magasin. 
+
+For example, magasin for the dev team in the `magasin-dev` realm by running:
 
 ```sh
 install-magasin.sh -r magasin-dev -f ./dev
 ```
-And the production environment by running:
+And then the production environment can be set using `magasin-prd` by running:
 
 ```sh
 install-magasin.sh -r magasin-prd -f ./prd
