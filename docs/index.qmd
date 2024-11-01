@@ -19,7 +19,7 @@ number-sections: false
 </p>
 <img src="images/enabling-capabilities.png" class="img-fluid" alt="">
 <p>
- Magasin enables organization to extract, analyze, and visualize data from multiple sources at scale..
+ Magasin enables organization to extract, analyze, and visualize data from multiple sources at scale.
 </p>
 ::: {.hero-buttons}
 [Get started](get-started/index.qmd){.btn-action-primary .btn-action .btn .btn-primary .btn-lg role="button"} 
