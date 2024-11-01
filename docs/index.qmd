@@ -10,7 +10,7 @@ css: index.css
 toc: false
 ---
 ::: {.hero .text-center}
-![](images/magasin-logo-beta.svg)
+![](images/magasin-logo-dpg.svg)
 
 <h3>magasin is the cloud native open-source end-to-end data platform</h3>
 <p>magasin enables organizations to perform of automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale</p>
