@@ -12,11 +12,13 @@ toc: false
 ::: {.hero .text-center}
 ![](images/magasin-logo-dpg.svg)
 
-<h3>magasin is the cloud native open-source end-to-end data platform</h3>
-<p>magasin enables organizations to perform of automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale</p>
+<h3>unleash the full potential of your data with magasin</h3>
+<p>Magasin is the only end-to-end open-source foundational toolset designed to help data analysis teams uncover impactful insights throughout your organization digital transformation journey. 
+</p>
 <img src="images/enabling-capabilities.png" class="img-fluid" alt="">
-
-
+<p>
+ Magasin enables organization to extract, analyze, and visualize data from multiple sources at scale..
+</p>
 ::: {.hero-buttons}
 [Get started](get-started/index.qmd){.btn-action-primary .btn-action .btn .btn-primary .btn-lg role="button"} 
 [Why magasin](why-magasin.qmd){.btn-action-primary .btn .btn-outline-primary .btn-lg role="button"}
