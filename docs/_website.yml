@@ -24,7 +24,7 @@ website:
   repo-subdir: docs
   repo-actions: [edit, issue]
   page-navigation: true
-  #bread-crumbs: true
+  bread-crumbs: true
 
   # website.navbar : Top navigation bar
   navbar:
@@ -44,6 +44,13 @@ website:
         file: get-started/index.qmd
       - text: "Docs" 
         file: docs-home.qmd
+      - text: "Announcements" # ↗
+        href: https://github.com/unicef/magasin/discussions/categories/announcements
+        target: _blank
+      - text: "Support " #↗
+        url: https://github.com/unicef/magasin/discussions
+        target: _blank
+ 
       - text: "About"
         file: about.qmd 
   
@@ -104,7 +111,7 @@ website:
             file: implement/deployment.qmd 
           - text: "Security"
             file: implement/security.qmd
-
+ 
       - section: "Contributing"
         contents:
           - file: contributing/index.qmd
