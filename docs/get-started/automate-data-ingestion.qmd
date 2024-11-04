@@ -462,6 +462,7 @@ setup(
     ],
     extras_require={"dev": ["dagster-webserver", "pytest"]},
 )
+```
 
 This is because now Dagster is going to use now the PosgreSQL database that is used in the cluster for keeping the logs data. Earlier, when we were using the local Dagster setup.
 
