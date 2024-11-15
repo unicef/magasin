@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 1.7.16
+appVersion: 1.9.2
 description: A chart to deploy code servers for your Dagster deployment.
 icon: https://dagster.io/images/brand/logos/dagster-primary-mark.png
 keywords:
@@ -17,4 +17,4 @@ name: dagster-user-deployments
 sources:
 - https://github.com/dagster-io/dagster/tree/master/helm/dagster/charts/dagster-user-deployments
 type: application
-version: 1.7.16
+version: 1.9.2
