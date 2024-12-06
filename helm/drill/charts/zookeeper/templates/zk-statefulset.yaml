@@ -11,19 +11,27 @@ spec:
       app: zk-quorum
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         app: zk-quorum
     spec:
       affinity:
+      {{- if .Values.affinity }}
+        {{- toYaml .Values.affinity | nindent 8 }}
+      {{- else }}
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app
-                    operator: In
-                    values:
-                      - zk-quorum
-              topologyKey: "kubernetes.io/hostname"
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - zk-quorum
+            topologyKey: kubernetes.io/hostname
+      {{- end }}
       serviceAccountName: zk-sa
       containers:
         - name: zk-pod
@@ -36,3 +44,6 @@ spec:
               name: server
             - containerPort: 3888
               name: leader-election
+      {{- if .Values.priorityClassName }}
+      priorityClassName: {{ .Values.priorityClassName }}
+      {{- end }}

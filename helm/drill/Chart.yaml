@@ -1,6 +1,7 @@
 apiVersion: v2
-appVersion: 1.21.2-3.9.2
-description: Helm charts for deploying Apache Drill on a Kubernetes cluster
+appVersion: 1.21.2-3.9.3
+description: Helm charts for deploying Apache Drill and Zookeeper on a Kubernetes
+  cluster
 home: http://drill.apache.org/
 keywords:
 - apache
@@ -15,4 +16,4 @@ name: drill
 sources:
 - https://github.com/unicef/magasin-drill
 type: application
-version: 0.7.2
+version: 0.9.0

@@ -5,14 +5,18 @@
 
 This repository contains a collection of files that can be used to deploy [Apache Drill](http://drill.apache.org/) on [Kubernetes](https://kubernetes.io/) using [Helm Charts](https://helm.sh/). Supports single-node and [cluster](http://drill.apache.org/docs/installing-drill-in-distributed-mode/) modes.
 
-This is an extended version of the originally chart created in [github.com/Agirish/drill-helm-charts](https://github.com/Agirish/drill-helm-charts). This extension has been created to fit the needs of [UNICEF's magasin](https://github.com/unicef/magasin).
+This is an extended version of the originally chart created in [github.com/Agirish/drill-helm-charts](https://github.com/Agirish/drill-helm-charts). 
 
-**Versions**
+This extension has been created to fit the needs of [UNICEF's magasin](https://github.com/unicef/magasin), an end-to-end data AI/ML cloud data platform based.
 
-| Chart Version | Drill Version | Zookeeper Version | Release Date      |
-|---------------|---------------|-------------------|--------------------|
-| 0.7.2         | 1.21.2        | 3.9.2             | 2024-08-07
-| 0.7.1         | 1.21.1        | 3.9.1             | 2024-02-05
+**Chart Versions**
+
+| Chart Version | Drill Version | Zookeeper Version | Release Date       | Release notes          |
+|---------------|---------------|-------------------|--------------------|------------------------|
+| 0.9.0         | 1.21.2        | 3.9.3             | 2024-12-02         | [Release notes v0.9.0](https://github.com/unicef/magasin-drill/releases/tag/releases%2Fv0.9.0) |
+| 0.8.0         | 1.21.2        | 3.9.2             | 2024-09-04         | [Release notes v0.8.0](https://github.com/unicef/magasin-drill/releases/tag/releases%2Fv0.8.0) | 
+| 0.7.2         | 1.21.2        | 3.9.2             | 2024-08-07         | [Release notes v0.7.2](https://github.com/unicef/magasin-drill/releases/tag/releases%2Fv0.7.2) |
+| 0.7.1         | 1.21.1        | 3.9.1             | 2024-02-05         | [Release notes v0.7.1](https://github.com/unicef/magasin-drill/releases/tag/releases%2Fv0.7.1) |
 ---
 
 
@@ -25,6 +29,7 @@ This is an extended version of the originally chart created in [github.com/Agiri
 
 ## Install
 
+### Option 1: Using the Helm repository (recommended)
 1. Add the helm repo
     ```sh
     helm repo add magasin-drill https://unicef.github.io/magasin-drill/
@@ -34,9 +39,25 @@ This is an extended version of the originally chart created in [github.com/Agiri
     ```sh
     helm install drill magasin-drill/drill --namespace magasin-drill --create-namespace
     ```
+This will install Apache Drill in the `magasin-drill` namespace. If you skip `--namespace magasin-drill --create-namespace` the chart is installed in the `default` namespace. 
 
-This will install Apache Drill within the namespace `magasin-drill`. If you skip `--namespace magasin-drill --create-namespace` the chart is installed in the `default` namespace. 
+### Option 2: Cloning the repo
 
+1. Clone the repo
+    ```sh
+    git clone https://github.com/unicef/magasin-drill
+    ```
+
+2. Install the chart
+    ```sh
+    cd magasin-drill
+    helm install drill ./charts/drill --namespace magasin-drill --create-namespace
+    ```
+
+This will install Apache Drill in the `magasin-drill` namespace. If you skip `--namespace magasin-drill --create-namespace` the chart is installed in the `default` namespace. 
+
+
+## Usage
 You can list the pods by running:
 
 ```shell
@@ -55,7 +76,7 @@ kubectl port-forward --namespace magasin-drill service/drill-service 8047:8047
 ```
 Then open the browser in `http://localhost:8047` to access the Drill Web UI.
 
-Or you can download the [launch_ui.sh script from this repo](https://github.com/unicef/magasin-drill/blob/main/scripts/launch_ui.sh) and run it::
+Or you can download the [launch_ui.sh script from this repo](https://github.com/unicef/magasin-drill/blob/main/scripts/launch_ui.sh) and run it:
 
 
 ```shell
@@ -597,6 +618,16 @@ charts/drill/
         zk-service.yaml     # To create a ZK Service
         zk-statefulset.yaml # To create a ZK cluster. Currently only a single-node ZK (1 replica) is supported
 ```
+
+## Contributing
+
+We welcome contributions. To contribute, please fork this repository, make your changes, and submit a pull request.
+
+If new values are added to the `values.yaml` file include the documentation on how to use them.
+
+If you find a bug or have a feature request, please open an issue.
+
+
 
 ## License 
 

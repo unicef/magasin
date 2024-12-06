@@ -14,4 +14,4 @@ name: zookeeper
 sources:
 - https://github.com/unicef/magasin-drill
 type: application
-version: 0.7.2
+version: 0.8.0
