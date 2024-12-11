@@ -16,7 +16,7 @@ updates:
       timezone: "Europe/Amsterdam"
 
   - package-ecosystem: docker
-    directory: /mag-sh
+    directory: /magsh
     schedule:
       interval: weekly
       day: thursday
