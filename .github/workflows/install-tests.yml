@@ -155,7 +155,7 @@ jobs:
     steps:
 
       - name: Checkout code
-        uses: actions/checkout@v2  # Action to checkout your repository's code
+        uses: actions/checkout@v4  # Action to checkout your repository's code
 
       - name: Test install-magasin.sh -c (check dependencies)
         run: |
