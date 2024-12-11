@@ -11,7 +11,7 @@ Magasin includes an installer script that sets up all the necessary dependencies
 
 ## Understanding the installer script
 
-To install magasin, the most straight forward way is to use the installer. This [install-magasin.sh](https://github.com/unicef/magasin/tree/main/scripts/install/install-magasin.sh) script is used for both Mac OS and [Debian](https://debian.org) like GNU/Linux and performs two tasks:
+To install magasin, the most straight forward way is to use the installer. This [install-magasin.sh](https://github.com/unicef/magasin/tree/main/installer/install-magasin.sh) script is used for both Mac OS and [Debian](https://debian.org) like GNU/Linux and performs two tasks:
 
 1. The first one is to install all the pre-requisites required on your computer in order to be able to deploy magasin to a Kubernetes cluster (namely kubectl, helm, mc and mag-cli)
 2. The second one is to deploy magasin in the preselected kubernetes cluster.

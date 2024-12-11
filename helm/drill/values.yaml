@@ -13,13 +13,13 @@ drill:
   # What kind of service [LoadBalancer|NodePort]
   webServiceType: LoadBalancer
   # Number of Drill Pods which are launched in parallel and join to form a Drill Cluster
-  count: 1
+  count: 2
   # Total memory for each Drill pod
-  memory: 4Gi
+  memory: 5Gi
   # Total CPU for each Drill pod
   cpu: 4000m
   # Drill image with tag
-  image: merlos/drill:1.21.1-multi-arch
+  image: merlos/drill:1.21.2-2024-12
   # Drill's HTTP port
   httpPort: 8047
   # User Server port. The Bit Server Port and Data Server ports are +1 and +2
@@ -75,6 +75,9 @@ drill:
   # Number of seconds after which pods are forcefully killed
   # Note: Lower values may cause running queries to fail
   terminationGracePeriodSeconds: 60
+  # set the k8s priority of drill pods, see 
+  # https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/
+  # priorityClassName: <your-priorityclass>
 
   # The size of the Drill cluster (number of Drill Pod replicas) can be autoscaled
   # With higher CPU utilization, more drill-bits are added automatically. And as the load goes down,
@@ -119,8 +122,14 @@ drill:
       mountPath: /opt/drill/conf/storage-plugins-override.conf
       subPath: storage-plugins-override.conf
 
+  # set annotations to drill pod
+  podAnnotations: {}
+    # responsible: devops
+    # stage: prod
 
-
+  # set the affinity of your drill pods
+  # see https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  #affinity: {}
 
 # ZooKeeper sub-section
 zookeeper:
@@ -131,4 +140,15 @@ zookeeper:
   # Total CPU for each ZooKeeper pod
   cpu: 500m
   # ZooKeeper image with tag
-  image: merlos/zookeeper:3.9.1-multi-arch
+  image: merlos/zookeeper:3.9.3
+  # set annotations to ZooKeeper pods
+  podAnnotations: {}
+    # responsible: devops
+    # stage: prod
+  # set the k8s priority of ZooKeeper pods
+  # see https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/
+  # priorityClassName: <your-priorityclass>
+
+  # set the affinity of your drill pods
+  # see https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  #affinity: {}

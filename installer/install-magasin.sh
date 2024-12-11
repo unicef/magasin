@@ -103,21 +103,19 @@ exit_error() {
 }
 
 echo_magasin() {
-
-echo ""
-echo " Welcome to the world of tomorrow            "
-printf "\033[31m"
-printf "                            ▄          \n"             
-printf "                           ███        \n"
-printf "                            ▀         \033[0m\n"
-echo   " ▐█▙█▖ ▟██▖ ▟█▟▌ ▟██▖▗▟██▖ ██  ▐▙██▖   "
-echo   " ▐▌█▐▌ ▘▄▟▌▐▛ ▜▌ ▘▄▟▌▐▙▄▖▘  █  ▐▛ ▐▌   "
-echo   " ▐▌█▐▌▗█▀▜▌▐▌ ▐▌▗█▀▜▌ ▀▀█▖  █  ▐▌ ▐▌   "
-echo   " ▐▌█▐▌▐▙▄█▌▝█▄█▌▐▙▄█▌▐▄▄▟▌▗▄█▄▖▐▌ ▐▌   "
-echo   " ▝▘▀▝▘ ▀▀▝▘ ▞▀▐▌ ▀▀▝▘ ▀▀▀ ▝▀▀▀▘▝▘ ▝▘   "
-echo   "            ▜█▛▘                       "
-echo   ""  
-
+  echo ""
+  echo " Welcome to the world of tomorrow            "
+  printf "\033[31m"
+  printf "                            ▄          \n"             
+  printf "                           ███        \n"
+  printf "                            ▀         \033[0m\n"
+  echo   " ▐█▙█▖ ▟██▖ ▟█▟▌ ▟██▖▗▟██▖ ██  ▐▙██▖   "
+  echo   " ▐▌█▐▌ ▘▄▟▌▐▛ ▜▌ ▘▄▟▌▐▙▄▖▘  █  ▐▛ ▐▌   "
+  echo   " ▐▌█▐▌▗█▀▜▌▐▌ ▐▌▗█▀▜▌ ▀▀█▖  █  ▐▌ ▐▌   "
+  echo   " ▐▌█▐▌▐▙▄█▌▝█▄█▌▐▙▄█▌▐▄▄▟▌▗▄█▄▖▐▌ ▐▌   "
+  echo   " ▝▘▀▝▘ ▀▀▝▘ ▞▀▐▌ ▀▀▝▘ ▀▀▀ ▝▀▀▀▘▝▘ ▝▘   "
+  echo   "            ▜█▛▘                       "
+  echo   ""  
 }
 
 function usage {
@@ -160,114 +158,9 @@ if [[ "$script_name" == "zsh" || "$script_name" == "bash" ]]; then
 fi
 
 
-while getopts ":f:u:r:yichd" opt; do
-  case $opt in
-    y)
-      AUTO_INSTALL=true
-      ;;
-    c)
-      ONLY_CHECK=true
-      ;;
-    i) 
-      ONLY_LOCAL_INSTALL=true
-      ;;
-    d)
-      DEBUG=true
-      ;;
-    u) 
-      CUSTOM_HELM_REPO=true
-      MAGASIN_HELM_REPO=$OPTARG
-      ;;
-    f)
-      # Check if the folder exists.
-      if [ -d $OPTARG ]; then
-          echo_debug "Values folder exists $OPTARG" 
-          VALUES_FOLDER=$OPTARG
-      fi
-      ;;
-  esac
-done
-
-# Function to display warning messages.
-# Prepends two !! in orangish color.
-echo_warning() {
-    printf "\033[38;5;208m[ W ]\033[0m %s\n" "$@" 
-}
-
-# Function to display error messages in red. Prepends ERROR
-echo_error() {
-    printf "\033[31mERROR:\033[0m %s\n" "$@"
-}
-
-# Exit displaying how to debug
-exit_error() {
-  local code=$1
-  echo_error "$code" 
-  echo_error "You may get more information about the issue by running the script including the debug option (-d):"
-  echo_error "       $script_name -d "
-  echo ""
-  exit $code
-}
-
-echo_magasin() {
-
-echo ""
-echo " Welcome to the world of tomorrow            "
-printf "\033[31m"
-printf "                            ▄          \n"             
-printf "                           ███        \n"
-printf "                            ▀         \033[0m\n"
-echo   " ▐█▙█▖ ▟██▖ ▟█▟▌ ▟██▖▗▟██▖ ██  ▐▙██▖   "
-echo   " ▐▌█▐▌ ▘▄▟▌▐▛ ▜▌ ▘▄▟▌▐▙▄▖▘  █  ▐▛ ▐▌   "
-echo   " ▐▌█▐▌▗█▀▜▌▐▌ ▐▌▗█▀▜▌ ▀▀█▖  █  ▐▌ ▐▌   "
-echo   " ▐▌█▐▌▐▙▄█▌▝█▄█▌▐▙▄█▌▐▄▄▟▌▗▄█▄▖▐▌ ▐▌   "
-echo   " ▝▘▀▝▘ ▀▀▝▘ ▞▀▐▌ ▀▀▝▘ ▀▀▀ ▝▀▀▀▘▝▘ ▝▘   "
-echo   "            ▜█▛▘                       "
-echo   ""  
-
-}
-
-function usage {
-  echo "Usage: $1 [-y] [-c] [-i] [-r realm_prefix-realm_postfix (magasin)] [-f values_folder (./)] [-d] [-h]"
-  echo ""
-  echo "This script checks dependencies and installs magasin components"
-  echo "Each component is installed within its own namespace."  
-  echo ""
-  echo "Options:"
-  echo "  -y  Skip prompting questions during installation"
-  echo "  -c  Only check if all pre-requisites are installed in the local machine."
-  echo "  -i  Only install all pre-requisites in the local machine. Does not install magasin in Kubernetes"
-  echo "  -r  Realm prefix and suffix (default: magasin). Prefix and suffix are separated by '-'." 
-  echo "        If more than one '-', the last one will be used as separator." 
-  echo "        The realm 'magasin-new-dev' will set 'magasin-new' as prefix and 'dev' as suffix."
-  echo "  -f  Folder with custom values.yaml files (default: ./)."
-  echo "        Files within the folder shall have the same name as the component. Example:"  
-  echo "        drill.yaml, dagster.yaml, superset.yaml, daskhub.yaml"
-  echo "  -u  URL/path to the magasin's helm repository (default: https://unicef.github.io/magasin/)"
-  echo "      "
-  echo "  -d  Enable debug mode (displays all commands run)."
-  echo "  -h  Display this help message and exit."
-  echo " "
-  echo "Examples:"
-  echo "   - Only check if all requirements are installed"
-  echo "       $1 -c "
-  echo "   - Setup the realm 'test'. Will use test-<component> as namespaces"
-  echo "       $1 -r test"
-  echo "   - Enable debug mode, skip being promted, and setup the realm 'magasin-dev'" 
-  echo "     (which results in magasin-<component>-dev as namespaces)"
-  echo "       $1 -d -y -r magasin-dev"
-  exit 0
-}
-
-script_name=$(basename "$0")
-
-# Check if the script name is zsh or bash and replace it with the default name (install_magasin.sh)
-if [[ "$script_name" == "zsh" || "$script_name" == "bash" ]]; then
-  script_name="install_magasin.sh"
-fi
-
-# If script name is zsh or bash replace is with default name (install_magasin.sh)
-
+#
+# Parse command line arguments
+# 
 
 while getopts ":f:u:r:yichd" opt; do
   case $opt in

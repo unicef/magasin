@@ -40,7 +40,7 @@ Quarto is well integrated with Visual Studio Code, and has a preview feature.
 
 ## Website release 
 
-The website is published in the [Github Page](https://pages.github.com/). The resulting site is in the [`gh-pages` branch](https://github.com/unicef/magasin/tree/gh-pages) of the main repository. The URL [http://unicef.github.com/magasin](http://unicef.github.com/magasin).
+The website is published in the [Github Page](https://pages.github.com/). The resulting site is in the [`gh-pages` branch](https://github.com/unicef/magasin/tree/gh-pages) of the main repository. The URL [https://unicef.github.io/unicef/magasin](https://ungithub.io/magasin).
 
 ### ** NEVER USE `quarto publish gh-pages` **
 

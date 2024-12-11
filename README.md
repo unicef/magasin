@@ -2,6 +2,8 @@
 
 _magasin_ enables organizations to perform of automatic data ingestion, storage, analysis, ML/AI compute and visualization at scale.
 
+_magasin_ is a toolset composed by mature open source projects that are integrated to provide an end-to-end data platform. It is designed to be cloud-native, scalable, and easy to deploy.
+
 Learn more about [why _magasin_](https://magasin.unicef.io/why-magasin.html) and its [architecture](https://magasin.unicef.io/architecture.html).
 
 ## Get started
