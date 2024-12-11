@@ -23,9 +23,9 @@ Each of the open source components included in magasin has its on end user docum
 * [Creating your first dashboard (superset.apache.org)](https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard)
 * [Exploring data in Superset (superset.apache.org)](https://superset.apache.org/docs/creating-charts-dashboards/exploring-data)
 
-## Best practices
+## Related guides
 
-* **[Data privacy guide](./data-privacy.qmd)**. How to use magasin in following responsible data management practices.
+*[Data privacy guide](../implement/data-privacy.qmd). How to use magasin in following responsible data management practices.
 
  
 

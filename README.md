@@ -4,13 +4,13 @@ _magasin_ enables organizations to perform of automatic data ingestion, storage,
 
 _magasin_ is a toolset composed by mature open source projects that are integrated to provide an end-to-end data platform. It is designed to be cloud-native, scalable, and easy to deploy.
 
-Learn more about [why _magasin_](https://unicef.github.io/magasin/why-magasin.html) and its [architecture](https://unicef.github.io/magasin/architecture.html).
+Learn more about [why _magasin_](https://magasin.unicef.io/why-magasin.html) and its [architecture](https://magasin.unicef.io/architecture.html).
 
 ## Get started
 
-### **[🚀 Go to get started](https://unicef.github.io/get-started/)**
+### **[🚀 Go to get started](https://magasin.unicef.io/get-started/)**
 
-In the [get started](https://unicef.github.io/get-started/) you will install magasin within your local machine or in a kubernetes cluster, then you will perform an end-to-end data analysis that includes: 
+In the [get started](https://magasin.unicef.io/get-started/) you will install magasin within your local machine or in a kubernetes cluster, then you will perform an end-to-end data analysis that includes: 
 
   * exploratory analysis of a data source,
   * create a pipeline to automate data ingestion, and
@@ -20,12 +20,12 @@ In the [get started](https://unicef.github.io/get-started/) you will install mag
 ## Documentation
 All the documentation, features, architecture, get started, advanced installation, deployment, contributing... 
 
-### [📚 Go to documentation](https://unicef.github.io/magasin/docs-home.html)
+### [📚 Go to documentation](https://magasin.unicef.io/docs-home.html)
 
 ## Contributing
 Magasin follows an open approach towards accepting contributions.
 
-### [🇺🇳 Learn about contributing](https://unicef.github.io/magasin/contributing/)
+### [🇺🇳 Learn about contributing](https://magasin.unicef.io/contributing/)
 
 ## Licenses
 Software is distributed under:

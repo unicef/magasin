@@ -3,13 +3,15 @@ title: "Data Privacy"
 format: html
 description: How to use magasin for analyzing being data responsible and following data privacy principles.
 meta-description: How to use magasin for analyzing folloing responsible data management and data privacy principles.
+aliases: 
+  - user-guides/data-privacy.qmd
 ---
 
 In today's digital age, the importance of **data privacy, responsible data management, and cybersecurity cannot be overstated**. With the increasing reliance on technology and the vast amount of data being generated and collected, it is crucial to be conscious and proactive in safeguarding sensitive information.
 
 **The underlying components of magasin allow you to apply principles of responsible data management, personal data protection and cyber-security**. Magasin can be compliant with any personal data protection law, including the most stringent such as the [General Data protection Regulation (GDPR)](https://gdpr.eu/). However, it is up to the organization and teams that [implement magasin](../install/) achieve this goal.
 
-**Establishing [privacy by design](https://en.wikipedia.org/wiki/Privacy_by_design) and [people-first data practices](https://digitalprinciples.org/principles/establish-people-first-data-practices/)** such as requesting consent, informing the user about the purpose of collecting the data, that is, what you’re going to do with the data (including what you’re going to do within magasin), who are you going to share the data with, ensure that you involve all the stakeholders, specially that people that is affected by the data collected, etc., **happens even before you start using magasin**,  Magasin is a data analysis product rather than a data collecting tool such as [Primero](https://www.primero.org/), RapidPro(https://www.rapidpro.io/), or [ODK](https://odk.org/) etc. 
+**Establishing [privacy by design](https://en.wikipedia.org/wiki/Privacy_by_design) and [people-first data practices](https://digitalprinciples.org/principles/establish-people-first-data-practices/)** such as requesting consent, informing the user about the purpose of collecting the data, that is, what you’re going to do with the data (including what you’re going to do within magasin), who are you going to share the data with, ensure that you involve all the stakeholders, specially that people that is affected by the data collected, etc., **happens even before you start using magasin**,  Magasin is a data analysis product rather than a data collecting tool such as [Primero](https://www.primero.org/), [RapidPro](https://www.rapidpro.io/), or [ODK](https://odk.org/) etc. 
 
 
 > Magasin is an enabler of maximum potential data usage.

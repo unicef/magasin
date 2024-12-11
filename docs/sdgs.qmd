@@ -1,0 +1,105 @@
+---
+title: Implementing SDGs through magasin
+description: Accelerating the implementation through data-informed decision making
+description-meta: How can magasin support the achievement of the SDGs
+format: 
+  html:
+    number-sections: false
+---
+
+An end-to-end ingestion and analysis data platform such as magasin can significantly support contribute to an efficient and data-informed implementation of several [Sustainable Development Goals (SDGs)](https://sdgs.un.org/goals). 
+
+Below we are providing some examples in which magasin can be used by international development organizations as well as by governments: 
+ 
+## SDG 3: Good Health and Well-being 
+
+Magasin can be used to **aggregate and analyze health data** from various sources, improving disease tracking, patient care, and health outcomes. 
+
+For example, magasin can be used to integrate and analyze hospital records, wearable device data, and public health information to predict and manage outbreaks of diseases like COVID-19. 
+
+This directly benefits **SDG Indicator 3.3.1** (Number of new HIV infections per 1,000 uninfected population, by sex, age, and key populations) and SDG Indicator **3.3.3** (Malaria incidence per 1,000 population), as it enhances the ability to track and respond to infectious diseases. 
+
+Additionally, by improving the prediction and management of disease outbreaks, magasin supports **SDG Indicator 3.d.1** (International Health Regulations (IHR) capacity and health emergency preparedness), ensuring that health systems are better prepared for emergencies and can respond more effectively to health crises. 
+ 
+
+## SDG 4: Quality Education 
+
+Magasin can enhance educational outcomes by **analyzing student performance data and identifying areas needing improvement**. 
+
+For example, it could be used for analyzing data from online learning platforms to personalize education and provide targeted interventions for students struggling with specific subjects. 
+
+This directly benefits **SDG Indicator 4.1.1** (Proportion of children and young people achieving at least a minimum proficiency level in reading and mathematics, by sex) and **SDG Indicator 4.2.2** (Participation rate in organized learning one year before the official primary entry age, by sex), as it helps tailor educational content to individual needs and ensures early childhood education is effective. 
+
+
+## SDG 6: Clean Water and Sanitation 
+
+A data platform such as magasin can be used to **monitor water quality and usage**, helping to manage water resources more effectively.
+
+ For example, using sensors and the data analytics and visualization of magasin, it can track water quality in real-time, ensuring safe drinking water and efficient water usage in agriculture. 
+ 
+ This directly benefits **SDG Indicator 6.1.1** (Proportion of population using safely managed drinking water services) and **SDG Indicator 6.3.2** (Proportion of bodies of water with good ambient water quality), as it ensures the availability of clean water and the maintenance of water quality. 
+
+  
+  ## SDG 7: Affordable and Clean Energy 
+  
+Magasin could be used to o**ptimize energy production and consumption, promoting the use of renewable energy sources**. 
+
+For example, magasin can be used to monitor data from smart grids to balance energy supply and demand, reducing reliance on fossil fuels and increasing the use of solar and wind energy. 
+
+This directly benefits **SDG Indicator 7.2.1** (Renewable energy share in the total final energy consumption) and **SDG Indicator 7.3.1** (Energy intensity measured in terms of primary energy and GDP), as it supports the transition to renewable energy and improves energy efficiency. 
+
+  
+## SDG 9: Industry, Innovation, and Infrastructure 
+
+Magasin can drive innovation and improve infrastructure by providing **insights into industrial processes and urban development**. 
+
+For example, analyzing and using predictive models with IoT data can optimize manufacturing processes, reduce waste, and improve product quality. 
+
+This directly benefits **SDG Indicator 9.2.1** (Manufacturing value added as a proportion of GDP and per capita) and **SDG Indicator 9.4.1** (CO2 emission per unit of value added), as it enhances industrial productivity and reduces environmental impact. 
+
+  
+## SDG 11: Sustainable Cities and Communities 
+
+Magasin can be used to enhance urban planning and management, making cities more sustainable and resilient. 
+
+For example, by analyzing and visualizing traffic data and generating traffic prediction models, magasin can optimize public transportation routes and reduce congestion, improving air quality and reducing carbon emissions. 
+
+This directly benefits **SDG Indicator 11.2.1** (Proportion of population that has convenient access to public transport, by sex, age, and persons with disabilities) and **SDG Indicator 11.6.2** (Annual mean levels of fine particulate matter in cities), as it promotes sustainable urban mobility and better air quality. 
+
+## SDG 13: Climate Action 
+
+Magasin can be used to **track and analyze environmental data**, supporting efforts to mitigate and adapt to climate change. 
+
+For example, monitoring deforestation and carbon emissions using satellite data to inform climate policies and conservation efforts.
+
+ This directly benefits **SDG Indicator 13.1.1** (Number of deaths, missing persons and directly affected persons attributed to disasters per 100,000 population) and **SDG Indicator 13.2.2** (Total greenhouse gas emissions per year), as it enhances disaster preparedness and reduces emissions. 
+
+  
+## SDG 15: Life on Land 
+
+Magasin can help protect terrestrial ecosystems by **supporting the monitoring biodiversity and land use changes**. 
+
+For example, using data from drones and satellites to track wildlife populations and habitat changes, aiding in conservation efforts. 
+
+This directly benefits **SDG Indicator 15.1.1** (Forest area as a proportion of total land area) and **SDG Indicator 15.5.1** (Red List Index), as it supports forest conservation and biodiversity protection. 
+
+  
+## SDG 17: Partnerships for the Goals 
+
+Magasin can facilitate **collaboration and data sharing among different stakeholders**, enhancing efforts to achieve the SDGs. 
+
+For example, by creating a shared data repository for governments, NGOs, and researchers to collaborate on sustainable development projects. 
+
+This directly benefits **SDG Indicator 17.6.1** (Number of science and/or technology cooperation agreements and programmes between countries) and **SDG Indicator 17.18.1** (Proportion of sustainable development indicators produced at the national level with full disaggregation when relevant to the target, in accordance with the Fundamental Principles of Official Statistics), as it promotes international cooperation and data-driven decision-making. 
+
+
+To successfully implement SDGs, it is crucial to first digitize the relevant data. Then, magasin can play a pivotal role in this process by collecting data from various digitized sources, cleaning and transforming it, and then analyzing and visualizing the information. By supporting the development of predictive models, magasin can help the optimization and acceleration of the implementation of the SDGs, ensuring that data-informed insights lead to more effective and efficient strategies for achieving these global goals.
+
+
+## What's next
+
+* **[Getting started with magasin](./get-started/)**. Learn how to install, and start using magasin with a simple example.
+
+* **[Why magasin?](./why-magasin.qmd)**. Why magasin was created and what is the gap it is fulfilling.
+
+* **[Magasin architecture](./architecture.qmd)**. Learn more about the different components that conform magasin.

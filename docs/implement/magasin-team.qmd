@@ -1,0 +1,156 @@
+---
+title: Setting a magasin team
+description: Setting up the rigth team for implementing magasin
+meta-description: What are the skills and capabilities of a successfull magasin team. Setting up the rigth team for implementing magasin.
+---
+
+From a personnel standpoint, an organisation must ensure that it has, or will acquire or recruit, the appropriate skills not only for implementing and maintaining the tool but also for processing and extracting insights from the data. Below are the common roles along with the technical skills and capabilities that an organisation should assess to operationalise magasin:
+
+## Common roles and skillsets of a magasin team
+
+### System administrator
+Establishes and manages a magasin instance. While magasin can be operated on a laptop, for a production environment that serves various teams across an organisation, centralised management is more effective. The skills and capabilities required for this role include:
+
+* **Kubernetes Administration** (Core)
+     - Experience setting up, managing, and maintaining Kubernetes clusters.
+     - Knowledge of Kubernetes architecture, including nodes, pods, deployments, and services.
+     - Experience with Kubernetes networking, storage, and security configurations.
+
+* **Helm Usage** (Core)
+     - Experience using Helm for managing Kubernetes deployments.
+     - Ability to customize the values of Helm chart.
+     - Understanding of Helm repositories and version control.
+
+* **Containerization** (Core)
+     - Understanding of containerization technologies, particularly Docker.
+     - Experience in building, managing, and deploying container images.
+
+* **Cloud Platforms** (Recommended)
+     - When the deployment is on the cloud, experience with the cloud provider(s) that the organization may be using such as AWS, Azure, or Google Cloud Platform.
+     - Knowledge of managed Kubernetes services such as EKS, AKS, or GKE.
+
+* **Scripting and Automation** (Recommended)
+     - Understanding scripting languages such as Bash or Python.
+
+* **Monitoring and Logging** (Recommended)
+     - When workloads increase and availability is a must, understanding of monitoring tools like Prometheus, Grafana, and ELK stack.
+     - Ability to set up and manage logging and monitoring for Kubernetes clusters.
+
+* **Kubernetes Security** (Recommended)
+     - If sensitive data is managed by magasin and exposed to Internet and or different vendors, knowledge of Kubernetes security best practices is recommended.
+     - Experience with role-based access control (RBAC) and network policies can help to secure the system
+
+* **DevOps Practices** (Recommended)
+     - Understanding of DevOps principles and practices.
+     - Experience with CI/CD pipelines and integrating Kubernetes with CI/CD tools.
+
+* **What magasin tools does he use?**
+     - Apache Superset (Configuration/system operations level)
+     - Dagster (Configuration/system operations level)
+     - Apache Drill (Configuration/system operations level)
+     - Daskhub (Configuration/system operations level)
+     - MinIO (Configuration/system operations level)
+     - Mag-cli (User level)
+
+### Data Analyst / Scientist
+Needs to understand the business itself and collaborate very closely with the businesspeople, based on these conversations so he can “ask” research questions to the existing data, or research on what datasets may be able to answer these questions. This profile identifies data sources (internal and external) and performs explorations to analyze the data to extract insights, generally through visualizations and tracking indicators. Also, during the automation process he works with the data engineer to automate the process of getting real time insights.
+
+* **Data Analysis and Exploration** (Core):
+    - Data analysis techniques and methodologies.
+     - Experience with data cleaning, transformation, and visualization.
+     - Ability to explore and analyze both internal and external datasets.
+
+* **Programming** (Core):
+     - Strong skills in Python for data manipulation and analysis.
+     - Familiarity with libraries such as pandas, NumPy, and matplotlib.
+
+* **Statistical Analysis** (Core):
+     - Knowledge of statistical methods and their application in data analysis.
+     - Ability to perform hypothesis testing, regression analysis, and other statistical techniques.
+
+* **Data Visualization** (Core):
+     - Expertise in creating visualizations to communicate insights effectively.
+     - Experience with tools like Jupyter Notebooks and self-service BI tools (e.g., Superset, PowerBI, Tableau).
+
+* **Domain Knowledge** (Recommended):
+     - Familiarity with the industry and business context to derive meaningful insights.
+     - Ability to translate business requirements into data-driven solutions.
+
+* **Machine Learning** (Recommended):
+     - Understanding of machine learning algorithms and their applications.
+     - Experience with libraries such as scikit-learn, TensorFlow, or PyTorch as well as large language models.
+* **What magasin tools does he use?**
+     - Jupyter notebooks (User level)
+     - Apache Superset (User level)
+     - Dask (User level, for advanced applications)
+     - Use of Dagster (User level)
+
+### Data Engineer
+With strong background in software engineering, his role is to develop data pipelines to ingest data from different data sources in a recurrent and automated way that can be extended and maintained in the long run.
+
+* **Data Engineering and ETL (Extract, Transform and Load)** (Core):
+     - Proficiency in designing, building, and maintaining data pipelines.
+     - Experience with ETL processes and tools for data ingestion and transformation.
+* **Sofware development** (Core):
+     - Strong skills in Python for developing data engineering solutions.
+     - Familiarity with libraries such as pandas, NumPy, etc.
+* **Big Data Technologies** (Recommended):
+     - Experience with data warehousing solutions and data lakes.
+     - Understanding of parquet, csv, delta lake file formats.
+* **Cloud Platforms** (Recommended):
+     - Experience with cloud services for data storage and processing.
+     - Familiarity with cloud storages on major systems AWS, Azure, or Google Cloud Platform.
+* **Data Quality and Governance** (Recommended):
+     - Understanding of data quality principles and best practices.
+     - Ability to implement data governance and security measures.
+* **Monitoring and Debugging** (Recommended):
+     - Skills in monitoring data pipelines and troubleshooting issues.
+     - Experience with logging and monitoring tools to ensure data reliability.
+* **Collaboration and Documentation** (Recommended):
+     - Strong collaboration skills to work with data scientists and system administrators.
+     - Ability to document data workflows, processes, and best practices.
+* **What magasin tools uses?**
+     - Dagster (User level)
+     - MinIO (User level)
+     - Drill (User level)
+     - Mag-Cli (User level)
+
+
+## Frequently asked questions? 
+
+### Do I need all the capabilities since the get go? 
+
+No, your team can learn with time.  If you don't have all the capabilities it may take your organization more time to get the full potential of the analysis of your data as you'll be learning at the same time. 
+ 
+
+## Do I actually need to hire new people to manage magasin?
+
+Not really, you can leverage your existing personnel and train them in the areas where there is a gap in their skill set.
+
+Whereas finding someone in the market that is proficient already in the three roles may be difficult, your organization still can enable one resource to play more than one magasin-team role. For example, 
+
+* IT System administrators who already are managing the enterprise applications are the natural adopters of magasin system administrator role. Software engineers can leverage their software development skills to play the role of data engineers. 
+
+*  Data engineers can extend their skillsets to maintain the instance of kubernetes.
+
+* A data scientist /analyst can extend his functions to also play the role of a data engineer by strengthening the software engineer best practices. Indeed it is common to have data scientist playing both roles in small teams. In magasin it's been separated just because a data engineer needs stronger background in software engineering.
+
+
+## Introductory Online Trainings
+
+There are thousands of resources online both free and paid below you have a non extensive list that covers some of the core capabilities:
+
+**System administrators**:
+
+* [Linux Foundation: Introduction to Kubernetes](https://training.linuxfoundation.org/training/introduction-to-kubernetes/) - free
+* [Linux Foundation: Kubernetes Courses catalog](https://training.linuxfoundation.org/full-catalog/?_sft_technology=kubernetes)
+* [Linux Foundation: Helm Courses catalog](https://training.linuxfoundation.org/full-catalog/?_sft_technology=helm)
+
+**Data Engineering && Data scientist**
+
+* [Kaggle Learn]([https://www.kaggle.com/learn) - basic intro to data science and data engineering topics - free 
+* [FreeCodeCamp - Data Analysis with Python](https://www.freecodecamp.org/learn/data-analysis-with-python/) - free
+* [Dagster University](https://courses.dagster.io/) - Learn dagster - free
+
+
+

@@ -112,10 +112,12 @@ Commit messages shall help the reviewer to understand what changes have been int
 2. **Clarity and descriptive messages**: Commit messages should be clear, descriptive, and concise. They should summarize the purpose and content of the commit. A good commit message helps others understand the changes at a glance and provides context for future reference.
 
     Example. Too generic not descriptive message
+
     ```
     ❌ Avoid
-    Updates Readme   
-
+     Updates Readme   
+    ```
+    ```
     ✅ Better
      Add CONTRIBUTING link to Readme
     ```

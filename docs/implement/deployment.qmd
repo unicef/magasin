@@ -1,6 +1,10 @@
 ---
-title: "Production deployment"
+title: "Deploying to production"
+description: Tips and tasks when deploying an instance of magasin into production
+meta-decription: Tips and tasks when deploying an instance of magasin into production
 format: html
+aliases:
+  - deployment.qmd
 ---
 
 Whereas the default installation of magasin is very convenient for testing, it is not ready for production.
@@ -26,10 +30,10 @@ Here you have some links to reference documentation from the original projects t
 
 ## Daskhub
 
-* [DaskHub helm char](https://artifacthub.io/packages/helm/dask/daskhub)
-* [JupyterHub helm Chart](https://z2jh.jupyter.org/en/stable/)
-* [Dask Gateway Helm](https://gateway.dask.org/install-kube.html)
-* [Dask Gateway Hem Chart Reference](https://gateway.dask.org/install-kube.html#helm-chart-reference)
+* [DaskHub helm chart](https://artifacthub.io/packages/helm/dask/daskhub)
+* [JupyterHub helm chart](https://z2jh.jupyter.org/en/stable/)
+* [Dask Gateway helm](https://gateway.dask.org/install-kube.html)
+* [Dask Gateway helm chart reference](https://gateway.dask.org/install-kube.html#helm-chart-reference)
 
 ## Dagster
 
@@ -38,11 +42,13 @@ Here you have some links to reference documentation from the original projects t
 
 ## MinIO
 
-From MinIO, magasin includes two helm charts: the operator and tenant. The operator basically allows you to deploy instances of tenants (provides multi-tenancy support). In the magasin default installation we do not use the operator to deploy the tenant but rather a helm chart, and we only install the operator as it is a requirement for a tenant. For one single organization, it may be enough to manage a single tenant.
+From MinIO, magasin includes two helm charts: the `operator` and `tenant`. The operator basically allows you to deploy instances of tenants (provides multi-tenancy support). In the magasin default installation we do not use the operator to deploy the tenant but rather a helm chart, and we only install the operator as it is a requirement for a tenant. For one single organization, it may be enough to manage a single tenant. 
 
-* [Minio Tenant Helm Chart Reference](https://min.io/docs/minio/kubernetes/upstream/reference/operator-chart-values.html#id2)
+Also, note that you can skip including this component if you use a cloud provider blob container such as Amazon AWS S3 buckets, Azure Blob containers or Google Cloud Storage.
 
-* [Minio Operator Helm Chart Reference ](https://min.io/docs/minio/kubernetes/upstream/reference/operator-chart-values.html)
+* [MinIO Tenant Helm Chart Reference](https://min.io/docs/minio/kubernetes/upstream/reference/operator-chart-values.html#id2)
+
+* [MinIO Operator Helm Chart Reference ](https://min.io/docs/minio/kubernetes/upstream/reference/operator-chart-values.html)
 
 * [Deploy minio operator with Helm](https://min.io/docs/minio/kubernetes/upstream/operations/install-deploy-manage/deploy-operator-helm.html)
 * [Deploy a tenant with Helm](https://min.io/docs/minio/kubernetes/upstream/operations/install-deploy-manage/deploy-minio-tenant-helm.html#deploy-tenant-helm)
