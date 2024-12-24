@@ -2,9 +2,9 @@
 
 This is a [Dagster](https://dagster.io) project that loads data form the DPGA pipeline and stores it in a Minio/S3 bucket.
 
-This version of the pipeline uses more advanced concepts such as IOManagers, ConfigurableResources and asset Metadata.
+This version of the pipeline uses more advanced concepts such as `IOManagers`, `ConfigurableResources` and asset `Metadata`.
 
-This is part of the getting started tutorial of [magasin](http://magasin.github.io/get-started/) 
+This is part of the getting started tutorial of [magasin](http://magasin.unicef.io/get-started/) 
 
 ## Usage
 
