@@ -145,7 +145,7 @@ The next step is to create a pipeline using Dagster. A pipeline is just a piece 
 The first thing we need to do is to install Dagster.
 
 ```sh
-pip install dagster==1.6.4 dagster-webserver==1.6.4
+pip install dagster==1.9.3 dagster-webserver==1.9.3
 ```
 
 :::{.callout-note}
