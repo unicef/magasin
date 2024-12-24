@@ -13,7 +13,7 @@ class DPGResource(ConfigurableResource):
         description=(
             "URL for the DPGA API"
         ),
-        default="https://api.digitalpublicgoods.net"
+        default="https://app.digitalpublicgoods.net/api"
     )
 
     def get_list_from_dpga(self, stage="dpgs") -> Response:
