@@ -6,11 +6,11 @@ docs/_site
 # mag-cli docs site
 mag-cli/site 
 
+# helm repo created by helm-scripts/local-helm-repo.sh script
 _helm-repo
 
 # Dev config for testing helm scripts
 helm-scripts/dev.config
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

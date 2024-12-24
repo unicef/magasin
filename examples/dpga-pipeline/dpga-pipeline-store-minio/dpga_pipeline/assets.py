@@ -8,7 +8,7 @@ from dagster import asset
 def raw_dpgs() -> DataFrame:
   """ DPGs data from the API"""
   # Load from API
-  dpgs_json_dict = requests.get("https://api.digitalpublicgoods.net/dpgs").json()  
+  dpgs_json_dict = requests.get("https://app.digitalpublicgoods.net/api/dpgs").json()  
 
   # Convert to pandas dataframe
   df = pd.DataFrame.from_dict(dpgs_json_dict)

@@ -61,13 +61,16 @@ Ok. so now we can start coding. Copy this code in the first cell and run the cel
 This will install some python packages. You can run command-line commands by prepending '!' to the command.
 
 Now, add a new cell, copy the code below and run the cell
+
 ```python
 import requests
 import pandas as pd
 
-dpgs_json_dict = requests.get("https://api.digitalpublicgoods.net/dpgs").json()
+# Download the API data and convert to a pandas DataFrame
+dpgs_json_dict = requests.get("https://app.digitalpublicgoods.net/api/dpgs").json()
 df = pd.DataFrame.from_dict(dpgs_json_dict)
 
+# See what we got
 df.head()
 ```
 

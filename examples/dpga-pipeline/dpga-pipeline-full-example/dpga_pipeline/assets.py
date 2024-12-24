@@ -117,28 +117,6 @@ def apply_transformations(dpg_api_json_dict: Dict) -> DataFrame:
 
     return df
 
-#
-# Assets
-#
-
-@asset(io_manager_key="minio_json_io_manager")
-def raw_nominees(context: AssetExecutionContext, dpg_api: DPGResource) -> DataFrame:
-    """
-    This asset contains the raw list of nominees from the DPG API
-    """
-    # Get the json from the API
-    nominees_json_dict = dpg_api.get_list_from_dpga(stage="nominees").json()
-
-    df = apply_transformations(nominees_json_dict)
-
-    # Add some metadata
-    context.add_output_metadata(
-        metadata={
-            "number_of_nominees": len(df),
-            "preview": MetadataValue.md(df.head().to_markdown()),
-        }
-    )
-    return df
 
 @asset(io_manager_key="minio_json_io_manager")
 def raw_dpgs(context: AssetExecutionContext, dpg_api: DPGResource) -> DataFrame:

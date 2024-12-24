@@ -1,8 +1,8 @@
 # dpga-pipeline-store-minio
 
-This is the first version of the dpga pipeline  that is run in the [second step](httpa://magasin.github.io/get-started/automate-data-ingestion.html) of the [getting started tutorial](httpa://magasin.github.io/get-started/).  
+This version of the Dagster DPGA pipeline that is run in the [second step](https://magasin.unicef.io/get-started/automate-data-ingestion.html) of the [getting started tutorial](https://magasin.unicef.io/get-started/).  
 
-Tested with `dagster==1.6.0` and `dagster-webserver==1.6.0`
+Tested with `dagster==1.9.3` and `dagster-webserver==1.9.3`
 
 ## Usage
 
